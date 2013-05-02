@@ -1,0 +1,32 @@
+<RCC>
+    <qresource prefix="/">
+        <file>res/crop.png</file>
+        <file>res/delete.png</file>
+        <file>res/file-open.png</file>
+        <file>res/file-properties.png</file>
+        <file>res/file-save.png</file>
+        <file>res/format-bmp.png</file>
+        <file>res/format-gif.png</file>
+        <file>res/format-jpeg.png</file>
+        <file>res/format-jpg.png</file>
+        <file>res/format-png.png</file>
+        <file>res/format-tiff.png</file>
+        <file>res/fullscreen.png</file>
+        <file>res/next.png</file>
+        <file>res/prev.png</file>
+        <file>res/resize.png</file>
+        <file>res/rotate-left.png</file>
+        <file>res/rotate-right.png</file>
+        <file>res/slideshow.png</file>
+        <file>res/zoom-in.png</file>
+        <file>res/zoom-out.png</file>
+        <file>lng/qimageviewer_en.qm</file>
+        <file>lng/qimageviewer_en.ts</file>
+        <file>lng/qimageviewer_ru.qm</file>
+        <file>lng/qimageviewer_ru.ts</file>
+        <file>lng/qimageviewer_uk.qm</file>
+        <file>lng/qimageviewer_uk.ts</file>
+        <file>res/icon.png</file>
+        <file>res/logo.png</file>
+    </qresource>
+</RCC>

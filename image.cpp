@@ -13,6 +13,15 @@ image::image()
     //setDragMode(RubberBandDrag);
 }
 
+void image::setMouseZoom(bool arg)
+{    mouseZoom = arg;   }
+void image::setMouseFullscreen(bool arg)
+{    mouseFullscreen = arg; }
+bool image::getMouseZoom()
+{    return mouseZoom;   }
+bool image::getMouseFullscreen()
+{    return mouseFullscreen; }
+
 /** Setting context menu **/
 void image::createContextMenu()
 {
@@ -268,8 +277,6 @@ void image::zoomInc()
 
 
     ////ЦЕНТРОВКА////
-    //sumMousePos.setX( imageScene->width()/2.0 );
-    //sumMousePos.setY( imageScene->height()/2.0 );
     centerOn(sumMousePos.x(),sumMousePos.y());
 }
 
@@ -295,8 +302,6 @@ void image::zoomDec()
     setScene(imageScene);
 
     ////ЦЕНТРОВКА////
-    //sumMousePos.setX( imageScene->width()/2.0 );
-    //sumMousePos.setY( imageScene->height()/2.0 );
     centerOn(sumMousePos.x(),sumMousePos.y());
 }
 
@@ -392,7 +397,6 @@ void image::setAsWallpaper()
         system(command.toLocal8Bit().data());
     }
     file.close();
-    file.remove();
 
     if (!exist)
     {
@@ -410,7 +414,6 @@ void image::setAsWallpaper()
             system(command.toLocal8Bit().data());
         }
         file.close();
-        file.remove();
     }
 
     if (!exist)
@@ -429,8 +432,8 @@ void image::setAsWallpaper()
             system(command.toLocal8Bit().data());
         }
         file.close();
-        file.remove();
     }
+    file.remove();
 #endif
 }
 

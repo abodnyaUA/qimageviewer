@@ -43,7 +43,7 @@ void image::mouseReleaseEvent(QMouseEvent *event)
 void image::wheelEvent( QWheelEvent * event )
 {
     double delta = event->delta();
-    if (isPixmap)
+    if (isPixmap && mouseZoom)
     {
         imageScene->clear();
         imageScene->setSceneRect(0,0,1,1);
@@ -92,9 +92,12 @@ void image::wheelEvent( QWheelEvent * event )
 ///Double-click for fullscreen///
 void image::mouseDoubleClickEvent(QMouseEvent *event)
 {
-    emit needFullscreen();
-    sumMousePos.setX( imageScene->width()/2.0 );
-    sumMousePos.setY( imageScene->height()/2.0 );
+    if (mouseFullscreen)
+    {
+        emit needFullscreen();
+        sumMousePos.setX( imageScene->width()/2.0 );
+        sumMousePos.setY( imageScene->height()/2.0 );
+    }
 }
 
 ///Keyboard///

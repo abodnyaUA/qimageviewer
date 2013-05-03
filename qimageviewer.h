@@ -19,6 +19,7 @@
 #include "fullscreen.h"
 #include "editformresize.h"
 #include "editformcrop.h"
+#include "settings.h"
 //#include <sys/utsname.h>
 #include <QCloseEvent>
 #include <QDropEvent>
@@ -37,31 +38,50 @@ public:
     ~QImageViewer();
     
 private slots:
+    //FILE
     void fileOpen();
     void fileSave();
     void fileSaveAs();
-    void helpAbout();
     void filesFind();
+    void currentIndexWasChanged(int indx);
+    void settingsWindow();
+    void updateSettings(QString defaultfolder,
+                        bool mouseZoom, bool mouseFullscreen,
+                        bool slideshowSmoothTransition, int slideshowInterval);
+    //HELP
+    void helpAbout();
+    //NAVIGATION
     void nextImage();
     void prevImage();
     void nextImageArrows();
     void prevImageArrows();
+    //WATCH
     void fullScreen();
     void fullScreenOvered();
     void fullScreenFromImage();
+    void slideShow();
+    //EDIT
     void resizeImage();
     void resizeImageOvered(bool result);
     void cropImage();
     void cropImageOvered(bool result);
-    void currentIndexWasChanged(int indx);
     void setUndoEnable(bool);
     void setRedoEnable(bool);
     void setStatusName(bool);
 
 private:
     /// Settings ///
+    //Default Folder//
     QString lastdirectory;
 
+    //Hotkeys//
+    QString cropHotkey;
+    QString resizeHotkey;
+    QString fullscreenHotkey;
+    QString slideshowHotkey;
+    QString undoHotkey;
+    QString redoHotkey;
+    Settings *settings;
 
     /// Other stuff ///
     QDesktopWidget desk;

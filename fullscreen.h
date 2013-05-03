@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QVBoxLayout>
 #include <QKeyEvent>
+#include "image.h"
 
 namespace Ui {
 class fullscreen;
@@ -14,9 +15,16 @@ class fullscreen : public QWidget
     Q_OBJECT
     
 public:
-    explicit fullscreen(QWidget *parent = 0);
+    explicit fullscreen(image *imagewidget);
     ~fullscreen();
     QVBoxLayout *lay;
+    image *imagewidget;
+    void startSlideShow();
+
+    void setSlideshowSmoothTransition(bool);
+    void setSlideshowInterval(int);
+    bool getSlideshowSmoothTransition();
+    int getSlideshowInterval();
 
 signals:
     void fullscreenEnded();
@@ -29,6 +37,14 @@ signals:
 
 private:
     Ui::fullscreen *ui;
+
+    //slideshow
+    QTimer *timer;
+    bool slideshowSmoothTransition;
+    int slideshowInterval;
+
+private slots:
+    void nextSlide();
 
 protected:
     bool eventFilter(QObject *obj, QEvent *event);

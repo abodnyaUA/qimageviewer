@@ -12,36 +12,71 @@ void QImageViewer::loadsettings()
 
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
     {
+        /** DEFAULT SETTINGS **/
         QString uname;
         if (file.open(QIODevice::WriteOnly | QIODevice::Text))
         {
             /// Default folder ///
             out << "DEFAULT_FOLDER=";
-#ifdef Q_OS_WIN32
+    #ifdef Q_OS_WIN32
             uname = QString::fromLocal8Bit( getenv("USER") );
             out << "C:\\Users\\";
             lastdirectory = "C:\\Users\\"+uname;
-#else
+    #else
             uname = QString::fromLocal8Bit( getenv("USER") );
             out << "/home/";
             lastdirectory = "/home/"+uname;
-#endif
+    #endif
             out << uname;
             out << "\n";
 
             /// Enable/Disable fullscreen mode by double-click mouse ///
+            out << "MOUSE_FULLSCREEN=1\n";
+            imagewidget->setMouseFullscreen(true);
 
             /// Enable/Disable zooming by mouse ///
+            out << "MOUSE_ZOOM=1\n";
+            imagewidget->setMouseZoom(true);
+
+            /// Slideshow ///
+            out << "SLIDESHOW_TRANSITION=0\n";
+            fullScreenWidget->setSlideshowSmoothTransition(false);
+            out << "SLIDESHOW_INTERVAL=1000\n";
+            fullScreenWidget->setSlideshowInterval(1000);
 
             /// Hotkeys ///
         }
     }
     else
     {
-        QString deffolder;
-        out >> deffolder;
-        lastdirectory = deffolder.right(deffolder.size()-15);
+        /** LOAD EXIST SETTINGS **/
+        /// Default folder ///
+        QString sets;
+        sets = out.readLine();
+        lastdirectory = sets.right(sets.size()-15);
+
+        /// Enable/Disable fullscreen mode by double-click mouse ///
+        sets = out.readLine();
+        if (sets[sets.size()-1] == '1')
+            imagewidget->setMouseFullscreen(true);
+        else imagewidget->setMouseFullscreen(false);
+
+        /// Enable/Disable zooming by mouse ///
+        sets = out.readLine();
+        if (sets[sets.size()-1] == '1')
+            imagewidget->setMouseZoom(true);
+        else imagewidget->setMouseZoom(false);
+
+        /// Slideshow ///
+        sets = out.readLine();
+        if (sets[sets.size()-1] == '1')
+            fullScreenWidget->setSlideshowSmoothTransition(true);
+        else fullScreenWidget->setSlideshowSmoothTransition(false);
+
+        sets = out.readLine();
+        fullScreenWidget->setSlideshowInterval(sets.right(sets.size()-19).toInt());
     }
+    file.close();
 }
 
 QImageViewer::QImageViewer(QString path, QWidget *parent) :
@@ -49,11 +84,26 @@ QImageViewer::QImageViewer(QString path, QWidget *parent) :
     ui(new Ui::QImageViewer)
 {
     ui->setupUi(this);
+
+    // init image //
     imagewidget = new image;
 
+    // init fullscreen mode //
+    fullScreenWidget = new fullscreen(imagewidget);
+    isfullScreenActive = false;
+    connect(fullScreenWidget,SIGNAL(fullscreenEnded()),this,SLOT(fullScreenOvered()));
+
+    // init editResize window //
+    editFormResize = new editformResize;
+    connect(editFormResize,SIGNAL(editFinished(bool)),this,SLOT(resizeImageOvered(bool)));
+
+    // init editCrop window //
+    editFormCrop = new editformCrop;
+    connect(editFormCrop,SIGNAL(editFinished(bool)),this,SLOT(cropImageOvered(bool)));
+
     ui->verticalLayout->addWidget(imagewidget);
-    previewArea.setMinimumHeight(120);
-    previewArea.setWindowState(Qt::WindowMinimized);
+    //previewArea.setMinimumHeight(120);
+    //previewArea.setWindowState(Qt::WindowMinimized);
     //ui->previewLayout->addWidget(&previewArea);
 
     dialog = new QFileDialog(this);
@@ -76,21 +126,10 @@ QImageViewer::QImageViewer(QString path, QWidget *parent) :
         fileOpen();
     }
 
-    // init fullscreen mode //
-    fullScreenWidget = new fullscreen;
-    isfullScreenActive = false;
-    connect(fullScreenWidget,SIGNAL(fullscreenEnded()),this,SLOT(fullScreenOvered()));
-
-    // init editResize window //
-    editFormResize = new editformResize;
-    connect(editFormResize,SIGNAL(editFinished(bool)),this,SLOT(resizeImageOvered(bool)));
-
-    // init editCrop window //
-    editFormCrop = new editformCrop;
-    connect(editFormCrop,SIGNAL(editFinished(bool)),this,SLOT(cropImageOvered(bool)));
 
     ui->mainToolBar->hide();
     //ui->mainToolBar->set
+    settings = new Settings;
 }
 
 /** Set all shortcuts, signal-slots and statustips for buttons and menu actions **/
@@ -110,6 +149,9 @@ void QImageViewer::createActions()
     ui->saveAsAction->setShortcut(tr("Ctrl+Shift+S"));
     ui->saveAsAction->setStatusTip(tr("Save current image with new name and format"));
     connect(ui->saveAsAction,SIGNAL(triggered()),this,SLOT(fileSaveAs()));
+
+    ui->settingsAction->setStatusTip(tr("Program settings"));
+    connect(ui->settingsAction,SIGNAL(triggered()),this,SLOT(settingsWindow()));
 
     ui->exitAction->setShortcut(tr("Ctrl+Q"));
     ui->exitAction->setStatusTip(tr("Close program"));
@@ -152,7 +194,10 @@ void QImageViewer::createActions()
     connect(ui->fullscreenAction,SIGNAL(triggered()),this,SLOT(fullScreen()));
     connect(imagewidget,SIGNAL(needFullscreen()),this,SLOT(fullScreenFromImage()));
 
-    //ui->wallpaperAction->setShortcut(tr("F10"));
+    ui->slideshowAction->setShortcut(tr("F5"));
+    ui->slideshowAction->setStatusTip(tr("Start slideshow in fullscreen mode"));
+    connect(ui->slideshowAction,SIGNAL(triggered()),this,SLOT(slideShow()));
+
     ui->wallpaperAction->setStatusTip(tr("Set picture as wallpaper"));
     connect(ui->wallpaperAction,SIGNAL(triggered()),imagewidget,SLOT(setAsWallpaper()));
 
@@ -171,6 +216,8 @@ void QImageViewer::createActions()
     ui->deleteFileAction->setEnabled(false);
     ui->resizeAction->setEnabled(false);
     ui->fullscreenAction->setEnabled(false);
+    ui->slideshowAction->setEnabled(false);
+    ui->wallpaperAction->setEnabled(false);
     ui->cropAction->setEnabled(false);
 
     ///BUTTONS///
@@ -232,6 +279,8 @@ void QImageViewer::createDesign()
     ui->resizeAction->setIcon(QIcon(QPixmap(":/res/resize.png")));
     ui->cropAction->setIcon(QIcon(QPixmap(":/res/crop.png")));
     ui->fullscreenAction->setIcon(QIcon(QPixmap(":/res/fullscreen.png")));
+    ui->slideshowAction->setIcon(QIcon(QPixmap(":/res/slideshow.png")));
+    ui->aboutAction->setIcon(QIcon(QPixmap(":/res/help.png")));
 
     ui->prevButton->setIcon(QIcon(QPixmap(":/res/prev.png")));
     ui->nextButton->setIcon(QIcon(QPixmap(":/res/next.png")));
@@ -355,6 +404,8 @@ void QImageViewer::fileOpen()
     ui->deleteFileAction->setEnabled(true);
     ui->resizeAction->setEnabled(true);
     ui->fullscreenAction->setEnabled(true);
+    ui->slideshowAction->setEnabled(true);
+    ui->wallpaperAction->setEnabled(true);
     ui->cropAction->setEnabled(true);
 
     ui->prevButton->setEnabled(true);
@@ -416,9 +467,15 @@ void QImageViewer::fileSaveAs()
                                           "X11 Bitmap (*.xbm *.xpm)"));
         imagewidget->saveimage(path);
         imagewidget->setSaved();
-        imagewidget->insertImage(path,imagewidget->currentImage()+1);
-        nextImage();
-        ui->image_amount_label->setText(QString::number(imagewidget->size()));
+        dialog->selectFile(path);
+        qDebug() << lastdirectory;
+        qDebug() << dialog->directory().path();
+        if (lastdirectory == dialog->directory().path())
+        {
+            imagewidget->insertImage(path,imagewidget->currentImage()+1);
+            nextImage();
+            ui->image_amount_label->setText(QString::number(imagewidget->size()));
+        }
     }
 }
 
@@ -459,6 +516,41 @@ void QImageViewer::fullScreenOvered()
     imagewidget->reloadImage();
     imagewidget->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
     imagewidget->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+}
+
+/** Start slideshow **/
+void QImageViewer::slideShow()
+{
+    fullScreen();
+    fullScreenWidget->startSlideShow();
+}
+
+/** Open Settings Window **/
+void QImageViewer::settingsWindow()
+{
+    //settings = new Settings;
+    connect(settings,SIGNAL(acceptsettings(QString,bool,bool,bool,int)),
+            this,SLOT(updateSettings(QString,bool,bool,bool,int)));
+
+    settings->setDefaultSettings(lastdirectory,
+                                 imagewidget->getMouseZoom(),
+                                 imagewidget->getMouseFullscreen(),
+                                 fullScreenWidget->getSlideshowSmoothTransition(),
+                                 fullScreenWidget->getSlideshowInterval());
+    settings->show();
+}
+
+/** Update program settings **/
+void QImageViewer::updateSettings(QString defaultfolder,
+                    bool mouseZoom, bool mouseFullscreen,
+                    bool slideshowSmoothTransition, int slideshowInterval)
+{
+    this->lastdirectory = defaultfolder;
+    imagewidget->setMouseZoom(mouseZoom);
+    imagewidget->setMouseFullscreen(mouseFullscreen);
+    fullScreenWidget->setSlideshowSmoothTransition(slideshowSmoothTransition);
+    fullScreenWidget->setSlideshowInterval(slideshowInterval);
+    //delete settings;
 }
 
 /** Show editResize window, hide this **/
@@ -548,8 +640,19 @@ void QImageViewer::closeEvent(QCloseEvent *event)
     if (file.open(QIODevice::WriteOnly | QIODevice::Text));
     {
         out.seek(0);
-        out << "DEFAULT_FOLDER=" << directory;
-    }
+        out << "DEFAULT_FOLDER=" << directory << "\n";
+    }/// Enable/Disable fullscreen mode by double-click mouse ///
+    out << "MOUSE_FULLSCREEN=" << (int)imagewidget->getMouseFullscreen() << "\n";
+
+    /// Enable/Disable zooming by mouse ///
+    out << "MOUSE_ZOOM=" << (int)imagewidget->getMouseZoom() << "\n";
+
+    /// Slideshow ///
+    out << "SLIDESHOW_TRANSITION=" << (int)fullScreenWidget->getSlideshowSmoothTransition() << "\n";;
+    out << "SLIDESHOW_INTERVAL=" << fullScreenWidget->getSlideshowInterval() << "\n";
+
+    /// Hotkeys ///
+
     file.close();
 
     if (!imagewidget->isSaved())

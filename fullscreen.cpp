@@ -1,15 +1,57 @@
 #include "fullscreen.h"
 #include "ui_fullscreen.h"
+#include <QDebug>
 
-fullscreen::fullscreen(QWidget *parent) :
-    QWidget(parent),
+fullscreen::fullscreen(image *imagewidget):
     ui(new Ui::fullscreen)
 {
     ui->setupUi(this);
     lay = ui->verticalLayout;
+    this->imagewidget = imagewidget;
     this->installEventFilter(this);
+    timer = new QTimer(this);
+    connect(timer, SIGNAL(timeout()), this, SLOT(nextSlide()));
 }
-#include <QDebug>
+
+
+void fullscreen::setSlideshowSmoothTransition(bool arg)
+{   slideshowSmoothTransition = arg;   }
+void fullscreen::setSlideshowInterval(int arg)
+{   slideshowInterval = arg;}
+bool fullscreen::getSlideshowSmoothTransition()
+{   return slideshowSmoothTransition;  }
+int fullscreen::getSlideshowInterval()
+{   return slideshowInterval;   }
+
+void fullscreen::startSlideShow()
+{
+    timer->start(slideshowInterval);
+}
+
+void fullscreen::nextSlide()
+{
+    if (slideshowSmoothTransition)
+    {
+        if (imagewidget->currentImage() < imagewidget->size()-1)
+            imagewidget->setImage(imagewidget->currentImage()+1);
+        else
+        {
+            timer->stop();
+            emit fullscreenEnded();
+        }
+    }
+    else
+    {
+        if (imagewidget->currentImage() < imagewidget->size()-1)
+            imagewidget->setImage(imagewidget->currentImage()+1);
+        else
+        {
+            timer->stop();
+            emit fullscreenEnded();
+        }
+    }
+}
+
 /** close fullscreen with ESC or F10 key **/
 bool fullscreen::eventFilter(QObject *obj, QEvent *event)
 {
@@ -17,22 +59,17 @@ bool fullscreen::eventFilter(QObject *obj, QEvent *event)
     {
         QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
         int k = keyEvent->key();
-        //'ESC' KEY
+        //'ESC' | 'F10' KEY
         if ((int)k == (int)Qt::Key_Escape || (int)k == (int)Qt::Key_F10)
         {
+            timer->stop();
             emit fullscreenEnded();
             return true;
         }
-        //'Crtl+R' KEY
-        if ((int)k == (int)(Qt::CTRL + Qt::Key_R))
-        {
-            emit fullscreenEnded();
-            return true;
-        }
-        return false;
     }
     return false;
 }
+
 
 fullscreen::~fullscreen()
 {

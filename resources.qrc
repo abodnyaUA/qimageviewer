@@ -28,5 +28,6 @@
         <file>lng/qimageviewer_uk.ts</file>
         <file>res/icon.png</file>
         <file>res/logo.png</file>
+        <file>res/help.png</file>
     </qresource>
 </RCC>

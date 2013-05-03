@@ -51,6 +51,11 @@ public slots:
     void prevBuffer();
     void nextBuffer();
     void setAsWallpaper();
+    ///Mouse///
+    void setMouseZoom(bool);
+    void setMouseFullscreen(bool);
+    bool getMouseZoom();
+    bool getMouseFullscreen();
 
 signals:
     void currentImageWasChanged(int indx);
@@ -94,7 +99,9 @@ private:
     QRectF sumMousePos;
     bool isMouseGrabbed;
 
-    ///Wallpaper///
+    ///Mouse///
+    bool mouseZoom;
+    bool mouseFullscreen;
 
 private slots:
     void viewProperties();

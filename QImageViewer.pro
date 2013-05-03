@@ -117,4 +117,9 @@ OTHER_FILES += \
     android/src/org/kde/necessitas/ministro/IMinistro.aidl \
     res/help.png \
     lng/qimageviewer_uk.ts \
-    lng/qimageviewer_uk.qm
+    lng/qimageviewer_uk.qm \
+    res/settings.png \
+    res/flag-usa.png \
+    res/flag-ukr.png \
+    res/flag-rus.png \
+    res/flag-sys.png

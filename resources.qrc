@@ -29,5 +29,10 @@
         <file>res/icon.png</file>
         <file>res/logo.png</file>
         <file>res/help.png</file>
+        <file>res/settings.png</file>
+        <file>res/flag-rus.png</file>
+        <file>res/flag-ukr.png</file>
+        <file>res/flag-usa.png</file>
+        <file>res/flag-sys.png</file>
     </qresource>
 </RCC>

@@ -45,7 +45,8 @@ private slots:
     void filesFind();
     void currentIndexWasChanged(int indx);
     void settingsWindow();
-    void updateSettings(QString defaultfolder,
+    void updateSettings(QString language,
+                        QString defaultfolder,
                         bool mouseZoom, bool mouseFullscreen,
                         bool slideshowSmoothTransition, int slideshowInterval);
     //HELP
@@ -73,6 +74,9 @@ private:
     /// Settings ///
     //Default Folder//
     QString lastdirectory;
+
+    //Language//
+    QString language;
 
     //Hotkeys//
     QString cropHotkey;

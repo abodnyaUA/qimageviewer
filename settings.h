@@ -3,6 +3,8 @@
 
 #include <QWidget>
 #include <QCloseEvent>
+#include <QFileDialog>
+#include <QMessageBox>
 
 namespace Ui {
 class Settings;
@@ -14,7 +16,8 @@ class Settings : public QWidget
     
 public:
     explicit Settings(QWidget *parent = 0);
-    void setDefaultSettings(QString defaultfolder,
+    void setDefaultSettings(QString language,
+                            QString defaultfolder,
                             bool mouseZoom, bool mouseFullscreen,
                             bool slideshowSmoothTransition, int slideshowInterval);
     ~Settings();
@@ -32,13 +35,19 @@ private slots:
     void on_slideshowIntervalButton_clicked();
 
 signals:
-    void acceptsettings(QString defaultfolder,
+    void acceptsettings(QString language,
+                        QString defaultfolder,
                         bool mouseZoom, bool mouseFullscreen,
                         bool slideshowSmoothTransition, int slideshowInterval);
 
 private:
     Ui::Settings *ui;
-
+    QString old_lang;
+    QString old_defaultfolder;
+    bool old_mouseZoom;
+    bool old_mouseFullscreen;
+    bool old_slideshowSmoothTransition;
+    int old_slideshowInterval;
 protected:
     void closeEvent(QCloseEvent *);
 };

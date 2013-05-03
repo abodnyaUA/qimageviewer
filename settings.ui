@@ -11,7 +11,11 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>QImageViewer - Settings</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="resources.qrc">
+    <normaloff>:/res/settings.png</normaloff>:/res/settings.png</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_3">
    <item>
@@ -138,6 +142,41 @@
            <property name="text">
             <string>Smooth transition in slideshow</string>
            </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_4">
+         <item>
+          <widget class="QLabel" name="label_9">
+           <property name="text">
+            <string>Program language:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="languageComboBox">
+           <item>
+            <property name="text">
+             <string>System</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>English</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Русский</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Українська</string>
+            </property>
+           </item>
           </widget>
          </item>
         </layout>
@@ -372,6 +411,8 @@
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
  <connections/>
 </ui>

@@ -16,6 +16,10 @@ void QImageViewer::loadsettings()
         QString uname;
         if (file.open(QIODevice::WriteOnly | QIODevice::Text))
         {
+            /// LANGUAGE ///
+            out << "LANGUAGE=sys\n";
+            language = "sys";
+
             /// Default folder ///
             out << "DEFAULT_FOLDER=";
     #ifdef Q_OS_WIN32
@@ -50,8 +54,12 @@ void QImageViewer::loadsettings()
     else
     {
         /** LOAD EXIST SETTINGS **/
-        /// Default folder ///
+        /// Language ///
         QString sets;
+        sets = out.readLine();
+        language = sets.right(sets.size()-9);
+
+        /// Default folder ///
         sets = out.readLine();
         lastdirectory = sets.right(sets.size()-15);
 
@@ -273,6 +281,7 @@ void QImageViewer::createDesign()
 {
     ui->saveAction->setIcon(QIcon(QPixmap(":/res/file-save.png")));
     ui->openAction->setIcon(QIcon(QPixmap(":/res/file-open.png")));
+    ui->settingsAction->setIcon(QIcon(QPixmap(":/res/settings.png")));
     ui->rotateLeftAction->setIcon(QIcon(QPixmap(":/res/rotate-left.png")));
     ui->rotateRightAction->setIcon(QIcon(QPixmap(":/res/rotate-right.png")));
     ui->deleteFileAction->setIcon(QIcon(QPixmap(":/res/delete.png")));
@@ -529,10 +538,11 @@ void QImageViewer::slideShow()
 void QImageViewer::settingsWindow()
 {
     //settings = new Settings;
-    connect(settings,SIGNAL(acceptsettings(QString,bool,bool,bool,int)),
-            this,SLOT(updateSettings(QString,bool,bool,bool,int)));
+    connect(settings,SIGNAL(acceptsettings(QString,QString,bool,bool,bool,int)),
+            this,SLOT(updateSettings(QString,QString,bool,bool,bool,int)));
 
-    settings->setDefaultSettings(lastdirectory,
+    settings->setDefaultSettings(language,
+                                 lastdirectory,
                                  imagewidget->getMouseZoom(),
                                  imagewidget->getMouseFullscreen(),
                                  fullScreenWidget->getSlideshowSmoothTransition(),
@@ -541,10 +551,12 @@ void QImageViewer::settingsWindow()
 }
 
 /** Update program settings **/
-void QImageViewer::updateSettings(QString defaultfolder,
+void QImageViewer::updateSettings(QString language,
+                    QString defaultfolder,
                     bool mouseZoom, bool mouseFullscreen,
                     bool slideshowSmoothTransition, int slideshowInterval)
 {
+    this->language = language;
     this->lastdirectory = defaultfolder;
     imagewidget->setMouseZoom(mouseZoom);
     imagewidget->setMouseFullscreen(mouseFullscreen);
@@ -637,11 +649,12 @@ void QImageViewer::closeEvent(QCloseEvent *event)
         }
     }
 #endif
-    if (file.open(QIODevice::WriteOnly | QIODevice::Text));
-    {
-        out.seek(0);
-        out << "DEFAULT_FOLDER=" << directory << "\n";
-    }/// Enable/Disable fullscreen mode by double-click mouse ///
+    file.open(QIODevice::WriteOnly | QIODevice::Text);
+    out.seek(0);
+    out << "LANGUAGE="<<language<<"\n";
+    out << "DEFAULT_FOLDER=" << directory << "\n";
+
+    /// Enable/Disable fullscreen mode by double-click mouse ///
     out << "MOUSE_FULLSCREEN=" << (int)imagewidget->getMouseFullscreen() << "\n";
 
     /// Enable/Disable zooming by mouse ///

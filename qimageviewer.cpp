@@ -188,7 +188,6 @@ void QImageViewer::createActions()
 
     // Edit //
     ui->actionUndo->setShortcut(undoHotkey);
-    qDebug() << "Ctrl+Z="<<ui->actionUndo->shortcut().toString();
     ui->actionUndo->setStatusTip(tr("Cancel last changes"));
     connect(ui->actionUndo,SIGNAL(triggered()),imagewidget,SLOT(prevBuffer()));
     connect(imagewidget,SIGNAL(itsPossibleToUndo(bool)),this,SLOT(setUndoEnable(bool)));
@@ -633,7 +632,6 @@ void QImageViewer::updateSettings(QString language,
             this,SLOT(updateSettings(QString,QString,bool,bool,bool,double,
                                      QString,QString,QString,QString,QString,QString)));
     delete settings;
-    qDebug() << "redohotkey="<<redoHotkey;
 }
 
 /** Show editResize window, hide this **/

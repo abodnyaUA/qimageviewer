@@ -153,7 +153,7 @@
      <x>0</x>
      <y>0</y>
      <width>640</width>
-     <height>25</height>
+     <height>20</height>
     </rect>
    </property>
    <widget class="QMenu" name="fileMenu">
@@ -168,6 +168,7 @@
     <addaction name="saveAsAction"/>
     <addaction name="separator"/>
     <addaction name="settingsAction"/>
+    <addaction name="separator"/>
     <addaction name="exitAction"/>
    </widget>
    <widget class="QMenu" name="parametersMenu">
@@ -204,13 +205,14 @@
      <string>&amp;Preview</string>
     </property>
     <addaction name="fullscreenAction"/>
+    <addaction name="separator"/>
     <addaction name="slideshowAction"/>
     <addaction name="wallpaperAction"/>
+    <addaction name="separator"/>
     <addaction name="zoomInAction"/>
     <addaction name="zoomOutAction"/>
     <addaction name="zoomWindowAction"/>
     <addaction name="zoomOriginalAction"/>
-    <addaction name="separator"/>
    </widget>
    <addaction name="fileMenu"/>
    <addaction name="parametersMenu"/>

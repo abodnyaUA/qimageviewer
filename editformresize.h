@@ -3,6 +3,10 @@
 
 #include <QWidget>
 #include <QGraphicsView>
+#include <QState>
+#include <QVariant>
+#include <QPropertyAnimation>
+#include <QStateMachine>
 
 
 namespace Ui {

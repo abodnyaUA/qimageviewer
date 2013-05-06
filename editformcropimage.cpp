@@ -75,17 +75,55 @@ void editformcropimage::mouseMoveEvent(QMouseEvent *event)
             lastpos_x = event->x();
             lastpos_y = event->y();
             return;
-        }
+        }/*
         if ((event->x() - width_indent) > left
             && (event->y() - height_indent) > top)
-        {
+        {*/
             right = event->x() - width_indent;
             down = event->y() - height_indent;
             if (right > sceneRect().width()) right = sceneRect().width();
             if (down > sceneRect().height()) down = sceneRect().height();
             emit rightdownWasChanged(right,down);
             return;
+        /*}
+        else if ((event->x() - width_indent) <= left
+                 && (event->y() - height_indent) > top)
+        {
+            //right = left;
+            left = event->x() - width_indent;
+            down = event->y() - height_indent;
+            if (left < width_indent) left = width_indent;
+            if (down > sceneRect().height()) down = sceneRect().height();
+            emit lefttopWasChanged(left,top);
+            emit rightdownWasChanged(right,down);
+            return;
         }
+        else if ((event->x() - width_indent) <= left
+                 && (event->y() - height_indent) <= top)
+        {
+            //right = left;
+            //down = top;
+            left = event->x() - width_indent;
+            top = event->y() - height_indent;
+            if (left < width_indent) left = width_indent;
+            if (top < height_indent) top = height_indent;
+            emit lefttopWasChanged(left,top);
+            emit rightdownWasChanged(right,down);
+            return;
+        }
+        else if ((event->x() - width_indent) > left
+                 && (event->y() - height_indent) <= top)
+        {
+            //down = top;
+            right = event->x() - width_indent;
+            top = event->y() - height_indent;
+            if (right > sceneRect().width()) right = sceneRect().width();
+            if (top < height_indent) top = height_indent;
+            emit lefttopWasChanged(left,top);
+            emit rightdownWasChanged(right,down);
+            return;
+        }*/
+
     }
 }
 
@@ -109,5 +147,5 @@ void editformcropimage::drawForeground(QPainter * painter, const QRectF & rect)
     //qDebug() << "Draw: left="<<left<<"right="<<right<<"top="<<top<<"down="<<down;
     QPen pen(QBrush(QColor(20,20,20)),3,Qt::DashDotLine);
     painter->setPen(pen);
-    painter->drawRect(left,top,(right-left),(down-top));
+    painter->drawRect(left,top,fabs(right-left),fabs(down-top));
 }

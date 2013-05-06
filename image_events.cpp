@@ -45,47 +45,8 @@ void image::wheelEvent( QWheelEvent * event )
     double delta = event->delta();
     if (isPixmap && mouseZoom)
     {
-        imageScene->clear();
-        imageScene->setSceneRect(0,0,1,1);
-        imageScene->clear();
-        if ((double)imagePixmap->width()/(double)width() > (double)imagePixmap->height()/(double)height())
-        {
-            if (delta > 0)
-            {
-                if ((zoom+0.2)*(width()*0.95) < imagePixmap->width()) zoom += 0.2;
-            }
-            if (delta < 0 && zoom > 0.2 &&  (zoom-0.2)*(width()*0.95) > 10) zoom -= 0.2;
-            if ((zoom+0.2)*(width()*0.95) < imagePixmap->width())
-            {
-                imageScene->setSceneRect(0,0,(width()*0.95)*zoom,(*imagePixmap).scaledToWidth((width()*0.95)*zoom).height());
-                imageScene->addPixmap((*imagePixmap).scaledToWidth((width()*0.95)*zoom));
-            }
-            else
-            {
-                imageScene->setSceneRect(0,0,(*imagePixmap).width(),(*imagePixmap).height());
-                imageScene->addPixmap(*imagePixmap);
-            }
-        }
-        else
-        {
-            if (delta > 0)
-            {
-                if ((zoom+0.2)*(height()*0.98) < imagePixmap->height()) zoom += 0.2;
-            }
-            if (delta < 0 && zoom > 0.2 && (zoom-0.2)*(height()*0.98) > 10) zoom -= 0.2;
-            if ((zoom+0.2)*(height()*0.98)< imagePixmap->height())
-            {
-                imageScene->setSceneRect(0,0,(*imagePixmap).scaledToHeight(((height()*0.98))*zoom).width(),((height()*0.98))*zoom);
-                imageScene->addPixmap((*imagePixmap).scaledToHeight(((height()*0.98))*zoom));
-            }
-            else
-            {
-                imageScene->setSceneRect(0,0,(*imagePixmap).width(),(*imagePixmap).height());
-                imageScene->addPixmap(*imagePixmap);
-            }
-        }
-        setSceneRect(0,0,imageScene->width(),imageScene->height());
-        setScene(imageScene);
+        if (delta > 0) zoomInc();
+        else zoomDec();
     }
 }
 
@@ -98,6 +59,17 @@ void image::mouseDoubleClickEvent(QMouseEvent *event)
         sumMousePos.setX( imageScene->width()/2.0 );
         sumMousePos.setY( imageScene->height()/2.0 );
     }
+}
+
+///Event, when user moved horizontal or vertical ScrollBar, ///
+///automaticaly moved sumMousePos ///
+void image::horizontalSliderMoverd(int arg)
+{
+    sumMousePos.setX(arg+300);
+}
+void image::verticalSliderMoverd(int arg)
+{
+    sumMousePos.setY(arg+100);
 }
 
 ///Keyboard///
@@ -162,7 +134,7 @@ bool image::eventFilter(QObject *obj, QEvent *event)
             //LEFT KEY
             if ((int)k == (int)Qt::Key_Left)
             {
-                if (sumMousePos.x() > 200) sumMousePos.setX(sumMousePos.x()-100);
+                if (sumMousePos.x() > 100) sumMousePos.setX(sumMousePos.x()-100);
                 horizontalScrollBar()->setValue(horizontalScrollBar()->value()-100);
                 return true;
             }
@@ -176,7 +148,7 @@ bool image::eventFilter(QObject *obj, QEvent *event)
             //UP KEY
             if ((int)k == (int)Qt::Key_Up)
             {
-                if (sumMousePos.y() > 200) sumMousePos.setY(sumMousePos.y()-100);
+                if (sumMousePos.y() > 100) sumMousePos.setY(sumMousePos.y()-100);
                 verticalScrollBar()->setValue(verticalScrollBar()->value()-100);
                 return true;
             }

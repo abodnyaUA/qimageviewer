@@ -28,7 +28,7 @@ int main(int argc, char *argv[])
     /// system locale for messageboxes ///
     QTranslator qtTranslator;
     qtTranslator.load("qt_" + lng,
-                          QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+                      QLibraryInfo::location(QLibraryInfo::TranslationsPath));
     a.installTranslator(&qtTranslator);
 
     /// Programm language ///
@@ -38,8 +38,11 @@ int main(int argc, char *argv[])
 
     qDebug() << QLocale::system().name();
 
-    QImageViewer w(argv[1]);
-    w.show();
+    qDebug() << "argc="<<argc;
+    QImageViewer * w;
+    if (argc == 1) w = new QImageViewer;
+    else w = new QImageViewer(QString::fromLocal8Bit(argv[1]));
+    w->show();
     
     return a.exec();
 }

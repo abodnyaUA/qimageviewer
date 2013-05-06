@@ -10,7 +10,8 @@ image::image()
     createContextMenu();
     wasEdited = false;
     mouseGrabbed = false;
-    //setDragMode(RubberBandDrag);
+    connect(horizontalScrollBar(),SIGNAL(sliderMoved(int)),this,SLOT(horizontalSliderMoverd(int)));
+    connect(verticalScrollBar(),SIGNAL(sliderMoved(int)),this,SLOT(verticalSliderMoverd(int)));
 }
 
 void image::setMouseZoom(bool arg)
@@ -25,6 +26,33 @@ bool image::getMouseFullscreen()
 /** Setting context menu **/
 void image::createContextMenu()
 {
+    actionZoomIn = new QAction(tr("Zoom in"),this);
+    actionZoomIn->setIcon(QIcon(QPixmap(":/res/zoom-in.png")));
+    connect(actionZoomIn,SIGNAL(triggered()),this,SLOT(zoomInc()));
+
+    actionZoomOut = new QAction(tr("Zoom out"),this);
+    actionZoomOut->setIcon(QIcon(QPixmap(":/res/zoom-out.png")));
+    connect(actionZoomOut,SIGNAL(triggered()),this,SLOT(zoomDec()));
+
+    actionZoomWindow = new QAction(tr("Zoom as Window"),this);
+    actionZoomWindow->setIcon(QIcon(QPixmap(":/res/zoom-window.png")));
+    connect(actionZoomWindow,SIGNAL(triggered()),this,SLOT(reloadImage()));
+
+    actionZoomOriginal = new QAction(tr("Zoom Original"),this);
+    actionZoomOriginal->setIcon(QIcon(QPixmap(":/res/zoom-original.png")));
+    connect(actionZoomOriginal,SIGNAL(triggered()),this,SLOT(setOriginalSize()));
+
+    actionFullscreen = new QAction(tr("Fullscreen"),this);
+    actionFullscreen->setIcon(QIcon(QPixmap(":/res/fullscreen.png")));
+    connect(actionFullscreen,SIGNAL(triggered()),this,SIGNAL(needFullscreen()));
+
+    actionSlideshow = new QAction(tr("Slideshow"),this);
+    actionSlideshow->setIcon(QIcon(QPixmap(":/res/slideshow.png")));
+    connect(actionSlideshow,SIGNAL(triggered()),this,SIGNAL(needSlideshow()));
+
+    actionWallpaper = new QAction(tr("Set as wallpaper"),this);
+    connect(actionWallpaper,SIGNAL(triggered()),this,SLOT(setAsWallpaper()));
+
     actionDelete = new QAction(tr("Delete"),this);
     actionDelete->setIcon(QIcon(QPixmap(":/res/delete.png")));
     connect(actionDelete,SIGNAL(triggered()),this,SLOT(deleteCurrentItem()));
@@ -32,14 +60,6 @@ void image::createContextMenu()
     actionProperties = new QAction(tr("Properties"),this);
     actionProperties->setIcon(QIcon(QPixmap(":/res/file-properties.png")));
     connect(actionProperties,SIGNAL(triggered()),this,SLOT(viewProperties()));
-
-    actionFullscreen = new QAction(tr("Fullscreen"),this);
-    actionFullscreen->setIcon(QIcon(QPixmap(":/res/fullscreen.png")));
-    connect(actionFullscreen,SIGNAL(triggered()),this,SIGNAL(needFullscreen()));
-
-    actionWallpaper = new QAction(tr("Set as wallpaper"),this);
-    //actionWallpaper->setIcon(QIcon(QPixmap(":/res/file-properties.png")));
-    connect(actionWallpaper,SIGNAL(triggered()),this,SLOT(setAsWallpaper()));
 
     ui_prop = new Ui::Properties;
     propertiesWidget = new QDialog;
@@ -52,11 +72,17 @@ void image::contextMenuEvent(QContextMenuEvent *event)
     if (isPixmap)
     {
         QMenu menu(this);
-        menu.addAction(actionDelete);
+        menu.addAction(actionZoomIn);
+        menu.addAction(actionZoomOut);
+        menu.addAction(actionZoomOriginal);
+        menu.addAction(actionZoomWindow);
         menu.insertSeparator(0);
         menu.addAction(actionFullscreen);
+        menu.addAction(actionSlideshow);
         menu.insertSeparator(0);
         menu.addAction(actionWallpaper);
+        menu.insertSeparator(0);
+        menu.addAction(actionDelete);
         menu.insertSeparator(0);
         menu.addAction(actionProperties);
         menu.exec(event->globalPos());
@@ -112,6 +138,8 @@ void image::loadimage(QString path)
     imagePixmap = new QPixmap(path);
 
     zoom = 1.0;
+    zoomMin = false;
+    zoomMax = false;
 
     imageScene = new QGraphicsScene;
 
@@ -130,7 +158,11 @@ void image::loadimage(QString path)
         else
             imageScene->addPixmap((*imagePixmap).scaledToHeight(height()-5));
     }
-    else imageScene->addPixmap(*imagePixmap);
+    else
+    {
+        imageScene->addPixmap(*imagePixmap);
+        zoomMax = true;
+    }
 
     setSceneRect(0,0,imageScene->width(),imageScene->height());
     setScene(imageScene);
@@ -171,6 +203,11 @@ void image::loadimagelist(QStringList list)
 {
     imagelist = list;
     imagelist_indx = BinSearch(list,imagename);
+}
+
+void image::setOriginalSize()
+{
+    while (!zoomMax) zoomInc();
 }
 
 /** return current index **/
@@ -241,68 +278,88 @@ void image::setImage(int indx)
 /** zoom in **/
 void image::zoomInc()
 {
-    imageScene->clear();
-    imageScene->setSceneRect(0,0,1,1);
-    imageScene->clear();
-    if ((double)imagePixmap->width()/(double)width() > (double)imagePixmap->height()/(double)height())
+    if (!zoomMax)
     {
-        if ((zoom+0.2)*(width()*0.95) < imagePixmap->width()) zoom += 0.2;
-        if ((zoom+0.2)*(width()*0.95) < imagePixmap->width())
+        int oldwidth = imageScene->width();
+        imageScene->clear();
+        imageScene->setSceneRect(0,0,1,1);
+        imageScene->clear();
+        if ((double)imagePixmap->width()/(double)width() > (double)imagePixmap->height()/(double)height())
         {
-            imageScene->setSceneRect(0,0,(width()*0.95)*zoom,(*imagePixmap).scaledToWidth((width()*0.95)*zoom).height());
-            imageScene->addPixmap((*imagePixmap).scaledToWidth((width()*0.95)*zoom));
+            if ((zoom+0.2)*(width()*0.95) < imagePixmap->width()) zoom += 0.2;
+            if ((zoom+0.2)*(width()*0.95) < imagePixmap->width())
+            {
+                imageScene->setSceneRect(0,0,(width()*0.95)*zoom,(*imagePixmap).scaledToWidth((width()*0.95)*zoom).height());
+                imageScene->addPixmap((*imagePixmap).scaledToWidth((width()*0.95)*zoom));
+            }
+            else
+            {
+                imageScene->setSceneRect(0,0,(*imagePixmap).width(),(*imagePixmap).height());
+                imageScene->addPixmap(*imagePixmap);
+                zoomMax = true;
+            }
         }
         else
         {
-            imageScene->setSceneRect(0,0,(*imagePixmap).width(),(*imagePixmap).height());
-            imageScene->addPixmap(*imagePixmap);
+            if ((zoom+0.2)*(height()*0.98) < imagePixmap->height()) zoom += 0.2;
+            if ((zoom+0.2)*(height()*0.98) < imagePixmap->height())
+            {
+                imageScene->setSceneRect(0,0,(*imagePixmap).scaledToHeight(((height()*0.98))*zoom).width(),((height()*0.98))*zoom);
+                imageScene->addPixmap((*imagePixmap).scaledToHeight(((height()*0.98))*zoom));
+            }
+            else
+            {
+                imageScene->setSceneRect(0,0,(*imagePixmap).width(),(*imagePixmap).height());
+                imageScene->addPixmap(*imagePixmap);
+                zoomMax = true;
+            }
         }
-    }
-    else
-    {
-        if ((zoom+0.2)*(height()*0.98) < imagePixmap->height()) zoom += 0.2;
-        if ((zoom+0.2)*(height()*0.98) < imagePixmap->height())
-        {
-            imageScene->setSceneRect(0,0,(*imagePixmap).scaledToHeight(((height()*0.98))*zoom).width(),((height()*0.98))*zoom);
-            imageScene->addPixmap((*imagePixmap).scaledToHeight(((height()*0.98))*zoom));
-        }
-        else
-        {
-            imageScene->setSceneRect(0,0,(*imagePixmap).width(),(*imagePixmap).height());
-            imageScene->addPixmap(*imagePixmap);
-        }
-    }
-    setSceneRect(0,0,imageScene->width(),imageScene->height());
-    setScene(imageScene);
+        setSceneRect(0,0,imageScene->width(),imageScene->height());
+        setScene(imageScene);
 
 
-    ////ЦЕНТРОВКА////
-    centerOn(sumMousePos.x(),sumMousePos.y());
+        ////ЦЕНТРОВКА////
+        qDebug() << "Proportion: " << (imageScene->width() / oldwidth)<<"zoom="<<zoom;
+        sumMousePos.setX(sumMousePos.x() * (imageScene->width() / oldwidth));
+        sumMousePos.setY(sumMousePos.y() * (imageScene->width() / oldwidth));
+        centerOn(sumMousePos.x(),sumMousePos.y());
+        zoomMin = false;
+    }
 }
 
 /** zoom out **/
 void image::zoomDec()
 {
-    imageScene->clear();
-    imageScene->setSceneRect(0,0,1,1);
-    imageScene->clear();
-    if ((double)imagePixmap->width()/(double)width() > (double)imagePixmap->height()/(double)height())
+    if (!zoomMin)
     {
-        if (zoom > 0.2 &&  (zoom-0.2)*(width()*0.95) > 10) zoom -= 0.2;
-        imageScene->setSceneRect(0,0,(width()*0.95)*zoom,(*imagePixmap).scaledToWidth((width()*0.95)*zoom).height());
-        imageScene->addPixmap((*imagePixmap).scaledToWidth((width()*0.95)*zoom));
-    }
-    else
-    {
-        if (zoom > 0.2 && (zoom-0.2)*(height()*0.98) > 10) zoom -= 0.2;
-        imageScene->setSceneRect(0,0,(*imagePixmap).scaledToHeight(((height()*0.98))*zoom).width(),((height()*0.98))*zoom);
-        imageScene->addPixmap((*imagePixmap).scaledToHeight(((height()*0.98))*zoom));
-    }
-    setSceneRect(0,0,imageScene->width(),imageScene->height());
-    setScene(imageScene);
+        int oldwidth = imageScene->width();
+        imageScene->clear();
+        imageScene->setSceneRect(0,0,1,1);
+        imageScene->clear();
+        if ((double)imagePixmap->width()/(double)width() > (double)imagePixmap->height()/(double)height())
+        {
+            if (zoom > 0.2 &&  (zoom-0.2)*(width()*0.95) > 10) zoom -= 0.2;
+            imageScene->setSceneRect(0,0,(width()*0.95)*zoom,(*imagePixmap).scaledToWidth((width()*0.95)*zoom).height());
+            imageScene->addPixmap((*imagePixmap).scaledToWidth((width()*0.95)*zoom));
+        }
+        else
+        {
+            if (zoom > 0.2 && (zoom-0.2)*(height()*0.98) > 10) zoom -= 0.2;
+            imageScene->setSceneRect(0,0,(*imagePixmap).scaledToHeight(((height()*0.98))*zoom).width(),((height()*0.98))*zoom);
+            imageScene->addPixmap((*imagePixmap).scaledToHeight(((height()*0.98))*zoom));
+        }
+        setSceneRect(0,0,imageScene->width(),imageScene->height());
+        setScene(imageScene);
 
-    ////ЦЕНТРОВКА////
-    centerOn(sumMousePos.x(),sumMousePos.y());
+        ////ЦЕНТРОВКА////
+        qDebug() << "Proportion: " << (imageScene->width() / oldwidth)<<"zoom="<<zoom;
+        sumMousePos.setX(sumMousePos.x() * (imageScene->width() / oldwidth));
+        sumMousePos.setY(sumMousePos.y() * (imageScene->width() / oldwidth));
+        centerOn(sumMousePos.x(),sumMousePos.y());
+
+        if (fabs(zoom - 0.2) < 0.001) zoomMin = true;
+        zoomMax = false;
+    }
 }
 
 /** return images' amount **/

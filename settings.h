@@ -19,7 +19,10 @@ public:
     void setDefaultSettings(QString language,
                             QString defaultfolder,
                             bool mouseZoom, bool mouseFullscreen,
-                            bool slideshowSmoothTransition, int slideshowInterval);
+                            bool slideshowSmoothTransition, double slideshowInterval,
+                            QString cropHotkey, QString resizeHotkey,
+                            QString fullscreenHotkey, QString slideshowHotkey,
+                            QString undoHotkey, QString redoHotkey);
     ~Settings();
     
 private slots:
@@ -34,11 +37,16 @@ private slots:
     void on_defaultfolderBrowseButton_clicked();
     void on_slideshowIntervalButton_clicked();
 
+    void on_cancelButton_clicked();
+
 signals:
     void acceptsettings(QString language,
                         QString defaultfolder,
                         bool mouseZoom, bool mouseFullscreen,
-                        bool slideshowSmoothTransition, int slideshowInterval);
+                        bool slideshowSmoothTransition, double slideshowInterval,
+                        QString cropHotkey, QString resizeHotkey,
+                        QString fullscreenHotkey, QString slideshowHotkey,
+                        QString undoHotkey, QString redoHotkey);
 
 private:
     Ui::Settings *ui;
@@ -47,7 +55,14 @@ private:
     bool old_mouseZoom;
     bool old_mouseFullscreen;
     bool old_slideshowSmoothTransition;
-    int old_slideshowInterval;
+    double old_slideshowInterval;
+    //Hotkeys//
+    QString old_cropHotkey;
+    QString old_resizeHotkey;
+    QString old_fullscreenHotkey;
+    QString old_slideshowHotkey;
+    QString old_undoHotkey;
+    QString old_redoHotkey;
 protected:
     void closeEvent(QCloseEvent *);
 };

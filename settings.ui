@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>640</width>
+    <width>740</width>
     <height>480</height>
    </rect>
   </property>
@@ -93,7 +93,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QSpinBox" name="slideshowIntervalSpinBox">
+          <widget class="QDoubleSpinBox" name="slideshowIntervalSpinBox">
            <property name="baseSize">
             <size>
              <width>0</width>
@@ -101,16 +101,13 @@
             </size>
            </property>
            <property name="minimum">
-            <number>200</number>
+            <double>0.100000000000000</double>
            </property>
            <property name="maximum">
-            <number>9999</number>
+            <double>60.000000000000000</double>
            </property>
            <property name="singleStep">
-            <number>100</number>
-           </property>
-           <property name="value">
-            <number>1000</number>
+            <double>0.100000000000000</double>
            </property>
           </widget>
          </item>
@@ -127,7 +124,7 @@
             <enum>Qt::Horizontal</enum>
            </property>
            <property name="sizeType">
-            <enum>QSizePolicy::Maximum</enum>
+            <enum>QSizePolicy::Expanding</enum>
            </property>
            <property name="sizeHint" stdset="0">
             <size>
@@ -137,6 +134,10 @@
            </property>
           </spacer>
          </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout">
          <item>
           <widget class="QCheckBox" name="slideshowTransitionCheckBox">
            <property name="text">
@@ -145,6 +146,13 @@
           </widget>
          </item>
         </layout>
+       </item>
+       <item>
+        <widget class="Line" name="line_3">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
        </item>
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_4">
@@ -179,6 +187,19 @@
            </item>
           </widget>
          </item>
+         <item>
+          <spacer name="horizontalSpacer_6">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
         </layout>
        </item>
        <item>
@@ -211,7 +232,7 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>598</width>
+            <width>708</width>
             <height>374</height>
            </rect>
           </property>
@@ -381,6 +402,13 @@
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_3">
      <item>
+      <widget class="QPushButton" name="resetButton">
+       <property name="text">
+        <string>Reset settings</string>
+       </property>
+      </widget>
+     </item>
+     <item>
       <spacer name="horizontalSpacer">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
@@ -401,9 +429,9 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="resetButton">
+      <widget class="QPushButton" name="cancelButton">
        <property name="text">
-        <string>Reset settings</string>
+        <string>Cancel</string>
        </property>
       </widget>
      </item>

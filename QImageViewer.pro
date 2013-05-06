@@ -122,4 +122,6 @@ OTHER_FILES += \
     res/flag-usa.png \
     res/flag-ukr.png \
     res/flag-rus.png \
-    res/flag-sys.png
+    res/flag-sys.png \
+    res/zoom-window.png \
+    res/zoom-original.png

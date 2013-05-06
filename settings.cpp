@@ -12,8 +12,11 @@ Settings::Settings(QWidget *parent) : ui(new Ui::Settings)
 
 void Settings::setDefaultSettings(QString language,
                                   QString defaultfolder,
-                        bool mouseZoom, bool mouseFullscreen,
-                        bool slideshowSmoothTransition, int slideshowInterval)
+                                  bool mouseZoom, bool mouseFullscreen,
+                                  bool slideshowSmoothTransition, double slideshowInterval,
+                                  QString cropHotkey, QString resizeHotkey,
+                                  QString fullscreenHotkey, QString slideshowHotkey,
+                                  QString undoHotkey, QString redoHotkey)
 {
     old_lang = language;
     old_defaultfolder = defaultfolder;
@@ -21,6 +24,12 @@ void Settings::setDefaultSettings(QString language,
     old_mouseFullscreen = mouseFullscreen;
     old_slideshowInterval = slideshowInterval;
     old_slideshowSmoothTransition = slideshowSmoothTransition;
+    old_cropHotkey = cropHotkey;
+    old_resizeHotkey = resizeHotkey;
+    old_fullscreenHotkey = fullscreenHotkey;
+    old_slideshowHotkey = slideshowHotkey;
+    old_undoHotkey = undoHotkey;
+    old_redoHotkey = redoHotkey;
 
     if (language == "eng") ui->languageComboBox->setCurrentIndex(1);
     else if (language == "rus") ui->languageComboBox->setCurrentIndex(2);
@@ -32,6 +41,13 @@ void Settings::setDefaultSettings(QString language,
     ui->mouseZoomCheckBox->setChecked(mouseFullscreen);
     ui->slideshowIntervalSpinBox->setValue(slideshowInterval);
     ui->slideshowTransitionCheckBox->setChecked(slideshowSmoothTransition);
+
+    ui->cropHotkeyEdit->setText(cropHotkey);
+    ui->resizeHotkeyEdit->setText(resizeHotkey);
+    ui->fullscreenHotkeyEdit->setText(fullscreenHotkey);
+    ui->slideshowHotkeyEdit->setText(slideshowHotkey);
+    ui->undoHotkeyEdit->setText(undoHotkey);
+    ui->redoHotkeyEdit->setText(redoHotkey);
 }
 
 Settings::~Settings()
@@ -61,6 +77,13 @@ void Settings::on_acceptButton_clicked()
     old_slideshowInterval = ui->slideshowIntervalSpinBox->value();
     old_slideshowSmoothTransition = ui->slideshowTransitionCheckBox->isChecked();
 
+    old_cropHotkey = ui->cropHotkeyEdit->text();
+    old_resizeHotkey = ui->resizeHotkeyEdit->text(),
+    old_fullscreenHotkey = ui->fullscreenHotkeyEdit->text();
+    old_slideshowHotkey = ui->slideshowHotkeyEdit->text();
+    old_undoHotkey = ui->undoHotkeyEdit->text();
+    old_redoHotkey = ui->redoHotkeyEdit->text();
+
     close();
 }
 
@@ -72,48 +95,39 @@ void Settings::closeEvent(QCloseEvent *event)
                         old_mouseZoom,
                         old_mouseFullscreen,
                         old_slideshowSmoothTransition,
-                        old_slideshowInterval);
+                        old_slideshowInterval,
+                        old_cropHotkey, old_resizeHotkey,
+                        old_fullscreenHotkey, old_slideshowHotkey,
+                        old_undoHotkey, old_redoHotkey);
     event->accept();
 }
 
 void Settings::on_resetButton_clicked()
 {
-    ui->defaultfolderLineEdit->setText("/home/abodnya/");
+#ifdef Q_OS_LINUX
+    ui->defaultfolderLineEdit->setText("/home/"+QString::fromLocal8Bit( getenv("USER") ));
+#endif
+#ifdef Q_OS_WIN32
+    ui->defaultfolderLineEdit->setText("C:\\Users\\"+QString::fromLocal8Bit( getenv("USER") ));
+#endif
     ui->mouseFullscreenCheckBox->setChecked(true);
     ui->mouseZoomCheckBox->setChecked(true);
-    ui->slideshowIntervalSpinBox->setValue(1000);
+    ui->slideshowIntervalSpinBox->setValue(1);
     ui->slideshowTransitionCheckBox->setChecked(true);
 }
 
 void Settings::on_cropResetButton_clicked()
-{
-
-}
-
+{    ui->cropHotkeyEdit->setText("Ctrl+Shift+C");}
 void Settings::on_resizeResetButton_clicked()
-{
-
-}
-
+{    ui->resizeHotkeyEdit->setText("Ctrl+R");}
 void Settings::on_fullscreenResetButton_clicked()
-{
-
-}
-
+{    ui->fullscreenHotkeyEdit->setText("F10");}
 void Settings::on_slideshowResetButton_clicked()
-{
-
-}
-
+{    ui->slideshowHotkeyEdit->setText("F5");}
 void Settings::on_undoResetButton_clicked()
-{
-
-}
-
+{    ui->resizeHotkeyEdit->setText("Ctrl+Z");}
 void Settings::on_redoResetButton_clicked()
-{
-
-}
+{    ui->resizeHotkeyEdit->setText("Ctrl+Shift+Z");}
 
 void Settings::on_defaultfolderBrowseButton_clicked()
 {
@@ -130,4 +144,9 @@ void Settings::on_defaultfolderBrowseButton_clicked()
 void Settings::on_slideshowIntervalButton_clicked()
 {
     ui->slideshowIntervalSpinBox->setValue(1000);
+}
+
+void Settings::on_cancelButton_clicked()
+{
+    close();
 }

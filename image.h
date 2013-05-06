@@ -9,8 +9,6 @@
 #include <QDesktopWidget>
 #include <QGraphicsPixmapItem>
 #include <QScrollBar>
-#ifdef Q_OS_LINUX
-#endif
 
 namespace Ui {
 class Properties;
@@ -23,12 +21,14 @@ class image : public QGraphicsView
 
 public:
     image();
+    //program blocks//
     void loadimage(QString path);
     void addToBuffer(QPixmap * pixmap);
-    void reloadImage();
     void resetZoom();
-    bool isZoomed();
     void loadimagelist(QStringList list);
+
+    //returned//
+    bool isZoomed();
     int size();
     int currentImage();
     QString currentImageName();
@@ -36,7 +36,10 @@ public:
     bool isReady();
     QStringList getImageList();
 
+
 public slots:
+    void reloadImage();
+    void setOriginalSize();
     void setImage(int indx);
     void insertImage(QString filename,int pos);
     void zoomDec();
@@ -63,6 +66,7 @@ signals:
     void itsPossibleToUndo(bool);
     void itsSaved(bool);
     void needFullscreen();
+    void needSlideshow();
 
 private:
     QDesktopWidget desk;
@@ -72,6 +76,8 @@ private:
     bool mouseGrabbed;
     bool isPixmap;
     double zoom;
+    bool zoomMax;
+    bool zoomMin;
 
     ////image list////
     QString imagename;
@@ -84,6 +90,11 @@ private:
     QAction * actionDelete;
     QAction * actionFullscreen;
     QAction * actionWallpaper;
+    QAction * actionSlideshow;
+    QAction * actionZoomIn;
+    QAction * actionZoomOut;
+    QAction * actionZoomOriginal;
+    QAction * actionZoomWindow;
     QDialog * propertiesWidget;
     Ui::Properties *ui_prop;
 
@@ -105,6 +116,8 @@ private:
 
 private slots:
     void viewProperties();
+    void horizontalSliderMoverd(int);
+    void verticalSliderMoverd(int);
 
 protected:
     //zoom grabbed move

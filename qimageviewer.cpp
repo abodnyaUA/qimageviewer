@@ -44,11 +44,24 @@ void QImageViewer::loadsettings()
 
             /// Slideshow ///
             out << "SLIDESHOW_TRANSITION=0\n";
-            fullScreenWidget->setSlideshowSmoothTransition(false);
-            out << "SLIDESHOW_INTERVAL=1000\n";
-            fullScreenWidget->setSlideshowInterval(1000);
+            slideshowSmoothTransition = false;
+            out << "SLIDESHOW_INTERVAL=1\n";
+            slideshowInterval = 1;
 
             /// Hotkeys ///
+            out << "\n#Hotkeys\n";
+            cropHotkey = "Ctrl+Shift+C";
+            out << "Crop="<<cropHotkey<<"\n";
+            resizeHotkey = "Ctrl+R";
+            out << "Resize="<<resizeHotkey<<"\n";
+            fullscreenHotkey = "F10";
+            out << "Fullscreen="<<fullscreenHotkey<<"\n";
+            slideshowHotkey = "F5";
+            out << "Slideshow="<<slideshowHotkey<<"\n";
+            undoHotkey = "Ctrl+Z";
+            out << "Undo="<<undoHotkey<<"\n";
+            redoHotkey = "Ctrl+Shift+Z";
+            out << "Redo="<<redoHotkey<<"\n";
         }
     }
     else
@@ -78,11 +91,27 @@ void QImageViewer::loadsettings()
         /// Slideshow ///
         sets = out.readLine();
         if (sets[sets.size()-1] == '1')
-            fullScreenWidget->setSlideshowSmoothTransition(true);
-        else fullScreenWidget->setSlideshowSmoothTransition(false);
+            slideshowSmoothTransition = true;
+        else slideshowSmoothTransition = false;
 
         sets = out.readLine();
-        fullScreenWidget->setSlideshowInterval(sets.right(sets.size()-19).toInt());
+        slideshowInterval = sets.right(sets.size()-19).toInt();
+
+        /// Hotkeys ///
+        sets = out.readLine();
+        sets = out.readLine();
+        sets = out.readLine();
+        cropHotkey = sets.right(sets.size()-5);
+        sets = out.readLine();
+        resizeHotkey = sets.right(sets.size()-7);
+        sets = out.readLine();
+        fullscreenHotkey = sets.right(sets.size()-11);
+        sets = out.readLine();
+        slideshowHotkey = sets.right(sets.size()-10);
+        sets = out.readLine();
+        undoHotkey = sets.right(sets.size()-5);
+        sets = out.readLine();
+        redoHotkey = sets.right(sets.size()-5);
     }
     file.close();
 }
@@ -95,19 +124,7 @@ QImageViewer::QImageViewer(QString path, QWidget *parent) :
 
     // init image //
     imagewidget = new image;
-
-    // init fullscreen mode //
-    fullScreenWidget = new fullscreen(imagewidget);
     isfullScreenActive = false;
-    connect(fullScreenWidget,SIGNAL(fullscreenEnded()),this,SLOT(fullScreenOvered()));
-
-    // init editResize window //
-    editFormResize = new editformResize;
-    connect(editFormResize,SIGNAL(editFinished(bool)),this,SLOT(resizeImageOvered(bool)));
-
-    // init editCrop window //
-    editFormCrop = new editformCrop;
-    connect(editFormCrop,SIGNAL(editFinished(bool)),this,SLOT(cropImageOvered(bool)));
 
     ui->verticalLayout->addWidget(imagewidget);
     //previewArea.setMinimumHeight(120);
@@ -127,6 +144,11 @@ QImageViewer::QImageViewer(QString path, QWidget *parent) :
     {
         defaultpath = QString::null;
         imagewidget->loadimage(":/res/logo.png");
+        defaultpath = QString::null;
+        ui->image_amount_label->setText("0");
+        ui->image_currentIndex_label->setText("0");
+        imagewidget->setImage(0);
+        setWindowTitle("QImageViewer");
     }
     else
     {
@@ -137,7 +159,6 @@ QImageViewer::QImageViewer(QString path, QWidget *parent) :
 
     ui->mainToolBar->hide();
     //ui->mainToolBar->set
-    settings = new Settings;
 }
 
 /** Set all shortcuts, signal-slots and statustips for buttons and menu actions **/
@@ -166,12 +187,13 @@ void QImageViewer::createActions()
     connect(ui->exitAction,SIGNAL(triggered()),this,SLOT(close()));
 
     // Edit //
-    ui->actionUndo->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Z));
+    ui->actionUndo->setShortcut(undoHotkey);
+    qDebug() << "Ctrl+Z="<<ui->actionUndo->shortcut().toString();
     ui->actionUndo->setStatusTip(tr("Cancel last changes"));
     connect(ui->actionUndo,SIGNAL(triggered()),imagewidget,SLOT(prevBuffer()));
     connect(imagewidget,SIGNAL(itsPossibleToUndo(bool)),this,SLOT(setUndoEnable(bool)));
 
-    ui->actionRedo->setShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_Z));
+    ui->actionRedo->setShortcut(redoHotkey);
     ui->actionRedo->setStatusTip(tr("Do last changes"));
     connect(ui->actionRedo,SIGNAL(triggered()),imagewidget,SLOT(nextBuffer()));
     connect(imagewidget,SIGNAL(itsPossibleToRedo(bool)),this,SLOT(setRedoEnable(bool)));
@@ -188,26 +210,39 @@ void QImageViewer::createActions()
     ui->deleteFileAction->setStatusTip(tr("Delete current image"));
     connect(ui->deleteFileAction,SIGNAL(triggered()),imagewidget,SLOT(deleteCurrentItem()));
 
-    ui->resizeAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_R));
+    ui->resizeAction->setShortcut(resizeHotkey);
     ui->resizeAction->setStatusTip(tr("Resize current image"));
     connect(ui->resizeAction,SIGNAL(triggered()),this,SLOT(resizeImage()));
 
-    ui->cropAction->setShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_C));
+    ui->cropAction->setShortcut(cropHotkey);
     ui->cropAction->setStatusTip(tr("Crop current image"));
     connect(ui->cropAction,SIGNAL(triggered()),this,SLOT(cropImage()));
 
     // Watching //
-    ui->fullscreenAction->setShortcut(tr("F10"));
+    ui->fullscreenAction->setShortcut(fullscreenHotkey);
     ui->fullscreenAction->setStatusTip(tr("Enable fullscreen mode"));
     connect(ui->fullscreenAction,SIGNAL(triggered()),this,SLOT(fullScreen()));
     connect(imagewidget,SIGNAL(needFullscreen()),this,SLOT(fullScreenFromImage()));
 
-    ui->slideshowAction->setShortcut(tr("F5"));
+    ui->slideshowAction->setShortcut(slideshowHotkey);
     ui->slideshowAction->setStatusTip(tr("Start slideshow in fullscreen mode"));
     connect(ui->slideshowAction,SIGNAL(triggered()),this,SLOT(slideShow()));
+    connect(imagewidget,SIGNAL(needSlideshow()),this,SLOT(slideShow()));
 
     ui->wallpaperAction->setStatusTip(tr("Set picture as wallpaper"));
     connect(ui->wallpaperAction,SIGNAL(triggered()),imagewidget,SLOT(setAsWallpaper()));
+
+    ui->zoomInAction->setStatusTip(tr("Zoom in"));
+    connect(ui->zoomInAction,SIGNAL(triggered()),imagewidget,SLOT(zoomInc()));
+
+    ui->zoomOutAction->setStatusTip(tr("Zoom out"));
+    connect(ui->zoomOutAction,SIGNAL(triggered()),imagewidget,SLOT(zoomDec()));
+
+    ui->zoomOriginalAction->setStatusTip(tr("Zoom to original size"));
+    connect(ui->zoomOriginalAction,SIGNAL(triggered()),imagewidget,SLOT(setOriginalSize()));
+
+    ui->zoomWindowAction->setStatusTip(tr("Zoom to window size"));
+    connect(ui->zoomWindowAction,SIGNAL(triggered()),imagewidget,SLOT(reloadImage()));
 
     // Help //
     ui->aboutAction->setShortcut(tr("F1"));
@@ -287,6 +322,10 @@ void QImageViewer::createDesign()
     ui->deleteFileAction->setIcon(QIcon(QPixmap(":/res/delete.png")));
     ui->resizeAction->setIcon(QIcon(QPixmap(":/res/resize.png")));
     ui->cropAction->setIcon(QIcon(QPixmap(":/res/crop.png")));
+    ui->zoomInAction->setIcon(QIcon(QPixmap(":/res/zoom-in.png")));
+    ui->zoomOutAction->setIcon(QIcon(QPixmap(":/res/zoom-out.png")));
+    ui->zoomOriginalAction->setIcon(QIcon(QPixmap(":/res/zoom-original.png")));
+    ui->zoomWindowAction->setIcon(QIcon(QPixmap(":/res/zoom-window.png")));
     ui->fullscreenAction->setIcon(QIcon(QPixmap(":/res/fullscreen.png")));
     ui->slideshowAction->setIcon(QIcon(QPixmap(":/res/slideshow.png")));
     ui->aboutAction->setIcon(QIcon(QPixmap(":/res/help.png")));
@@ -498,6 +537,12 @@ void QImageViewer::fullScreenFromImage()
 /** Show Fullscreen window, hide this **/
 void QImageViewer::fullScreen()
 {
+    // init fullscreen mode //
+    fullScreenWidget = new fullscreen(imagewidget);
+    connect(fullScreenWidget,SIGNAL(fullscreenEnded()),this,SLOT(fullScreenOvered()));
+    fullScreenWidget->setSlideshowInterval(slideshowInterval);
+    fullScreenWidget->setSlideshowSmoothTransition(slideshowSmoothTransition);
+
     fullScreenWidget->setWindowState(Qt::WindowFullScreen);
     fullScreenWidget->resize(desk.width(),desk.height());
     fullScreenWidget->showFullScreen();
@@ -525,6 +570,10 @@ void QImageViewer::fullScreenOvered()
     imagewidget->reloadImage();
     imagewidget->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
     imagewidget->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+
+    // init fullscreen mode //
+    disconnect(fullScreenWidget,SIGNAL(fullscreenEnded()),this,SLOT(fullScreenOvered()));
+    delete fullScreenWidget;
 }
 
 /** Start slideshow **/
@@ -538,15 +587,22 @@ void QImageViewer::slideShow()
 void QImageViewer::settingsWindow()
 {
     //settings = new Settings;
-    connect(settings,SIGNAL(acceptsettings(QString,QString,bool,bool,bool,int)),
-            this,SLOT(updateSettings(QString,QString,bool,bool,bool,int)));
+
+    settings = new Settings;
+    connect(settings,SIGNAL(acceptsettings(QString,QString,bool,bool,bool,double,
+                                           QString,QString,QString,QString,QString,QString)),
+            this,SLOT(updateSettings(QString,QString,bool,bool,bool,double,
+                                     QString,QString,QString,QString,QString,QString)));
 
     settings->setDefaultSettings(language,
                                  lastdirectory,
                                  imagewidget->getMouseZoom(),
                                  imagewidget->getMouseFullscreen(),
-                                 fullScreenWidget->getSlideshowSmoothTransition(),
-                                 fullScreenWidget->getSlideshowInterval());
+                                 slideshowSmoothTransition,
+                                 slideshowInterval,
+                                 cropHotkey, resizeHotkey,
+                                 fullscreenHotkey, slideshowHotkey,
+                                 undoHotkey, redoHotkey);
     settings->show();
 }
 
@@ -554,21 +610,40 @@ void QImageViewer::settingsWindow()
 void QImageViewer::updateSettings(QString language,
                     QString defaultfolder,
                     bool mouseZoom, bool mouseFullscreen,
-                    bool slideshowSmoothTransition, int slideshowInterval)
+                    bool slideshowSmoothTransition, double slideshowInterval,
+                                  QString cropHotkey, QString resizeHotkey,
+                                  QString fullscreenHotkey, QString slideshowHotkey,
+                                  QString undoHotkey, QString redoHotkey)
 {
     this->language = language;
     this->lastdirectory = defaultfolder;
     imagewidget->setMouseZoom(mouseZoom);
     imagewidget->setMouseFullscreen(mouseFullscreen);
-    fullScreenWidget->setSlideshowSmoothTransition(slideshowSmoothTransition);
-    fullScreenWidget->setSlideshowInterval(slideshowInterval);
-    //delete settings;
+    this->slideshowSmoothTransition = slideshowSmoothTransition;
+    this->slideshowInterval = slideshowInterval;
+
+    this->cropHotkey = cropHotkey;
+    this->resizeHotkey = resizeHotkey;
+    this->fullscreenHotkey = fullscreenHotkey;
+    this->slideshowHotkey = slideshowHotkey;
+    this->undoHotkey = undoHotkey;
+    this->redoHotkey = redoHotkey;
+    disconnect(settings,SIGNAL(acceptsettings(QString,QString,bool,bool,bool,double,
+                                              QString,QString,QString,QString,QString,QString)),
+            this,SLOT(updateSettings(QString,QString,bool,bool,bool,double,
+                                     QString,QString,QString,QString,QString,QString)));
+    delete settings;
+    qDebug() << "redohotkey="<<redoHotkey;
 }
 
 /** Show editResize window, hide this **/
 void QImageViewer::resizeImage()
 {
-    editFormResize->loadImage(imagewidget->currentPixmap());//imagewidget->currentImageName());
+    // init editResize window //
+    editFormResize = new editformResize;
+    connect(editFormResize,SIGNAL(editFinished(bool)),this,SLOT(resizeImageOvered(bool)));
+
+    editFormResize->loadImage(imagewidget->currentPixmap());
     if (this->windowState() == Qt::WindowMaximized) editFormResize->setWindowState(Qt::WindowMaximized);
     else
     {
@@ -585,23 +660,39 @@ void QImageViewer::resizeImageOvered(bool result)
     this->show();
     if (result)
     {
-        //imagewidget->loadimage(*editFormResize->getpixmap(),imagewidget->currentImageName());
         imagewidget->addToBuffer(editFormResize->getpixmap());
         imagewidget->setEdited();
     }
+    if (editFormResize->windowState() == Qt::WindowMaximized) this->setWindowState(Qt::WindowMaximized);
+    else
+    {
+        this->resize(editFormResize->width(),editFormResize->height());
+        this->setWindowState(Qt::WindowNoState);
+    }
     editFormResize->close();
+    disconnect(editFormResize,SIGNAL(editFinished(bool)),this,SLOT(resizeImageOvered(bool)));
+    delete editFormResize;
 }
 
 /** Show editCrop window, hide this **/
 void QImageViewer::cropImage()
 {
+    // init editCrop window //
+    editFormCrop = new editformCrop;
+    connect(editFormCrop,SIGNAL(editFinished(bool)),this,SLOT(cropImageOvered(bool)));
+
+    // load new image to editForm //
     editFormCrop->loadImage(imagewidget->currentPixmap());//imagewidget->currentImageName());
+
+    // set window size //
     if (this->windowState() == Qt::WindowMaximized) editFormCrop->setWindowState(Qt::WindowMaximized);
     else
     {
         editFormCrop->resize(this->width(),this->height());
         editFormCrop->setWindowState(Qt::WindowNoState);
     }
+
+    // change active form //
     editFormCrop->show();
     this->hide();
 }
@@ -609,14 +700,26 @@ void QImageViewer::cropImage()
 /** Show this window, hide editCrop window **/
 void QImageViewer::cropImageOvered(bool result)
 {
+    // change active form //
     this->show();
+    // accept changes if 'Accept' button was pressed //
     if (result)
     {
-        //imagewidget->loadimage(*editFormCrop->getpixmap(),imagewidget->currentImageName());
         imagewidget->addToBuffer(editFormCrop->getpixmap());
         imagewidget->setEdited();
     }
+    // resize window //
+    if (editFormCrop->windowState() == Qt::WindowMaximized) this->setWindowState(Qt::WindowMaximized);
+    else
+    {
+        this->resize(editFormCrop->width(),editFormCrop->height());
+        this->setWindowState(Qt::WindowNoState);
+    }
+    // close editForm //
     editFormCrop->close();
+    // destroy editForm, free memory //
+    disconnect(editFormCrop,SIGNAL(editFinished(bool)),this,SLOT(cropImageOvered(bool)));
+    delete editFormCrop;
 }
 
 /** Show 'About' **/
@@ -661,10 +764,17 @@ void QImageViewer::closeEvent(QCloseEvent *event)
     out << "MOUSE_ZOOM=" << (int)imagewidget->getMouseZoom() << "\n";
 
     /// Slideshow ///
-    out << "SLIDESHOW_TRANSITION=" << (int)fullScreenWidget->getSlideshowSmoothTransition() << "\n";;
-    out << "SLIDESHOW_INTERVAL=" << fullScreenWidget->getSlideshowInterval() << "\n";
+    out << "SLIDESHOW_TRANSITION=" << (int)slideshowSmoothTransition << "\n";;
+    out << "SLIDESHOW_INTERVAL=" << slideshowInterval << "\n";
 
     /// Hotkeys ///
+    out << "\n#Hotkeys\n";
+    out << "Crop="<<cropHotkey<<"\n";
+    out << "Resize="<<resizeHotkey<<"\n";
+    out << "Fullscreen="<<fullscreenHotkey<<"\n";
+    out << "Slideshow="<<slideshowHotkey<<"\n";
+    out << "Undo="<<undoHotkey<<"\n";
+    out << "Redo="<<redoHotkey<<"\n";
 
     file.close();
 

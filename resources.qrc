@@ -34,5 +34,7 @@
         <file>res/flag-ukr.png</file>
         <file>res/flag-usa.png</file>
         <file>res/flag-sys.png</file>
+        <file>res/zoom-original.png</file>
+        <file>res/zoom-window.png</file>
     </qresource>
 </RCC>

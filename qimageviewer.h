@@ -12,18 +12,17 @@
 #include <QFileDialog>
 #include <QDesktopWidget>
 #include <QHBoxLayout>
+#include <QDebug>
+#include <QCloseEvent>
+#include <QDropEvent>
+#include <QScrollArea>
 #include "image.h"
 #include "preview.h"
 #include "previewlist.h"
-#include <QDebug>
 #include "fullscreen.h"
 #include "editformresize.h"
 #include "editformcrop.h"
 #include "settings.h"
-//#include <sys/utsname.h>
-#include <QCloseEvent>
-#include <QDropEvent>
-#include <QScrollArea>
 
 namespace Ui {
 class QImageViewer;
@@ -48,7 +47,10 @@ private slots:
     void updateSettings(QString language,
                         QString defaultfolder,
                         bool mouseZoom, bool mouseFullscreen,
-                        bool slideshowSmoothTransition, int slideshowInterval);
+                        bool slideshowSmoothTransition, double slideshowInterval,
+                        QString cropHotkey, QString resizeHotkey,
+                        QString fullscreenHotkey, QString slideshowHotkey,
+                        QString undoHotkey, QString redoHotkey);
     //HELP
     void helpAbout();
     //NAVIGATION
@@ -77,6 +79,10 @@ private:
 
     //Language//
     QString language;
+
+    //Fullscreen//
+    bool slideshowSmoothTransition;
+    double slideshowInterval;
 
     //Hotkeys//
     QString cropHotkey;

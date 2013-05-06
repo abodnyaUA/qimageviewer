@@ -206,6 +206,11 @@
     <addaction name="fullscreenAction"/>
     <addaction name="slideshowAction"/>
     <addaction name="wallpaperAction"/>
+    <addaction name="zoomInAction"/>
+    <addaction name="zoomOutAction"/>
+    <addaction name="zoomWindowAction"/>
+    <addaction name="zoomOriginalAction"/>
+    <addaction name="separator"/>
    </widget>
    <addaction name="fileMenu"/>
    <addaction name="parametersMenu"/>
@@ -302,6 +307,26 @@
   <action name="settingsAction">
    <property name="text">
     <string>Settings</string>
+   </property>
+  </action>
+  <action name="zoomInAction">
+   <property name="text">
+    <string>Zoom In</string>
+   </property>
+  </action>
+  <action name="zoomOutAction">
+   <property name="text">
+    <string>Zoom out</string>
+   </property>
+  </action>
+  <action name="zoomWindowAction">
+   <property name="text">
+    <string>Window size</string>
+   </property>
+  </action>
+  <action name="zoomOriginalAction">
+   <property name="text">
+    <string>Original size</string>
    </property>
   </action>
  </widget>

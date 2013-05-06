@@ -7,6 +7,8 @@ void image::reloadImage()
     delete imageScene;
     imageScene = new QGraphicsScene;
     zoom = 1.0;
+    zoomMin = false;
+    zoomMax = false;
 
     if (width() == desk.width() && height() == desk.height() &&
             (imagePixmap->width() >= width() || imagePixmap->height() >= height()))
@@ -27,6 +29,8 @@ void image::reloadImage()
 
     setSceneRect(0,0,imageScene->width(),imageScene->height());
     setScene(imageScene);
+    sumMousePos.setX( imageScene->width()/2.0 );
+    sumMousePos.setY( imageScene->height()/2.0 );
 }
 
 /** load pixmap from argument 0 to form and make buffer bigger **/
@@ -36,6 +40,8 @@ void image::addToBuffer(QPixmap * pixmap)
     imagePixmap = pixmap;
 
     zoom = 1.0;
+    zoomMin = false;
+    zoomMax = false;
 
     imageScene = new QGraphicsScene;
 
@@ -70,6 +76,9 @@ void image::addToBuffer(QPixmap * pixmap)
     emit itsPossibleToUndo(true);
     emit itsPossibleToRedo(false);
     emit itsSaved(false);
+    sumMousePos.setX( imageScene->width()/2.0 );
+    sumMousePos.setY( imageScene->height()/2.0 );
+
 }
 
 /** 'undo' function **/

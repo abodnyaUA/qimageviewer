@@ -47,6 +47,8 @@ void QImageViewer::loadsettings()
             slideshowSmoothTransition = false;
             out << "SLIDESHOW_INTERVAL=1\n";
             slideshowInterval = 1;
+            out << "PANEL=0\n";
+            panelalignment = 0;
 
             /// Hotkeys ///
             out << "\n#Hotkeys\n";
@@ -97,6 +99,10 @@ void QImageViewer::loadsettings()
         sets = out.readLine();
         slideshowInterval = sets.right(sets.size()-19).toInt();
 
+        /// Panel ///
+        sets = out.readLine();
+        panelalignment = sets.right(sets.size()-6).toInt();
+
         /// Hotkeys ///
         sets = out.readLine();
         sets = out.readLine();
@@ -145,8 +151,6 @@ QImageViewer::QImageViewer(QString path, QWidget *parent) :
         defaultpath = QString::null;
         imagewidget->loadimage(":/res/logo.png");
         defaultpath = QString::null;
-        ui->image_amount_label->setText("0");
-        ui->image_currentIndex_label->setText("0");
         imagewidget->setImage(0);
         setWindowTitle("QImageViewer");
     }
@@ -205,6 +209,14 @@ void QImageViewer::createActions()
     ui->rotateRightAction->setStatusTip(tr("Rotate image to the right"));
     connect(ui->rotateRightAction,SIGNAL(triggered()),imagewidget,SLOT(rotateRight()));
 
+    //ui->rotateLeftAction->setShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_L));
+    ui->flipHorizontalAction->setStatusTip(tr("Change this image to horizontal mirror"));
+    connect(ui->flipHorizontalAction,SIGNAL(triggered()),imagewidget,SLOT(flipHorizontal()));
+
+    //ui->rotateLeftAction->setShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_L));
+    ui->flipVerticalAction->setStatusTip(tr("Change this image to vertical mirror"));
+    connect(ui->flipVerticalAction,SIGNAL(triggered()),imagewidget,SLOT(flipVertical()));
+
     ui->deleteFileAction->setShortcut(QKeySequence(Qt::Key_Delete));
     ui->deleteFileAction->setStatusTip(tr("Delete current image"));
     connect(ui->deleteFileAction,SIGNAL(triggered()),imagewidget,SLOT(deleteCurrentItem()));
@@ -216,6 +228,10 @@ void QImageViewer::createActions()
     ui->cropAction->setShortcut(cropHotkey);
     ui->cropAction->setStatusTip(tr("Crop current image"));
     connect(ui->cropAction,SIGNAL(triggered()),this,SLOT(cropImage()));
+
+    //ui->resizeitemsAction->setShortcut(resizeHotkey);
+    ui->resizeitemsAction->setStatusTip(tr("Resize current image"));
+    connect(ui->resizeitemsAction,SIGNAL(triggered()),this,SLOT(resizeImageList()));
 
     // Watching //
     ui->fullscreenAction->setShortcut(fullscreenHotkey);
@@ -248,20 +264,6 @@ void QImageViewer::createActions()
     ui->aboutAction->setStatusTip(tr("Information about program"));
     connect(ui->aboutAction,SIGNAL(triggered()),this,SLOT(helpAbout()));
 
-    // set unEnabled all actions for default run //
-    ui->actionRedo->setEnabled(false);
-    ui->actionUndo->setEnabled(false);
-    ui->saveAction->setEnabled(false);
-    ui->saveAsAction->setEnabled(false);
-    ui->rotateLeftAction->setEnabled(false);
-    ui->rotateRightAction->setEnabled(false);
-    ui->deleteFileAction->setEnabled(false);
-    ui->resizeAction->setEnabled(false);
-    ui->fullscreenAction->setEnabled(false);
-    ui->slideshowAction->setEnabled(false);
-    ui->wallpaperAction->setEnabled(false);
-    ui->cropAction->setEnabled(false);
-
     ///BUTTONS///
     ui->prevButton->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Left));
     ui->prevButton->setToolTip(tr("Open previous image"));
@@ -272,7 +274,11 @@ void QImageViewer::createActions()
     connect(ui->nextButton,SIGNAL(clicked()),this,SLOT(nextImage()));
 
     ui->fullscreenButton->setToolTip(tr("Enable fullscreen mode"));
-    connect(ui->fullscreenButton,SIGNAL(clicked()),this,SLOT(fullScreen()));
+    connect(ui->fullscreenButton,SIGNAL(clicked()),this,SLOT(fullScreen()));    
+
+    ui->slideshowButton->setShortcut(slideshowHotkey);
+    ui->slideshowButton->setToolTip(tr("Start slideshow in fullscreen mode"));
+    connect(ui->slideshowButton,SIGNAL(clicked()),this,SLOT(slideShow()));
 
     ui->zoomIncButton->setShortcut(tr("+"));
     ui->zoomIncButton->setToolTip(tr("Zoom in image"));
@@ -282,30 +288,32 @@ void QImageViewer::createActions()
     ui->zoomDecButton->setToolTip(tr("Zoom out image"));
     connect(ui->zoomDecButton,SIGNAL(clicked()),imagewidget,SLOT(zoomDec()));
 
+    ui->zoomOriginalButton->setToolTip(tr("Zoom to original size"));
+    connect(ui->zoomOriginalButton,SIGNAL(clicked()),imagewidget,SLOT(setOriginalSize()));
+
+    ui->zoomWindowButton->setToolTip(tr("Zoom to window size"));
+    connect(ui->zoomWindowButton,SIGNAL(clicked()),imagewidget,SLOT(reloadImage()));
+
     ui->rotateLeftButton->setToolTip(tr("Rotate picture to the left"));
     connect(ui->rotateLeftButton,SIGNAL(clicked()),imagewidget,SLOT(rotateLeft()));
 
+    ui->flipHorizontalAction->setIcon(QIcon(QPixmap(":/res/flip-horizontal.png")));
     ui->rotateRightButton->setToolTip(tr("Rotate picture to the right"));
     connect(ui->rotateRightButton,SIGNAL(clicked()),imagewidget,SLOT(rotateRight()));
 
+
     //Changing image
     connect(imagewidget,SIGNAL(currentImageWasChanged(int)),this,SLOT(currentIndexWasChanged(int)));
-
-    // set unEnabled all buttons for default run //
-    ui->prevButton->setEnabled(false);
-    ui->nextButton->setEnabled(false);
-    ui->fullscreenButton->setEnabled(false);
-    ui->zoomDecButton->setEnabled(false);
-    ui->zoomIncButton->setEnabled(false);
-    ui->rotateLeftButton->setEnabled(false);
-    ui->rotateRightButton->setEnabled(false);
 
     // set nofocus on buttons //
     ui->prevButton->setFocusPolicy(Qt::NoFocus);
     ui->nextButton->setFocusPolicy(Qt::NoFocus);
     ui->fullscreenButton->setFocusPolicy(Qt::NoFocus);
+    ui->slideshowButton->setFocusPolicy(Qt::NoFocus);
     ui->zoomDecButton->setFocusPolicy(Qt::NoFocus);
     ui->zoomIncButton->setFocusPolicy(Qt::NoFocus);
+    ui->zoomOriginalButton->setFocusPolicy(Qt::NoFocus);
+    ui->zoomWindowButton->setFocusPolicy(Qt::NoFocus);
     ui->rotateLeftButton->setFocusPolicy(Qt::NoFocus);
     ui->rotateRightButton->setFocusPolicy(Qt::NoFocus);
 }
@@ -313,13 +321,41 @@ void QImageViewer::createActions()
 /** Loading all icons and design for buttons and menu actions **/
 void QImageViewer::createDesign()
 {
+    if (panelalignment == 1)
+    {
+        ui->panelTopLayout->addSpacerItem(ui->panelLeftHorizontalSpacer);
+        ui->panelTopLayout->addWidget(ui->zoomIncButton);
+        ui->panelTopLayout->addWidget(ui->zoomDecButton);
+        ui->panelTopLayout->addWidget(ui->zoomWindowButton);
+        ui->panelTopLayout->addWidget(ui->zoomOriginalButton);
+        ui->panelTopLayout->addWidget(ui->rotateRightButton);
+        ui->panelTopLayout->addWidget(ui->rotateLeftButton);
+        ui->panelTopLayout->addWidget(ui->fullscreenButton);
+        ui->panelTopLayout->addWidget(ui->slideshowButton);
+        ui->panelTopLayout->addSpacerItem(ui->panelRightHorizontalSpacer);
+    }
+    else if (panelalignment == 2)
+    {
+        ui->zoomIncButton->hide();
+        ui->zoomDecButton->hide();
+        ui->zoomWindowButton->hide();
+        ui->zoomOriginalButton->hide();
+        ui->rotateRightButton->hide();
+        ui->rotateLeftButton->hide();
+        ui->fullscreenButton->hide();
+        ui->slideshowButton->hide();
+    }
+
     ui->saveAction->setIcon(QIcon(QPixmap(":/res/file-save.png")));
     ui->openAction->setIcon(QIcon(QPixmap(":/res/file-open.png")));
     ui->settingsAction->setIcon(QIcon(QPixmap(":/res/settings.png")));
     ui->rotateLeftAction->setIcon(QIcon(QPixmap(":/res/rotate-left.png")));
     ui->rotateRightAction->setIcon(QIcon(QPixmap(":/res/rotate-right.png")));
+    ui->flipHorizontalAction->setIcon(QIcon(QPixmap(":/res/flip-horizontal.png")));
+    ui->flipVerticalAction->setIcon(QIcon(QPixmap(":/res/flip-vertical.png")));
     ui->deleteFileAction->setIcon(QIcon(QPixmap(":/res/delete.png")));
     ui->resizeAction->setIcon(QIcon(QPixmap(":/res/resize.png")));
+    ui->resizeitemsAction->setIcon(QIcon(QPixmap(":/res/resize-items.png")));
     ui->cropAction->setIcon(QIcon(QPixmap(":/res/crop.png")));
     ui->zoomInAction->setIcon(QIcon(QPixmap(":/res/zoom-in.png")));
     ui->zoomOutAction->setIcon(QIcon(QPixmap(":/res/zoom-out.png")));
@@ -327,13 +363,17 @@ void QImageViewer::createDesign()
     ui->zoomWindowAction->setIcon(QIcon(QPixmap(":/res/zoom-window.png")));
     ui->fullscreenAction->setIcon(QIcon(QPixmap(":/res/fullscreen.png")));
     ui->slideshowAction->setIcon(QIcon(QPixmap(":/res/slideshow.png")));
+    ui->wallpaperAction->setIcon(QIcon(QPixmap(":/res/wallpaper.png")));
     ui->aboutAction->setIcon(QIcon(QPixmap(":/res/help.png")));
 
     ui->prevButton->setIcon(QIcon(QPixmap(":/res/prev.png")));
     ui->nextButton->setIcon(QIcon(QPixmap(":/res/next.png")));
     ui->fullscreenButton->setIcon(QIcon(QPixmap(":/res/fullscreen.png")));
+    ui->slideshowButton->setIcon(QIcon(QPixmap(":/res/slideshow.png")));
     ui->zoomDecButton->setIcon(QIcon(QPixmap(":/res/zoom-out.png")));
     ui->zoomIncButton->setIcon(QIcon(QPixmap(":/res/zoom-in.png")));
+    ui->zoomOriginalButton->setIcon(QIcon(QPixmap(":/res/zoom-original.png")));
+    ui->zoomWindowButton->setIcon(QIcon(QPixmap(":/res/zoom-window.png")));
     ui->rotateLeftButton->setIcon(QIcon(QPixmap(":/res/rotate-left.png")));
     ui->rotateRightButton->setIcon(QIcon(QPixmap(":/res/rotate-right.png")));
 }
@@ -359,9 +399,9 @@ void QImageViewer::setRedoEnable(bool arg)
 /** Current image was changing from imagewidget **/
 void QImageViewer::currentIndexWasChanged(int indx)
 {
-    ui->image_amount_label->setText(QString::number(imagewidget->size()));
-    ui->image_currentIndex_label->setText(QString::number(indx+1));
-    setWindowTitle("QImageViewer - "+imagewidget->currentImageName());
+    setWindowTitle("QImageViewer - ["+QString::number(indx+1)+
+                   tr(" of ") + QString::number(imagewidget->size()) + "] "
+                   + imagewidget->currentImageName());
     statusBar()->showMessage(QString::number(imagewidget->currentPixmap().width())+
                               QString("x")+
                               QString::number(imagewidget->currentPixmap().height()));
@@ -371,32 +411,24 @@ void QImageViewer::currentIndexWasChanged(int indx)
 void QImageViewer::prevImage()
 {
     if (imagewidget->currentImage() > 0)
-    {
         imagewidget->setImage(imagewidget->currentImage()-1);
-        ui->image_currentIndex_label->setText(QString::number(imagewidget->currentImage()+1));
-    }
     else
-    {
         imagewidget->setImage(imagewidget->size()-1);
-        ui->image_currentIndex_label->setText(QString::number(imagewidget->currentImage()+1));
-    }
-    setWindowTitle("QImageViewer - "+imagewidget->currentImageName());
+    setWindowTitle("QImageViewer - ["+QString::number(imagewidget->currentImage()+1)+
+                   tr(" of ") + QString::number(imagewidget->size()) + "] "
+                   + imagewidget->currentImageName());
 }
 
 /** Show next image by button "Next" or shortcut Crtl+Right **/
 void QImageViewer::nextImage()
 {
     if (imagewidget->currentImage() < (imagewidget->size()-1))
-    {
         imagewidget->setImage(imagewidget->currentImage()+1);
-        ui->image_currentIndex_label->setText(QString::number(imagewidget->currentImage()+1));
-    }
     else
-    {
         imagewidget->setImage(0);
-        ui->image_currentIndex_label->setText(QString::number(imagewidget->currentImage()+1));
-    }
-    setWindowTitle("QImageViewer - "+imagewidget->currentImageName());
+    setWindowTitle("QImageViewer - ["+QString::number(imagewidget->currentImage()+1)+
+                   tr(" of ") + QString::number(imagewidget->size()) + "] "
+                   + imagewidget->currentImageName());
 }
 
 /** Show next image by shortcut 'Right arrow' **/
@@ -448,16 +480,26 @@ void QImageViewer::fileOpen()
     ui->saveAsAction->setEnabled(true);
     ui->rotateLeftAction->setEnabled(true);
     ui->rotateRightAction->setEnabled(true);
+    ui->flipHorizontalAction->setEnabled(true);
+    ui->flipVerticalAction->setEnabled(true);
     ui->deleteFileAction->setEnabled(true);
     ui->resizeAction->setEnabled(true);
+    ui->resizeitemsAction->setEnabled(true);
     ui->fullscreenAction->setEnabled(true);
     ui->slideshowAction->setEnabled(true);
     ui->wallpaperAction->setEnabled(true);
     ui->cropAction->setEnabled(true);
+    ui->zoomInAction->setEnabled(true);
+    ui->zoomOutAction->setEnabled(true);
+    ui->zoomOriginalAction->setEnabled(true);
+    ui->zoomWindowAction->setEnabled(true);
 
     ui->prevButton->setEnabled(true);
     ui->nextButton->setEnabled(true);
     ui->fullscreenButton->setEnabled(true);
+    ui->slideshowButton->setEnabled(true);
+    ui->zoomOriginalButton->setEnabled(true);
+    ui->zoomWindowButton->setEnabled(true);
     ui->zoomDecButton->setEnabled(true);
     ui->zoomIncButton->setEnabled(true);
     ui->rotateLeftButton->setEnabled(true);
@@ -465,8 +507,9 @@ void QImageViewer::fileOpen()
 
     // find other pictures in folder //
     filesFind();
-    ui->image_amount_label->setText(QString::number(imagewidget->size()));
-    ui->image_currentIndex_label->setText(QString::number(imagewidget->currentImage()+1));
+    setWindowTitle("QImageViewer - ["+QString::number(imagewidget->currentImage()+1)+
+                   tr(" of ") + QString::number(imagewidget->size()) + "] "
+                   + imagewidget->currentImageName());
 }
 
 /** Find pictures in current folder **/
@@ -521,7 +564,9 @@ void QImageViewer::fileSaveAs()
         {
             imagewidget->insertImage(path,imagewidget->currentImage()+1);
             nextImage();
-            ui->image_amount_label->setText(QString::number(imagewidget->size()));
+            setWindowTitle("QImageViewer - ["+QString::number(imagewidget->currentImage()+1)+
+                           tr(" of ") + QString::number(imagewidget->size()) + "] "
+                           + imagewidget->currentImageName());
         }
     }
 }
@@ -578,8 +623,15 @@ void QImageViewer::fullScreenOvered()
 /** Start slideshow **/
 void QImageViewer::slideShow()
 {
-    fullScreen();
-    fullScreenWidget->startSlideShow();
+    if (!isfullScreenActive)
+    {
+        fullScreen();
+        fullScreenWidget->startSlideShow();
+    }
+    else
+    {
+        fullScreenOvered();
+    }
 }
 
 /** Open Settings Window **/
@@ -588,9 +640,9 @@ void QImageViewer::settingsWindow()
     //settings = new Settings;
 
     settings = new Settings;
-    connect(settings,SIGNAL(acceptsettings(QString,QString,bool,bool,bool,double,
+    connect(settings,SIGNAL(acceptsettings(QString,QString,bool,bool,bool,double,int,
                                            QString,QString,QString,QString,QString,QString)),
-            this,SLOT(updateSettings(QString,QString,bool,bool,bool,double,
+            this,SLOT(updateSettings(QString,QString,bool,bool,bool,double,int,
                                      QString,QString,QString,QString,QString,QString)));
 
     settings->setDefaultSettings(language,
@@ -599,6 +651,7 @@ void QImageViewer::settingsWindow()
                                  imagewidget->getMouseFullscreen(),
                                  slideshowSmoothTransition,
                                  slideshowInterval,
+                                 panelalignment,
                                  cropHotkey, resizeHotkey,
                                  fullscreenHotkey, slideshowHotkey,
                                  undoHotkey, redoHotkey);
@@ -610,9 +663,10 @@ void QImageViewer::updateSettings(QString language,
                     QString defaultfolder,
                     bool mouseZoom, bool mouseFullscreen,
                     bool slideshowSmoothTransition, double slideshowInterval,
-                                  QString cropHotkey, QString resizeHotkey,
-                                  QString fullscreenHotkey, QString slideshowHotkey,
-                                  QString undoHotkey, QString redoHotkey)
+                    int panelalignment,
+                    QString cropHotkey, QString resizeHotkey,
+                    QString fullscreenHotkey, QString slideshowHotkey,
+                    QString undoHotkey, QString redoHotkey)
 {
     this->language = language;
     this->lastdirectory = defaultfolder;
@@ -620,6 +674,7 @@ void QImageViewer::updateSettings(QString language,
     imagewidget->setMouseFullscreen(mouseFullscreen);
     this->slideshowSmoothTransition = slideshowSmoothTransition;
     this->slideshowInterval = slideshowInterval;
+    this->panelalignment = panelalignment;
 
     this->cropHotkey = cropHotkey;
     this->resizeHotkey = resizeHotkey;
@@ -627,9 +682,9 @@ void QImageViewer::updateSettings(QString language,
     this->slideshowHotkey = slideshowHotkey;
     this->undoHotkey = undoHotkey;
     this->redoHotkey = redoHotkey;
-    disconnect(settings,SIGNAL(acceptsettings(QString,QString,bool,bool,bool,double,
+    disconnect(settings,SIGNAL(acceptsettings(QString,QString,bool,bool,bool,double,int,
                                               QString,QString,QString,QString,QString,QString)),
-            this,SLOT(updateSettings(QString,QString,bool,bool,bool,double,
+            this,SLOT(updateSettings(QString,QString,bool,bool,bool,double,int,
                                      QString,QString,QString,QString,QString,QString)));
     delete settings;
 }
@@ -720,6 +775,52 @@ void QImageViewer::cropImageOvered(bool result)
     delete editFormCrop;
 }
 
+
+/** Show editResize window, hide this **/
+void QImageViewer::resizeImageList()
+{
+    // init editResize window //
+    editFormResizeElements = new editformResizeElements;
+    connect(editFormResizeElements,SIGNAL(editFinished(bool)),this,SLOT(resizeImageListOvered(bool)));
+
+    editFormResizeElements->loadlist(imagewidget->getImageList(),lastdirectory);
+    if (this->windowState() == Qt::WindowMaximized) editFormResizeElements->setWindowState(Qt::WindowMaximized);
+    else
+    {
+        editFormResizeElements->resize(this->width(),this->height());
+        editFormResizeElements->setWindowState(Qt::WindowNoState);
+    }
+    editFormResizeElements->show();
+    this->hide();
+}
+
+/** Show this window, hide editResize window **/
+void QImageViewer::resizeImageListOvered(bool result)
+{
+    this->show();
+    if (result)
+    {
+        if (editFormResizeElements->isSameFolder())
+        {
+            //Add new images to list, don't change current image
+            filesFind();
+            setWindowTitle("QImageViewer - ["+QString::number(imagewidget->currentImage()+1)+
+                           tr(" of ") + QString::number(imagewidget->size()) + "] "
+                           + imagewidget->currentImageName());
+        }
+    }
+    if (editFormResizeElements->windowState() == Qt::WindowMaximized) this->setWindowState(Qt::WindowMaximized);
+    else
+    {
+        this->resize(editFormResizeElements->width(),editFormResizeElements->height());
+        this->setWindowState(Qt::WindowNoState);
+    }
+    editFormResizeElements->close();
+    disconnect(editFormResizeElements,SIGNAL(editFinished(bool)),this,SLOT(resizeImageListOvered(bool)));
+    delete editFormResizeElements;
+}
+
+
 /** Show 'About' **/
 void QImageViewer::helpAbout()
 {
@@ -729,7 +830,12 @@ void QImageViewer::helpAbout()
            "Program author is Bodnya Alexey\n"
            "Ukraine, Kiev, KPI, TV-11\n"
            "This program is under license GPLv2\n"
-           "It's free to use and all sources are open"));
+           "It's free to use and all sources are open.\n"
+           "\n"
+           "Thanks for testing and helping with tips and ideas to\n"
+           "my friends and Typical Proger community!\n"
+           "\n"
+           "Special thx Andrey Nezhiviy for help and support!"));
 }
 
 /** event for closing program,save file changes if need **/
@@ -764,6 +870,9 @@ void QImageViewer::closeEvent(QCloseEvent *event)
     /// Slideshow ///
     out << "SLIDESHOW_TRANSITION=" << (int)slideshowSmoothTransition << "\n";;
     out << "SLIDESHOW_INTERVAL=" << slideshowInterval << "\n";
+
+    /// Panel ///
+    out << "PANEL="<<panelalignment<<"\n";
 
     /// Hotkeys ///
     out << "\n#Hotkeys\n";
@@ -800,7 +909,6 @@ void QImageViewer::resizeEvent(QResizeEvent *)
 {
     if (imagewidget->isReady())
         imagewidget->reloadImage();
-    //->setGeometry(QRect(ui->previewLayout->geometry().x(),height()-200,width()-20,120));
 }
 
 /** Keyboard event, 'left' and 'right' arrows for changing pictures **/

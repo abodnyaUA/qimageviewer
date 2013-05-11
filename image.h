@@ -2,6 +2,7 @@
 #define IMAGE_H
 #include <QtGui>
 #include <QGraphicsView>
+#include <QImage>
 #include <QMenu>
 #include <QAction>
 #include <QFileInfo>
@@ -46,6 +47,8 @@ public slots:
     void zoomInc();
     void rotateLeft();
     void rotateRight();
+    void flipHorizontal();
+    void flipVertical();
     void saveimage(QString filename);
     void setSaved();
     void setEdited();

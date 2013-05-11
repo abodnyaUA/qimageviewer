@@ -20,14 +20,17 @@ HEADERS += editformcrop.h \
            qimageviewer.h \
            settings.h \
     preview.h \
-    previewlist.h
+    previewlist.h \
+    qhotkeyedit.h \
+    editformresizeelements.h
            
 FORMS += editformcrop.ui \
          editformresize.ui \
          fullscreen.ui \
          properties.ui \
          qimageviewer.ui \
-         settings.ui
+         settings.ui \
+    editformresizeelements.ui
          
 SOURCES += editformcrop.cpp \
            editformcropimage.cpp \
@@ -40,7 +43,9 @@ SOURCES += editformcrop.cpp \
            image_edit.cpp \
     image_events.cpp \
     preview.cpp \
-    previewlist.cpp
+    previewlist.cpp \
+    qhotkeyedit.cpp \
+    editformresizeelements.cpp
 
 RESOURCES += resources.qrc
 
@@ -124,4 +129,8 @@ OTHER_FILES += \
     res/flag-rus.png \
     res/flag-sys.png \
     res/zoom-window.png \
-    res/zoom-original.png
+    res/zoom-original.png \
+    res/resize-items.png \
+    res/flip-vertical.png \
+    res/flip-horizontal.png \
+    res/wallpaper.png

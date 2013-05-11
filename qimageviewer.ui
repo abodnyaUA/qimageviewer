@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>640</width>
-    <height>470</height>
+    <height>441</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,25 +19,15 @@
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QVBoxLayout" name="verticalLayout_2">
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
     <item>
-     <layout class="QGridLayout" name="gridLayout">
-      <property name="sizeConstraint">
-       <enum>QLayout::SetMinimumSize</enum>
-      </property>
-      <property name="spacing">
-       <number>1</number>
-      </property>
-      <item row="0" column="4">
-       <widget class="QPushButton" name="zoomDecButton">
-        <property name="enabled">
-         <bool>false</bool>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="0">
+     <layout class="QHBoxLayout" name="panelTopLayout"/>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="imageLayout">
+      <item>
        <widget class="QPushButton" name="prevButton">
         <property name="enabled">
          <bool>false</bool>
@@ -46,25 +36,14 @@
          <locale language="English" country="Kenya"/>
         </property>
         <property name="text">
-         <string>Previous</string>
+         <string/>
         </property>
        </widget>
       </item>
-      <item row="0" column="9">
-       <widget class="QLabel" name="image_currentIndex_label">
-        <property name="text">
-         <string>0</string>
-        </property>
-       </widget>
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout"/>
       </item>
-      <item row="0" column="11">
-       <widget class="QLabel" name="image_amount_label">
-        <property name="text">
-         <string>0</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="1">
+      <item>
        <widget class="QPushButton" name="nextButton">
         <property name="enabled">
          <bool>false</bool>
@@ -73,21 +52,34 @@
          <locale language="English" country="Kenya"/>
         </property>
         <property name="text">
-         <string>Next</string>
+         <string/>
         </property>
        </widget>
       </item>
-      <item row="0" column="10">
-       <widget class="QLabel" name="image_between_label">
-        <property name="locale">
-         <locale language="English" country="UnitedStates"/>
+     </layout>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="panelBottomLayout">
+      <property name="spacing">
+       <number>1</number>
+      </property>
+      <property name="sizeConstraint">
+       <enum>QLayout::SetMinimumSize</enum>
+      </property>
+      <item>
+       <spacer name="panelLeftHorizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
         </property>
-        <property name="text">
-         <string> of </string>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
         </property>
-       </widget>
+       </spacer>
       </item>
-      <item row="0" column="3">
+      <item>
        <widget class="QPushButton" name="zoomIncButton">
         <property name="enabled">
          <bool>false</bool>
@@ -97,7 +89,37 @@
         </property>
        </widget>
       </item>
-      <item row="0" column="5">
+      <item>
+       <widget class="QPushButton" name="zoomDecButton">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="zoomWindowButton">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="zoomOriginalButton">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QPushButton" name="rotateRightButton">
         <property name="enabled">
          <bool>false</bool>
@@ -107,7 +129,7 @@
         </property>
        </widget>
       </item>
-      <item row="0" column="6">
+      <item>
        <widget class="QPushButton" name="rotateLeftButton">
         <property name="enabled">
          <bool>false</bool>
@@ -117,7 +139,7 @@
         </property>
        </widget>
       </item>
-      <item row="0" column="7">
+      <item>
        <widget class="QPushButton" name="fullscreenButton">
         <property name="enabled">
          <bool>false</bool>
@@ -127,8 +149,18 @@
         </property>
        </widget>
       </item>
-      <item row="0" column="8">
-       <spacer name="horizontalSpacer_2">
+      <item>
+       <widget class="QPushButton" name="slideshowButton">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="panelRightHorizontalSpacer">
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
         </property>
@@ -142,9 +174,6 @@
       </item>
      </layout>
     </item>
-    <item>
-     <layout class="QVBoxLayout" name="verticalLayout"/>
-    </item>
    </layout>
   </widget>
   <widget class="QMenuBar" name="menuBar">
@@ -153,7 +182,7 @@
      <x>0</x>
      <y>0</y>
      <width>640</width>
-     <height>20</height>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="fileMenu">
@@ -183,10 +212,15 @@
     <addaction name="separator"/>
     <addaction name="rotateRightAction"/>
     <addaction name="rotateLeftAction"/>
+    <addaction name="separator"/>
+    <addaction name="flipHorizontalAction"/>
+    <addaction name="flipVerticalAction"/>
+    <addaction name="separator"/>
     <addaction name="deleteFileAction"/>
     <addaction name="separator"/>
-    <addaction name="resizeAction"/>
     <addaction name="cropAction"/>
+    <addaction name="resizeAction"/>
+    <addaction name="resizeitemsAction"/>
    </widget>
    <widget class="QMenu" name="helpMenu">
     <property name="locale">
@@ -247,61 +281,97 @@
    </property>
   </action>
   <action name="saveAction">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>Save</string>
    </property>
   </action>
   <action name="saveAsAction">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>Save as...</string>
    </property>
   </action>
   <action name="rotateRightAction">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>Rotate to the right</string>
    </property>
   </action>
   <action name="rotateLeftAction">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>Rotate to the left</string>
    </property>
   </action>
   <action name="deleteFileAction">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>Delete file</string>
    </property>
   </action>
   <action name="resizeAction">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>Resize</string>
    </property>
   </action>
   <action name="fullscreenAction">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>Fullscreen mode</string>
    </property>
   </action>
   <action name="cropAction">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>Crop</string>
    </property>
   </action>
   <action name="actionUndo">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>Undo</string>
    </property>
   </action>
   <action name="actionRedo">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>Redo</string>
    </property>
   </action>
   <action name="wallpaperAction">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>Set as wallpaper</string>
    </property>
   </action>
   <action name="slideshowAction">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>Start slideshow</string>
    </property>
@@ -312,31 +382,65 @@
    </property>
   </action>
   <action name="zoomInAction">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>Zoom In</string>
    </property>
   </action>
   <action name="zoomOutAction">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>Zoom out</string>
    </property>
   </action>
   <action name="zoomWindowAction">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>Window size</string>
    </property>
   </action>
   <action name="zoomOriginalAction">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>Original size</string>
+   </property>
+  </action>
+  <action name="resizeitemsAction">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Resize items...</string>
+   </property>
+  </action>
+  <action name="flipHorizontalAction">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Flip horizontal</string>
+   </property>
+  </action>
+  <action name="flipVerticalAction">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Flip vertical</string>
    </property>
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <tabstops>
   <tabstop>rotateRightButton</tabstop>
-  <tabstop>prevButton</tabstop>
-  <tabstop>nextButton</tabstop>
   <tabstop>zoomIncButton</tabstop>
   <tabstop>rotateLeftButton</tabstop>
   <tabstop>zoomDecButton</tabstop>

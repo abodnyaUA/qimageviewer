@@ -20,6 +20,7 @@ public:
                             QString defaultfolder,
                             bool mouseZoom, bool mouseFullscreen,
                             bool slideshowSmoothTransition, double slideshowInterval,
+                            int panelalignment,
                             QString cropHotkey, QString resizeHotkey,
                             QString fullscreenHotkey, QString slideshowHotkey,
                             QString undoHotkey, QString redoHotkey);
@@ -44,6 +45,7 @@ signals:
                         QString defaultfolder,
                         bool mouseZoom, bool mouseFullscreen,
                         bool slideshowSmoothTransition, double slideshowInterval,
+                        int panelalignment,
                         QString cropHotkey, QString resizeHotkey,
                         QString fullscreenHotkey, QString slideshowHotkey,
                         QString undoHotkey, QString redoHotkey);
@@ -56,6 +58,7 @@ private:
     bool old_mouseFullscreen;
     bool old_slideshowSmoothTransition;
     double old_slideshowInterval;
+    int old_panelalignment;
     //Hotkeys//
     QString old_cropHotkey;
     QString old_resizeHotkey;

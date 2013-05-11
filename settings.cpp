@@ -14,6 +14,7 @@ void Settings::setDefaultSettings(QString language,
                                   QString defaultfolder,
                                   bool mouseZoom, bool mouseFullscreen,
                                   bool slideshowSmoothTransition, double slideshowInterval,
+                                  int panelalignment,
                                   QString cropHotkey, QString resizeHotkey,
                                   QString fullscreenHotkey, QString slideshowHotkey,
                                   QString undoHotkey, QString redoHotkey)
@@ -24,6 +25,8 @@ void Settings::setDefaultSettings(QString language,
     old_mouseFullscreen = mouseFullscreen;
     old_slideshowInterval = slideshowInterval;
     old_slideshowSmoothTransition = slideshowSmoothTransition;
+    old_panelalignment = panelalignment;
+
     old_cropHotkey = cropHotkey;
     old_resizeHotkey = resizeHotkey;
     old_fullscreenHotkey = fullscreenHotkey;
@@ -41,6 +44,8 @@ void Settings::setDefaultSettings(QString language,
     ui->mouseZoomCheckBox->setChecked(mouseFullscreen);
     ui->slideshowIntervalSpinBox->setValue(slideshowInterval);
     ui->slideshowTransitionCheckBox->setChecked(slideshowSmoothTransition);
+
+    ui->toolpanelComboBox->setCurrentIndex(panelalignment);
 
     ui->cropHotkeyEdit->setText(cropHotkey);
     ui->resizeHotkeyEdit->setText(resizeHotkey);
@@ -76,6 +81,7 @@ void Settings::on_acceptButton_clicked()
     old_mouseFullscreen = ui->mouseFullscreenCheckBox->isChecked();
     old_slideshowInterval = ui->slideshowIntervalSpinBox->value();
     old_slideshowSmoothTransition = ui->slideshowTransitionCheckBox->isChecked();
+    old_panelalignment = ui->toolpanelComboBox->currentIndex();
 
     old_cropHotkey = ui->cropHotkeyEdit->text();
     old_resizeHotkey = ui->resizeHotkeyEdit->text(),
@@ -96,6 +102,7 @@ void Settings::closeEvent(QCloseEvent *event)
                         old_mouseFullscreen,
                         old_slideshowSmoothTransition,
                         old_slideshowInterval,
+                        old_panelalignment,
                         old_cropHotkey, old_resizeHotkey,
                         old_fullscreenHotkey, old_slideshowHotkey,
                         old_undoHotkey, old_redoHotkey);
@@ -143,7 +150,7 @@ void Settings::on_defaultfolderBrowseButton_clicked()
 
 void Settings::on_slideshowIntervalButton_clicked()
 {
-    ui->slideshowIntervalSpinBox->setValue(1000);
+    ui->slideshowIntervalSpinBox->setValue(1);
 }
 
 void Settings::on_cancelButton_clicked()

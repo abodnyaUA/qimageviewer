@@ -52,6 +52,7 @@ void image::createContextMenu()
 
     actionWallpaper = new QAction(tr("Set as wallpaper"),this);
     connect(actionWallpaper,SIGNAL(triggered()),this,SLOT(setAsWallpaper()));
+    actionWallpaper->setIcon(QIcon(QPixmap(":/res/wallpaper.png")));
 
     actionDelete = new QAction(tr("Delete"),this);
     actionDelete->setIcon(QIcon(QPixmap(":/res/delete.png")));

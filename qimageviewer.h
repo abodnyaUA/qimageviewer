@@ -21,6 +21,7 @@
 #include "previewlist.h"
 #include "fullscreen.h"
 #include "editformresize.h"
+#include "editformresizeelements.h"
 #include "editformcrop.h"
 #include "settings.h"
 
@@ -48,6 +49,7 @@ private slots:
                         QString defaultfolder,
                         bool mouseZoom, bool mouseFullscreen,
                         bool slideshowSmoothTransition, double slideshowInterval,
+                        int panelalignment,
                         QString cropHotkey, QString resizeHotkey,
                         QString fullscreenHotkey, QString slideshowHotkey,
                         QString undoHotkey, QString redoHotkey);
@@ -68,6 +70,8 @@ private slots:
     void resizeImageOvered(bool result);
     void cropImage();
     void cropImageOvered(bool result);
+    void resizeImageList();
+    void resizeImageListOvered(bool result);
     void setUndoEnable(bool);
     void setRedoEnable(bool);
     void setStatusName(bool);
@@ -83,6 +87,9 @@ private:
     //Fullscreen//
     bool slideshowSmoothTransition;
     double slideshowInterval;
+
+    //Panel//
+    int panelalignment;
 
     //Hotkeys//
     QString cropHotkey;
@@ -112,6 +119,7 @@ private:
 
     editformResize *editFormResize;
     editformCrop *editFormCrop;
+    editformResizeElements *editFormResizeElements;
 
     void createActions();
     void createDesign();

@@ -140,6 +140,27 @@ void image::rotateRight()
     wasEdited = true;
 }
 
+/** Create horizontal flip of current image (Reflection) **/
+void image::flipHorizontal()
+{
+    QImage image = imagePixmap->toImage();
+    qDebug() << "ims=" << image.width() << image.height();
+    image = image.mirrored(true,false);
+    QPixmap * newpixmap = new QPixmap(QPixmap::fromImage(image));
+    addToBuffer(newpixmap);
+    wasEdited = true;
+}
+
+/** Create vertical flip of current image (Reflection) **/
+void image::flipVertical()
+{
+    QImage image = imagePixmap->toImage();;
+    image = image.mirrored(false,true);
+    QPixmap * newpixmap = new QPixmap(QPixmap::fromImage(image));
+    addToBuffer(newpixmap);
+    wasEdited = true;
+}
+
 /** save current image **/
 void image::saveimage(QString filename)
 {

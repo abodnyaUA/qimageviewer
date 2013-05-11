@@ -36,5 +36,9 @@
         <file>res/flag-sys.png</file>
         <file>res/zoom-original.png</file>
         <file>res/zoom-window.png</file>
+        <file>res/resize-items.png</file>
+        <file>res/flip-horizontal.png</file>
+        <file>res/flip-vertical.png</file>
+        <file>res/wallpaper.png</file>
     </qresource>
 </RCC>

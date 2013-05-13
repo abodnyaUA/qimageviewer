@@ -267,7 +267,7 @@ void Settings::on_resetHotkeysButton_clicked()
 
     hotkeyItemWatchPrevious->setText(1,"Ctrl+Left");
     hotkeyItemWatchNext->setText(1,"Ctrl+Right");
-    hotkeyItemWatchFullscreen->setText(1,"F11");
+    hotkeyItemWatchFullscreen->setText(1,"F10");
     hotkeyItemWatchSlideshow->setText(1,"F5");
     hotkeyItemWatchWallpaper->setText(1,"");
     hotkeyItemZoomIn->setText(1,"+");

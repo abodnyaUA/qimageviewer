@@ -89,7 +89,7 @@ void QImageViewer::loadsettings()
             out << "Watch-Previous="<<hotkeys.watchPrevious << "\n";
             hotkeys.watchNext = "Ctrl+Right";
             out << "Watch-Next="<<hotkeys.watchNext << "\n";
-            hotkeys.watchFullscreen = "F11";
+            hotkeys.watchFullscreen = "F10";
             out << "Watch-Fullscreen="<<hotkeys.watchFullscreen << "\n";
             hotkeys.watchSlideshow = "F5";
             out << "Watch-Slideshow="<<hotkeys.watchSlideshow << "\n";

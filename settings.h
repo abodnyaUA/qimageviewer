@@ -5,6 +5,11 @@
 #include <QCloseEvent>
 #include <QFileDialog>
 #include <QMessageBox>
+#include <QTreeWidgetItem>
+#include <QHBoxLayout>
+#include <QVBoxLayout>
+#include "hotkeys.h"
+#include "qhotkeywidget.h"
 
 namespace Ui {
 class Settings;
@@ -21,24 +26,20 @@ public:
                             bool mouseZoom, bool mouseFullscreen,
                             bool slideshowSmoothTransition, double slideshowInterval,
                             int panelalignment,
-                            QString cropHotkey, QString resizeHotkey,
-                            QString fullscreenHotkey, QString slideshowHotkey,
-                            QString undoHotkey, QString redoHotkey);
+                            hotkeysStruct hotkeys);
     ~Settings();
     
 private slots:
     void on_acceptButton_clicked();
     void on_resetButton_clicked();
-    void on_cropResetButton_clicked();
-    void on_resizeResetButton_clicked();
-    void on_fullscreenResetButton_clicked();
-    void on_slideshowResetButton_clicked();
-    void on_undoResetButton_clicked();
-    void on_redoResetButton_clicked();
     void on_defaultfolderBrowseButton_clicked();
     void on_slideshowIntervalButton_clicked();
-
     void on_cancelButton_clicked();
+    void on_hotkeyWidget_itemDoubleClicked(QTreeWidgetItem *item, int column);
+    void changingEndAccept();
+    void changingEndDecline();
+
+    void on_resetHotkeysButton_clicked();
 
 signals:
     void acceptsettings(QString language,
@@ -46,9 +47,7 @@ signals:
                         bool mouseZoom, bool mouseFullscreen,
                         bool slideshowSmoothTransition, double slideshowInterval,
                         int panelalignment,
-                        QString cropHotkey, QString resizeHotkey,
-                        QString fullscreenHotkey, QString slideshowHotkey,
-                        QString undoHotkey, QString redoHotkey);
+                        hotkeysStruct hotkeys);
 
 private:
     Ui::Settings *ui;
@@ -59,13 +58,32 @@ private:
     bool old_slideshowSmoothTransition;
     double old_slideshowInterval;
     int old_panelalignment;
-    //Hotkeys//
-    QString old_cropHotkey;
-    QString old_resizeHotkey;
-    QString old_fullscreenHotkey;
-    QString old_slideshowHotkey;
-    QString old_undoHotkey;
-    QString old_redoHotkey;
+
+    ///Hotkeys///
+    //Change widget//
+    qhotkeywidget * QHotkeyWidget;
+
+    //buttons//
+    void setHotkeys();
+    void saveHotkeys();
+    QTreeWidgetItem * addCategory(QString name);
+    QTreeWidgetItem * addHotkey(QTreeWidgetItem * category, QString name, QString hotkey, QString icon, QString defaultHotkey);
+    QTreeWidgetItem *categoryFile,*categoryEdit,*categoryWatch,*categoryHelp;
+    QTreeWidgetItem *hotkeyItemFileOpen,*hotkeyItemFileSave,*hotkeyItemFileSaveAs,
+                    *hotkeyItemFileSettings,*hotkeyItemFileQuit;
+    QTreeWidgetItem *hotkeyItemEditUndo,*hotkeyItemEditRedo,
+                    *hotkeyItemEditRotateLeft,*hotkeyItemEditRotateRight,
+                    *hotkeyItemEditFlipHorizontal,*hotkeyItemEditFlipVertical,
+                    *hotkeyItemEditCrop,*hotkeyItemEditResize,*hotkeyItemEditResizeItems;
+    QTreeWidgetItem *hotkeyItemWatchPrevious,*hotkeyItemWatchNext,
+                    *hotkeyItemWatchFullscreen,*hotkeyItemWatchSlideshow,
+                    *hotkeyItemWatchWallpaper,*hotkeyItemZoomIn,*hotkeyItemZoomOut,
+                    *hotkeyItemZoomWindow,*hotkeyItemZoomOriginal;
+    QTreeWidgetItem *hotkeyItemHelpAbout;
+
+    //values//
+    hotkeysStruct old_hotkeys;
+
 protected:
     void closeEvent(QCloseEvent *);
 };

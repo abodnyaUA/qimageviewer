@@ -10,6 +10,7 @@
 #include <QDesktopWidget>
 #include <QGraphicsPixmapItem>
 #include <QScrollBar>
+#include "hotkeys.h"
 
 namespace Ui {
 class Properties;
@@ -22,6 +23,7 @@ class image : public QGraphicsView
 
 public:
     image();
+    void loadhotkeys(hotkeysStruct * hotkeys);
     //program blocks//
     void loadimage(QString path);
     void addToBuffer(QPixmap * pixmap);
@@ -72,6 +74,7 @@ signals:
     void needSlideshow();
 
 private:
+    hotkeysStruct * hotkeys;
     QDesktopWidget desk;
     QPixmap * imagePixmap;
     QGraphicsScene *imageScene;

@@ -24,6 +24,7 @@
 #include "editformresizeelements.h"
 #include "editformcrop.h"
 #include "settings.h"
+#include "hotkeys.h"
 
 namespace Ui {
 class QImageViewer;
@@ -50,16 +51,12 @@ private slots:
                         bool mouseZoom, bool mouseFullscreen,
                         bool slideshowSmoothTransition, double slideshowInterval,
                         int panelalignment,
-                        QString cropHotkey, QString resizeHotkey,
-                        QString fullscreenHotkey, QString slideshowHotkey,
-                        QString undoHotkey, QString redoHotkey);
+                        hotkeysStruct hotkeys);
     //HELP
     void helpAbout();
     //NAVIGATION
     void nextImage();
     void prevImage();
-    void nextImageArrows();
-    void prevImageArrows();
     //WATCH
     void fullScreen();
     void fullScreenOvered();
@@ -92,12 +89,7 @@ private:
     int panelalignment;
 
     //Hotkeys//
-    QString cropHotkey;
-    QString resizeHotkey;
-    QString fullscreenHotkey;
-    QString slideshowHotkey;
-    QString undoHotkey;
-    QString redoHotkey;
+    hotkeysStruct hotkeys;
     Settings *settings;
 
     /// Other stuff ///
@@ -122,13 +114,15 @@ private:
     editformResizeElements *editFormResizeElements;
 
     void createActions();
+    void createHotkeys();
     void createDesign();
     void loadsettings();
 
 protected:
     void resizeEvent(QResizeEvent *);
-    bool eventFilter(QObject *obj, QEvent *event);
     void closeEvent(QCloseEvent *event);
 };
+
+
 
 #endif // QImageViewer_H

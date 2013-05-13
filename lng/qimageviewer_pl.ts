@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="en_US">
+<TS version="2.0" language="pl">
 <context>
     <name>Properties</name>
     <message>
         <location filename="../properties.ui" line="14"/>
         <source>QImageViewer - Properties</source>
         <oldsource>QImageViewer - Свойства изображения</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>QImageViewer - Właściwości</translation>
     </message>
     <message>
         <location filename="../properties.ui" line="45"/>

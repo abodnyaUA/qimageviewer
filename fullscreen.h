@@ -7,6 +7,7 @@
 #include <QLabel>
 #include <QCloseEvent>
 #include "image.h"
+#include "hotkeys.h"
 
 namespace Ui {
 class fullscreen;
@@ -17,7 +18,7 @@ class fullscreen : public QWidget
     Q_OBJECT
     
 public:
-    explicit fullscreen(image *imagewidget);
+    explicit fullscreen(image *imagewidget, hotkeysStruct * hotkeys);
     ~fullscreen();
     QVBoxLayout *lay;
     image *imagewidget;
@@ -40,6 +41,7 @@ signals:
 
 private:
     Ui::fullscreen *ui;
+    hotkeysStruct * hotkeys;
 
     //slideshow
     QTimer *timer;

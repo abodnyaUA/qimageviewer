@@ -51,19 +51,62 @@ void QImageViewer::loadsettings()
             panelalignment = 0;
 
             /// Hotkeys ///
+            //File//
             out << "\n#Hotkeys\n";
-            cropHotkey = "Ctrl+Shift+C";
-            out << "Crop="<<cropHotkey<<"\n";
-            resizeHotkey = "Ctrl+R";
-            out << "Resize="<<resizeHotkey<<"\n";
-            fullscreenHotkey = "F10";
-            out << "Fullscreen="<<fullscreenHotkey<<"\n";
-            slideshowHotkey = "F5";
-            out << "Slideshow="<<slideshowHotkey<<"\n";
-            undoHotkey = "Ctrl+Z";
-            out << "Undo="<<undoHotkey<<"\n";
-            redoHotkey = "Ctrl+Shift+Z";
-            out << "Redo="<<redoHotkey<<"\n";
+            hotkeys.fileOpen = "Ctrl+O";
+            out << "File-Open="<<hotkeys.fileOpen << "\n";
+            hotkeys.fileSave = "Ctrl+S";
+            out << "File-Save="<<hotkeys.fileSave << "\n";
+            hotkeys.fileSaveAs = "Ctrl+Shift+S";
+            out << "File-Save-As="<<hotkeys.fileSaveAs << "\n";
+            hotkeys.fileSettings = "";
+            out << "File-Settings="<<hotkeys.fileSettings << "\n";
+            hotkeys.fileQuit = "Ctrl+Q";
+            out << "File-Quit="<<hotkeys.fileQuit << "\n";
+
+            //Edit//
+            hotkeys.editUndo = "Ctrl+Z";
+            out << "Edit-Undo="<<hotkeys.editUndo << "\n";
+            hotkeys.editRedo = "Ctrl+Shift+Z";
+            out << "Edit-Redo="<<hotkeys.editRedo << "\n";
+            hotkeys.editRotateRight = "Ctrl+Shift+R";
+            out << "Edit-Rotate-Right="<<hotkeys.editRotateRight << "\n";
+            hotkeys.editRotateLeft = "Ctrl+Shift+L";
+            out << "Edit-Rotate-Left="<<hotkeys.editRotateLeft << "\n";
+            hotkeys.editFlipHorizontal = "";
+            out << "Edit-Flip-Horizontal="<<hotkeys.editFlipHorizontal << "\n";
+            hotkeys.editFlipVertical = "";
+            out << "Edit-Flip-Vertical="<<hotkeys.editFlipVertical << "\n";
+            hotkeys.editCrop = "Ctrl+Shift+C";
+            out << "Edit-Crop="<<hotkeys.editCrop << "\n";
+            hotkeys.editResize = "Ctrl+R";
+            out << "Edit-Resize="<<hotkeys.editResize << "\n";
+            hotkeys.editResizeItems = "";
+            out << "Edit-Resize-Items="<<hotkeys.editResizeItems << "\n";
+
+            //Watch//
+            hotkeys.watchPrevious = "Ctrl+Left";
+            out << "Watch-Previous="<<hotkeys.watchPrevious << "\n";
+            hotkeys.watchNext = "Ctrl+Right";
+            out << "Watch-Next="<<hotkeys.watchNext << "\n";
+            hotkeys.watchFullscreen = "F11";
+            out << "Watch-Fullscreen="<<hotkeys.watchFullscreen << "\n";
+            hotkeys.watchSlideshow = "F5";
+            out << "Watch-Slideshow="<<hotkeys.watchSlideshow << "\n";
+            hotkeys.watchWallpaper = "";
+            out << "Watch-Wallpaper="<<hotkeys.watchWallpaper << "\n";
+            hotkeys.zoomIn = "+";
+            out << "Zoom-In="<<hotkeys.zoomIn << "\n";
+            hotkeys.zoomOut = "-";
+            out << "Zoom-Out="<<hotkeys.zoomOut << "\n";
+            hotkeys.zoomWindow = "";
+            out << "Zoom-Window="<<hotkeys.zoomWindow << "\n";
+            hotkeys.zoomOriginal = "";
+            out << "Zoom-Original="<<hotkeys.zoomOriginal << "\n";
+
+            //About//
+            hotkeys.helpAbout = "F1";
+            out << "Help-About="<<hotkeys.helpAbout << "\n";
         }
     }
     else
@@ -104,20 +147,65 @@ void QImageViewer::loadsettings()
         panelalignment = sets.right(sets.size()-6).toInt();
 
         /// Hotkeys ///
+        sets = out.readLine(); //empty
+        sets = out.readLine(); //"hotkeys"
+
+        //File//
         sets = out.readLine();
+        hotkeys.fileOpen = sets.right(sets.size()-10);
         sets = out.readLine();
+        hotkeys.fileSave = sets.right(sets.size()-10);
         sets = out.readLine();
-        cropHotkey = sets.right(sets.size()-5);
+        hotkeys.fileSaveAs = sets.right(sets.size()-13);
         sets = out.readLine();
-        resizeHotkey = sets.right(sets.size()-7);
+        hotkeys.fileSettings = sets.right(sets.size()-14);
         sets = out.readLine();
-        fullscreenHotkey = sets.right(sets.size()-11);
+        hotkeys.fileQuit = sets.right(sets.size()-10);
+
+        //Edit//
         sets = out.readLine();
-        slideshowHotkey = sets.right(sets.size()-10);
+        hotkeys.editUndo = sets.right(sets.size()-10);
         sets = out.readLine();
-        undoHotkey = sets.right(sets.size()-5);
+        hotkeys.editRedo = sets.right(sets.size()-10);
         sets = out.readLine();
-        redoHotkey = sets.right(sets.size()-5);
+        hotkeys.editRotateRight = sets.right(sets.size()-18);
+        sets = out.readLine();
+        hotkeys.editRotateLeft = sets.right(sets.size()-17);
+        sets = out.readLine();
+        hotkeys.editFlipHorizontal = sets.right(sets.size()-21);
+        sets = out.readLine();
+        hotkeys.editFlipVertical = sets.right(sets.size()-19);
+        sets = out.readLine();
+        hotkeys.editCrop = sets.right(sets.size()-10);
+        sets = out.readLine();
+        hotkeys.editResize = sets.right(sets.size()-12);
+        sets = out.readLine();
+        hotkeys.editResizeItems = sets.right(sets.size()-18);
+
+        //Watch//
+        sets = out.readLine();
+        hotkeys.watchPrevious = sets.right(sets.size()-15);
+        sets = out.readLine();
+        hotkeys.watchNext = sets.right(sets.size()-11);
+        sets = out.readLine();
+        hotkeys.watchFullscreen = sets.right(sets.size()-17);
+        sets = out.readLine();
+        hotkeys.watchSlideshow = sets.right(sets.size()-16);
+        sets = out.readLine();
+        hotkeys.watchWallpaper = sets.right(sets.size()-16);
+        sets = out.readLine();
+        hotkeys.zoomIn = sets.right(sets.size()-8);
+        sets = out.readLine();
+        hotkeys.zoomOut = sets.right(sets.size()-9);
+        sets = out.readLine();
+        hotkeys.zoomWindow = sets.right(sets.size()-12);
+        sets = out.readLine();
+        hotkeys.zoomOriginal = sets.right(sets.size()-14);
+
+        //Help//
+        sets = out.readLine();
+        hotkeys.helpAbout = sets.right(sets.size()-11);
+
     }
     file.close();
 }
@@ -140,8 +228,12 @@ QImageViewer::QImageViewer(QString path, QWidget *parent) :
     dialog = new QFileDialog(this);
     // Default Folder //
     loadsettings();
-    // Shorctcuts, signals-slots and other stuff for buttons and menu actions //
+    // Load hotkeys to image //
+    imagewidget->loadhotkeys(&hotkeys);
+    // Signals-slots and tool-tips for buttons and menu actions //
     createActions();
+    // Shortcuts for buttons and menu actions //
+    createHotkeys();
     // Icons and other design for buttons and menu actions //
     createDesign();
 
@@ -170,76 +262,66 @@ void QImageViewer::createActions()
 {
     ///ACTIONS///
     // File //
-    ui->openAction->setShortcut(tr("Ctrl+O"));
     ui->openAction->setStatusTip(tr("Open current image"));
     connect(ui->openAction,SIGNAL(triggered()),this,SLOT(fileOpen()));
 
-    ui->saveAction->setShortcut(tr("Ctrl+S"));
     ui->saveAction->setStatusTip(tr("Save current image with same name and format"));
     connect(ui->saveAction,SIGNAL(triggered()),this,SLOT(fileSave()));
     connect(imagewidget,SIGNAL(itsSaved(bool)),this,SLOT(setStatusName(bool)));
 
-    ui->saveAsAction->setShortcut(tr("Ctrl+Shift+S"));
     ui->saveAsAction->setStatusTip(tr("Save current image with new name and format"));
     connect(ui->saveAsAction,SIGNAL(triggered()),this,SLOT(fileSaveAs()));
 
     ui->settingsAction->setStatusTip(tr("Program settings"));
     connect(ui->settingsAction,SIGNAL(triggered()),this,SLOT(settingsWindow()));
 
-    ui->exitAction->setShortcut(tr("Ctrl+Q"));
     ui->exitAction->setStatusTip(tr("Close program"));
     connect(ui->exitAction,SIGNAL(triggered()),this,SLOT(close()));
 
     // Edit //
-    ui->actionUndo->setShortcut(undoHotkey);
     ui->actionUndo->setStatusTip(tr("Cancel last changes"));
     connect(ui->actionUndo,SIGNAL(triggered()),imagewidget,SLOT(prevBuffer()));
     connect(imagewidget,SIGNAL(itsPossibleToUndo(bool)),this,SLOT(setUndoEnable(bool)));
 
-    ui->actionRedo->setShortcut(redoHotkey);
     ui->actionRedo->setStatusTip(tr("Do last changes"));
     connect(ui->actionRedo,SIGNAL(triggered()),imagewidget,SLOT(nextBuffer()));
     connect(imagewidget,SIGNAL(itsPossibleToRedo(bool)),this,SLOT(setRedoEnable(bool)));
 
-    ui->rotateLeftAction->setShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_L));
     ui->rotateLeftAction->setStatusTip(tr("Rotate image to the left"));
     connect(ui->rotateLeftAction,SIGNAL(triggered()),imagewidget,SLOT(rotateLeft()));
 
-    ui->rotateRightAction->setShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_R));
     ui->rotateRightAction->setStatusTip(tr("Rotate image to the right"));
     connect(ui->rotateRightAction,SIGNAL(triggered()),imagewidget,SLOT(rotateRight()));
 
-    //ui->rotateLeftAction->setShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_L));
     ui->flipHorizontalAction->setStatusTip(tr("Change this image to horizontal mirror"));
     connect(ui->flipHorizontalAction,SIGNAL(triggered()),imagewidget,SLOT(flipHorizontal()));
 
-    //ui->rotateLeftAction->setShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_L));
     ui->flipVerticalAction->setStatusTip(tr("Change this image to vertical mirror"));
     connect(ui->flipVerticalAction,SIGNAL(triggered()),imagewidget,SLOT(flipVertical()));
 
-    ui->deleteFileAction->setShortcut(QKeySequence(Qt::Key_Delete));
     ui->deleteFileAction->setStatusTip(tr("Delete current image"));
     connect(ui->deleteFileAction,SIGNAL(triggered()),imagewidget,SLOT(deleteCurrentItem()));
 
-    ui->resizeAction->setShortcut(resizeHotkey);
-    ui->resizeAction->setStatusTip(tr("Resize current image"));
-    connect(ui->resizeAction,SIGNAL(triggered()),this,SLOT(resizeImage()));
-
-    ui->cropAction->setShortcut(cropHotkey);
     ui->cropAction->setStatusTip(tr("Crop current image"));
     connect(ui->cropAction,SIGNAL(triggered()),this,SLOT(cropImage()));
 
-    //ui->resizeitemsAction->setShortcut(resizeHotkey);
-    ui->resizeitemsAction->setStatusTip(tr("Resize current image"));
+    ui->resizeAction->setStatusTip(tr("Resize current image"));
+    connect(ui->resizeAction,SIGNAL(triggered()),this,SLOT(resizeImage()));
+
+    ui->resizeitemsAction->setStatusTip(tr("Resize list of images"));
     connect(ui->resizeitemsAction,SIGNAL(triggered()),this,SLOT(resizeImageList()));
 
     // Watching //
-    ui->fullscreenAction->setShortcut(fullscreenHotkey);
+    ui->nextimageAction->setStatusTip(tr("Show next image"));
+    connect(ui->nextimageAction,SIGNAL(triggered()),this,SLOT(nextImage()));
+
+    ui->previmageAction->setStatusTip(tr("Show previous image"));
+    connect(ui->previmageAction,SIGNAL(triggered()),this,SLOT(prevImage()));
+
     ui->fullscreenAction->setStatusTip(tr("Enable fullscreen mode"));
     connect(ui->fullscreenAction,SIGNAL(triggered()),this,SLOT(fullScreen()));
     connect(imagewidget,SIGNAL(needFullscreen()),this,SLOT(fullScreenFromImage()));
 
-    ui->slideshowAction->setShortcut(slideshowHotkey);
     ui->slideshowAction->setStatusTip(tr("Start slideshow in fullscreen mode"));
     connect(ui->slideshowAction,SIGNAL(triggered()),this,SLOT(slideShow()));
     connect(imagewidget,SIGNAL(needSlideshow()),this,SLOT(slideShow()));
@@ -260,31 +342,25 @@ void QImageViewer::createActions()
     connect(ui->zoomWindowAction,SIGNAL(triggered()),imagewidget,SLOT(reloadImage()));
 
     // Help //
-    ui->aboutAction->setShortcut(tr("F1"));
     ui->aboutAction->setStatusTip(tr("Information about program"));
     connect(ui->aboutAction,SIGNAL(triggered()),this,SLOT(helpAbout()));
 
     ///BUTTONS///
-    ui->prevButton->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Left));
     ui->prevButton->setToolTip(tr("Open previous image"));
     connect(ui->prevButton,SIGNAL(clicked()),this,SLOT(prevImage()));
 
-    ui->nextButton->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Right));
     ui->nextButton->setToolTip(tr("Open next image"));
     connect(ui->nextButton,SIGNAL(clicked()),this,SLOT(nextImage()));
 
     ui->fullscreenButton->setToolTip(tr("Enable fullscreen mode"));
     connect(ui->fullscreenButton,SIGNAL(clicked()),this,SLOT(fullScreen()));    
 
-    ui->slideshowButton->setShortcut(slideshowHotkey);
     ui->slideshowButton->setToolTip(tr("Start slideshow in fullscreen mode"));
     connect(ui->slideshowButton,SIGNAL(clicked()),this,SLOT(slideShow()));
 
-    ui->zoomIncButton->setShortcut(tr("+"));
     ui->zoomIncButton->setToolTip(tr("Zoom in image"));
     connect(ui->zoomIncButton,SIGNAL(clicked()),imagewidget,SLOT(zoomInc()));
 
-    ui->zoomDecButton->setShortcut(tr("-"));
     ui->zoomDecButton->setToolTip(tr("Zoom out image"));
     connect(ui->zoomDecButton,SIGNAL(clicked()),imagewidget,SLOT(zoomDec()));
 
@@ -297,10 +373,8 @@ void QImageViewer::createActions()
     ui->rotateLeftButton->setToolTip(tr("Rotate picture to the left"));
     connect(ui->rotateLeftButton,SIGNAL(clicked()),imagewidget,SLOT(rotateLeft()));
 
-    ui->flipHorizontalAction->setIcon(QIcon(QPixmap(":/res/flip-horizontal.png")));
     ui->rotateRightButton->setToolTip(tr("Rotate picture to the right"));
     connect(ui->rotateRightButton,SIGNAL(clicked()),imagewidget,SLOT(rotateRight()));
-
 
     //Changing image
     connect(imagewidget,SIGNAL(currentImageWasChanged(int)),this,SLOT(currentIndexWasChanged(int)));
@@ -316,6 +390,39 @@ void QImageViewer::createActions()
     ui->zoomWindowButton->setFocusPolicy(Qt::NoFocus);
     ui->rotateLeftButton->setFocusPolicy(Qt::NoFocus);
     ui->rotateRightButton->setFocusPolicy(Qt::NoFocus);
+}
+
+void QImageViewer::createHotkeys()
+{
+    //File//
+    ui->openAction->setShortcut(QKeySequence::fromString(hotkeys.fileOpen));
+    ui->saveAction->setShortcut(QKeySequence::fromString(hotkeys.fileSave));
+    ui->saveAsAction->setShortcut(QKeySequence::fromString(hotkeys.fileSaveAs));
+    ui->settingsAction->setShortcut(QKeySequence::fromString(hotkeys.fileSettings));
+    ui->exitAction->setShortcut(QKeySequence::fromString(hotkeys.fileQuit));
+    //Edit//
+    ui->actionUndo->setShortcut(QKeySequence::fromString(hotkeys.editUndo));
+    ui->actionRedo->setShortcut(QKeySequence::fromString(hotkeys.editRedo));
+    ui->rotateLeftAction->setShortcut(QKeySequence::fromString(hotkeys.editRotateLeft));
+    ui->rotateRightAction->setShortcut(QKeySequence::fromString(hotkeys.editRotateRight));
+    ui->flipHorizontalAction->setShortcut(QKeySequence::fromString(hotkeys.editFlipHorizontal));
+    ui->flipVerticalAction->setShortcut(QKeySequence::fromString(hotkeys.editFlipVertical));
+    ui->cropAction->setShortcut(QKeySequence::fromString(hotkeys.editCrop));
+    ui->resizeAction->setShortcut(QKeySequence::fromString(hotkeys.editResize));
+    ui->resizeitemsAction->setShortcut(QKeySequence::fromString(hotkeys.editResizeItems));
+    ui->deleteFileAction->setShortcut(QKeySequence(Qt::Key_Delete));
+    //Watch//
+    ui->previmageAction->setShortcut(QKeySequence::fromString(hotkeys.watchPrevious));
+    ui->nextimageAction->setShortcut(QKeySequence::fromString(hotkeys.watchNext));
+    ui->fullscreenAction->setShortcut(QKeySequence::fromString(hotkeys.watchFullscreen));
+    ui->slideshowAction->setShortcut(QKeySequence::fromString(hotkeys.watchSlideshow));
+    ui->wallpaperAction->setShortcut(QKeySequence::fromString(hotkeys.watchWallpaper));
+    ui->zoomInAction->setShortcut(QKeySequence::fromString(hotkeys.zoomIn));
+    ui->zoomOutAction->setShortcut(QKeySequence::fromString(hotkeys.zoomOut));
+    ui->zoomOriginalAction->setShortcut(QKeySequence::fromString(hotkeys.zoomOriginal));
+    ui->zoomWindowAction->setShortcut(QKeySequence::fromString(hotkeys.zoomWindow));
+    //Help//
+    ui->aboutAction->setShortcut(hotkeys.helpAbout);
 }
 
 /** Loading all icons and design for buttons and menu actions **/
@@ -346,9 +453,11 @@ void QImageViewer::createDesign()
         ui->slideshowButton->hide();
     }
 
+    //File//
     ui->saveAction->setIcon(QIcon(QPixmap(":/res/file-save.png")));
     ui->openAction->setIcon(QIcon(QPixmap(":/res/file-open.png")));
     ui->settingsAction->setIcon(QIcon(QPixmap(":/res/settings.png")));
+    //Edit//
     ui->rotateLeftAction->setIcon(QIcon(QPixmap(":/res/rotate-left.png")));
     ui->rotateRightAction->setIcon(QIcon(QPixmap(":/res/rotate-right.png")));
     ui->flipHorizontalAction->setIcon(QIcon(QPixmap(":/res/flip-horizontal.png")));
@@ -357,6 +466,9 @@ void QImageViewer::createDesign()
     ui->resizeAction->setIcon(QIcon(QPixmap(":/res/resize.png")));
     ui->resizeitemsAction->setIcon(QIcon(QPixmap(":/res/resize-items.png")));
     ui->cropAction->setIcon(QIcon(QPixmap(":/res/crop.png")));
+    //Watch//
+    ui->previmageAction->setIcon(QIcon(QPixmap(":/res/prev.png")));
+    ui->nextimageAction->setIcon(QIcon(QPixmap(":/res/next.png")));
     ui->zoomInAction->setIcon(QIcon(QPixmap(":/res/zoom-in.png")));
     ui->zoomOutAction->setIcon(QIcon(QPixmap(":/res/zoom-out.png")));
     ui->zoomOriginalAction->setIcon(QIcon(QPixmap(":/res/zoom-original.png")));
@@ -364,6 +476,7 @@ void QImageViewer::createDesign()
     ui->fullscreenAction->setIcon(QIcon(QPixmap(":/res/fullscreen.png")));
     ui->slideshowAction->setIcon(QIcon(QPixmap(":/res/slideshow.png")));
     ui->wallpaperAction->setIcon(QIcon(QPixmap(":/res/wallpaper.png")));
+    //Help//
     ui->aboutAction->setIcon(QIcon(QPixmap(":/res/help.png")));
 
     ui->prevButton->setIcon(QIcon(QPixmap(":/res/prev.png")));
@@ -431,18 +544,6 @@ void QImageViewer::nextImage()
                    + imagewidget->currentImageName());
 }
 
-/** Show next image by shortcut 'Right arrow' **/
-void QImageViewer::nextImageArrows()
-{
-    if (!imagewidget->isZoomed()) nextImage();
-}
-
-/** Show previous image by shortcut 'Left arrow' **/
-void QImageViewer::prevImageArrows()
-{
-    if (!imagewidget->isZoomed()) prevImage();
-}
-
 /** Open new image **/
 void QImageViewer::fileOpen()
 {
@@ -485,6 +586,8 @@ void QImageViewer::fileOpen()
     ui->deleteFileAction->setEnabled(true);
     ui->resizeAction->setEnabled(true);
     ui->resizeitemsAction->setEnabled(true);
+    ui->previmageAction->setEnabled(true);
+    ui->nextimageAction->setEnabled(true);
     ui->fullscreenAction->setEnabled(true);
     ui->slideshowAction->setEnabled(true);
     ui->wallpaperAction->setEnabled(true);
@@ -582,7 +685,7 @@ void QImageViewer::fullScreenFromImage()
 void QImageViewer::fullScreen()
 {
     // init fullscreen mode //
-    fullScreenWidget = new fullscreen(imagewidget);
+    fullScreenWidget = new fullscreen(imagewidget,&hotkeys);
     connect(fullScreenWidget,SIGNAL(fullscreenEnded()),this,SLOT(fullScreenOvered()));
     fullScreenWidget->setSlideshowInterval(slideshowInterval);
     fullScreenWidget->setSlideshowSmoothTransition(slideshowSmoothTransition);
@@ -640,10 +743,8 @@ void QImageViewer::settingsWindow()
     //settings = new Settings;
 
     settings = new Settings;
-    connect(settings,SIGNAL(acceptsettings(QString,QString,bool,bool,bool,double,int,
-                                           QString,QString,QString,QString,QString,QString)),
-            this,SLOT(updateSettings(QString,QString,bool,bool,bool,double,int,
-                                     QString,QString,QString,QString,QString,QString)));
+    connect(settings,SIGNAL(acceptsettings(QString,QString,bool,bool,bool,double,int,hotkeysStruct)),
+            this,SLOT(updateSettings(QString,QString,bool,bool,bool,double,int,hotkeysStruct)));
 
     settings->setDefaultSettings(language,
                                  lastdirectory,
@@ -652,9 +753,7 @@ void QImageViewer::settingsWindow()
                                  slideshowSmoothTransition,
                                  slideshowInterval,
                                  panelalignment,
-                                 cropHotkey, resizeHotkey,
-                                 fullscreenHotkey, slideshowHotkey,
-                                 undoHotkey, redoHotkey);
+                                 hotkeys);
     settings->show();
 }
 
@@ -663,10 +762,7 @@ void QImageViewer::updateSettings(QString language,
                     QString defaultfolder,
                     bool mouseZoom, bool mouseFullscreen,
                     bool slideshowSmoothTransition, double slideshowInterval,
-                    int panelalignment,
-                    QString cropHotkey, QString resizeHotkey,
-                    QString fullscreenHotkey, QString slideshowHotkey,
-                    QString undoHotkey, QString redoHotkey)
+                    int panelalignment,hotkeysStruct hotkeys)
 {
     this->language = language;
     this->lastdirectory = defaultfolder;
@@ -676,16 +772,53 @@ void QImageViewer::updateSettings(QString language,
     this->slideshowInterval = slideshowInterval;
     this->panelalignment = panelalignment;
 
-    this->cropHotkey = cropHotkey;
-    this->resizeHotkey = resizeHotkey;
-    this->fullscreenHotkey = fullscreenHotkey;
-    this->slideshowHotkey = slideshowHotkey;
-    this->undoHotkey = undoHotkey;
-    this->redoHotkey = redoHotkey;
-    disconnect(settings,SIGNAL(acceptsettings(QString,QString,bool,bool,bool,double,int,
-                                              QString,QString,QString,QString,QString,QString)),
-            this,SLOT(updateSettings(QString,QString,bool,bool,bool,double,int,
-                                     QString,QString,QString,QString,QString,QString)));
+    /// Panel ///
+
+    if (panelalignment == 0)
+    {
+        ui->panelBottomLayout->addSpacerItem(ui->panelLeftHorizontalSpacer);
+        ui->panelBottomLayout->addWidget(ui->zoomIncButton);
+        ui->panelBottomLayout->addWidget(ui->zoomDecButton);
+        ui->panelBottomLayout->addWidget(ui->zoomWindowButton);
+        ui->panelBottomLayout->addWidget(ui->zoomOriginalButton);
+        ui->panelBottomLayout->addWidget(ui->rotateRightButton);
+        ui->panelBottomLayout->addWidget(ui->rotateLeftButton);
+        ui->panelBottomLayout->addWidget(ui->fullscreenButton);
+        ui->panelBottomLayout->addWidget(ui->slideshowButton);
+        ui->panelBottomLayout->addSpacerItem(ui->panelRightHorizontalSpacer);
+    }
+    else if (panelalignment == 1)
+    {
+        ui->panelTopLayout->addSpacerItem(ui->panelLeftHorizontalSpacer);
+        ui->panelTopLayout->addWidget(ui->zoomIncButton);
+        ui->panelTopLayout->addWidget(ui->zoomDecButton);
+        ui->panelTopLayout->addWidget(ui->zoomWindowButton);
+        ui->panelTopLayout->addWidget(ui->zoomOriginalButton);
+        ui->panelTopLayout->addWidget(ui->rotateRightButton);
+        ui->panelTopLayout->addWidget(ui->rotateLeftButton);
+        ui->panelTopLayout->addWidget(ui->fullscreenButton);
+        ui->panelTopLayout->addWidget(ui->slideshowButton);
+        ui->panelTopLayout->addSpacerItem(ui->panelRightHorizontalSpacer);
+    }
+    else if (panelalignment == 2)
+    {
+        ui->zoomIncButton->hide();
+        ui->zoomDecButton->hide();
+        ui->zoomWindowButton->hide();
+        ui->zoomOriginalButton->hide();
+        ui->rotateRightButton->hide();
+        ui->rotateLeftButton->hide();
+        ui->fullscreenButton->hide();
+        ui->slideshowButton->hide();
+    }
+
+    /// Hotkeys ///
+    this->hotkeys = hotkeys;
+
+    createHotkeys();
+
+    disconnect(settings,SIGNAL(acceptsettings(QString,QString,bool,bool,bool,double,int,hotkeysStruct)),
+            this,SLOT(updateSettings(QString,QString,bool,bool,bool,double,int,hotkeysStruct)));
     delete settings;
 }
 
@@ -835,7 +968,7 @@ void QImageViewer::helpAbout()
            "Thanks for testing and helping with tips and ideas to\n"
            "my friends and Typical Proger community!\n"
            "\n"
-           "Special thx Andrey Nezhiviy for help and support!"));
+           "Special thx Neveron for help and support!"));
 }
 
 /** event for closing program,save file changes if need **/
@@ -876,12 +1009,37 @@ void QImageViewer::closeEvent(QCloseEvent *event)
 
     /// Hotkeys ///
     out << "\n#Hotkeys\n";
-    out << "Crop="<<cropHotkey<<"\n";
-    out << "Resize="<<resizeHotkey<<"\n";
-    out << "Fullscreen="<<fullscreenHotkey<<"\n";
-    out << "Slideshow="<<slideshowHotkey<<"\n";
-    out << "Undo="<<undoHotkey<<"\n";
-    out << "Redo="<<redoHotkey<<"\n";
+    //File//
+    out << "File-Open="<<hotkeys.fileOpen << "\n";
+    out << "File-Save="<<hotkeys.fileSave << "\n";
+    out << "File-Save-As="<<hotkeys.fileSaveAs << "\n";
+    out << "File-Settings="<<hotkeys.fileSettings << "\n";
+    out << "File-Quit="<<hotkeys.fileQuit << "\n";
+
+    //Edit//
+    out << "Edit-Undo="<<hotkeys.editUndo << "\n";
+    out << "Edit-Redo="<<hotkeys.editRedo << "\n";
+    out << "Edit-Rotate-Right="<<hotkeys.editRotateRight << "\n";
+    out << "Edit-Rotate-Left="<<hotkeys.editRotateLeft << "\n";
+    out << "Edit-Flip-Horizontal="<<hotkeys.editFlipHorizontal << "\n";
+    out << "Edit-Flip-Vertical="<<hotkeys.editFlipVertical << "\n";
+    out << "Edit-Crop="<<hotkeys.editCrop << "\n";
+    out << "Edit-Resize="<<hotkeys.editResize << "\n";
+    out << "Edit-Resize-Items="<<hotkeys.editResizeItems << "\n";
+
+    //Watch//
+    out << "Watch-Previous="<<hotkeys.watchPrevious << "\n";
+    out << "Watch-Next="<<hotkeys.watchNext << "\n";
+    out << "Watch-Fullscreen="<<hotkeys.watchFullscreen << "\n";
+    out << "Watch-Slideshow="<<hotkeys.watchSlideshow << "\n";
+    out << "Watch-Wallpaper="<<hotkeys.watchWallpaper << "\n";
+    out << "Zoom-In="<<hotkeys.zoomIn << "\n";
+    out << "Zoom-Out="<<hotkeys.zoomOut << "\n";
+    out << "Zoom-Window="<<hotkeys.zoomWindow << "\n";
+    out << "Zoom-Original="<<hotkeys.zoomOriginal << "\n";
+
+    //Help//
+    out << "Help-About="<<hotkeys.helpAbout << "\n";
 
     file.close();
 
@@ -901,6 +1059,10 @@ void QImageViewer::closeEvent(QCloseEvent *event)
         if (r == QMessageBox::Yes)
             imagewidget->saveimage(imagewidget->currentImageName());
     }
+
+    //Close all openned windows//
+    settings->close();
+
     event->accept();
 }
 
@@ -909,30 +1071,6 @@ void QImageViewer::resizeEvent(QResizeEvent *)
 {
     if (imagewidget->isReady())
         imagewidget->reloadImage();
-}
-
-/** Keyboard event, 'left' and 'right' arrows for changing pictures **/
-bool QImageViewer::eventFilter(QObject *obj, QEvent *event)
-{
-    if (event->type() == QEvent::KeyPress && imagewidget->isReady() && !imagewidget->isZoomed())
-    {
-        QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
-        int k = keyEvent->key();
-        //LEFT KEY
-        if ((int)k == (int)Qt::Key_Left)
-        {
-            prevImageArrows();
-            return true;
-        }
-        //RIGHT KEY
-        if ((int)k == (int)Qt::Key_Right)
-        {
-            nextImageArrows();
-            return true;
-        }
-        return false;
-    }
-    return false;
 }
 
 /** Destructor **/

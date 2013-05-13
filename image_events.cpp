@@ -78,25 +78,49 @@ bool image::eventFilter(QObject *obj, QEvent *event)
     if (event->type() == QEvent::KeyPress && isPixmap)
     {
         QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
-        int k = keyEvent->key();
+        Qt::KeyboardModifiers modifiers = keyEvent->modifiers();
+        int keyInt = keyEvent->key();
+
+        if(modifiers & Qt::ShiftModifier)
+            keyInt += Qt::SHIFT;
+        if(modifiers & Qt::ControlModifier)
+            keyInt += Qt::CTRL;
+        if(modifiers & Qt::AltModifier)
+            keyInt += Qt::ALT;
+        if(modifiers & Qt::MetaModifier)
+            keyInt += Qt::META;
+        QString textHotkey = QKeySequence(keyInt).toString(QKeySequence::PortableText);
+
         //ZOOMING
-        //+ KEY
-        if ((int)k == (int)Qt::Key_Plus)
+        //Zoom In KEY
+        if (textHotkey == hotkeys->zoomIn)
         {
             zoomInc();
             return true;
         }
-        //- KEY
-        if ((int)k == (int)Qt::Key_Minus)
+        //Zoom Out KEY
+        if (textHotkey == hotkeys->zoomOut)
         {
             zoomDec();
+            return true;
+        }
+        //Zoom Window KEY
+        if (textHotkey == hotkeys->zoomWindow)
+        {
+            reloadImage();
+            return true;
+        }
+        //Zoom Original KEY
+        if (textHotkey == hotkeys->zoomOriginal)
+        {
+            setOriginalSize();
             return true;
         }
         //NEXT/PREV IMAGE
         if ((zoom <= 1.0))
         {
             //LEFT KEY
-            if ((int)k == (int)Qt::Key_Left)
+            if ((int)keyInt == (int)Qt::Key_Left)
             {
                 if (imagelist_indx>0)
                 {
@@ -112,7 +136,7 @@ bool image::eventFilter(QObject *obj, QEvent *event)
                 return true;
             }
             //RIGHT KEY
-            if ((int)k == (int)Qt::Key_Right)
+            if ((int)keyInt == (int)Qt::Key_Right)
             {
                 if (imagelist_indx < (imagelist.size()-1))
                 {
@@ -132,28 +156,28 @@ bool image::eventFilter(QObject *obj, QEvent *event)
         else
         {
             //LEFT KEY
-            if ((int)k == (int)Qt::Key_Left)
+            if ((int)keyInt == (int)Qt::Key_Left)
             {
                 if (sumMousePos.x() > 100) sumMousePos.setX(sumMousePos.x()-100);
                 horizontalScrollBar()->setValue(horizontalScrollBar()->value()-100);
                 return true;
             }
             //RIGHT KEY
-            if ((int)k == (int)Qt::Key_Right)
+            if ((int)keyInt == (int)Qt::Key_Right)
             {
                 if (horizontalScrollBar()->value() < horizontalScrollBar()->maximum()-100) sumMousePos.setX(sumMousePos.x()+100);
                 horizontalScrollBar()->setValue(horizontalScrollBar()->value()+100);
                 return true;
             }
             //UP KEY
-            if ((int)k == (int)Qt::Key_Up)
+            if ((int)keyInt == (int)Qt::Key_Up)
             {
                 if (sumMousePos.y() > 100) sumMousePos.setY(sumMousePos.y()-100);
                 verticalScrollBar()->setValue(verticalScrollBar()->value()-100);
                 return true;
             }
             //DOWN KEY
-            if ((int)k == (int)Qt::Key_Down)
+            if ((int)keyInt == (int)Qt::Key_Down)
             {
                 if (verticalScrollBar()->value() < verticalScrollBar()->maximum()-100) sumMousePos.setY(sumMousePos.y()+100);
                 verticalScrollBar()->setValue(verticalScrollBar()->value()+100);

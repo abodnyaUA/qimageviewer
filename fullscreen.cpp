@@ -2,7 +2,7 @@
 #include "ui_fullscreen.h"
 #include <QDebug>
 
-fullscreen::fullscreen(image *imagewidget):
+fullscreen::fullscreen(image *imagewidget, hotkeysStruct *hotkeys):
     ui(new Ui::fullscreen)
 {
     ui->setupUi(this);
@@ -12,6 +12,7 @@ fullscreen::fullscreen(image *imagewidget):
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(nextSlide()));
     slideshowStarted = false;
+    this->hotkeys = hotkeys;
 }
 
 
@@ -30,6 +31,7 @@ void fullscreen::startSlideShow()
     slideshowStarted = true;
 }
 
+/// NOT WORKING YET ////
 void fullscreen::nextSlideAnimation()
 {
     nextimage = new QGraphicsView(this);
@@ -91,16 +93,28 @@ bool fullscreen::eventFilter(QObject *obj, QEvent *event)
     if (event->type() == QEvent::KeyPress)
     {
         QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
-        int k = keyEvent->key();
-        //'ESC' | 'F10' KEY
-        if ((int)k == (int)Qt::Key_Escape || (int)k == (int)Qt::Key_F10)
+        Qt::KeyboardModifiers modifiers = keyEvent->modifiers();
+        int keyInt = keyEvent->key();
+
+        if(modifiers & Qt::ShiftModifier)
+            keyInt += Qt::SHIFT;
+        if(modifiers & Qt::ControlModifier)
+            keyInt += Qt::CTRL;
+        if(modifiers & Qt::AltModifier)
+            keyInt += Qt::ALT;
+        if(modifiers & Qt::MetaModifier)
+            keyInt += Qt::META;
+        QString textHotkey = QKeySequence(keyInt).toString(QKeySequence::PortableText);
+
+        //'ESC' || Fullscreen KEY
+        if ((int)keyInt == (int)Qt::Key_Escape || textHotkey == hotkeys->watchFullscreen)
         {
             timer->stop();
             emit fullscreenEnded();
             return true;
         }
-        //'F5' KEY
-        if ((int)k == (int)Qt::Key_F5)
+        //Slideshow KEY
+        if (textHotkey == hotkeys->watchSlideshow)
         {
             if (!slideshowStarted) startSlideShow();
             else

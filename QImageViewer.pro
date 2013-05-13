@@ -22,7 +22,9 @@ HEADERS += editformcrop.h \
     preview.h \
     previewlist.h \
     qhotkeyedit.h \
-    editformresizeelements.h
+    editformresizeelements.h \
+    qhotkeywidget.h \
+    hotkeys.h
            
 FORMS += editformcrop.ui \
          editformresize.ui \
@@ -45,14 +47,16 @@ SOURCES += editformcrop.cpp \
     preview.cpp \
     previewlist.cpp \
     qhotkeyedit.cpp \
-    editformresizeelements.cpp
+    editformresizeelements.cpp \
+    qhotkeywidget.cpp
 
 RESOURCES += resources.qrc
 
 
 TRANSLATIONS += lng/qimageviewer_en.ts \
                 lng/qimageviewer_ru.ts \
-                lng/qimageviewer_uk.ts
+                lng/qimageviewer_uk.ts \
+                lng/qimageviewer_pl.ts
 
 win32 {
 #OS WIN
@@ -133,4 +137,7 @@ OTHER_FILES += \
     res/resize-items.png \
     res/flip-vertical.png \
     res/flip-horizontal.png \
-    res/wallpaper.png
+    res/wallpaper.png \
+    lng/qimageviewer_pl.ts \
+    res/flag-pol.png \
+    lng/qimageviewer_pl.qm

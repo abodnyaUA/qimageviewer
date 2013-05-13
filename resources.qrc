@@ -40,5 +40,9 @@
         <file>res/flip-horizontal.png</file>
         <file>res/flip-vertical.png</file>
         <file>res/wallpaper.png</file>
+        <file>res/hotkey.png</file>
+        <file>res/flag-pol.png</file>
+        <file>lng/qimageviewer_pl.ts</file>
+        <file>lng/qimageviewer_pl.qm</file>
     </qresource>
 </RCC>

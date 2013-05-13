@@ -67,12 +67,12 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="403"/>
-        <location filename="../qimageviewer.cpp" line="418"/>
-        <location filename="../qimageviewer.cpp" line="430"/>
-        <location filename="../qimageviewer.cpp" line="511"/>
-        <location filename="../qimageviewer.cpp" line="568"/>
-        <location filename="../qimageviewer.cpp" line="808"/>
+        <location filename="../qimageviewer.cpp" line="516"/>
+        <location filename="../qimageviewer.cpp" line="531"/>
+        <location filename="../qimageviewer.cpp" line="543"/>
+        <location filename="../qimageviewer.cpp" line="614"/>
+        <location filename="../qimageviewer.cpp" line="671"/>
+        <location filename="../qimageviewer.cpp" line="941"/>
         <source> of </source>
         <translation> з </translation>
     </message>
@@ -109,323 +109,338 @@
         <translation>&amp;Перегляд</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="270"/>
+        <location filename="../qimageviewer.ui" line="273"/>
         <source>Open image</source>
         <translation>Відкрити зображення</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="352"/>
+        <location filename="../qimageviewer.ui" line="355"/>
         <source>Undo</source>
         <translation>Скасувати</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="360"/>
+        <location filename="../qimageviewer.ui" line="363"/>
         <source>Redo</source>
         <translation>Повторити</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="368"/>
+        <location filename="../qimageviewer.ui" line="371"/>
         <source>Set as wallpaper</source>
         <translation>Встановити як шпалери</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="376"/>
+        <location filename="../qimageviewer.ui" line="379"/>
         <source>Start slideshow</source>
         <translation>Показ слайдів</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="381"/>
+        <location filename="../qimageviewer.ui" line="384"/>
         <source>Settings</source>
         <translation>Налаштування</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="389"/>
+        <location filename="../qimageviewer.ui" line="392"/>
         <source>Zoom In</source>
         <translation>Збільшити</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="397"/>
-        <location filename="../qimageviewer.cpp" line="253"/>
+        <location filename="../qimageviewer.ui" line="400"/>
+        <location filename="../qimageviewer.cpp" line="335"/>
         <source>Zoom out</source>
         <translation>Зменшити</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="405"/>
+        <location filename="../qimageviewer.ui" line="408"/>
         <source>Window size</source>
         <translation>Підігнати розмір</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="413"/>
+        <location filename="../qimageviewer.ui" line="416"/>
         <source>Original size</source>
         <translation>Оригінальний розмір</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="421"/>
+        <location filename="../qimageviewer.ui" line="424"/>
         <source>Resize items...</source>
         <translation>Пакетна зміна розміру</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="429"/>
+        <location filename="../qimageviewer.ui" line="432"/>
         <source>Flip horizontal</source>
         <translation>Горизонтально відзеркалити</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="437"/>
+        <location filename="../qimageviewer.ui" line="440"/>
         <source>Flip vertical</source>
         <translation>Вертикально відзеркалити</translation>
+    </message>
+    <message>
+        <location filename="../qimageviewer.ui" line="448"/>
+        <source>Next image</source>
+        <translation>Наступне зображення</translation>
+    </message>
+    <message>
+        <location filename="../qimageviewer.ui" line="456"/>
+        <source>Previous image</source>
+        <translation>Попереднє зображення</translation>
     </message>
     <message utf8="true">
         <source>Печать</source>
         <translation type="obsolete">Друк</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="275"/>
+        <location filename="../qimageviewer.ui" line="278"/>
         <source>Quit</source>
         <translation>Вийти</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="280"/>
-        <location filename="../qimageviewer.cpp" line="827"/>
+        <location filename="../qimageviewer.ui" line="283"/>
+        <location filename="../qimageviewer.cpp" line="960"/>
         <source>About</source>
         <translation>Про программу</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="288"/>
+        <location filename="../qimageviewer.ui" line="291"/>
         <source>Save</source>
         <translation>Зберегти</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="296"/>
+        <location filename="../qimageviewer.ui" line="299"/>
         <source>Save as...</source>
         <translation>Зберегти як...</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="304"/>
+        <location filename="../qimageviewer.ui" line="307"/>
         <source>Rotate to the right</source>
         <translation>Повернути праворуч</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="312"/>
+        <location filename="../qimageviewer.ui" line="315"/>
         <source>Rotate to the left</source>
         <translation>Повернути ліворуч</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="320"/>
+        <location filename="../qimageviewer.ui" line="323"/>
         <source>Delete file</source>
         <translation>Видалити файл</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="328"/>
+        <location filename="../qimageviewer.ui" line="331"/>
         <source>Resize</source>
         <translation>Змінити розмір</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="336"/>
+        <location filename="../qimageviewer.ui" line="339"/>
         <source>Fullscreen mode</source>
         <translation>Повноекраний режим</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="344"/>
+        <location filename="../qimageviewer.ui" line="347"/>
         <source>Crop</source>
         <translation>Обрізати зображення</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="173"/>
-        <source>Ctrl+O</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../qimageviewer.cpp" line="174"/>
+        <location filename="../qimageviewer.cpp" line="265"/>
         <source>Open current image</source>
         <translation>Відкрити зображення</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="177"/>
-        <source>Ctrl+S</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../qimageviewer.cpp" line="178"/>
+        <location filename="../qimageviewer.cpp" line="268"/>
         <source>Save current image with same name and format</source>
         <translation>Зберегти поточне зображення</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="182"/>
-        <source>Ctrl+Shift+S</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../qimageviewer.cpp" line="183"/>
+        <location filename="../qimageviewer.cpp" line="272"/>
         <source>Save current image with new name and format</source>
         <translation>Зберегти поточне зображення з новим ім’ям та у новому форматі</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="186"/>
+        <location filename="../qimageviewer.cpp" line="275"/>
         <source>Program settings</source>
         <translation>Налаштування програми</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="189"/>
-        <source>Ctrl+Q</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../qimageviewer.cpp" line="190"/>
+        <location filename="../qimageviewer.cpp" line="278"/>
         <source>Close program</source>
         <translation>Вийти з програми</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="195"/>
+        <location filename="../qimageviewer.cpp" line="282"/>
         <source>Cancel last changes</source>
         <translation>Скасувати останні зміни</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="200"/>
+        <location filename="../qimageviewer.cpp" line="286"/>
         <source>Do last changes</source>
         <translation>Повторити останні зміни</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="205"/>
+        <location filename="../qimageviewer.cpp" line="290"/>
         <source>Rotate image to the left</source>
         <translation>Повернути зображення проти годинникової стрілки</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="209"/>
+        <location filename="../qimageviewer.cpp" line="293"/>
         <source>Rotate image to the right</source>
         <translation>Повернути зображення за годинниковою стрілкою</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="213"/>
+        <location filename="../qimageviewer.cpp" line="296"/>
         <source>Change this image to horizontal mirror</source>
         <translation>Замінити зображення на відзеркалену по горизонталі копію</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="217"/>
+        <location filename="../qimageviewer.cpp" line="299"/>
         <source>Change this image to vertical mirror</source>
         <translation>Замінити зображення на відзеркалену по вертикалі копію</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="221"/>
+        <location filename="../qimageviewer.cpp" line="302"/>
         <source>Delete current image</source>
         <translation>Видалити поточне зображення</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="225"/>
-        <location filename="../qimageviewer.cpp" line="233"/>
+        <location filename="../qimageviewer.cpp" line="308"/>
         <source>Resize current image</source>
         <translation>Змінити розмір зображення</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="229"/>
+        <location filename="../qimageviewer.cpp" line="305"/>
         <source>Crop current image</source>
         <translation>Обрізати поточне зображення</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="238"/>
-        <location filename="../qimageviewer.cpp" line="276"/>
+        <location filename="../qimageviewer.cpp" line="311"/>
+        <source>Resize list of images</source>
+        <translation>Змінити розмір декількох зображень</translation>
+    </message>
+    <message>
+        <location filename="../qimageviewer.cpp" line="315"/>
+        <source>Show next image</source>
+        <translation>Перейти до наступного зображення</translation>
+    </message>
+    <message>
+        <location filename="../qimageviewer.cpp" line="318"/>
+        <source>Show previous image</source>
+        <translation>Перейти до попереднього зображення</translation>
+    </message>
+    <message>
+        <location filename="../qimageviewer.cpp" line="321"/>
+        <location filename="../qimageviewer.cpp" line="355"/>
         <source>Enable fullscreen mode</source>
         <translation>Увімкнути повноекраний режим</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="243"/>
-        <location filename="../qimageviewer.cpp" line="280"/>
+        <location filename="../qimageviewer.cpp" line="325"/>
+        <location filename="../qimageviewer.cpp" line="358"/>
         <source>Start slideshow in fullscreen mode</source>
         <translation>Розпочати показ слайдів в повноекраному режимі</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="247"/>
+        <location filename="../qimageviewer.cpp" line="329"/>
         <source>Set picture as wallpaper</source>
         <translation>Встановити зоображення як шпалери стільниці</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="250"/>
+        <location filename="../qimageviewer.cpp" line="332"/>
         <source>Zoom in</source>
         <translation>Збільшити зображення</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="256"/>
-        <location filename="../qimageviewer.cpp" line="291"/>
+        <location filename="../qimageviewer.cpp" line="338"/>
+        <location filename="../qimageviewer.cpp" line="367"/>
         <source>Zoom to original size</source>
         <translation>Масштабувати до оригінального розміру</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="259"/>
-        <location filename="../qimageviewer.cpp" line="294"/>
+        <location filename="../qimageviewer.cpp" line="341"/>
+        <location filename="../qimageviewer.cpp" line="370"/>
         <source>Zoom to window size</source>
         <translation>Масшатбувати до розміру вікна</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="263"/>
-        <source>F1</source>
-        <translation></translation>
+        <location filename="../qimageviewer.cpp" line="961"/>
+        <source>This program is using for viewing pictures
+It was created with using Qt 5.0.0
+
+Program author is Bodnya Alexey
+Ukraine, Kiev, KPI, TV-11
+This program is under license GPLv2
+It&apos;s free to use and all sources are open.
+
+Thanks for testing and helping with tips and ideas to
+my friends and Typical Proger community!
+
+Special thx Neveron for help and support!</source>
+        <translation>Ця програма використовується для перегляду зображень
+Вона була створенна з використанням Qt 5.0.0
+
+Автор програми Бодня Олексій
+Україна, Київ, КПІ, ТВ-11
+Ця програма поширюється за ліцензією GPLv2
+Вона безкоштовна і її код доступний для редагування кожному бажаючому
+
+Дякую за тестування, поради та ідеї
+своїм друзям та спільноті Типового Програміста!
+
+Особлива подяка Neveron за допомогу та підтримку!</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="264"/>
+        <location filename="../qimageviewer.cpp" line="345"/>
         <source>Information about program</source>
         <translation>Інформація про автора</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="269"/>
+        <location filename="../qimageviewer.cpp" line="349"/>
         <source>Open previous image</source>
         <translation>Відкрити попереднє зображення</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="273"/>
+        <location filename="../qimageviewer.cpp" line="352"/>
         <source>Open next image</source>
         <translation>Відкрити наступне зображення</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="283"/>
-        <source>+</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../qimageviewer.cpp" line="284"/>
+        <location filename="../qimageviewer.cpp" line="361"/>
         <source>Zoom in image</source>
         <translation>Збільшити зображення</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="287"/>
-        <source>-</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../qimageviewer.cpp" line="288"/>
+        <location filename="../qimageviewer.cpp" line="364"/>
         <source>Zoom out image</source>
         <translation>Зменшити зображення</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="297"/>
+        <location filename="../qimageviewer.cpp" line="373"/>
         <source>Rotate picture to the left</source>
         <translation>Повернути зображення проти годинникової стрілки</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="301"/>
+        <location filename="../qimageviewer.cpp" line="376"/>
         <source>Rotate picture to the right</source>
         <translation>Повернути зображення за годинниковою стрілкою</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="454"/>
+        <location filename="../qimageviewer.cpp" line="555"/>
         <source>Opening image file</source>
         <translation>Відкриття зображення</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="455"/>
+        <location filename="../qimageviewer.cpp" line="556"/>
         <source>All pictures formats (*.jpg *.jpeg *.png *.bmp *.gif *.tiff *.pbm *.pgm *.ppm *.xbm *.xpm);;Joint Photographic Experts Group (*.jpeg *.jpg);;Portable Network Graphics(*.png);;Windows Bitmap (*.bmp);;Graphic Interchange Format (*.gif);;Tagged Image File Format (*.tiff);;Portable Bitmap (*.pbm);;Portable Graymap (*.pgm);;Portable Pixmap (*.ppm);;X11 Bitmap (*.xbm *.xpm</source>
         <translation>Всі формати зображень (*.jpg *.jpeg *.png *.bmp *.gif *.tiff *.pbm *.pgm *.ppm *.xbm *.xpm);;Joint Photographic Experts Group (*.jpeg *.jpg);;Portable Network Graphics(*.png);;Windows Bitmap (*.bmp);;Graphic Interchange Format (*.gif);;Tagged Image File Format (*.tiff);;Portable Bitmap (*.pbm);;Portable Graymap (*.pgm);;Portable Pixmap (*.ppm);;X11 Bitmap (*.xbm *.xpm)</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="550"/>
+        <location filename="../qimageviewer.cpp" line="653"/>
         <source>Saving files</source>
         <translation>Збереження файлу</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="551"/>
+        <location filename="../qimageviewer.cpp" line="654"/>
         <source>All picture formats (*.jpg *.jpeg *.png *.bmp *.tiff *.ppm *.xbm *.xpm);;Joint Photographic Experts Group (*.jpeg *.jpg);;Portable Network Graphics (*.png);;Windows Bitmap (*.bmp);;Tagged Image File Format (*.tiff);;Portable Pixmap (*.ppm);;X11 Bitmap (*.xbm *.xpm)</source>
         <translation>Всі формати зображень (*.jpg *.jpeg *.png *.bmp *.tiff *.ppm *.xbm *.xpm);;Joint Photographic Experts Group (*.jpeg *.jpg);;Portable Network Graphics (*.png);;Windows Bitmap (*.bmp);;Tagged Image File Format (*.tiff);;Portable Pixmap (*.ppm);;X11 Bitmap (*.xbm *.xpm)</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="828"/>
         <source>This program is using for viewing pictures
 It was created with using Qt 5.0.0
 
@@ -438,7 +453,7 @@ Thanks for testing and helping with tips and ideas to
 my friends and Typical Proger community!
 
 Special thx Andrey Nezhiviy for help and support!</source>
-        <translation type="unfinished">Ця програма використовується для перегляду зображень
+        <translation type="obsolete">Ця програма використовується для перегляду зображень
 Вона була створенна з використанням Qt 5.0.0
 
 Автор програми Бодня Олексій
@@ -468,12 +483,12 @@ It&apos;s free to use and all sources are open</source>
 Вона безкоштовна і її код доступний для редагування кожному бажаючому</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="890"/>
+        <location filename="../qimageviewer.cpp" line="1048"/>
         <source>Warning!</source>
         <translation>Увага!</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="891"/>
+        <location filename="../qimageviewer.cpp" line="1049"/>
         <source>This file was changed
 Do you want to save changes?</source>
         <translation>Цей файл було змінено
@@ -543,17 +558,32 @@ Do you want to save changes?</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="271"/>
+        <location filename="../settings.ui" line="239"/>
+        <source>Polski</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../settings.ui" line="276"/>
         <source>Hotkeys</source>
         <translation>Гарячі клавіші</translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="399"/>
+        <location filename="../settings.ui" line="301"/>
+        <source>Reset hotkeys to defaults</source>
+        <translation>Встановити гарячі клавіши за замовчуванням</translation>
+    </message>
+    <message>
+        <location filename="../settings.ui" line="329"/>
+        <source>Reset all settings</source>
+        <translation>Встановити всі налаштування за замовчуванням</translation>
+    </message>
+    <message>
+        <location filename="../settings.cpp" line="102"/>
         <source>Fullscreen</source>
         <translation>Повноекраний режим</translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="299"/>
+        <location filename="../settings.cpp" line="103"/>
         <source>Slideshow</source>
         <translation>Показ слайдів</translation>
     </message>
@@ -562,33 +592,26 @@ Do you want to save changes?</source>
         <translation type="obsolete">Сторінка</translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="476"/>
+        <location filename="../settings.ui" line="349"/>
         <source>Accept new settins</source>
         <translation>Прийняти зміни</translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="483"/>
+        <location filename="../settings.ui" line="356"/>
         <source>Cancel</source>
         <translation>Відмінити</translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="456"/>
         <source>Reset settings</source>
-        <translation>Скинути зміни</translation>
+        <translation type="obsolete">Скинути зміни</translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="422"/>
+        <location filename="../settings.cpp" line="95"/>
         <source>Resize</source>
         <translation>Змінити розмір</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="117"/>
-        <location filename="../settings.ui" line="322"/>
-        <location filename="../settings.ui" line="329"/>
-        <location filename="../settings.ui" line="362"/>
-        <location filename="../settings.ui" line="369"/>
-        <location filename="../settings.ui" line="376"/>
-        <location filename="../settings.ui" line="429"/>
         <source>Reset</source>
         <translation>Скинути</translation>
     </message>
@@ -613,12 +636,12 @@ Do you want to save changes?</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="439"/>
+        <location filename="../settings.cpp" line="88"/>
         <source>Undo</source>
         <translation>Скасувати</translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="336"/>
+        <location filename="../settings.cpp" line="94"/>
         <source>Crop</source>
         <translation>Обрізати зображення</translation>
     </message>
@@ -627,22 +650,122 @@ Do you want to save changes?</source>
         <translation type="obsolete">Повноекраний режим</translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="292"/>
+        <location filename="../settings.cpp" line="70"/>
+        <source>Command</source>
+        <translation>Комманда</translation>
+    </message>
+    <message>
+        <location filename="../settings.cpp" line="70"/>
+        <source>Hotkey</source>
+        <translation>Гаряча клавіша</translation>
+    </message>
+    <message>
+        <location filename="../settings.cpp" line="80"/>
+        <source>Open image</source>
+        <translation>Відкрити зображення</translation>
+    </message>
+    <message>
+        <location filename="../settings.cpp" line="81"/>
+        <source>Save</source>
+        <translation>Зберегти</translation>
+    </message>
+    <message>
+        <location filename="../settings.cpp" line="82"/>
+        <source>Save as...</source>
+        <translation>Зберегти як...</translation>
+    </message>
+    <message>
+        <location filename="../settings.cpp" line="83"/>
+        <source>Settings</source>
+        <translation>Налаштування</translation>
+    </message>
+    <message>
+        <location filename="../settings.cpp" line="84"/>
+        <source>Quit</source>
+        <translation>Вийти</translation>
+    </message>
+    <message>
+        <location filename="../settings.cpp" line="89"/>
         <source>Redo</source>
         <translation>Повторити</translation>
     </message>
     <message>
-        <location filename="../settings.cpp" line="74"/>
+        <location filename="../settings.cpp" line="90"/>
+        <source>Rotate to the right</source>
+        <translation>Повернути праворуч</translation>
+    </message>
+    <message>
+        <location filename="../settings.cpp" line="91"/>
+        <source>Rotate to the left</source>
+        <translation>Повернути ліворуч</translation>
+    </message>
+    <message>
+        <location filename="../settings.cpp" line="92"/>
+        <source>Flip horizontal</source>
+        <translation>Горизонтально відзеркалити</translation>
+    </message>
+    <message>
+        <location filename="../settings.cpp" line="93"/>
+        <source>Flip vertical</source>
+        <translation>Вертикально відзеркалити</translation>
+    </message>
+    <message>
+        <location filename="../settings.cpp" line="96"/>
+        <source>Resize items...</source>
+        <translation>Пакетна зміна розміру</translation>
+    </message>
+    <message>
+        <location filename="../settings.cpp" line="100"/>
+        <source>Previous image</source>
+        <translation>Попереднє зображення</translation>
+    </message>
+    <message>
+        <location filename="../settings.cpp" line="101"/>
+        <source>Next image</source>
+        <translation>Наступне зображення</translation>
+    </message>
+    <message>
+        <location filename="../settings.cpp" line="104"/>
+        <source>Set as wallpaper</source>
+        <translation>Встановити як шпалери</translation>
+    </message>
+    <message>
+        <location filename="../settings.cpp" line="105"/>
+        <source>Zoom in</source>
+        <translation>Збільшити</translation>
+    </message>
+    <message>
+        <location filename="../settings.cpp" line="106"/>
+        <source>Zoom out</source>
+        <translation>Зменшити</translation>
+    </message>
+    <message>
+        <location filename="../settings.cpp" line="107"/>
+        <source>Window size</source>
+        <translation>Підігнати розмір</translation>
+    </message>
+    <message>
+        <location filename="../settings.cpp" line="108"/>
+        <source>Original size</source>
+        <translation>Оригінальний розмір</translation>
+    </message>
+    <message>
+        <location filename="../settings.cpp" line="112"/>
+        <source>About</source>
+        <translation>Про программу</translation>
+    </message>
+    <message>
+        <location filename="../settings.cpp" line="160"/>
         <source>Warning!</source>
         <translation>Увага!</translation>
     </message>
     <message>
-        <location filename="../settings.cpp" line="75"/>
+        <location filename="../settings.cpp" line="161"/>
         <source>Language will be changing after restart program</source>
         <translation>Мова буде змінена після перезапуску програми</translation>
     </message>
     <message>
-        <location filename="../settings.cpp" line="144"/>
+        <location filename="../settings.cpp" line="210"/>
         <source>Open directory</source>
         <translation>Відкрити теку</translation>
     </message>
@@ -813,86 +936,104 @@ Do you want to save changes?</source>
 <context>
     <name>image</name>
     <message>
-        <location filename="../image.cpp" line="57"/>
+        <location filename="../image.cpp" line="62"/>
         <source>Delete</source>
         <translation>Видалити файл</translation>
     </message>
     <message>
-        <location filename="../image.cpp" line="61"/>
+        <location filename="../image.cpp" line="66"/>
         <source>Properties</source>
         <translation>Властивості</translation>
     </message>
     <message>
-        <location filename="../image.cpp" line="45"/>
+        <location filename="../image.cpp" line="50"/>
         <source>Fullscreen</source>
         <translation>Повноекраний режим</translation>
     </message>
     <message>
-        <location filename="../image.cpp" line="29"/>
+        <location filename="../image.cpp" line="34"/>
         <source>Zoom in</source>
         <translation>Збільшити</translation>
     </message>
     <message>
-        <location filename="../image.cpp" line="33"/>
+        <location filename="../image.cpp" line="38"/>
         <source>Zoom out</source>
         <translation>Зменшити</translation>
     </message>
     <message>
-        <location filename="../image.cpp" line="37"/>
+        <location filename="../image.cpp" line="42"/>
         <source>Zoom as Window</source>
         <translation>Підігнати розмір</translation>
     </message>
     <message>
-        <location filename="../image.cpp" line="41"/>
+        <location filename="../image.cpp" line="46"/>
         <source>Zoom Original</source>
         <translation>Оригінальний розмір</translation>
     </message>
     <message>
-        <location filename="../image.cpp" line="49"/>
+        <location filename="../image.cpp" line="54"/>
         <source>Slideshow</source>
         <translation>Показ слайдів</translation>
     </message>
     <message>
-        <location filename="../image.cpp" line="53"/>
+        <location filename="../image.cpp" line="58"/>
         <source>Set as wallpaper</source>
         <translation>Встановити як шпалери</translation>
     </message>
     <message>
-        <location filename="../image.cpp" line="117"/>
+        <location filename="../image.cpp" line="122"/>
         <source>byte</source>
         <translation>байт</translation>
     </message>
     <message>
-        <location filename="../image.cpp" line="121"/>
+        <location filename="../image.cpp" line="126"/>
         <source>KB</source>
         <translation>КБ</translation>
     </message>
     <message>
-        <location filename="../image.cpp" line="125"/>
+        <location filename="../image.cpp" line="130"/>
         <source>MB</source>
         <translation>МБ</translation>
     </message>
     <message>
-        <location filename="../image.cpp" line="262"/>
+        <location filename="../image.cpp" line="267"/>
         <source>Warning!</source>
         <translation>Увага!</translation>
     </message>
     <message>
-        <location filename="../image.cpp" line="263"/>
+        <location filename="../image.cpp" line="268"/>
         <source>This file was changed
 Do you want accept changes?</source>
         <translation>Цей файл було змінено
 Ви бажаєте зберегти зміни?</translation>
     </message>
     <message>
-        <location filename="../image.cpp" line="375"/>
+        <location filename="../image.cpp" line="380"/>
         <source>Delete file</source>
         <translation>Видалення файлу</translation>
     </message>
     <message>
-        <location filename="../image.cpp" line="376"/>
+        <location filename="../image.cpp" line="381"/>
         <source>Do you really want to delete this file?</source>
         <translation>Ви справді бажаєте видалити цей файл?</translation>
+    </message>
+</context>
+<context>
+    <name>qhotkeywidget</name>
+    <message>
+        <location filename="../qhotkeywidget.cpp" line="6"/>
+        <source>OK</source>
+        <translation>Прийняти</translation>
+    </message>
+    <message>
+        <location filename="../qhotkeywidget.cpp" line="7"/>
+        <source>Reset</source>
+        <translation>Скинути</translation>
+    </message>
+    <message>
+        <location filename="../qhotkeywidget.cpp" line="8"/>
+        <source>Cancel</source>
+        <translation>Відмінити</translation>
     </message>
 </context>
 </TS>

@@ -14,6 +14,11 @@ image::image()
     connect(verticalScrollBar(),SIGNAL(sliderMoved(int)),this,SLOT(verticalSliderMoverd(int)));
 }
 
+void image::loadhotkeys(hotkeysStruct * hotkeys)
+{
+    this->hotkeys = hotkeys;
+}
+
 void image::setMouseZoom(bool arg)
 {    mouseZoom = arg;   }
 void image::setMouseFullscreen(bool arg)

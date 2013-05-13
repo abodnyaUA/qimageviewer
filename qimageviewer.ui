@@ -238,15 +238,18 @@
     <property name="title">
      <string>&amp;Preview</string>
     </property>
-    <addaction name="fullscreenAction"/>
+    <addaction name="previmageAction"/>
+    <addaction name="nextimageAction"/>
     <addaction name="separator"/>
+    <addaction name="fullscreenAction"/>
     <addaction name="slideshowAction"/>
-    <addaction name="wallpaperAction"/>
     <addaction name="separator"/>
     <addaction name="zoomInAction"/>
     <addaction name="zoomOutAction"/>
     <addaction name="zoomWindowAction"/>
     <addaction name="zoomOriginalAction"/>
+    <addaction name="separator"/>
+    <addaction name="wallpaperAction"/>
    </widget>
    <addaction name="fileMenu"/>
    <addaction name="parametersMenu"/>
@@ -435,6 +438,22 @@
    </property>
    <property name="text">
     <string>Flip vertical</string>
+   </property>
+  </action>
+  <action name="nextimageAction">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Next image</string>
+   </property>
+  </action>
+  <action name="previmageAction">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Previous image</string>
    </property>
   </action>
  </widget>

@@ -21,6 +21,7 @@ int main(int argc, char *argv[])
         if (lng == "rus") lng = "ru_RU";
         else if (lng == "ukr") lng = "uk_UA";
         else if (lng == "eng") lng = "en_US";
+        else if (lng == "pol") lng = "pl_PL";
         else lng = QLocale::system().name();
     }
     file.close();
@@ -33,10 +34,9 @@ int main(int argc, char *argv[])
 
     /// Programm language ///
     QTranslator prTranslator;
+    qDebug() << lng;
     prTranslator.load(":/lng/qimageviewer_" + lng);
     a.installTranslator(&prTranslator);
-
-    qDebug() << QLocale::system().name();
 
     qDebug() << "argc="<<argc;
     QImageViewer * w;

@@ -32,12 +32,20 @@ public:
 signals:
     void fullscreenEnded();
     ///not working///
-    void needResize();
-    void needCrop();
     void needSave();
     void needSaveAs();
     void needOpen();
-    void needExit();
+    void needQuit();
+
+    void needResize();
+    void needCrop();
+    void needResizeItems();
+    void needRotateLeft();
+    void needRotateRight();
+    void needFlipHorizontal();
+    void needFlipVertical();
+    void needUndo();
+    void needRedo();
 
 private:
     Ui::fullscreen *ui;

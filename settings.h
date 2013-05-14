@@ -26,7 +26,7 @@ public:
                             bool mouseZoom, bool mouseFullscreen,
                             bool slideshowSmoothTransition, double slideshowInterval,
                             int panelalignment,
-                            hotkeysStruct hotkeys);
+                            hotkeysStruct hotkeys, isneedButStruct isneedBut);
     ~Settings();
     
 private slots:
@@ -41,13 +41,15 @@ private slots:
 
     void on_resetHotkeysButton_clicked();
 
+    void on_panelReset_clicked();
+
 signals:
     void acceptsettings(QString language,
                         QString defaultfolder,
                         bool mouseZoom, bool mouseFullscreen,
                         bool slideshowSmoothTransition, double slideshowInterval,
                         int panelalignment,
-                        hotkeysStruct hotkeys);
+                        hotkeysStruct hotkeys, isneedButStruct isneedBut);
 
 private:
     Ui::Settings *ui;
@@ -59,6 +61,11 @@ private:
     double old_slideshowInterval;
     int old_panelalignment;
 
+    ///Panel///
+    isneedButStruct old_isneedBut;
+    void setPanelButtons();
+    void savePanelButtons();
+
     ///Hotkeys///
     //Change widget//
     qhotkeywidget * QHotkeyWidget;
@@ -68,6 +75,7 @@ private:
     void saveHotkeys();
     QTreeWidgetItem * addCategory(QString name);
     QTreeWidgetItem * addHotkey(QTreeWidgetItem * category, QString name, QString hotkey, QString icon, QString defaultHotkey);
+    QStringList currentHotkeys;
     QTreeWidgetItem *categoryFile,*categoryEdit,*categoryWatch,*categoryHelp;
     QTreeWidgetItem *hotkeyItemFileOpen,*hotkeyItemFileSave,*hotkeyItemFileSaveAs,
                     *hotkeyItemFileSettings,*hotkeyItemFileQuit;

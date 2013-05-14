@@ -9,13 +9,15 @@ Settings::Settings(QWidget *parent) : ui(new Ui::Settings)
     ui->languageComboBox->setItemIcon(2,(QIcon(QPixmap(":/res/flag-rus.png"))));
     ui->languageComboBox->setItemIcon(3,(QIcon(QPixmap(":/res/flag-ukr.png"))));
     ui->languageComboBox->setItemIcon(4,(QIcon(QPixmap(":/res/flag-pol.png"))));
+    ui->acceptButton->setShortcut(QKeySequence(Qt::Key_Return));
+    ui->cancelButton->setShortcut(QKeySequence(Qt::Key_Escape));
 }
 
 void Settings::setDefaultSettings(QString language,
                                   QString defaultfolder,
                                   bool mouseZoom, bool mouseFullscreen,
                                   bool slideshowSmoothTransition, double slideshowInterval,
-                                  int panelalignment,hotkeysStruct hotkeys)
+                                  int panelalignment,hotkeysStruct hotkeys, isneedButStruct isneedBut)
 {
     old_lang = language;
     old_defaultfolder = defaultfolder;
@@ -26,6 +28,7 @@ void Settings::setDefaultSettings(QString language,
     old_panelalignment = panelalignment;
 
     old_hotkeys = hotkeys;
+    old_isneedBut = isneedBut;
 
     if (language == "eng") ui->languageComboBox->setCurrentIndex(1);
     else if (language == "rus") ui->languageComboBox->setCurrentIndex(2);
@@ -42,6 +45,37 @@ void Settings::setDefaultSettings(QString language,
     ui->toolpanelComboBox->setCurrentIndex(panelalignment);
 
     setHotkeys();
+    setPanelButtons();
+}
+
+void Settings::setPanelButtons()
+{
+    ui->panelbutRotateLeftCheckBox->setChecked(old_isneedBut.rotateLeft);
+    ui->panelbutRotateRightCheckBox->setChecked(old_isneedBut.rotateRight);
+    ui->panelbutFlipHorizontalCheckBox->setChecked(old_isneedBut.flipHorizontal);
+    ui->panelbutFlipVerticalCheckBox->setChecked(old_isneedBut.flipVertical);
+    ui->panelbutZoomInCheckBox->setChecked(old_isneedBut.zoomIn);
+    ui->panelbutZoomOutCheckBox->setChecked(old_isneedBut.zoomOut);
+    ui->panelbutZoomWindowCheckBox->setChecked(old_isneedBut.zoomWindow);
+    ui->panelbutZoomOriginalCheckBox->setChecked(old_isneedBut.zoomOriginal);
+    ui->panelbutFullscreenCheckBox->setChecked(old_isneedBut.fullscreen);
+    ui->panelbutSlideshowCheckBox->setChecked(old_isneedBut.slideshow);
+    ui->panelbutPropertiesCheckBox->setChecked(old_isneedBut.properties);
+}
+
+void Settings::savePanelButtons()
+{
+    old_isneedBut.rotateLeft = ui->panelbutRotateLeftCheckBox->isChecked();
+    old_isneedBut.rotateRight = ui->panelbutRotateRightCheckBox->isChecked();
+    old_isneedBut.flipHorizontal = ui->panelbutFlipHorizontalCheckBox->isChecked();
+    old_isneedBut.flipVertical = ui->panelbutFlipVerticalCheckBox->isChecked();
+    old_isneedBut.zoomIn = ui->panelbutZoomInCheckBox->isChecked();
+    old_isneedBut.zoomOut = ui->panelbutZoomOutCheckBox->isChecked();
+    old_isneedBut.zoomWindow = ui->panelbutZoomWindowCheckBox->isChecked();
+    old_isneedBut.zoomOriginal = ui->panelbutZoomOriginalCheckBox->isChecked();
+    old_isneedBut.fullscreen = ui->panelbutFullscreenCheckBox->isChecked();
+    old_isneedBut.slideshow = ui->panelbutSlideshowCheckBox->isChecked();
+    old_isneedBut.properties = ui->panelbutPropertiesCheckBox->isChecked();
 }
 
 QTreeWidgetItem * Settings::addCategory(QString name)
@@ -75,15 +109,17 @@ void Settings::setHotkeys()
     connect(QHotkeyWidget,SIGNAL(butCancelClicked()),this,SLOT(changingEndDecline()));
     QHotkeyWidget->isChanging = false;
 
-    categoryFile = addCategory("File");
+    categoryFile = addCategory(tr("File"));
     categoryFile->setExpanded(true);
     hotkeyItemFileOpen = addHotkey(categoryFile,tr("Open image"),old_hotkeys.fileOpen,":/res/file-open.png","Ctrl+O");
     hotkeyItemFileSave = addHotkey(categoryFile,tr("Save"),old_hotkeys.fileSave,":/res/file-save.png","Ctrl+S");
     hotkeyItemFileSaveAs = addHotkey(categoryFile,tr("Save as..."),old_hotkeys.fileSaveAs,"","Ctrl+Shift+S");
     hotkeyItemFileSettings = addHotkey(categoryFile,tr("Settings"),old_hotkeys.fileSettings,":/res/settings.png","");
     hotkeyItemFileQuit = addHotkey(categoryFile,tr("Quit"),old_hotkeys.fileQuit,"","Ctrl+Q");
+    currentHotkeys << old_hotkeys.fileOpen << old_hotkeys.fileSave << old_hotkeys.fileSaveAs <<
+                      old_hotkeys.fileSettings << old_hotkeys.fileQuit;
 
-    categoryEdit = addCategory("Edit");
+    categoryEdit = addCategory(tr("Edit"));
     categoryEdit->setExpanded(true);
     hotkeyItemEditUndo = addHotkey(categoryEdit,tr("Undo"),old_hotkeys.editUndo,"","Ctrl+Z");
     hotkeyItemEditRedo = addHotkey(categoryEdit,tr("Redo"),old_hotkeys.editRedo,"","Ctrl+Shift+Z");
@@ -94,8 +130,11 @@ void Settings::setHotkeys()
     hotkeyItemEditCrop = addHotkey(categoryEdit,tr("Crop"),old_hotkeys.editCrop,":/res/crop.png","Ctrl+Shift+C");
     hotkeyItemEditResize = addHotkey(categoryEdit,tr("Resize"),old_hotkeys.editResize,":/res/resize.png","Ctrl+R");
     hotkeyItemEditResizeItems = addHotkey(categoryEdit,tr("Resize items..."),old_hotkeys.editResizeItems,":/res/resize-items.png","Ctrl+Shift+R");
+    currentHotkeys << old_hotkeys.editUndo << old_hotkeys.editRedo << old_hotkeys.editRotateLeft << old_hotkeys.editRotateRight <<
+                      old_hotkeys.editFlipHorizontal << old_hotkeys.editFlipVertical << old_hotkeys.editCrop <<
+                      old_hotkeys.editResize << old_hotkeys.editResizeItems;
 
-    categoryWatch = addCategory("Watch");
+    categoryWatch = addCategory(tr("Preview"));
     categoryWatch->setExpanded(true);
     hotkeyItemWatchPrevious = addHotkey(categoryWatch,tr("Previous image"),old_hotkeys.watchPrevious,":/res/prev.png","Ctrl+Left");
     hotkeyItemWatchNext = addHotkey(categoryWatch,tr("Next image"),old_hotkeys.watchNext,":/res/next.png","Ctrl+Right");
@@ -106,10 +145,14 @@ void Settings::setHotkeys()
     hotkeyItemZoomOut = addHotkey(categoryWatch,tr("Zoom out"),old_hotkeys.zoomOut,":/res/zoom-out.png","-");
     hotkeyItemZoomWindow = addHotkey(categoryWatch,tr("Window size"),old_hotkeys.zoomWindow,":/res/zoom-window.png","");
     hotkeyItemZoomOriginal = addHotkey(categoryWatch,tr("Original size"),old_hotkeys.zoomOriginal,":/res/zoom-original.png","");
+    currentHotkeys << old_hotkeys.watchPrevious << old_hotkeys.watchNext << old_hotkeys.watchFullscreen <<
+                      old_hotkeys.watchSlideshow << old_hotkeys.watchWallpaper << old_hotkeys.zoomIn <<
+                      old_hotkeys.zoomOut << old_hotkeys.zoomWindow << old_hotkeys.zoomOriginal;
 
-    categoryHelp = addCategory("Help");
+    categoryHelp = addCategory(tr("Help"));
     categoryHelp->setExpanded(true);
     hotkeyItemHelpAbout = addHotkey(categoryHelp,tr("About"),old_hotkeys.helpAbout,":/res/help.png","F1");
+    currentHotkeys << old_hotkeys.helpAbout;
 }
 
 void Settings::saveHotkeys()
@@ -170,6 +213,7 @@ void Settings::on_acceptButton_clicked()
     old_panelalignment = ui->toolpanelComboBox->currentIndex();
 
     saveHotkeys();
+    savePanelButtons();
 
     close();
 }
@@ -184,7 +228,8 @@ void Settings::closeEvent(QCloseEvent *event)
                         old_slideshowSmoothTransition,
                         old_slideshowInterval,
                         old_panelalignment,
-                        old_hotkeys);
+                        old_hotkeys, old_isneedBut);
+    qDebug() << "old_isneed = " << old_isneedBut.rotateLeft << old_isneedBut.rotateRight;
     event->accept();
 }
 
@@ -211,7 +256,8 @@ void Settings::on_defaultfolderBrowseButton_clicked()
                                                ui->defaultfolderLineEdit->text(),
                                                QFileDialog::ShowDirsOnly
                                                | QFileDialog::DontResolveSymlinks);
-    ui->defaultfolderLineEdit->setText(path);
+    if( !path.isNull() )
+        ui->defaultfolderLineEdit->setText(path);
 }
 
 void Settings::on_slideshowIntervalButton_clicked()
@@ -237,7 +283,9 @@ void Settings::on_hotkeyWidget_itemDoubleClicked(QTreeWidgetItem *item, int colu
 
 void Settings::changingEndAccept()
 {
-    QHotkeyWidget->changingItem->setText(1,QHotkeyWidget->hotkeyEdit->text());
+    QString newhotkey = QHotkeyWidget->hotkeyEdit->text();
+
+    QHotkeyWidget->changingItem->setText(1,newhotkey);
     QHotkeyWidget->isChanging = false;
     QHotkeyWidget->close();
 }
@@ -263,7 +311,7 @@ void Settings::on_resetHotkeysButton_clicked()
     hotkeyItemEditFlipVertical->setText(1,"");
     hotkeyItemEditCrop->setText(1,"Ctrl+Shift+C");
     hotkeyItemEditResize->setText(1,"Ctrl+R");
-    hotkeyItemEditResizeItems->setText(1,"Ctrl+Shift+R");
+    hotkeyItemEditResizeItems->setText(1,"");
 
     hotkeyItemWatchPrevious->setText(1,"Ctrl+Left");
     hotkeyItemWatchNext->setText(1,"Ctrl+Right");
@@ -276,4 +324,19 @@ void Settings::on_resetHotkeysButton_clicked()
     hotkeyItemZoomOriginal->setText(1,"");
 
     hotkeyItemHelpAbout->setText(1,"F1");
+}
+
+void Settings::on_panelReset_clicked()
+{
+    ui->panelbutRotateLeftCheckBox->setChecked(true);
+    ui->panelbutRotateRightCheckBox->setChecked(true);
+    ui->panelbutFlipHorizontalCheckBox->setChecked(true);
+    ui->panelbutFlipVerticalCheckBox->setChecked(true);
+    ui->panelbutZoomInCheckBox->setChecked(true);
+    ui->panelbutZoomOutCheckBox->setChecked(true);
+    ui->panelbutZoomWindowCheckBox->setChecked(true);
+    ui->panelbutZoomOriginalCheckBox->setChecked(true);
+    ui->panelbutFullscreenCheckBox->setChecked(true);
+    ui->panelbutSlideshowCheckBox->setChecked(true);
+    ui->panelbutPropertiesCheckBox->setChecked(false);
 }

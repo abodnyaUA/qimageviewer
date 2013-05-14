@@ -94,28 +94,21 @@ bool image::eventFilter(QObject *obj, QEvent *event)
         //ZOOMING
         //Zoom In KEY
         if (textHotkey == hotkeys->zoomIn)
-        {
-            zoomInc();
-            return true;
-        }
+        {   zoomInc();
+            return true;  }
         //Zoom Out KEY
         if (textHotkey == hotkeys->zoomOut)
-        {
-            zoomDec();
-            return true;
-        }
+        {   zoomDec();
+            return true;  }
         //Zoom Window KEY
         if (textHotkey == hotkeys->zoomWindow)
-        {
-            reloadImage();
-            return true;
-        }
+        {   reloadImage();
+            return true;  }
         //Zoom Original KEY
         if (textHotkey == hotkeys->zoomOriginal)
-        {
-            setOriginalSize();
-            return true;
-        }
+        {   setOriginalSize();
+            return true;  }
+
         //NEXT/PREV IMAGE
         if ((zoom <= 1.0))
         {

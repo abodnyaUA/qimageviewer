@@ -48,7 +48,8 @@ SOURCES += editformcrop.cpp \
     previewlist.cpp \
     qhotkeyedit.cpp \
     editformresizeelements.cpp \
-    qhotkeywidget.cpp
+    qhotkeywidget.cpp \
+    qimageviewer_design.cpp
 
 RESOURCES += resources.qrc
 

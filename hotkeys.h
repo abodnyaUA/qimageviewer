@@ -17,4 +17,14 @@ struct hotkeysStruct
     QString helpAbout;
 };
 
+struct isneedButStruct
+{
+    bool rotateLeft,rotateRight,
+         flipHorizontal,flipVertical,
+         zoomIn,zoomOut,
+         zoomOriginal,zoomWindow,
+         fullscreen,slideshow,
+         properties;
+};
+
 #endif // HOTKEYS_H

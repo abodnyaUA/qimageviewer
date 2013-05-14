@@ -59,6 +59,7 @@ public slots:
     void prevBuffer();
     void nextBuffer();
     void setAsWallpaper();
+    void viewProperties();
     ///Mouse///
     void setMouseZoom(bool);
     void setMouseFullscreen(bool);
@@ -121,7 +122,6 @@ private:
     bool mouseFullscreen;
 
 private slots:
-    void viewProperties();
     void horizontalSliderMoverd(int);
     void verticalSliderMoverd(int);
 

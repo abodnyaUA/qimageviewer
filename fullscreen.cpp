@@ -114,7 +114,7 @@ bool fullscreen::eventFilter(QObject *obj, QEvent *event)
             return true;
         }
         //Slideshow KEY
-        if (textHotkey == hotkeys->watchSlideshow)
+        else if (textHotkey == hotkeys->watchSlideshow)
         {
             if (!slideshowStarted) startSlideShow();
             else
@@ -124,6 +124,33 @@ bool fullscreen::eventFilter(QObject *obj, QEvent *event)
             }
             return true;
         }
+        else if (textHotkey == hotkeys->fileOpen)
+        {   emit needOpen(); return true; }
+        else if (textHotkey == hotkeys->fileSave)
+        {   emit needSave(); return true; }
+        else if (textHotkey == hotkeys->fileSaveAs)
+        {   emit needSaveAs(); return true; }
+        else if (textHotkey == hotkeys->fileQuit)
+        {   emit needQuit(); return true; }
+        else if (textHotkey == hotkeys->editCrop)
+        {   emit needCrop(); return true; }
+        else if (textHotkey == hotkeys->editResize)
+        {   emit needResize(); return true; }
+        else if (textHotkey == hotkeys->editResizeItems)
+        {   emit needResizeItems(); return true; }
+        else if (textHotkey == hotkeys->editRotateLeft)
+        {   emit needRotateLeft(); return true; }
+        else if (textHotkey == hotkeys->editRotateRight)
+        {   emit needRotateRight(); return true; }
+        else if (textHotkey == hotkeys->editFlipHorizontal)
+        {   emit needFlipHorizontal(); return true; }
+        else if (textHotkey == hotkeys->editFlipVertical)
+        {   emit needFlipVertical(); return true; }
+        else if (textHotkey == hotkeys->editUndo)
+        {   emit needUndo(); return true; }
+        else if (textHotkey == hotkeys->editRedo)
+        {   emit needRedo(); return true; }
+
     }
     return false;
 }

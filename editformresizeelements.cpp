@@ -59,50 +59,53 @@ void editformResizeElements::on_acceptButton_clicked()
                                                folder,
                                                QFileDialog::ShowDirsOnly
                                                | QFileDialog::DontResolveSymlinks);
-    if (prefix == folder)
+    if( !prefix.isNull() )
     {
-        prefix+="/edit-";
-        samefolder = true;
-    }
-    else
-    {
-        prefix+="/";
-        samefolder = false;
-    }
-    int size = folder.size()+1;
+        if (prefix == folder)
+        {
+            prefix+="/edit-";
+            samefolder = true;
+        }
+        else
+        {
+            prefix+="/";
+            samefolder = false;
+        }
+        int size = folder.size()+1;
 
-    last_element_indx = 0;
-    for (int i=0;i<list.size() && last_element_indx == 0;i++)
-    {
-        if (ui->listWidget->isItemSelected(ui->listWidget->item(i)))
-            last_element_indx = i;
-    }
-    if (ui->typeSizeRadioButton->isChecked())
-    {
-        for (int i=0;i<list.size();i++)
+        last_element_indx = 0;
+        for (int i=0;i<list.size() && last_element_indx == 0;i++)
         {
             if (ui->listWidget->isItemSelected(ui->listWidget->item(i)))
-            {
-                QPixmap temp(list[i]);
-                temp = temp.scaled(ui->sizeWidthSpinBox->value(),ui->sizeHeightSpinBox->value());
-                temp.save(prefix+list[i].right(list[i].size()-size));
-                qDebug() << "current="<<list[i] << "w="<<temp.width()<<"h="<<temp.height();
-            }
+                last_element_indx = i;
         }
-    }
-    if (ui->typePercentRadioButton->isChecked())
-    {
-        for (int i=0;i<list.size();i++)
+        if (ui->typeSizeRadioButton->isChecked())
         {
-            if (ui->listWidget->isItemSelected(ui->listWidget->item(i)))
+            for (int i=0;i<list.size();i++)
             {
-                QPixmap temp(list[i]);
-                temp = temp.scaledToWidth(temp.width()*ui->sizePercentSpinBox->value()/100.0);
-                temp.save(prefix+list[i].right(list[i].size()-size));
+                if (ui->listWidget->isItemSelected(ui->listWidget->item(i)))
+                {
+                    QPixmap temp(list[i]);
+                    temp = temp.scaled(ui->sizeWidthSpinBox->value(),ui->sizeHeightSpinBox->value());
+                    temp.save(prefix+list[i].right(list[i].size()-size));
+                    qDebug() << "current="<<list[i] << "w="<<temp.width()<<"h="<<temp.height();
+                }
             }
         }
+        if (ui->typePercentRadioButton->isChecked())
+        {
+            for (int i=0;i<list.size();i++)
+            {
+                if (ui->listWidget->isItemSelected(ui->listWidget->item(i)))
+                {
+                    QPixmap temp(list[i]);
+                    temp = temp.scaledToWidth(temp.width()*ui->sizePercentSpinBox->value()/100.0);
+                    temp.save(prefix+list[i].right(list[i].size()-size));
+                }
+            }
+        }
+        emit editFinished(true);
     }
-    emit editFinished(true);
 }
 
 void editformResizeElements::on_cancelButton_clicked()

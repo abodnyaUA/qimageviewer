@@ -68,284 +68,355 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="516"/>
-        <location filename="../qimageviewer.cpp" line="531"/>
-        <location filename="../qimageviewer.cpp" line="543"/>
-        <location filename="../qimageviewer.cpp" line="614"/>
-        <location filename="../qimageviewer.cpp" line="671"/>
-        <location filename="../qimageviewer.cpp" line="941"/>
+        <location filename="../qimageviewer.cpp" line="76"/>
+        <location filename="../qimageviewer.cpp" line="91"/>
+        <location filename="../qimageviewer.cpp" line="103"/>
+        <location filename="../qimageviewer.cpp" line="179"/>
+        <location filename="../qimageviewer.cpp" line="239"/>
+        <location filename="../qimageviewer.cpp" line="712"/>
         <source> of </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="193"/>
+        <location filename="../qimageviewer.ui" line="87"/>
         <source>&amp;File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="208"/>
+        <location filename="../qimageviewer.ui" line="102"/>
         <source>&amp;Edit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="230"/>
+        <location filename="../qimageviewer.ui" line="124"/>
         <source>&amp;Help</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="239"/>
+        <location filename="../qimageviewer.ui" line="133"/>
         <source>&amp;Preview</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="273"/>
+        <location filename="../qimageviewer.ui" line="167"/>
         <source>Open image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="355"/>
+        <location filename="../qimageviewer.ui" line="249"/>
         <source>Undo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="363"/>
+        <location filename="../qimageviewer.ui" line="257"/>
         <source>Redo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="371"/>
+        <location filename="../qimageviewer.ui" line="265"/>
         <source>Set as wallpaper</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="379"/>
+        <location filename="../qimageviewer.ui" line="273"/>
         <source>Start slideshow</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="384"/>
+        <location filename="../qimageviewer.ui" line="278"/>
         <source>Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="392"/>
+        <location filename="../qimageviewer.ui" line="286"/>
+        <location filename="../qimageviewer.cpp" line="471"/>
+        <location filename="../qimageviewer_design.cpp" line="474"/>
         <source>Zoom In</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="400"/>
-        <location filename="../qimageviewer.cpp" line="335"/>
+        <location filename="../qimageviewer.ui" line="294"/>
+        <location filename="../qimageviewer_design.cpp" line="337"/>
         <source>Zoom out</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="408"/>
+        <location filename="../qimageviewer.ui" line="302"/>
         <source>Window size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="416"/>
+        <location filename="../qimageviewer.ui" line="310"/>
         <source>Original size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="424"/>
+        <location filename="../qimageviewer.ui" line="318"/>
         <source>Resize items...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="432"/>
+        <location filename="../qimageviewer.ui" line="326"/>
         <source>Flip horizontal</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="440"/>
+        <location filename="../qimageviewer.ui" line="334"/>
         <source>Flip vertical</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="448"/>
+        <location filename="../qimageviewer.ui" line="342"/>
         <source>Next image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="456"/>
+        <location filename="../qimageviewer.ui" line="350"/>
         <source>Previous image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="278"/>
+        <location filename="../qimageviewer.ui" line="172"/>
         <source>Quit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="283"/>
-        <location filename="../qimageviewer.cpp" line="960"/>
+        <location filename="../qimageviewer.ui" line="177"/>
+        <location filename="../qimageviewer.cpp" line="731"/>
         <source>About</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="291"/>
+        <location filename="../qimageviewer.ui" line="185"/>
         <source>Save</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="299"/>
+        <location filename="../qimageviewer.ui" line="193"/>
         <source>Save as...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="307"/>
+        <location filename="../qimageviewer.ui" line="201"/>
         <source>Rotate to the right</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="315"/>
+        <location filename="../qimageviewer.ui" line="209"/>
         <source>Rotate to the left</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="323"/>
+        <location filename="../qimageviewer.ui" line="217"/>
         <source>Delete file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="331"/>
+        <location filename="../qimageviewer.ui" line="225"/>
         <source>Resize</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="339"/>
+        <location filename="../qimageviewer.ui" line="233"/>
         <source>Fullscreen mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="347"/>
+        <location filename="../qimageviewer.ui" line="241"/>
         <source>Crop</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="265"/>
+        <location filename="../qimageviewer_design.cpp" line="267"/>
         <source>Open current image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="268"/>
+        <location filename="../qimageviewer_design.cpp" line="270"/>
         <source>Save current image with same name and format</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="272"/>
+        <location filename="../qimageviewer_design.cpp" line="274"/>
         <source>Save current image with new name and format</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="275"/>
+        <location filename="../qimageviewer_design.cpp" line="277"/>
         <source>Program settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="278"/>
+        <location filename="../qimageviewer_design.cpp" line="280"/>
         <source>Close program</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="282"/>
+        <location filename="../qimageviewer_design.cpp" line="284"/>
         <source>Cancel last changes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="286"/>
+        <location filename="../qimageviewer_design.cpp" line="288"/>
         <source>Do last changes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="290"/>
+        <location filename="../qimageviewer_design.cpp" line="292"/>
         <source>Rotate image to the left</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="293"/>
+        <location filename="../qimageviewer_design.cpp" line="295"/>
         <source>Rotate image to the right</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="296"/>
+        <location filename="../qimageviewer.cpp" line="451"/>
+        <location filename="../qimageviewer_design.cpp" line="298"/>
+        <location filename="../qimageviewer_design.cpp" line="454"/>
         <source>Change this image to horizontal mirror</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="299"/>
+        <location filename="../qimageviewer.cpp" line="461"/>
+        <location filename="../qimageviewer_design.cpp" line="301"/>
+        <location filename="../qimageviewer_design.cpp" line="464"/>
         <source>Change this image to vertical mirror</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="302"/>
+        <location filename="../qimageviewer_design.cpp" line="304"/>
         <source>Delete current image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="308"/>
+        <location filename="../qimageviewer_design.cpp" line="310"/>
         <source>Resize current image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="305"/>
+        <location filename="../qimageviewer_design.cpp" line="307"/>
         <source>Crop current image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="311"/>
+        <location filename="../qimageviewer_design.cpp" line="313"/>
         <source>Resize list of images</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="315"/>
+        <location filename="../qimageviewer_design.cpp" line="317"/>
         <source>Show next image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="318"/>
+        <location filename="../qimageviewer_design.cpp" line="320"/>
         <source>Show previous image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="321"/>
-        <location filename="../qimageviewer.cpp" line="355"/>
+        <location filename="../qimageviewer.cpp" line="511"/>
+        <location filename="../qimageviewer_design.cpp" line="323"/>
+        <location filename="../qimageviewer_design.cpp" line="514"/>
         <source>Enable fullscreen mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="325"/>
-        <location filename="../qimageviewer.cpp" line="358"/>
+        <location filename="../qimageviewer.cpp" line="521"/>
+        <location filename="../qimageviewer_design.cpp" line="327"/>
+        <location filename="../qimageviewer_design.cpp" line="524"/>
         <source>Start slideshow in fullscreen mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="329"/>
+        <location filename="../qimageviewer_design.cpp" line="331"/>
         <source>Set picture as wallpaper</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="332"/>
+        <location filename="../qimageviewer_design.cpp" line="334"/>
         <source>Zoom in</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="338"/>
-        <location filename="../qimageviewer.cpp" line="367"/>
+        <location filename="../qimageviewer.cpp" line="501"/>
+        <location filename="../qimageviewer_design.cpp" line="340"/>
+        <location filename="../qimageviewer_design.cpp" line="504"/>
         <source>Zoom to original size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="341"/>
-        <location filename="../qimageviewer.cpp" line="370"/>
+        <location filename="../qimageviewer.cpp" line="491"/>
+        <location filename="../qimageviewer_design.cpp" line="343"/>
+        <location filename="../qimageviewer_design.cpp" line="494"/>
         <source>Zoom to window size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="961"/>
-        <source>This program is using for viewing pictures
+        <location filename="../qimageviewer_design.cpp" line="347"/>
+        <source>Information about program</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qimageviewer_design.cpp" line="351"/>
+        <source>Open previous image</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qimageviewer_design.cpp" line="354"/>
+        <source>Open next image</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qimageviewer.cpp" line="431"/>
+        <location filename="../qimageviewer_design.cpp" line="434"/>
+        <source>Rotate picture to the left</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qimageviewer.cpp" line="441"/>
+        <location filename="../qimageviewer_design.cpp" line="444"/>
+        <source>Rotate picture to the right</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qimageviewer.cpp" line="115"/>
+        <source>Opening image file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qimageviewer.cpp" line="116"/>
+        <source>All pictures formats (*.jpg *.jpeg *.png *.bmp *.gif *.tiff *.pbm *.pgm *.ppm *.xbm *.xpm);;Joint Photographic Experts Group (*.jpeg *.jpg);;Portable Network Graphics(*.png);;Windows Bitmap (*.bmp);;Graphic Interchange Format (*.gif);;Tagged Image File Format (*.tiff);;Portable Bitmap (*.pbm);;Portable Graymap (*.pgm);;Portable Pixmap (*.ppm);;X11 Bitmap (*.xbm *.xpm</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qimageviewer.cpp" line="219"/>
+        <source>Saving files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qimageviewer.cpp" line="220"/>
+        <source>All picture formats (*.jpg *.jpeg *.png *.bmp *.tiff *.ppm *.xbm *.xpm);;Joint Photographic Experts Group (*.jpeg *.jpg);;Portable Network Graphics (*.png);;Windows Bitmap (*.bmp);;Tagged Image File Format (*.tiff);;Portable Pixmap (*.ppm);;X11 Bitmap (*.xbm *.xpm)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qimageviewer.cpp" line="481"/>
+        <location filename="../qimageviewer_design.cpp" line="484"/>
+        <source>Zoom Out</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qimageviewer.cpp" line="531"/>
+        <location filename="../qimageviewer_design.cpp" line="534"/>
+        <source>Image properties</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qimageviewer.cpp" line="732"/>
+        <source>QImageViewer 0.1.5
+
+This program is using for viewing pictures
 It was created with using Qt 5.0.0
 
 Program author is Bodnya Alexey
@@ -360,67 +431,12 @@ Special thx Neveron for help and support!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="345"/>
-        <source>Information about program</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qimageviewer.cpp" line="349"/>
-        <source>Open previous image</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qimageviewer.cpp" line="352"/>
-        <source>Open next image</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qimageviewer.cpp" line="361"/>
-        <source>Zoom in image</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qimageviewer.cpp" line="364"/>
-        <source>Zoom out image</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qimageviewer.cpp" line="373"/>
-        <source>Rotate picture to the left</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qimageviewer.cpp" line="376"/>
-        <source>Rotate picture to the right</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qimageviewer.cpp" line="555"/>
-        <source>Opening image file</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qimageviewer.cpp" line="556"/>
-        <source>All pictures formats (*.jpg *.jpeg *.png *.bmp *.gif *.tiff *.pbm *.pgm *.ppm *.xbm *.xpm);;Joint Photographic Experts Group (*.jpeg *.jpg);;Portable Network Graphics(*.png);;Windows Bitmap (*.bmp);;Graphic Interchange Format (*.gif);;Tagged Image File Format (*.tiff);;Portable Bitmap (*.pbm);;Portable Graymap (*.pgm);;Portable Pixmap (*.ppm);;X11 Bitmap (*.xbm *.xpm</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qimageviewer.cpp" line="653"/>
-        <source>Saving files</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qimageviewer.cpp" line="654"/>
-        <source>All picture formats (*.jpg *.jpeg *.png *.bmp *.tiff *.ppm *.xbm *.xpm);;Joint Photographic Experts Group (*.jpeg *.jpg);;Portable Network Graphics (*.png);;Windows Bitmap (*.bmp);;Tagged Image File Format (*.tiff);;Portable Pixmap (*.ppm);;X11 Bitmap (*.xbm *.xpm)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qimageviewer.cpp" line="1048"/>
+        <location filename="../qimageviewer_design.cpp" line="651"/>
         <source>Warning!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="1049"/>
+        <location filename="../qimageviewer_design.cpp" line="652"/>
         <source>This file was changed
 Do you want to save changes?</source>
         <translation type="unfinished"></translation>
@@ -495,41 +511,98 @@ Do you want to save changes?</source>
     </message>
     <message>
         <location filename="../settings.ui" line="276"/>
+        <source>Panel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settings.ui" line="300"/>
+        <source>Rotate Left</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settings.ui" line="311"/>
+        <source>Rotate Right</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settings.ui" line="322"/>
+        <source>Flip hotizontal</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settings.ui" line="333"/>
+        <source>Flip Vertical</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settings.ui" line="344"/>
+        <source>Zoom In</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settings.ui" line="355"/>
+        <source>Zoom Out</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settings.ui" line="366"/>
+        <source>Zoom to window size</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settings.ui" line="377"/>
+        <source>Zoom to original size</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settings.ui" line="410"/>
+        <source>Properties</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settings.ui" line="427"/>
+        <source>Reset panel settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settings.ui" line="450"/>
         <source>Hotkeys</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="301"/>
+        <location filename="../settings.ui" line="475"/>
         <source>Reset hotkeys to defaults</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="329"/>
+        <location filename="../settings.ui" line="503"/>
         <source>Reset all settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings.cpp" line="102"/>
+        <location filename="../settings.ui" line="388"/>
+        <location filename="../settings.cpp" line="139"/>
         <source>Fullscreen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings.cpp" line="103"/>
+        <location filename="../settings.ui" line="399"/>
+        <location filename="../settings.cpp" line="140"/>
         <source>Slideshow</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="349"/>
+        <location filename="../settings.ui" line="523"/>
         <source>Accept new settins</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="356"/>
+        <location filename="../settings.ui" line="530"/>
         <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings.cpp" line="95"/>
+        <location filename="../settings.cpp" line="129"/>
         <source>Resize</source>
         <translation type="unfinished"></translation>
     </message>
@@ -559,132 +632,152 @@ Do you want to save changes?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings.cpp" line="88"/>
+        <location filename="../settings.cpp" line="122"/>
         <source>Undo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings.cpp" line="94"/>
+        <location filename="../settings.cpp" line="128"/>
         <source>Crop</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings.cpp" line="89"/>
+        <location filename="../settings.cpp" line="123"/>
         <source>Redo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings.cpp" line="70"/>
+        <location filename="../settings.cpp" line="102"/>
         <source>Command</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings.cpp" line="70"/>
+        <location filename="../settings.cpp" line="102"/>
         <source>Hotkey</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings.cpp" line="80"/>
-        <source>Open image</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../settings.cpp" line="81"/>
-        <source>Save</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../settings.cpp" line="82"/>
-        <source>Save as...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../settings.cpp" line="83"/>
-        <source>Settings</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../settings.cpp" line="84"/>
-        <source>Quit</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../settings.cpp" line="90"/>
-        <source>Rotate to the right</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../settings.cpp" line="91"/>
-        <source>Rotate to the left</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../settings.cpp" line="92"/>
-        <source>Flip horizontal</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../settings.cpp" line="93"/>
-        <source>Flip vertical</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../settings.cpp" line="96"/>
-        <source>Resize items...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../settings.cpp" line="100"/>
-        <source>Previous image</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../settings.cpp" line="101"/>
-        <source>Next image</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../settings.cpp" line="104"/>
-        <source>Set as wallpaper</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../settings.cpp" line="105"/>
-        <source>Zoom in</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../settings.cpp" line="106"/>
-        <source>Zoom out</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../settings.cpp" line="107"/>
-        <source>Window size</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../settings.cpp" line="108"/>
-        <source>Original size</source>
+        <location filename="../settings.cpp" line="110"/>
+        <source>File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settings.cpp" line="112"/>
+        <source>Open image</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settings.cpp" line="113"/>
+        <source>Save</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settings.cpp" line="114"/>
+        <source>Save as...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settings.cpp" line="115"/>
+        <source>Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settings.cpp" line="116"/>
+        <source>Quit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settings.cpp" line="120"/>
+        <source>Edit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settings.cpp" line="124"/>
+        <source>Rotate to the right</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settings.cpp" line="125"/>
+        <source>Rotate to the left</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settings.cpp" line="126"/>
+        <source>Flip horizontal</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settings.cpp" line="127"/>
+        <source>Flip vertical</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settings.cpp" line="130"/>
+        <source>Resize items...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settings.cpp" line="135"/>
+        <source>Preview</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settings.cpp" line="137"/>
+        <source>Previous image</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settings.cpp" line="138"/>
+        <source>Next image</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settings.cpp" line="141"/>
+        <source>Set as wallpaper</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settings.cpp" line="142"/>
+        <source>Zoom in</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settings.cpp" line="143"/>
+        <source>Zoom out</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settings.cpp" line="144"/>
+        <source>Window size</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settings.cpp" line="145"/>
+        <source>Original size</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settings.cpp" line="150"/>
+        <source>Help</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settings.cpp" line="152"/>
         <source>About</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings.cpp" line="160"/>
+        <location filename="../settings.cpp" line="201"/>
         <source>Warning!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings.cpp" line="161"/>
+        <location filename="../settings.cpp" line="202"/>
         <source>Language will be changing after restart program</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings.cpp" line="210"/>
+        <location filename="../settings.cpp" line="253"/>
         <source>Open directory</source>
         <translation type="unfinished"></translation>
     </message>

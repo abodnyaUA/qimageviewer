@@ -21,7 +21,7 @@
    <item>
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="tabMainSettings">
       <attribute name="title">
@@ -268,6 +268,180 @@
           </size>
          </property>
         </spacer>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_2">
+      <attribute name="title">
+       <string>Panel</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_4">
+       <item>
+        <widget class="QScrollArea" name="scrollArea">
+         <property name="widgetResizable">
+          <bool>true</bool>
+         </property>
+         <widget class="QWidget" name="scrollAreaWidgetContents_2">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>698</width>
+            <height>339</height>
+           </rect>
+          </property>
+          <layout class="QFormLayout" name="formLayout">
+           <property name="fieldGrowthPolicy">
+            <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
+           </property>
+           <item row="0" column="0">
+            <widget class="QCheckBox" name="panelbutRotateLeftCheckBox">
+             <property name="text">
+              <string>Rotate Left</string>
+             </property>
+             <property name="icon">
+              <iconset resource="resources.qrc">
+               <normaloff>:/res/rotate-left.png</normaloff>:/res/rotate-left.png</iconset>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QCheckBox" name="panelbutRotateRightCheckBox">
+             <property name="text">
+              <string>Rotate Right</string>
+             </property>
+             <property name="icon">
+              <iconset resource="resources.qrc">
+               <normaloff>:/res/rotate-right.png</normaloff>:/res/rotate-right.png</iconset>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QCheckBox" name="panelbutFlipHorizontalCheckBox">
+             <property name="text">
+              <string>Flip hotizontal</string>
+             </property>
+             <property name="icon">
+              <iconset resource="resources.qrc">
+               <normaloff>:/res/flip-horizontal.png</normaloff>:/res/flip-horizontal.png</iconset>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0">
+            <widget class="QCheckBox" name="panelbutFlipVerticalCheckBox">
+             <property name="text">
+              <string>Flip Vertical</string>
+             </property>
+             <property name="icon">
+              <iconset resource="resources.qrc">
+               <normaloff>:/res/flip-vertical.png</normaloff>:/res/flip-vertical.png</iconset>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="0">
+            <widget class="QCheckBox" name="panelbutZoomInCheckBox">
+             <property name="text">
+              <string>Zoom In</string>
+             </property>
+             <property name="icon">
+              <iconset resource="resources.qrc">
+               <normaloff>:/res/zoom-in.png</normaloff>:/res/zoom-in.png</iconset>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="0">
+            <widget class="QCheckBox" name="panelbutZoomOutCheckBox">
+             <property name="text">
+              <string>Zoom Out</string>
+             </property>
+             <property name="icon">
+              <iconset resource="resources.qrc">
+               <normaloff>:/res/zoom-out.png</normaloff>:/res/zoom-out.png</iconset>
+             </property>
+            </widget>
+           </item>
+           <item row="6" column="0">
+            <widget class="QCheckBox" name="panelbutZoomWindowCheckBox">
+             <property name="text">
+              <string>Zoom to window size</string>
+             </property>
+             <property name="icon">
+              <iconset resource="resources.qrc">
+               <normaloff>:/res/zoom-window.png</normaloff>:/res/zoom-window.png</iconset>
+             </property>
+            </widget>
+           </item>
+           <item row="7" column="0">
+            <widget class="QCheckBox" name="panelbutZoomOriginalCheckBox">
+             <property name="text">
+              <string>Zoom to original size</string>
+             </property>
+             <property name="icon">
+              <iconset resource="resources.qrc">
+               <normaloff>:/res/zoom-original.png</normaloff>:/res/zoom-original.png</iconset>
+             </property>
+            </widget>
+           </item>
+           <item row="8" column="0">
+            <widget class="QCheckBox" name="panelbutFullscreenCheckBox">
+             <property name="text">
+              <string>Fullscreen</string>
+             </property>
+             <property name="icon">
+              <iconset resource="resources.qrc">
+               <normaloff>:/res/fullscreen.png</normaloff>:/res/fullscreen.png</iconset>
+             </property>
+            </widget>
+           </item>
+           <item row="9" column="0">
+            <widget class="QCheckBox" name="panelbutSlideshowCheckBox">
+             <property name="text">
+              <string>Slideshow</string>
+             </property>
+             <property name="icon">
+              <iconset resource="resources.qrc">
+               <normaloff>:/res/slideshow.png</normaloff>:/res/slideshow.png</iconset>
+             </property>
+            </widget>
+           </item>
+           <item row="10" column="0">
+            <widget class="QCheckBox" name="panelbutPropertiesCheckBox">
+             <property name="text">
+              <string>Properties</string>
+             </property>
+             <property name="icon">
+              <iconset resource="resources.qrc">
+               <normaloff>:/res/file-properties.png</normaloff>:/res/file-properties.png</iconset>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_8">
+         <item>
+          <widget class="QPushButton" name="panelReset">
+           <property name="text">
+            <string>Reset panel settings</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_2">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
        </item>
       </layout>
      </widget>

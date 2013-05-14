@@ -16,6 +16,10 @@
 #include <QCloseEvent>
 #include <QDropEvent>
 #include <QScrollArea>
+#include <QSpacerItem>
+#include <QFile>
+#include <QTextStream>
+#include <QFileDialog>
 #include "image.h"
 #include "preview.h"
 #include "previewlist.h"
@@ -51,7 +55,7 @@ private slots:
                         bool mouseZoom, bool mouseFullscreen,
                         bool slideshowSmoothTransition, double slideshowInterval,
                         int panelalignment,
-                        hotkeysStruct hotkeys);
+                        hotkeysStruct hotkeys, isneedButStruct isneedBut);
     //HELP
     void helpAbout();
     //NAVIGATION
@@ -87,6 +91,15 @@ private:
 
     //Panel//
     int panelalignment;
+    QList<QPushButton *> buttonsList;
+    QPushButton *butRotateLeft,*butRotateRight,
+                *butFlipHorizontal,*butFlipVertical,
+                *butZoomIn,*butZoomOut,
+                *butZoomOriginal,*butZoomWindow,
+                *butFullscreen,*butSlideshow,
+                *butProperties;
+    struct isneedButStruct isneedBut;
+    QSpacerItem *spacerLeft,*spacerRight;
 
     //Hotkeys//
     hotkeysStruct hotkeys;
@@ -116,6 +129,7 @@ private:
     void createActions();
     void createHotkeys();
     void createDesign();
+    void createPanel();
     void loadsettings();
 
 protected:

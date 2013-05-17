@@ -1,5 +1,5 @@
 
-QT       += core gui
+QT       += core gui network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -24,7 +24,11 @@ HEADERS += editformcrop.h \
     qhotkeyedit.h \
     editformresizeelements.h \
     qhotkeywidget.h \
-    hotkeys.h
+    hotkeys.h \
+    qexternprogram.h \
+    qexternprogramaddform.h \
+    qexternprogrammanager.h \
+    imageshackuploader.h
            
 FORMS += editformcrop.ui \
          editformresize.ui \
@@ -32,7 +36,10 @@ FORMS += editformcrop.ui \
          properties.ui \
          qimageviewer.ui \
          settings.ui \
-    editformresizeelements.ui
+    editformresizeelements.ui \
+    qexternprogramaddform.ui \
+    qexternprogrammanager.ui \
+    imageshackuploader.ui
          
 SOURCES += editformcrop.cpp \
            editformcropimage.cpp \
@@ -49,7 +56,11 @@ SOURCES += editformcrop.cpp \
     qhotkeyedit.cpp \
     editformresizeelements.cpp \
     qhotkeywidget.cpp \
-    qimageviewer_design.cpp
+    qimageviewer_design.cpp \
+    qexternprogram.cpp \
+    qexternprogramaddform.cpp \
+    qexternprogrammanager.cpp \
+    imageshackuploader.cpp
 
 RESOURCES += resources.qrc
 
@@ -65,32 +76,14 @@ RC_FILE = myapp.rc
  }
 
 OTHER_FILES += \
-    res/zoom-out.png \
-    res/zoom-in.png \
-    res/slideshow.png \
-    res/rotate-right.png \
-    res/rotate-left.png \
-    res/resize.png \
-    res/prev.png \
-    res/next.png \
-    res/fullscreen.png \
-    res/format-tiff.png \
-    res/format-png.png \
-    res/format-jpg.png \
-    res/format-jpeg.png \
-    res/format-gif.png \
-    res/format-bmp.png \
-    res/file-save.png \
-    res/file-properties.png \
-    res/file-open.png \
-    res/delete.png \
-    res/crop.png \
-    lng/qimageviewer_ua.ts \
-    lng/qimageviewer_ua.qm \
+    lng/qimageviewer_uk.ts \
+    lng/qimageviewer_uk.qm \
     lng/qimageviewer_ru.ts \
     lng/qimageviewer_ru.qm \
     lng/qimageviewer_en.ts \
     lng/qimageviewer_en.qm \
+    lng/qimageviewer_pl.ts \
+    lng/qimageviewer_pl.qm \
     myapp.rc \
     android/version.xml \
     android/res/values-ru/strings.xml \
@@ -124,21 +117,4 @@ OTHER_FILES += \
     android/src/org/kde/necessitas/origo/QtApplication.java \
     android/src/org/kde/necessitas/origo/QtActivity.java \
     android/src/org/kde/necessitas/ministro/IMinistroCallback.aidl \
-    android/src/org/kde/necessitas/ministro/IMinistro.aidl \
-    res/help.png \
-    lng/qimageviewer_uk.ts \
-    lng/qimageviewer_uk.qm \
-    res/settings.png \
-    res/flag-usa.png \
-    res/flag-ukr.png \
-    res/flag-rus.png \
-    res/flag-sys.png \
-    res/zoom-window.png \
-    res/zoom-original.png \
-    res/resize-items.png \
-    res/flip-vertical.png \
-    res/flip-horizontal.png \
-    res/wallpaper.png \
-    lng/qimageviewer_pl.ts \
-    res/flag-pol.png \
-    lng/qimageviewer_pl.qm
+    android/src/org/kde/necessitas/ministro/IMinistro.aidl

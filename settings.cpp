@@ -11,6 +11,7 @@ Settings::Settings(QWidget *parent) : ui(new Ui::Settings)
     ui->languageComboBox->setItemIcon(4,(QIcon(QPixmap(":/res/flag-pol.png"))));
     ui->acceptButton->setShortcut(QKeySequence(Qt::Key_Return));
     ui->cancelButton->setShortcut(QKeySequence(Qt::Key_Escape));
+    isActiveHotkeyWidget = false;
 }
 
 void Settings::setDefaultSettings(QString language,
@@ -220,7 +221,7 @@ void Settings::on_acceptButton_clicked()
 
 void Settings::closeEvent(QCloseEvent *event)
 {
-    QHotkeyWidget->close();
+    if (isActiveHotkeyWidget) QHotkeyWidget->close();
     emit acceptsettings(old_lang,
                         old_defaultfolder,
                         old_mouseZoom,
@@ -273,7 +274,8 @@ void Settings::on_cancelButton_clicked()
 void Settings::on_hotkeyWidget_itemDoubleClicked(QTreeWidgetItem *item, int column)
 {
     if (QHotkeyWidget->isChanging == false && item != categoryFile &&
-            item != categoryEdit && item != categoryWatch && item != categoryHelp)
+            item != categoryEdit && item != categoryWatch && item != categoryHelp &&
+            !isActiveHotkeyWidget)
     {
         QHotkeyWidget->loadItem(item);
         QHotkeyWidget->show();

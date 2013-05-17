@@ -37,8 +37,8 @@ public:
     QString currentImageName();
     QPixmap currentPixmap();
     bool isReady();
+    void setReady(bool);
     QStringList getImageList();
-
 
 public slots:
     void reloadImage();
@@ -85,6 +85,7 @@ private:
     double zoom;
     bool zoomMax;
     bool zoomMin;
+    bool zoomOriginal;
 
     ////image list////
     QString imagename;

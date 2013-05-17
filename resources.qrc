@@ -44,5 +44,11 @@
         <file>res/flag-pol.png</file>
         <file>lng/qimageviewer_pl.ts</file>
         <file>lng/qimageviewer_pl.qm</file>
+        <file>res/extern-editor.png</file>
+        <file>res/add.png</file>
+        <file>res/remove.png</file>
+        <file>res/update.png</file>
+        <file>res/extern-editor-new.png</file>
+        <file>res/imageshack.png</file>
     </qresource>
 </RCC>

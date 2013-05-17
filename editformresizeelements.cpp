@@ -14,7 +14,7 @@ editformResizeElements::~editformResizeElements()
     delete ui;
 }
 
-void editformResizeElements::loadlist(QStringList list,QString folder)
+void editformResizeElements::loadlist(QStringList list,QString folder, int current)
 {
     int size = folder.size()+1;
     for (int i=0;i<list.size();i++)
@@ -29,6 +29,8 @@ void editformResizeElements::loadlist(QStringList list,QString folder)
     ui->graphicsView->setScene(scene);
     ui->previewWidthLabel->setText(QString::number(pixmap.width()));
     ui->previewHeightLabel->setText(QString::number(pixmap.height()));
+
+    ui->listWidget->setCurrentRow(current);
 }
 
 void editformResizeElements::on_typeSizeRadioButton_clicked()

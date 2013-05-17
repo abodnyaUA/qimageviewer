@@ -25,6 +25,8 @@ qhotkeywidget::qhotkeywidget(QWidget *parent) :
     connect(buttDefault,SIGNAL(clicked()),this,SLOT(buttDefaultClicked()));
     connect(hotkeyEdit,SIGNAL(needAccept()),this,SIGNAL(butOKClicked()));
     connect(hotkeyEdit,SIGNAL(needDecline()),this,SIGNAL(butCancelClicked()));
+
+    setFixedSize(250,80);
 }
 
 void qhotkeywidget::loadItem(QTreeWidgetItem *item)

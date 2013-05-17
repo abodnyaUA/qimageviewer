@@ -8,7 +8,7 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     QApplication::setApplicationName("QImageViewer");
-    QApplication::setApplicationVersion("0.1.6");
+    QApplication::setApplicationVersion("0.1.7");
 
     QFile file("settings.txt");
     QTextStream out(&file);

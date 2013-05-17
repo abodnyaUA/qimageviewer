@@ -36,6 +36,7 @@ QImageViewer::QImageViewer(QString path, QWidget *parent) :
         defaultpath = QString::null;
         imagewidget->loadimage(":/res/logo.png");
         defaultpath = QString::null;
+        imagewidget->setReady(false);
         imagewidget->setImage(0);
         setWindowTitle("QImageViewer");
     }
@@ -45,9 +46,11 @@ QImageViewer::QImageViewer(QString path, QWidget *parent) :
         fileOpen();
     }
 
-
     ui->mainToolBar->hide();
-    //ui->mainToolBar->set
+    isSettingsActive = false;
+    isEditosManagerActive = false;
+    isEditorAddFormActive = false;
+    //setWindowState(Qt::WindowMaximized);
 }
 
 
@@ -158,6 +161,8 @@ void QImageViewer::fileOpen()
         ui->zoomOutAction->setEnabled(true);
         ui->zoomOriginalAction->setEnabled(true);
         ui->zoomWindowAction->setEnabled(true);
+        for (int i=0;i<editorsActions.size();i++)
+            editorsActions[i]->setEnabled(true);
 
         ui->prevButton->setEnabled(true);
         ui->nextButton->setEnabled(true);
@@ -335,21 +340,23 @@ void QImageViewer::slideShow()
 /** Open Settings Window **/
 void QImageViewer::settingsWindow()
 {
-    //settings = new Settings;
+    if (!isSettingsActive)
+    {
+        isSettingsActive = true;
+        settings = new Settings;
+        connect(settings,SIGNAL(acceptsettings(QString,QString,bool,bool,bool,double,int,hotkeysStruct,isneedButStruct)),
+                this,SLOT(updateSettings(QString,QString,bool,bool,bool,double,int,hotkeysStruct,isneedButStruct)));
 
-    settings = new Settings;
-    connect(settings,SIGNAL(acceptsettings(QString,QString,bool,bool,bool,double,int,hotkeysStruct,isneedButStruct)),
-            this,SLOT(updateSettings(QString,QString,bool,bool,bool,double,int,hotkeysStruct,isneedButStruct)));
-
-    settings->setDefaultSettings(language,
-                                 lastdirectory,
-                                 imagewidget->getMouseZoom(),
-                                 imagewidget->getMouseFullscreen(),
-                                 slideshowSmoothTransition,
-                                 slideshowInterval,
-                                 panelalignment,
-                                 hotkeys,isneedBut);
-    settings->show();
+        settings->setDefaultSettings(language,
+                                     lastdirectory,
+                                     imagewidget->getMouseZoom(),
+                                     imagewidget->getMouseFullscreen(),
+                                     slideshowSmoothTransition,
+                                     slideshowInterval,
+                                     panelalignment,
+                                     hotkeys,isneedBut);
+        settings->show();
+    }
 }
 
 /** Update program settings **/
@@ -359,6 +366,7 @@ void QImageViewer::updateSettings(QString language,
                     bool slideshowSmoothTransition, double slideshowInterval,
                     int panelalignment,hotkeysStruct hotkeys, isneedButStruct isneedNew)
 {
+    isSettingsActive = false;
     this->language = language;
     this->lastdirectory = defaultfolder;
     imagewidget->setMouseZoom(mouseZoom);
@@ -432,7 +440,7 @@ void QImageViewer::updateSettings(QString language,
         connect(butRotateLeft,SIGNAL(clicked()),imagewidget,SLOT(rotateLeft()));
         butRotateLeft->setFocusPolicy(Qt::NoFocus);
         butRotateLeft->setIcon(QIcon(QPixmap(":/res/rotate-left.png")));
-        butRotateLeft->setEnabled(false);
+        if (!imagewidget->isReady()) butRotateLeft->setEnabled(false);
         buttonsList << butRotateLeft;
     }
     if (isneedNew.rotateRight)
@@ -442,7 +450,7 @@ void QImageViewer::updateSettings(QString language,
         connect(butRotateRight,SIGNAL(clicked()),imagewidget,SLOT(rotateRight()));
         butRotateRight->setFocusPolicy(Qt::NoFocus);
         butRotateRight->setIcon(QIcon(QPixmap(":/res/rotate-right.png")));
-        butRotateRight->setEnabled(false);
+        if (!imagewidget->isReady()) butRotateRight->setEnabled(false);
         buttonsList << butRotateRight;
     }
     if (isneedNew.flipHorizontal)
@@ -452,7 +460,7 @@ void QImageViewer::updateSettings(QString language,
         connect(butFlipHorizontal,SIGNAL(clicked()),imagewidget,SLOT(flipHorizontal()));
         butFlipHorizontal->setFocusPolicy(Qt::NoFocus);
         butFlipHorizontal->setIcon(QIcon(QPixmap(":/res/flip-horizontal.png")));
-        butFlipHorizontal->setEnabled(false);
+        if (!imagewidget->isReady()) butFlipHorizontal->setEnabled(false);
         buttonsList << butFlipHorizontal;
     }
     if (isneedNew.flipVertical)
@@ -462,7 +470,7 @@ void QImageViewer::updateSettings(QString language,
         connect(butFlipVertical,SIGNAL(clicked()),imagewidget,SLOT(flipVertical()));
         butFlipVertical->setFocusPolicy(Qt::NoFocus);
         butFlipVertical->setIcon(QIcon(QPixmap(":/res/flip-vertical.png")));
-        butFlipVertical->setEnabled(false);
+        if (!imagewidget->isReady()) butFlipVertical->setEnabled(false);
         buttonsList << butFlipVertical;
     }
     if (isneedNew.zoomIn)
@@ -472,7 +480,7 @@ void QImageViewer::updateSettings(QString language,
         connect(butZoomIn,SIGNAL(clicked()),imagewidget,SLOT(zoomInc()));
         butZoomIn->setFocusPolicy(Qt::NoFocus);
         butZoomIn->setIcon(QIcon(QPixmap(":/res/zoom-in.png")));
-        butZoomIn->setEnabled(false);
+        if (!imagewidget->isReady()) butZoomIn->setEnabled(false);
         buttonsList << butZoomIn;
     }
     if (isneedNew.zoomOut)
@@ -482,7 +490,7 @@ void QImageViewer::updateSettings(QString language,
         connect(butZoomOut,SIGNAL(clicked()),imagewidget,SLOT(zoomDec()));
         butZoomOut->setFocusPolicy(Qt::NoFocus);
         butZoomOut->setIcon(QIcon(QPixmap(":/res/zoom-out.png")));
-        butZoomOut->setEnabled(false);
+        if (!imagewidget->isReady()) butZoomOut->setEnabled(false);
         buttonsList << butZoomOut;
     }
     if (isneedNew.zoomWindow)
@@ -492,7 +500,7 @@ void QImageViewer::updateSettings(QString language,
         connect(butZoomWindow,SIGNAL(clicked()),imagewidget,SLOT(reloadImage()));
         butZoomWindow->setFocusPolicy(Qt::NoFocus);
         butZoomWindow->setIcon(QIcon(QPixmap(":/res/zoom-window.png")));
-        butZoomWindow->setEnabled(false);
+        if (!imagewidget->isReady()) butZoomWindow->setEnabled(false);
         buttonsList << butZoomWindow;
     }
     if (isneedNew.zoomOriginal)
@@ -502,7 +510,7 @@ void QImageViewer::updateSettings(QString language,
         connect(butZoomOriginal,SIGNAL(clicked()),imagewidget,SLOT(setOriginalSize()));
         butZoomOriginal->setFocusPolicy(Qt::NoFocus);
         butZoomOriginal->setIcon(QIcon(QPixmap(":/res/zoom-original.png")));
-        butZoomOriginal->setEnabled(false);
+        if (!imagewidget->isReady()) butZoomOriginal->setEnabled(false);
         buttonsList << butZoomOriginal;
     }
     if (isneedNew.fullscreen)
@@ -512,17 +520,17 @@ void QImageViewer::updateSettings(QString language,
         connect(butFullscreen,SIGNAL(clicked()),this,SLOT(fullScreen()));
         butFullscreen->setFocusPolicy(Qt::NoFocus);
         butFullscreen->setIcon(QIcon(QPixmap(":/res/fullscreen.png")));
-        butFullscreen->setEnabled(false);
+        if (!imagewidget->isReady()) butFullscreen->setEnabled(false);
         buttonsList << butFullscreen;
     }
     if (isneedNew.slideshow)
     {
         butSlideshow = new QPushButton;
         butSlideshow->setToolTip(tr("Start slideshow in fullscreen mode"));
-        connect(butSlideshow,SIGNAL(clicked()),this,SLOT(fullScreen()));
+        connect(butSlideshow,SIGNAL(clicked()),this,SLOT(slideShow()));
         butSlideshow->setFocusPolicy(Qt::NoFocus);
         butSlideshow->setIcon(QIcon(QPixmap(":/res/slideshow.png")));
-        butSlideshow->setEnabled(false);
+        if (!imagewidget->isReady()) butSlideshow->setEnabled(false);
         buttonsList << butSlideshow;
     }
     if (isneedNew.properties)
@@ -532,7 +540,7 @@ void QImageViewer::updateSettings(QString language,
         connect(butProperties,SIGNAL(clicked()),imagewidget,SLOT(viewProperties()));
         butProperties->setFocusPolicy(Qt::NoFocus);
         butProperties->setIcon(QIcon(QPixmap(":/res/file-properties.png")));
-        butProperties->setEnabled(false);
+        if (!imagewidget->isReady()) butProperties->setEnabled(false);
         buttonsList << butProperties;
     }
     isneedBut = isneedNew;
@@ -687,7 +695,7 @@ void QImageViewer::resizeImageList()
     editFormResizeElements = new editformResizeElements;
     connect(editFormResizeElements,SIGNAL(editFinished(bool)),this,SLOT(resizeImageListOvered(bool)));
 
-    editFormResizeElements->loadlist(imagewidget->getImageList(),lastdirectory);
+    editFormResizeElements->loadlist(imagewidget->getImageList(),lastdirectory,imagewidget->currentImage());
     if (this->windowState() == Qt::WindowMaximized) editFormResizeElements->setWindowState(Qt::WindowMaximized);
     else
     {
@@ -724,23 +732,110 @@ void QImageViewer::resizeImageListOvered(bool result)
     delete editFormResizeElements;
 }
 
+void QImageViewer::newExternEditor()
+{
+    if (!isEditorAddFormActive)
+    {
+        editorAddForm = new QExternProgramAddForm;
+        connect(editorAddForm,SIGNAL(accept(QString,QString,QString)),this,SLOT(addEditor(QString,QString,QString)));
+        connect(editorAddForm,SIGNAL(cancel()),this,SLOT(abortAddingNewExternEditor()));
+        editorAddForm->show();
+        isEditorAddFormActive = true;
+    }
+}
+
+void QImageViewer::addEditor(QString name, QString icon, QString command)
+{
+    QExternProgram *editor = new QExternProgram(name,icon,command,imagewidget);
+    editors.append(editor);
+    QAction * action = new QAction(QIcon(QPixmap(icon)),name,this);
+    editorsActions.append(action);
+    connect(action,SIGNAL(triggered()),editor,SLOT(exec()));
+    ui->menuExtern_editors->insertAction(ui->editorsNewAction,action);
+
+    qDebug() << name << icon <<command;
+    disconnect(editorAddForm,SIGNAL(accept(QString,QString,QString)),this,SLOT(addEditor(QString,QString,QString)));
+    disconnect(editorAddForm,SIGNAL(cancel()),this,SLOT(abortAddingNewExternEditor()));
+    editorAddForm->close();
+    delete editorAddForm;
+    isEditorAddFormActive = false;
+}
+
+void QImageViewer::abortAddingNewExternEditor()
+{
+    disconnect(editorAddForm,SIGNAL(accept(QString,QString,QString)),this,SLOT(addEditor(QString,QString,QString)));
+    disconnect(editorAddForm,SIGNAL(cancel()),this,SLOT(abortAddingNewExternEditor()));
+
+    editorAddForm->close();
+    delete editorAddForm;
+    isEditorAddFormActive = false;
+}
+
+/** Show Extern editors manager **/
+void QImageViewer::exterEditorsManager()
+{
+    if (!isEditosManagerActive)
+    {
+        isEditosManagerActive = true;
+        editorsManager = new QExternProgramManager(editors,imagewidget);
+        connect(editorsManager,SIGNAL(overed(bool)),this,SLOT(exterEditorsManagerOvered(bool)));
+
+        editorsManager->show();
+    }
+}
+
+/** Close Extern editors manager **/
+void QImageViewer::exterEditorsManagerOvered(bool result)
+{
+    isEditosManagerActive = false;
+
+    if (result)
+    {
+        // Erase old links//
+        for (int i=0;i<editorsActions.size();i++)
+        {
+            ui->menuExtern_editors->removeAction(editorsActions[i]);
+            disconnect(editorsActions[i],SIGNAL(triggered()),editors[i],SLOT(exec()));
+        }
+        editorsActions.clear();
+
+        editors = editorsManager->editors;
+        // Add new links //
+        for (int i=0;i<editors.size();i++)
+        {
+            QAction * action = new QAction(QIcon(QPixmap(editors[i]->icon)),editors[i]->name,this);
+            editorsActions.append(action);
+            connect(action,SIGNAL(triggered()),editors[i],SLOT(exec()));
+            ui->menuExtern_editors->insertAction(ui->editorsNewAction,action);
+        }
+    }
+    editorsManager->close();
+    disconnect(editorsManager,SIGNAL(overed(bool)),this,SLOT(exterEditorsManagerOvered(bool)));
+    delete editorsManager;
+}
+
+/** Show editResize window, hide this **/
+void QImageViewer::imageshackShare()
+{
+    ImageShackUploader * newimage = new ImageShackUploader(imagewidget->currentImageName());
+    imageshack.append(newimage);
+    newimage->show();
+}
 
 /** Show 'About' **/
 void QImageViewer::helpAbout()
 {
     QMessageBox::about(this, tr("About"),
-        tr("QImageViewer 0.1.5\n\n"
+        tr("QImageViewer 0.1.7\n\n"
            "This program is using for viewing pictures\n"
-           "It was created with using Qt 5.0.0\n\n"
+           "It was created with using Qt 5.0.2\n\n"
            "Program author is Bodnya Alexey\n"
            "Ukraine, Kiev, KPI, TV-11\n"
            "This program is under license GPLv2\n"
            "It's free to use and all sources are open.\n"
            "\n"
            "Thanks for testing and helping with tips and ideas to\n"
-           "my friends and Typical Proger community!\n"
-           "\n"
-           "Special thx Neveron for help and support!"));
+           "my friends, Typical Proger community and Prog.org.ru community!"));
 }
 
 

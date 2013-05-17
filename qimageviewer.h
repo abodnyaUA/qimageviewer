@@ -29,6 +29,10 @@
 #include "editformcrop.h"
 #include "settings.h"
 #include "hotkeys.h"
+#include "qexternprogram.h"
+#include "qexternprogramaddform.h"
+#include "qexternprogrammanager.h"
+#include "imageshackuploader.h"
 
 namespace Ui {
 class QImageViewer;
@@ -76,9 +80,18 @@ private slots:
     void setUndoEnable(bool);
     void setRedoEnable(bool);
     void setStatusName(bool);
+    //EXTERN PROGRAM
+    void newExternEditor();
+    void addEditor(QString name, QString icon, QString command);
+    void abortAddingNewExternEditor();
+    void exterEditorsManager();
+    void exterEditorsManagerOvered(bool);
+    //SHARE
+    void imageshackShare();
 
 private:
     /// Settings ///
+    bool isSettingsActive;
     //Default Folder//
     QString lastdirectory;
 
@@ -105,26 +118,45 @@ private:
     hotkeysStruct hotkeys;
     Settings *settings;
 
-    /// Other stuff ///
+    // desktop size //
     QDesktopWidget desk;
+
+    // main form //
     Ui::QImageViewer *ui;
     image *imagewidget;
     QSlider * zoomslider;
 
+    // preview [not released] //
     QScrollArea previewArea;
     previewList * prevList;
     QHBoxLayout prevLayout;
 
+    // image file dialog //
     QFileDialog * dialog;
 
+    // argv parameter //
     QString defaultpath;
 
+    // Fullscreen //
     bool isfullScreenActive;
     fullscreen * fullScreenWidget;
 
+    // Edit Forms //
     editformResize *editFormResize;
     editformCrop *editFormCrop;
     editformResizeElements *editFormResizeElements;
+
+    // EXTERN EDITORS //
+    QList<QExternProgram *> editors;
+    QList<QAction*> editorsActions;
+    QExternProgramAddForm * editorAddForm;
+    bool isEditorAddFormActive;
+    QExternProgramManager * editorsManager;
+    bool isEditosManagerActive;
+
+    // SHARE //
+    QList<ImageShackUploader *> imageshack;
+
 
     void createActions();
     void createHotkeys();

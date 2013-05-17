@@ -69,6 +69,7 @@ private:
     ///Hotkeys///
     //Change widget//
     qhotkeywidget * QHotkeyWidget;
+    bool isActiveHotkeyWidget;
 
     //buttons//
     void setHotkeys();

@@ -129,6 +129,9 @@ void QImageViewer::loadsettings()
             out << "Slideshow="<< (int)isneedBut.slideshow << "\n";
             isneedBut.properties = false;
             out << "Properties="<< (int)isneedBut.properties << "\n";
+
+            /// Panel ///
+            out << "\n#Extern editors\n";
         }
     }
     else
@@ -254,6 +257,35 @@ void QImageViewer::loadsettings()
         isneedBut.slideshow = (bool)sets.right(sets.size()-10).toInt();
         sets = out.readLine();
         isneedBut.properties = (bool)sets.right(sets.size()-11).toInt();
+
+        /// Extern editors ///
+        sets = out.readLine(); //empty
+        sets = out.readLine(); //"Extern editors"
+
+        /**
+          Name=Gimp
+          Icon=
+          Programm=
+          **/
+        while (!out.atEnd())
+        {
+            sets = out.readLine();
+            QString name = sets.right(sets.size()-5);
+            sets = out.readLine();
+            QString icon = sets.right(sets.size()-5);
+            sets = out.readLine();
+            QString command = sets.right(sets.size()-9);
+
+            QExternProgram *editor = new QExternProgram(name,icon,command,imagewidget);
+            editors.append(editor);
+            QAction * action = new QAction(QIcon(QPixmap(icon)),name,this);
+            editorsActions.append(action);
+            connect(action,SIGNAL(triggered()),editor,SLOT(exec()));
+            ui->menuExtern_editors->insertAction(ui->editorsNewAction,action);
+
+            sets = out.readLine(); //empty
+        }
+        if (editors.size() != 0) ui->menuExtern_editors->insertSeparator(ui->editorsNewAction);
     }
     file.close();
 }
@@ -343,6 +375,20 @@ void QImageViewer::createActions()
     ui->zoomWindowAction->setStatusTip(tr("Zoom to window size"));
     connect(ui->zoomWindowAction,SIGNAL(triggered()),imagewidget,SLOT(reloadImage()));
 
+    // Extern editors //
+    ui->editorsNewAction->setStatusTip(tr("Add new extern editor. You will can open current image with other editor"));
+    connect(ui->editorsNewAction,SIGNAL(triggered()),this,SLOT(newExternEditor()));
+
+    ui->editorsManagerAction->setStatusTip(tr("Set up your extern settings"));
+    connect(ui->editorsManagerAction,SIGNAL(triggered()),this,SLOT(exterEditorsManager()));
+
+    for (int i=0;i<editorsActions.size();i++)
+        editorsActions[i]->setEnabled(false);
+
+    // Share //
+    ui->shareImageShackAction->setStatusTip(tr("Share this image with ImageShack.us"));
+    connect(ui->shareImageShackAction,SIGNAL(triggered()),this,SLOT(imageshackShare()));
+
     // Help //
     ui->aboutAction->setStatusTip(tr("Information about program"));
     connect(ui->aboutAction,SIGNAL(triggered()),this,SLOT(helpAbout()));
@@ -396,34 +442,6 @@ void QImageViewer::createHotkeys()
 void QImageViewer::createDesign()
 {
 
-    //File//
-    ui->saveAction->setIcon(QIcon(QPixmap(":/res/file-save.png")));
-    ui->openAction->setIcon(QIcon(QPixmap(":/res/file-open.png")));
-    ui->settingsAction->setIcon(QIcon(QPixmap(":/res/settings.png")));
-    //Edit//
-    ui->rotateLeftAction->setIcon(QIcon(QPixmap(":/res/rotate-left.png")));
-    ui->rotateRightAction->setIcon(QIcon(QPixmap(":/res/rotate-right.png")));
-    ui->flipHorizontalAction->setIcon(QIcon(QPixmap(":/res/flip-horizontal.png")));
-    ui->flipVerticalAction->setIcon(QIcon(QPixmap(":/res/flip-vertical.png")));
-    ui->deleteFileAction->setIcon(QIcon(QPixmap(":/res/delete.png")));
-    ui->resizeAction->setIcon(QIcon(QPixmap(":/res/resize.png")));
-    ui->resizeitemsAction->setIcon(QIcon(QPixmap(":/res/resize-items.png")));
-    ui->cropAction->setIcon(QIcon(QPixmap(":/res/crop.png")));
-    //Watch//
-    ui->previmageAction->setIcon(QIcon(QPixmap(":/res/prev.png")));
-    ui->nextimageAction->setIcon(QIcon(QPixmap(":/res/next.png")));
-    ui->zoomInAction->setIcon(QIcon(QPixmap(":/res/zoom-in.png")));
-    ui->zoomOutAction->setIcon(QIcon(QPixmap(":/res/zoom-out.png")));
-    ui->zoomOriginalAction->setIcon(QIcon(QPixmap(":/res/zoom-original.png")));
-    ui->zoomWindowAction->setIcon(QIcon(QPixmap(":/res/zoom-window.png")));
-    ui->fullscreenAction->setIcon(QIcon(QPixmap(":/res/fullscreen.png")));
-    ui->slideshowAction->setIcon(QIcon(QPixmap(":/res/slideshow.png")));
-    ui->wallpaperAction->setIcon(QIcon(QPixmap(":/res/wallpaper.png")));
-    //Help//
-    ui->aboutAction->setIcon(QIcon(QPixmap(":/res/help.png")));
-
-    ui->prevButton->setIcon(QIcon(QPixmap(":/res/prev.png")));
-    ui->nextButton->setIcon(QIcon(QPixmap(":/res/next.png")));
 }
 
 void QImageViewer::createPanel()
@@ -522,7 +540,7 @@ void QImageViewer::createPanel()
     {
         butSlideshow = new QPushButton;
         butSlideshow->setToolTip(tr("Start slideshow in fullscreen mode"));
-        connect(butSlideshow,SIGNAL(clicked()),this,SLOT(fullScreen()));
+        connect(butSlideshow,SIGNAL(clicked()),this,SLOT(slideShow()));
         butSlideshow->setFocusPolicy(Qt::NoFocus);
         butSlideshow->setIcon(QIcon(QPixmap(":/res/slideshow.png")));
         butSlideshow->setEnabled(false);
@@ -644,6 +662,15 @@ void QImageViewer::closeEvent(QCloseEvent *event)
     out << "Slideshow="<< (int)isneedBut.slideshow << "\n";
     out << "Properties="<< (int)isneedBut.properties << "\n";
 
+    /// Extern Editors ///
+    out << "\n#Extern editors\n";
+    for (int i=0;i<editors.size();i++)
+    {
+        out << "Name=" << editors[i]->name << "\n";
+        out << "Icon=" << editors[i]->icon << "\n";
+        out << "Programm=" << editors[i]->command << "\n";
+        out << "\n";
+    }
     file.close();
 
     if (!imagewidget->isSaved())
@@ -664,7 +691,11 @@ void QImageViewer::closeEvent(QCloseEvent *event)
     }
 
     //Close all openned windows//
-    settings->close();
+    if (isSettingsActive) settings->close();
+    if (isEditorAddFormActive) editorAddForm->close();
+    if (isEditosManagerActive) editorsManager->close();
+    for (int i=0; i<imageshack.size();i++)
+        if (imageshack[i] != 0) imageshack[i]->close();
 
     event->accept();
 }

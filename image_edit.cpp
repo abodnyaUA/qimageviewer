@@ -9,6 +9,7 @@ void image::reloadImage()
     zoom = 1.0;
     zoomMin = false;
     zoomMax = false;
+    zoomOriginal = false;
 
     if (width() == desk.width() && height() == desk.height() &&
             (imagePixmap->width() >= width() || imagePixmap->height() >= height()))

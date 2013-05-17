@@ -38,6 +38,10 @@
         <property name="text">
          <string/>
         </property>
+        <property name="icon">
+         <iconset resource="resources.qrc">
+          <normaloff>:/res/prev.png</normaloff>:/res/prev.png</iconset>
+        </property>
        </widget>
       </item>
       <item>
@@ -53,6 +57,10 @@
         </property>
         <property name="text">
          <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="resources.qrc">
+          <normaloff>:/res/next.png</normaloff>:/res/next.png</iconset>
         </property>
        </widget>
       </item>
@@ -145,9 +153,24 @@
     <addaction name="separator"/>
     <addaction name="wallpaperAction"/>
    </widget>
+   <widget class="QMenu" name="menuExtern_editors">
+    <property name="title">
+     <string>&amp;Extern editors</string>
+    </property>
+    <addaction name="editorsNewAction"/>
+    <addaction name="editorsManagerAction"/>
+   </widget>
+   <widget class="QMenu" name="menuShare">
+    <property name="title">
+     <string>&amp;Share</string>
+    </property>
+    <addaction name="shareImageShackAction"/>
+   </widget>
    <addaction name="fileMenu"/>
    <addaction name="parametersMenu"/>
    <addaction name="previewMenu"/>
+   <addaction name="menuExtern_editors"/>
+   <addaction name="menuShare"/>
    <addaction name="helpMenu"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
@@ -163,6 +186,10 @@
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="openAction">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/res/file-open.png</normaloff>:/res/file-open.png</iconset>
+   </property>
    <property name="text">
     <string>Open image</string>
    </property>
@@ -173,6 +200,10 @@
    </property>
   </action>
   <action name="aboutAction">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/res/help.png</normaloff>:/res/help.png</iconset>
+   </property>
    <property name="text">
     <string>About</string>
    </property>
@@ -180,6 +211,10 @@
   <action name="saveAction">
    <property name="enabled">
     <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/res/file-save.png</normaloff>:/res/file-save.png</iconset>
    </property>
    <property name="text">
     <string>Save</string>
@@ -197,6 +232,10 @@
    <property name="enabled">
     <bool>false</bool>
    </property>
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/res/rotate-right.png</normaloff>:/res/rotate-right.png</iconset>
+   </property>
    <property name="text">
     <string>Rotate to the right</string>
    </property>
@@ -204,6 +243,10 @@
   <action name="rotateLeftAction">
    <property name="enabled">
     <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/res/rotate-left.png</normaloff>:/res/rotate-left.png</iconset>
    </property>
    <property name="text">
     <string>Rotate to the left</string>
@@ -213,6 +256,10 @@
    <property name="enabled">
     <bool>false</bool>
    </property>
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/res/delete.png</normaloff>:/res/delete.png</iconset>
+   </property>
    <property name="text">
     <string>Delete file</string>
    </property>
@@ -220,6 +267,10 @@
   <action name="resizeAction">
    <property name="enabled">
     <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/res/resize.png</normaloff>:/res/resize.png</iconset>
    </property>
    <property name="text">
     <string>Resize</string>
@@ -229,6 +280,10 @@
    <property name="enabled">
     <bool>false</bool>
    </property>
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/res/fullscreen.png</normaloff>:/res/fullscreen.png</iconset>
+   </property>
    <property name="text">
     <string>Fullscreen mode</string>
    </property>
@@ -236,6 +291,10 @@
   <action name="cropAction">
    <property name="enabled">
     <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/res/crop.png</normaloff>:/res/crop.png</iconset>
    </property>
    <property name="text">
     <string>Crop</string>
@@ -261,6 +320,10 @@
    <property name="enabled">
     <bool>false</bool>
    </property>
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/res/wallpaper.png</normaloff>:/res/wallpaper.png</iconset>
+   </property>
    <property name="text">
     <string>Set as wallpaper</string>
    </property>
@@ -269,11 +332,19 @@
    <property name="enabled">
     <bool>false</bool>
    </property>
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/res/slideshow.png</normaloff>:/res/slideshow.png</iconset>
+   </property>
    <property name="text">
     <string>Start slideshow</string>
    </property>
   </action>
   <action name="settingsAction">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/res/settings.png</normaloff>:/res/settings.png</iconset>
+   </property>
    <property name="text">
     <string>Settings</string>
    </property>
@@ -281,6 +352,10 @@
   <action name="zoomInAction">
    <property name="enabled">
     <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/res/zoom-in.png</normaloff>:/res/zoom-in.png</iconset>
    </property>
    <property name="text">
     <string>Zoom In</string>
@@ -290,6 +365,10 @@
    <property name="enabled">
     <bool>false</bool>
    </property>
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/res/zoom-out.png</normaloff>:/res/zoom-out.png</iconset>
+   </property>
    <property name="text">
     <string>Zoom out</string>
    </property>
@@ -297,6 +376,10 @@
   <action name="zoomWindowAction">
    <property name="enabled">
     <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/res/zoom-window.png</normaloff>:/res/zoom-window.png</iconset>
    </property>
    <property name="text">
     <string>Window size</string>
@@ -306,6 +389,10 @@
    <property name="enabled">
     <bool>false</bool>
    </property>
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/res/zoom-original.png</normaloff>:/res/zoom-original.png</iconset>
+   </property>
    <property name="text">
     <string>Original size</string>
    </property>
@@ -313,6 +400,10 @@
   <action name="resizeitemsAction">
    <property name="enabled">
     <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/res/resize-items.png</normaloff>:/res/resize-items.png</iconset>
    </property>
    <property name="text">
     <string>Resize items...</string>
@@ -322,6 +413,10 @@
    <property name="enabled">
     <bool>false</bool>
    </property>
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/res/flip-horizontal.png</normaloff>:/res/flip-horizontal.png</iconset>
+   </property>
    <property name="text">
     <string>Flip horizontal</string>
    </property>
@@ -329,6 +424,10 @@
   <action name="flipVerticalAction">
    <property name="enabled">
     <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/res/flip-vertical.png</normaloff>:/res/flip-vertical.png</iconset>
    </property>
    <property name="text">
     <string>Flip vertical</string>
@@ -338,6 +437,10 @@
    <property name="enabled">
     <bool>false</bool>
    </property>
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/res/next.png</normaloff>:/res/next.png</iconset>
+   </property>
    <property name="text">
     <string>Next image</string>
    </property>
@@ -346,8 +449,31 @@
    <property name="enabled">
     <bool>false</bool>
    </property>
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/res/prev.png</normaloff>:/res/prev.png</iconset>
+   </property>
    <property name="text">
     <string>Previous image</string>
+   </property>
+  </action>
+  <action name="editorsNewAction">
+   <property name="text">
+    <string>Add editor</string>
+   </property>
+  </action>
+  <action name="editorsManagerAction">
+   <property name="text">
+    <string>Editors manager</string>
+   </property>
+  </action>
+  <action name="shareImageShackAction">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/res/imageshack.png</normaloff>:/res/imageshack.png</iconset>
+   </property>
+   <property name="text">
+    <string>ImageShack.us</string>
    </property>
   </action>
  </widget>

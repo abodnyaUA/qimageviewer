@@ -18,7 +18,7 @@ class editformResizeElements : public QWidget
 public:
     explicit editformResizeElements(QWidget *parent = 0);
     ~editformResizeElements();
-    void loadlist(QStringList list,QString folder);
+    void loadlist(QStringList list,QString folder, int current);
     int getLastIndx();
     bool isSameFolder();
 

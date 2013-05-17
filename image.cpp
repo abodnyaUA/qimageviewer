@@ -213,7 +213,7 @@ void image::loadimagelist(QStringList list)
 
 void image::setOriginalSize()
 {
-    while (!zoomMax) zoomInc();
+     while (!zoomOriginal) zoomInc();
 }
 
 /** return current index **/
@@ -239,6 +239,12 @@ bool image::isReady()
     return isPixmap;
 }
 
+/** set true if image was loaded **/
+void image::setReady(bool arg)
+{
+    isPixmap = arg;
+}
+
 /** return true if image was saved and all changes was accepted **/
 bool image::isSaved()
 {
@@ -254,6 +260,9 @@ QStringList image::getImageList()
 /** reset image to window size **/
 void image::resetZoom()
 {
+    zoomOriginal = false;
+    zoomMin = false;
+    zoomMax = false;
     zoom = 1.0;
     sumMousePos.setX( imageScene->width()/2.0 );
     sumMousePos.setY( imageScene->height()/2.0 );
@@ -290,9 +299,10 @@ void image::zoomInc()
         imageScene->clear();
         imageScene->setSceneRect(0,0,1,1);
         imageScene->clear();
+        zoomOriginal = false;
         if ((double)imagePixmap->width()/(double)width() > (double)imagePixmap->height()/(double)height())
         {
-            if ((zoom+0.2)*(width()*0.95) < imagePixmap->width()) zoom += 0.2;
+            if ((zoom+0.2)*(width()*0.95) < imagePixmap->width()*5) zoom += 0.2;
             if ((zoom+0.2)*(width()*0.95) < imagePixmap->width())
             {
                 imageScene->setSceneRect(0,0,(width()*0.95)*zoom,(*imagePixmap).scaledToWidth((width()*0.95)*zoom).height());
@@ -302,12 +312,13 @@ void image::zoomInc()
             {
                 imageScene->setSceneRect(0,0,(*imagePixmap).width(),(*imagePixmap).height());
                 imageScene->addPixmap(*imagePixmap);
-                zoomMax = true;
+                zoomOriginal = true;
             }
+            if ((zoom+0.2)*(width()*0.95) > imagePixmap->width()) zoomMax = true;
         }
         else
         {
-            if ((zoom+0.2)*(height()*0.98) < imagePixmap->height()) zoom += 0.2;
+            if ((zoom+0.2)*(height()*0.98) < imagePixmap->height()*5) zoom += 0.2;
             if ((zoom+0.2)*(height()*0.98) < imagePixmap->height())
             {
                 imageScene->setSceneRect(0,0,(*imagePixmap).scaledToHeight(((height()*0.98))*zoom).width(),((height()*0.98))*zoom);
@@ -317,14 +328,15 @@ void image::zoomInc()
             {
                 imageScene->setSceneRect(0,0,(*imagePixmap).width(),(*imagePixmap).height());
                 imageScene->addPixmap(*imagePixmap);
-                zoomMax = true;
+                zoomOriginal = true;
             }
+            if ((zoom+0.2)*(height()*0.98) > imagePixmap->height()) zoomMax = true;
         }
         setSceneRect(0,0,imageScene->width(),imageScene->height());
         setScene(imageScene);
 
 
-        ////ЦЕНТРОВКА////
+        ////Center position////
         qDebug() << "Proportion: " << (imageScene->width() / oldwidth)<<"zoom="<<zoom;
         sumMousePos.setX(sumMousePos.x() * (imageScene->width() / oldwidth));
         sumMousePos.setY(sumMousePos.y() * (imageScene->width() / oldwidth));
@@ -338,6 +350,7 @@ void image::zoomDec()
 {
     if (!zoomMin)
     {
+        zoomOriginal = false;
         int oldwidth = imageScene->width();
         imageScene->clear();
         imageScene->setSceneRect(0,0,1,1);
@@ -357,7 +370,7 @@ void image::zoomDec()
         setSceneRect(0,0,imageScene->width(),imageScene->height());
         setScene(imageScene);
 
-        ////ЦЕНТРОВКА////
+        ////Center position////
         qDebug() << "Proportion: " << (imageScene->width() / oldwidth)<<"zoom="<<zoom;
         sumMousePos.setX(sumMousePos.x() * (imageScene->width() / oldwidth));
         sumMousePos.setY(sumMousePos.y() * (imageScene->width() / oldwidth));
@@ -430,6 +443,11 @@ static wchar_t* charToWChar(const char* text)
 #endif
 void image::setAsWallpaper()
 {
+    int r = QMessageBox::question(this, tr("Setting wallpaper"),
+                                    tr("Do you want to set this image like desktop wallpaper?"),
+                                    QMessageBox::Yes | QMessageBox::Default,
+                                    QMessageBox::Cancel | QMessageBox::Escape);
+    if (r == QMessageBox::Cancel) return;
 #ifdef Q_OS_WIN32
     #include <windows.h>
     imagePixmap->save("C:/WINDOWS/system32/qimageviewer-wallpaper.bmp");

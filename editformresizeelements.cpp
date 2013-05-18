@@ -47,9 +47,9 @@ void editformResizeElements::on_typePercentRadioButton_clicked()
     ui->sizeWidthSpinBox->setDisabled(true);
 }
 
-int editformResizeElements::getLastIndx()
+QString editformResizeElements::getLast()
 {
-    return last_element_indx;
+    return last_element;
 }
 
 void editformResizeElements::on_acceptButton_clicked()
@@ -75,12 +75,13 @@ void editformResizeElements::on_acceptButton_clicked()
         }
         int size = folder.size()+1;
 
-        last_element_indx = 0;
-        for (int i=0;i<list.size() && last_element_indx == 0;i++)
+        last_element = QString::null;
+        for (int i=0;i<list.size() && last_element == QString::null;i++)
         {
             if (ui->listWidget->isItemSelected(ui->listWidget->item(i)))
-                last_element_indx = i;
+                last_element = folder+"/"+ui->listWidget->item(i)->text();
         }
+
         if (ui->typeSizeRadioButton->isChecked())
         {
             for (int i=0;i<list.size();i++)
@@ -94,6 +95,7 @@ void editformResizeElements::on_acceptButton_clicked()
                 }
             }
         }
+
         if (ui->typePercentRadioButton->isChecked())
         {
             for (int i=0;i<list.size();i++)

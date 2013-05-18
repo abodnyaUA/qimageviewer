@@ -8,6 +8,9 @@
 #include <QTreeWidgetItem>
 #include <QHBoxLayout>
 #include <QVBoxLayout>
+#include <QColorDialog>
+#include <QPixmap>
+#include <QRgb>
 #include "hotkeys.h"
 #include "qhotkeywidget.h"
 
@@ -26,7 +29,8 @@ public:
                             bool mouseZoom, bool mouseFullscreen,
                             bool slideshowSmoothTransition, double slideshowInterval,
                             int panelalignment,
-                            hotkeysStruct hotkeys, isneedButStruct isneedBut);
+                            hotkeysStruct hotkeys, isneedButStruct isneedBut,
+                            QColor fullscreencolor);
     ~Settings();
     
 private slots:
@@ -38,10 +42,9 @@ private slots:
     void on_hotkeyWidget_itemDoubleClicked(QTreeWidgetItem *item, int column);
     void changingEndAccept();
     void changingEndDecline();
-
     void on_resetHotkeysButton_clicked();
-
     void on_panelReset_clicked();
+    void on_fullscreenColorButton_clicked();
 
 signals:
     void acceptsettings(QString language,
@@ -49,7 +52,8 @@ signals:
                         bool mouseZoom, bool mouseFullscreen,
                         bool slideshowSmoothTransition, double slideshowInterval,
                         int panelalignment,
-                        hotkeysStruct hotkeys, isneedButStruct isneedBut);
+                        hotkeysStruct hotkeys, isneedButStruct isneedBut,
+                        QColor fullscreencolor);
 
 private:
     Ui::Settings *ui;
@@ -92,6 +96,11 @@ private:
 
     //values//
     hotkeysStruct old_hotkeys;
+
+    /// Design ///
+    //Fullscreen color//
+    QColorDialog colordialog;
+    QColor fullscreencolor,old_fullscreencolor;
 
 protected:
     void closeEvent(QCloseEvent *);

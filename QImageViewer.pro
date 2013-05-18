@@ -60,7 +60,8 @@ SOURCES += editformcrop.cpp \
     qexternprogram.cpp \
     qexternprogramaddform.cpp \
     qexternprogrammanager.cpp \
-    imageshackuploader.cpp
+    imageshackuploader.cpp \
+    settings_hotkeys.cpp
 
 RESOURCES += resources.qrc
 
@@ -117,4 +118,5 @@ OTHER_FILES += \
     android/src/org/kde/necessitas/origo/QtApplication.java \
     android/src/org/kde/necessitas/origo/QtActivity.java \
     android/src/org/kde/necessitas/ministro/IMinistroCallback.aidl \
-    android/src/org/kde/necessitas/ministro/IMinistro.aidl
+    android/src/org/kde/necessitas/ministro/IMinistro.aidl \
+    style.qss

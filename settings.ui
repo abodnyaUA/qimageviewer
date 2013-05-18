@@ -14,14 +14,14 @@
    <string>QImageViewer - Settings</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="resources.qrc">
+   <iconset>
     <normaloff>:/res/settings.png</normaloff>:/res/settings.png</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_3">
    <item>
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="tabMainSettings">
       <attribute name="title">
@@ -148,55 +148,6 @@
         </layout>
        </item>
        <item>
-        <widget class="Line" name="line_4">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_6">
-         <item>
-          <widget class="QComboBox" name="toolpanelComboBox">
-           <property name="minimumSize">
-            <size>
-             <width>275</width>
-             <height>0</height>
-            </size>
-           </property>
-           <item>
-            <property name="text">
-             <string>Tool Panel placed at the bottom</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Tool Panel placed at the top</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Tool Panel is hidden</string>
-            </property>
-           </item>
-          </widget>
-         </item>
-         <item>
-          <spacer name="horizontalSpacer_7">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-        </layout>
-       </item>
-       <item>
         <widget class="Line" name="line_3">
          <property name="orientation">
           <enum>Qt::Horizontal</enum>
@@ -271,11 +222,123 @@
        </item>
       </layout>
      </widget>
+     <widget class="QWidget" name="tab_3">
+      <attribute name="title">
+       <string>Design</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_5">
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_9">
+         <item>
+          <widget class="QLabel" name="label_2">
+           <property name="text">
+            <string>Fullscreen background color</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="fullscreenColorLabel">
+           <property name="minimumSize">
+            <size>
+             <width>27</width>
+             <height>27</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>27</width>
+             <height>27</height>
+            </size>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="fullscreenColorButton">
+           <property name="text">
+            <string>Choose</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_3">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <spacer name="verticalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
      <widget class="QWidget" name="tab_2">
       <attribute name="title">
        <string>Panel</string>
       </attribute>
       <layout class="QVBoxLayout" name="verticalLayout_4">
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_6">
+         <item>
+          <widget class="QComboBox" name="toolpanelComboBox">
+           <property name="minimumSize">
+            <size>
+             <width>275</width>
+             <height>0</height>
+            </size>
+           </property>
+           <item>
+            <property name="text">
+             <string>Tool Panel placed at the bottom</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Tool Panel placed at the top</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Tool Panel is hidden</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_7">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </item>
        <item>
         <widget class="QScrollArea" name="scrollArea">
          <property name="widgetResizable">
@@ -286,8 +349,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>698</width>
-            <height>339</height>
+            <width>688</width>
+            <height>320</height>
            </rect>
           </property>
           <layout class="QFormLayout" name="formLayout">
@@ -300,7 +363,7 @@
               <string>Rotate Left</string>
              </property>
              <property name="icon">
-              <iconset resource="resources.qrc">
+              <iconset>
                <normaloff>:/res/rotate-left.png</normaloff>:/res/rotate-left.png</iconset>
              </property>
             </widget>
@@ -311,7 +374,7 @@
               <string>Rotate Right</string>
              </property>
              <property name="icon">
-              <iconset resource="resources.qrc">
+              <iconset>
                <normaloff>:/res/rotate-right.png</normaloff>:/res/rotate-right.png</iconset>
              </property>
             </widget>
@@ -322,7 +385,7 @@
               <string>Flip hotizontal</string>
              </property>
              <property name="icon">
-              <iconset resource="resources.qrc">
+              <iconset>
                <normaloff>:/res/flip-horizontal.png</normaloff>:/res/flip-horizontal.png</iconset>
              </property>
             </widget>
@@ -333,7 +396,7 @@
               <string>Flip Vertical</string>
              </property>
              <property name="icon">
-              <iconset resource="resources.qrc">
+              <iconset>
                <normaloff>:/res/flip-vertical.png</normaloff>:/res/flip-vertical.png</iconset>
              </property>
             </widget>
@@ -344,7 +407,7 @@
               <string>Zoom In</string>
              </property>
              <property name="icon">
-              <iconset resource="resources.qrc">
+              <iconset>
                <normaloff>:/res/zoom-in.png</normaloff>:/res/zoom-in.png</iconset>
              </property>
             </widget>
@@ -355,7 +418,7 @@
               <string>Zoom Out</string>
              </property>
              <property name="icon">
-              <iconset resource="resources.qrc">
+              <iconset>
                <normaloff>:/res/zoom-out.png</normaloff>:/res/zoom-out.png</iconset>
              </property>
             </widget>
@@ -366,7 +429,7 @@
               <string>Zoom to window size</string>
              </property>
              <property name="icon">
-              <iconset resource="resources.qrc">
+              <iconset>
                <normaloff>:/res/zoom-window.png</normaloff>:/res/zoom-window.png</iconset>
              </property>
             </widget>
@@ -377,7 +440,7 @@
               <string>Zoom to original size</string>
              </property>
              <property name="icon">
-              <iconset resource="resources.qrc">
+              <iconset>
                <normaloff>:/res/zoom-original.png</normaloff>:/res/zoom-original.png</iconset>
              </property>
             </widget>
@@ -388,7 +451,7 @@
               <string>Fullscreen</string>
              </property>
              <property name="icon">
-              <iconset resource="resources.qrc">
+              <iconset>
                <normaloff>:/res/fullscreen.png</normaloff>:/res/fullscreen.png</iconset>
              </property>
             </widget>
@@ -399,7 +462,7 @@
               <string>Slideshow</string>
              </property>
              <property name="icon">
-              <iconset resource="resources.qrc">
+              <iconset>
                <normaloff>:/res/slideshow.png</normaloff>:/res/slideshow.png</iconset>
              </property>
             </widget>
@@ -410,7 +473,7 @@
               <string>Properties</string>
              </property>
              <property name="icon">
-              <iconset resource="resources.qrc">
+              <iconset>
                <normaloff>:/res/file-properties.png</normaloff>:/res/file-properties.png</iconset>
              </property>
             </widget>
@@ -535,8 +598,6 @@
    </item>
   </layout>
  </widget>
- <resources>
-  <include location="resources.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

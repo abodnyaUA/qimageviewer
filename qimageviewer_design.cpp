@@ -46,6 +46,11 @@ void QImageViewer::loadsettings()
             slideshowInterval = 1;
             out << "PANEL=0\n";
             panelalignment = 0;
+            fullscreencolor = QColor(255,255,255);
+            out << "FULLSCREEN_COLOR=\n" <<
+                   "RED=" << fullscreencolor.red() << "\n" <<
+                   "GREEN=" << fullscreencolor.green() << "\n" <<
+                   "BLUE=" << fullscreencolor.blue() << "\n";
 
             /// Hotkeys ///
             //File//
@@ -170,6 +175,16 @@ void QImageViewer::loadsettings()
         /// Panel ///
         sets = out.readLine();
         panelalignment = sets.right(sets.size()-6).toInt();
+
+        /// Fullscreen ///
+        sets = out.readLine();
+        sets = out.readLine();
+        int r = sets.right(sets.size()-4).toInt();
+        sets = out.readLine();
+        int g = sets.right(sets.size()-6).toInt();
+        sets = out.readLine();
+        int b = sets.right(sets.size()-5).toInt();
+        fullscreencolor = QColor::fromRgb(r,g,b);
 
         /// Hotkeys ///
         sets = out.readLine(); //empty
@@ -613,6 +628,12 @@ void QImageViewer::closeEvent(QCloseEvent *event)
 
     /// Panel ///
     out << "PANEL="<<panelalignment<<"\n";
+
+    /// Fullscreen background ///
+    out << "FULLSCREEN_COLOR=\n" <<
+           "RED=" << fullscreencolor.red() << "\n" <<
+           "GREEN=" << fullscreencolor.green() << "\n" <<
+           "BLUE=" << fullscreencolor.blue() << "\n";
 
     /// Hotkeys ///
     out << "\n#Hotkeys\n";

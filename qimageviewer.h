@@ -20,6 +20,8 @@
 #include <QFile>
 #include <QTextStream>
 #include <QFileDialog>
+#include <QLibraryInfo>
+#include <QTranslator>
 #include "image.h"
 #include "preview.h"
 #include "previewlist.h"
@@ -59,7 +61,8 @@ private slots:
                         bool mouseZoom, bool mouseFullscreen,
                         bool slideshowSmoothTransition, double slideshowInterval,
                         int panelalignment,
-                        hotkeysStruct hotkeys, isneedButStruct isneedBut);
+                        hotkeysStruct hotkeys, isneedButStruct isneedBut,
+                        QColor fullscreencolor);
     //HELP
     void helpAbout();
     //NAVIGATION
@@ -140,6 +143,7 @@ private:
     // Fullscreen //
     bool isfullScreenActive;
     fullscreen * fullScreenWidget;
+    QColor fullscreencolor;
 
     // Edit Forms //
     editformResize *editFormResize;

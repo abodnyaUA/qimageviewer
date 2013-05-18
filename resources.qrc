@@ -50,5 +50,6 @@
         <file>res/update.png</file>
         <file>res/extern-editor-new.png</file>
         <file>res/imageshack.png</file>
+        <file>style.qss</file>
     </qresource>
 </RCC>

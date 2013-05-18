@@ -19,7 +19,7 @@ public:
     explicit editformResizeElements(QWidget *parent = 0);
     ~editformResizeElements();
     void loadlist(QStringList list,QString folder, int current);
-    int getLastIndx();
+    QString getLast();
     bool isSameFolder();
 
 signals:
@@ -37,6 +37,7 @@ private:
     QStringList list;
     QString folder;
     int last_element_indx;
+    QString last_element;
     QGraphicsScene * scene;
     QPixmap pixmap;
     bool samefolder;

@@ -2,7 +2,7 @@
 #include "ui_fullscreen.h"
 #include <QDebug>
 
-fullscreen::fullscreen(image *imagewidget, hotkeysStruct *hotkeys):
+fullscreen::fullscreen(image *imagewidget, hotkeysStruct *hotkeys, QColor fullscreencolor):
     ui(new Ui::fullscreen)
 {
     ui->setupUi(this);
@@ -13,6 +13,10 @@ fullscreen::fullscreen(image *imagewidget, hotkeysStruct *hotkeys):
     connect(timer, SIGNAL(timeout()), this, SLOT(nextSlide()));
     slideshowStarted = false;
     this->hotkeys = hotkeys;
+    this->fullscreencolor = fullscreencolor;
+
+    QString style = "background-color: rgb(%1, %2, %3);";
+    setStyleSheet(style.arg(fullscreencolor.red()).arg(fullscreencolor.green()).arg(fullscreencolor.blue()));
 }
 
 
@@ -20,10 +24,14 @@ void fullscreen::setSlideshowSmoothTransition(bool arg)
 {   slideshowSmoothTransition = arg;   }
 void fullscreen::setSlideshowInterval(double arg)
 {   slideshowInterval = arg;}
+void fullscreen::setBkgColor(QColor arg)
+{   fullscreencolor = arg;  }
 bool fullscreen::getSlideshowSmoothTransition()
 {   return slideshowSmoothTransition;  }
 double fullscreen::getSlideshowInterval()
 {   return slideshowInterval;   }
+QColor fullscreen::getBkgColor()
+{   return fullscreencolor;     }
 
 void fullscreen::startSlideShow()
 {

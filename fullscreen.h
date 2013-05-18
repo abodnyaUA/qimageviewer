@@ -18,7 +18,7 @@ class fullscreen : public QWidget
     Q_OBJECT
     
 public:
-    explicit fullscreen(image *imagewidget, hotkeysStruct * hotkeys);
+    explicit fullscreen(image *imagewidget, hotkeysStruct * hotkeys, QColor fullscreencolor);
     ~fullscreen();
     QVBoxLayout *lay;
     image *imagewidget;
@@ -28,6 +28,8 @@ public:
     void setSlideshowInterval(double);
     bool getSlideshowSmoothTransition();
     double getSlideshowInterval();
+    QColor getBkgColor();
+    void setBkgColor(QColor);
 
 signals:
     void fullscreenEnded();
@@ -50,6 +52,7 @@ signals:
 private:
     Ui::fullscreen *ui;
     hotkeysStruct * hotkeys;
+    QColor fullscreencolor;
 
     //slideshow
     QTimer *timer;

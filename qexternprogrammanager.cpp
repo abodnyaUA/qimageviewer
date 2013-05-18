@@ -63,18 +63,10 @@ void QExternProgramManager::on_acceptButton_clicked()
 void QExternProgramManager::on_removeButton_clicked()
 {
     int pos = ui->listWidget->currentRow();
-    qDebug() << "was:" << editors.size() << editorsItems.size();
-    qDebug() << "pos:" << pos;
     editors.removeAt(pos);
 
-    //shitcode
-    qDebug() << "REMOVE: " << ui->listWidget->currentItem()->text() <<
-                "at row:" << ui->listWidget->row(ui->listWidget->currentItem());
     if (editors.size()>0) ui->listWidget->takeItem(ui->listWidget->row(ui->listWidget->currentItem()));
     else ui->listWidget->clear();
-
-    qDebug() << "is:" << editors.size() << editorsItems.size();
-
 
     if (editors.isEmpty())
     {

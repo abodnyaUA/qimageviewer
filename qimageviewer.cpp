@@ -163,6 +163,7 @@ void QImageViewer::fileOpen()
         ui->zoomWindowAction->setEnabled(true);
         for (int i=0;i<editorsActions.size();i++)
             editorsActions[i]->setEnabled(true);
+        ui->shareImageShackAction->setEnabled(true);
 
         ui->prevButton->setEnabled(true);
         ui->nextButton->setEnabled(true);
@@ -259,7 +260,7 @@ void QImageViewer::fullScreenFromImage()
 void QImageViewer::fullScreen()
 {
     // init fullscreen mode //
-    fullScreenWidget = new fullscreen(imagewidget,&hotkeys);
+    fullScreenWidget = new fullscreen(imagewidget,&hotkeys,fullscreencolor);
     connect(fullScreenWidget,SIGNAL(fullscreenEnded()),this,SLOT(fullScreenOvered()));
     connect(fullScreenWidget,SIGNAL(needOpen()),this,SLOT(fileOpen()));
     connect(fullScreenWidget,SIGNAL(needSave()),this,SLOT(fileSave()));
@@ -344,8 +345,8 @@ void QImageViewer::settingsWindow()
     {
         isSettingsActive = true;
         settings = new Settings;
-        connect(settings,SIGNAL(acceptsettings(QString,QString,bool,bool,bool,double,int,hotkeysStruct,isneedButStruct)),
-                this,SLOT(updateSettings(QString,QString,bool,bool,bool,double,int,hotkeysStruct,isneedButStruct)));
+        connect(settings,SIGNAL(acceptsettings(QString,QString,bool,bool,bool,double,int,hotkeysStruct,isneedButStruct,QColor)),
+                this,SLOT(updateSettings(QString,QString,bool,bool,bool,double,int,hotkeysStruct,isneedButStruct,QColor)));
 
         settings->setDefaultSettings(language,
                                      lastdirectory,
@@ -354,7 +355,7 @@ void QImageViewer::settingsWindow()
                                      slideshowSmoothTransition,
                                      slideshowInterval,
                                      panelalignment,
-                                     hotkeys,isneedBut);
+                                     hotkeys,isneedBut,fullscreencolor);
         settings->show();
     }
 }
@@ -364,7 +365,8 @@ void QImageViewer::updateSettings(QString language,
                     QString defaultfolder,
                     bool mouseZoom, bool mouseFullscreen,
                     bool slideshowSmoothTransition, double slideshowInterval,
-                    int panelalignment,hotkeysStruct hotkeys, isneedButStruct isneedNew)
+                    int panelalignment,hotkeysStruct hotkeys, isneedButStruct isneedNew,
+                    QColor fullscreencolor)
 {
     isSettingsActive = false;
     this->language = language;
@@ -373,6 +375,26 @@ void QImageViewer::updateSettings(QString language,
     imagewidget->setMouseFullscreen(mouseFullscreen);
     this->slideshowSmoothTransition = slideshowSmoothTransition;
     this->slideshowInterval = slideshowInterval;
+    this->fullscreencolor = fullscreencolor;
+
+    /// Language ///
+    QString lng = language;
+    if (lng == "rus") lng = "ru_RU";
+    else if (lng == "ukr") lng = "uk_UA";
+    else if (lng == "eng") lng = "en_US";
+    else if (lng == "pol") lng = "pl_PL";
+    else lng = QLocale::system().name();
+
+    /// system locale for messageboxes ///
+    QTranslator qtTranslator;
+    qtTranslator.load("qt_" + lng,
+                      QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+    qApp->installTranslator(&qtTranslator);
+
+    /// Programm language ///
+    QTranslator prTranslator;
+    prTranslator.load(":/lng/qimageviewer_" + lng);
+    qApp->installTranslator(&prTranslator);
 
     /// Panel Buttons ///
     // Erase memory for unused buttons //
@@ -596,8 +618,8 @@ void QImageViewer::updateSettings(QString language,
     this->hotkeys = hotkeys;
     createHotkeys();
 
-    disconnect(settings,SIGNAL(acceptsettings(QString,QString,bool,bool,bool,double,int,hotkeysStruct,isneedButStruct)),
-            this,SLOT(updateSettings(QString,QString,bool,bool,bool,double,int,hotkeysStruct,isneedButStruct)));
+    disconnect(settings,SIGNAL(acceptsettings(QString,QString,bool,bool,bool,double,int,hotkeysStruct,isneedButStruct,QColor)),
+            this,SLOT(updateSettings(QString,QString,bool,bool,bool,double,int,hotkeysStruct,isneedButStruct,QColor)));
     delete settings;
 }
 
@@ -710,15 +732,16 @@ void QImageViewer::resizeImageList()
 void QImageViewer::resizeImageListOvered(bool result)
 {
     this->show();
-    if (result)
+    if (result && editFormResizeElements->getLast() != QString::null)
     {
         if (editFormResizeElements->isSameFolder())
         {
             //Add new images to list, don't change current image
-            filesFind();
-            setWindowTitle("QImageViewer - ["+QString::number(imagewidget->currentImage()+1)+
-                           tr(" of ") + QString::number(imagewidget->size()) + "] "
-                           + imagewidget->currentImageName());
+            defaultpath = editFormResizeElements->getLast();
+            fileOpen();
+//            setWindowTitle("QImageViewer - ["+QString::number(imagewidget->currentImage()+1)+
+//                           tr(" of ") + QString::number(imagewidget->size()) + "] "
+//                           + imagewidget->currentImageName());
         }
     }
     if (editFormResizeElements->windowState() == Qt::WindowMaximized) this->setWindowState(Qt::WindowMaximized);
@@ -752,6 +775,7 @@ void QImageViewer::addEditor(QString name, QString icon, QString command)
     editorsActions.append(action);
     connect(action,SIGNAL(triggered()),editor,SLOT(exec()));
     ui->menuExtern_editors->insertAction(ui->editorsNewAction,action);
+    if (!imagewidget->isReady()) action->setEnabled(false);
 
     qDebug() << name << icon <<command;
     disconnect(editorAddForm,SIGNAL(accept(QString,QString,QString)),this,SLOT(addEditor(QString,QString,QString)));
@@ -807,6 +831,7 @@ void QImageViewer::exterEditorsManagerOvered(bool result)
             editorsActions.append(action);
             connect(action,SIGNAL(triggered()),editors[i],SLOT(exec()));
             ui->menuExtern_editors->insertAction(ui->editorsNewAction,action);
+            if (!imagewidget->isReady()) action->setEnabled(false);
         }
     }
     editorsManager->close();

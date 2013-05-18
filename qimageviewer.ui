@@ -468,6 +468,9 @@
    </property>
   </action>
   <action name="shareImageShackAction">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="icon">
     <iconset resource="resources.qrc">
      <normaloff>:/res/imageshack.png</normaloff>:/res/imageshack.png</iconset>

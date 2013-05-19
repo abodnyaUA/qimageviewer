@@ -858,7 +858,7 @@ void QImageViewer::helpAbout()
            "This program is under license GPLv2\n"
            "It's free to use and all sources are open.\n"
            "\n"
-           "Thanks for testing and helping with tips and ideas to\n"
+           "Thanks for testing and helping with tips and ideas to "
            "my friends, Typical Proger community and Prog.org.ru community!"));
 }
 

@@ -98,7 +98,11 @@
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="linkLineEdit"/>
+        <widget class="QLineEdit" name="linkLineEdit">
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>
@@ -131,7 +135,11 @@
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="fullForumsLineEdit"/>
+        <widget class="QLineEdit" name="fullForumsLineEdit">
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>
@@ -151,7 +159,11 @@
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="fullSitesLineEdit"/>
+        <widget class="QLineEdit" name="fullSitesLineEdit">
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>
@@ -171,7 +183,11 @@
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="fullDirectLineEdit"/>
+        <widget class="QLineEdit" name="fullDirectLineEdit">
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>
@@ -204,7 +220,11 @@
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="thumbForumsLineEdit"/>
+        <widget class="QLineEdit" name="thumbForumsLineEdit">
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>
@@ -224,7 +244,11 @@
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="thumbsSitesLineEdit"/>
+        <widget class="QLineEdit" name="thumbsSitesLineEdit">
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>

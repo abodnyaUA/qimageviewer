@@ -40,8 +40,8 @@ void Settings::setDefaultSettings(QString language,
     else ui->languageComboBox->setCurrentIndex(0);
 
     ui->defaultfolderLineEdit->setText(defaultfolder);
-    ui->mouseFullscreenCheckBox->setChecked(mouseZoom);
-    ui->mouseZoomCheckBox->setChecked(mouseFullscreen);
+    ui->mouseFullscreenCheckBox->setChecked(mouseFullscreen);
+    ui->mouseZoomCheckBox->setChecked(mouseZoom);
     ui->slideshowIntervalSpinBox->setValue(slideshowInterval);
     ui->slideshowTransitionCheckBox->setChecked(slideshowSmoothTransition);
     QString style = "background-color: rgb(%1, %2, %3);";

@@ -8,7 +8,6 @@ fullscreen::fullscreen(image *imagewidget, hotkeysStruct *hotkeys, QColor fullsc
     ui->setupUi(this);
     lay = ui->verticalLayout;
     this->imagewidget = imagewidget;
-    this->installEventFilter(this);
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(nextSlide()));
     slideshowStarted = false;
@@ -17,6 +16,7 @@ fullscreen::fullscreen(image *imagewidget, hotkeysStruct *hotkeys, QColor fullsc
 
     QString style = "background-color: rgb(%1, %2, %3);";
     setStyleSheet(style.arg(fullscreencolor.red()).arg(fullscreencolor.green()).arg(fullscreencolor.blue()));
+    this->installEventFilter(this);
 }
 
 
@@ -100,6 +100,7 @@ bool fullscreen::eventFilter(QObject *obj, QEvent *event)
 {
     if (event->type() == QEvent::KeyPress)
     {
+        qDebug() << "fullscreenkey!";
         QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
         Qt::KeyboardModifiers modifiers = keyEvent->modifiers();
         int keyInt = keyEvent->key();

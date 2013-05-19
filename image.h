@@ -86,6 +86,7 @@ private:
     bool zoomMax;
     bool zoomMin;
     bool zoomOriginal;
+    bool mousezoomCtrlPressed;
 
     ////image list////
     QString imagename;
@@ -131,7 +132,7 @@ protected:
     void mousePressEvent(QMouseEvent *event);
     void mouseMoveEvent(QMouseEvent *event);
     void mouseReleaseEvent(QMouseEvent *event);
-    //Zoom in-out
+    //Zoom in-out / Change images
     void wheelEvent( QWheelEvent * event );
     //fullscreen
     void mouseDoubleClickEvent(QMouseEvent *event);

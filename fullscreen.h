@@ -33,7 +33,7 @@ public:
 
 signals:
     void fullscreenEnded();
-    ///not working///
+
     void needSave();
     void needSaveAs();
     void needOpen();

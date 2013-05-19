@@ -39,14 +39,45 @@ void image::mouseReleaseEvent(QMouseEvent *event)
     setCursor(Qt::ArrowCursor);
 }
 
-///mouse wheel for zooming///
+/// mouse wheel for zooming/changing image ///
 void image::wheelEvent( QWheelEvent * event )
 {
     double delta = event->delta();
-    if (isPixmap && mouseZoom)
+    if (!mouseZoom)
     {
-        if (delta > 0) zoomInc();
-        else zoomDec();
+        if (mousezoomCtrlPressed)
+        {
+            if (isPixmap)
+            {
+                if (delta > 0) zoomInc();
+                else zoomDec();
+            }
+        }
+        else
+        {
+            if (delta > 0)
+            {
+                if (imagelist_indx < size()-1)
+                    setImage(imagelist_indx+1);
+                else
+                    setImage(0);
+            }
+            else
+            {
+                if (imagelist_indx > 0)
+                    setImage(imagelist_indx-1);
+                else
+                    setImage(size()-1);
+            }
+        }
+    }
+    else
+    {
+        if (isPixmap)
+        {
+            if (delta > 0) zoomInc();
+            else zoomDec();
+        }
     }
 }
 
@@ -80,6 +111,8 @@ bool image::eventFilter(QObject *obj, QEvent *event)
         QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
         Qt::KeyboardModifiers modifiers = keyEvent->modifiers();
         int keyInt = keyEvent->key();
+        Qt::Key key = static_cast<Qt::Key>(keyInt);
+
 
         if(modifiers & Qt::ShiftModifier)
             keyInt += Qt::SHIFT;
@@ -91,6 +124,12 @@ bool image::eventFilter(QObject *obj, QEvent *event)
             keyInt += Qt::META;
         QString textHotkey = QKeySequence(keyInt).toString(QKeySequence::PortableText);
 
+        if (key == Qt::Key_Control && textHotkey != hotkeys->fileSaveAs && textHotkey != hotkeys->fileOpen
+                && textHotkey != hotkeys->fileSettings && textHotkey != hotkeys->fileQuit)
+        {
+            qDebug () << "texthotkey="<<textHotkey<<"shit working!";
+            mousezoomCtrlPressed = true;
+        }
         //ZOOMING
         //Zoom In KEY
         if (textHotkey == hotkeys->zoomIn)
@@ -178,6 +217,15 @@ bool image::eventFilter(QObject *obj, QEvent *event)
             }
         }
         return false;
+    }
+    if (event->type() == QEvent::KeyRelease && isPixmap)
+    {
+        QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
+        int keyInt = keyEvent->key();
+        Qt::Key key = static_cast<Qt::Key>(keyInt);
+
+        if (key == Qt::Key_Control)
+            mousezoomCtrlPressed = false;
     }
     return false;
 }

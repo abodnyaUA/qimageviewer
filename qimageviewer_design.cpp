@@ -36,8 +36,8 @@ void QImageViewer::loadsettings()
             imagewidget->setMouseFullscreen(true);
 
             /// Enable/Disable zooming by mouse ///
-            out << "MOUSE_ZOOM=1\n";
-            imagewidget->setMouseZoom(true);
+            out << "MOUSE_ZOOM=0\n";
+            imagewidget->setMouseZoom(false);
 
             /// Slideshow ///
             out << "SLIDESHOW_TRANSITION=0\n";
@@ -278,7 +278,7 @@ void QImageViewer::loadsettings()
         sets = out.readLine(); //"Extern editors"
 
         /**
-          Name=Gimp
+          Name=
           Icon=
           Programm=
           **/

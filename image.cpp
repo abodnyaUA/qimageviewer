@@ -10,6 +10,7 @@ image::image()
     createContextMenu();
     wasEdited = false;
     mouseGrabbed = false;
+    mousezoomCtrlPressed = false;
     connect(horizontalScrollBar(),SIGNAL(sliderMoved(int)),this,SLOT(horizontalSliderMoverd(int)));
     connect(verticalScrollBar(),SIGNAL(sliderMoved(int)),this,SLOT(verticalSliderMoverd(int)));
 }
@@ -450,9 +451,9 @@ void image::setAsWallpaper()
     if (r == QMessageBox::Cancel) return;
 #ifdef Q_OS_WIN32
     #include <windows.h>
-    imagePixmap->save("C:/WINDOWS/system32/qimageviewer-wallpaper.bmp");
+    imagePixmap->save("C:/WINDOWS/qimageviewer-wallpaper.bmp");
     char *path = new char[100];
-    strcpy(path, "C:/WINDOWS/system32/qimageviewer-wallpaper.bmp");
+    strcpy(path, "C:/WINDOWS/qimageviewer-wallpaper.bmp");
     SystemParametersInfo(SPI_SETDESKWALLPAPER,0,charToWChar(path),(SPIF_SENDWININICHANGE + SPIF_UPDATEINIFILE));
     delete [] path;
 #endif

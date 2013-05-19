@@ -426,7 +426,12 @@ void ImageShackUploader::HTTPHEADERS(QNetworkReply *reply)
 
 quint64 ImageShackUploader::mRand(qint64 a, qint64 b, bool makeUSleep)
 {
+#ifdef Q_OS_LINUX
     if (makeUSleep) usleep(1);
+#endif
+#ifdef Q_OS_WIN32
+    if (makeUSleep) Sleep(1000);
+#endif
     qsrand(QDateTime::currentMSecsSinceEpoch() + reinterpret_cast<quint64>(this));
     return (qrand() + qrand() * RAND_MAX)%(b-a+1)+a;
 }

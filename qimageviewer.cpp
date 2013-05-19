@@ -153,7 +153,6 @@ void QImageViewer::fileOpen()
         ui->resizeitemsAction->setEnabled(true);
         ui->previmageAction->setEnabled(true);
         ui->nextimageAction->setEnabled(true);
-        ui->fullscreenAction->setEnabled(true);
         ui->slideshowAction->setEnabled(true);
         ui->wallpaperAction->setEnabled(true);
         ui->cropAction->setEnabled(true);

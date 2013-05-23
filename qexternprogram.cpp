@@ -11,16 +11,20 @@ QExternProgram::QExternProgram(QString name,QString icon,QString command, image 
 void QExternProgram::exec()
 {
     QProcess *vec = new QProcess;
-    QString filename = imagewidget->currentImageName();
+#ifdef Q_OS_LINUX
+    QString start = command + " " + '"' + imagewidget->currentImageName() + '"';
+#endif
 #ifdef Q_OS_WIN32
+    QString filename = imagewidget->currentImageName();
     for (int i=1;i<filename.size();i++)
         if (filename[i] == '/')
         {
             filename.remove(i,1);
             filename.insert(i,"\\");
         }
-#endif
+
     QString start = '"' + command + '"' + " " + '"' + filename + '"';
+#endif
     qDebug() << start;
     vec->startDetached(start);
 }

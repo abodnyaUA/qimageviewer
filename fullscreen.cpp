@@ -14,9 +14,10 @@ fullscreen::fullscreen(image *imagewidget, hotkeysStruct *hotkeys, QColor fullsc
     this->hotkeys = hotkeys;
     this->fullscreencolor = fullscreencolor;
 
-    QString style = "background-color: rgb(%1, %2, %3);";
-    setStyleSheet(style.arg(fullscreencolor.red()).arg(fullscreencolor.green()).arg(fullscreencolor.blue()));
+    //QString style = "background-color: rgb(%1, %2, %3);";
+    //setStyleSheet(style.arg(fullscreencolor.red()).arg(fullscreencolor.green()).arg(fullscreencolor.blue()));
     this->installEventFilter(this);
+    this->installEventFilter(imagewidget);
 }
 
 
@@ -100,7 +101,6 @@ bool fullscreen::eventFilter(QObject *obj, QEvent *event)
 {
     if (event->type() == QEvent::KeyPress)
     {
-        qDebug() << "fullscreenkey!";
         QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
         Qt::KeyboardModifiers modifiers = keyEvent->modifiers();
         int keyInt = keyEvent->key();
@@ -159,6 +159,8 @@ bool fullscreen::eventFilter(QObject *obj, QEvent *event)
         {   emit needUndo(); return true; }
         else if (textHotkey == hotkeys->editRedo)
         {   emit needRedo(); return true; }
+
+
 
     }
     return false;

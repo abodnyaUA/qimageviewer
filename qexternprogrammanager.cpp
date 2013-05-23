@@ -25,6 +25,9 @@ QExternProgramManager::QExternProgramManager(QList<QExternProgram *> editors, im
         ui->nameLineEdit->setText(editors[0]->name);
         ui->iconLineEdit->setText(editors[0]->icon);
         ui->iconLabel->setPixmap(QPixmap(editors[0]->icon).scaled(32,32,Qt::KeepAspectRatioByExpanding));
+
+        ui->listWidget->setCurrentRow(0);
+
     }
     isEditorAddFormActive = false;
     ui->listWidget->setSelectionMode(QAbstractItemView::SingleSelection);

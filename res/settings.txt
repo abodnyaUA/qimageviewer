@@ -1,0 +1,52 @@
+LANGUAGE=sys
+DEFAULT_FOLDER=Z:\\abodnya\\KPI\\4 semestr\\GUI\\QImageViewer\\res
+MOUSE_FULLSCREEN=1
+MOUSE_ZOOM=0
+SLIDESHOW_TRANSITION=0
+SLIDESHOW_INTERVAL=1
+PANEL=0
+FULLSCREEN_COLOR=
+RED=255
+GREEN=255
+BLUE=255
+
+#Hotkeys
+File-Open=Ctrl+O
+File-Save=Ctrl+S
+File-Save-As=Ctrl+Shift+S
+File-Settings=
+File-Quit=Ctrl+Q
+Edit-Undo=Ctrl+Z
+Edit-Redo=Ctrl+Shift+Z
+Edit-Rotate-Right=Ctrl+Shift+R
+Edit-Rotate-Left=Ctrl+Shift+L
+Edit-Flip-Horizontal=
+Edit-Flip-Vertical=
+Edit-Crop=Ctrl+Shift+C
+Edit-Resize=Ctrl+R
+Edit-Resize-Items=
+Watch-Previous=Ctrl+Left
+Watch-Next=Ctrl+Right
+Watch-Fullscreen=F10
+Watch-Slideshow=F5
+Watch-Wallpaper=
+Zoom-In=+
+Zoom-Out=-
+Zoom-Window=
+Zoom-Original=
+Help-About=F1
+
+#Panel
+RotateLeft=1
+RotateRight=1
+FlipHorizontal=1
+FlipVertical=1
+Zoom In=1
+Zoom Out=1
+Zoom Window=1
+Zoom Original=1
+Fullscreen=1
+Slideshow=1
+Properties=0
+
+#Extern editors

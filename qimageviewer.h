@@ -22,6 +22,7 @@
 #include <QFileDialog>
 #include <QLibraryInfo>
 #include <QTranslator>
+#include <QSettings>
 #include "image.h"
 #include "preview.h"
 #include "previewlist.h"
@@ -94,6 +95,7 @@ private slots:
 
 private:
     /// Settings ///
+    QSettings *settings;
     bool isSettingsActive;
     //Default Folder//
     QString lastdirectory;

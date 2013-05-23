@@ -10,6 +10,7 @@
 #include <QDesktopWidget>
 #include <QGraphicsPixmapItem>
 #include <QScrollBar>
+#include <qdrawutil.h>
 #include "hotkeys.h"
 
 namespace Ui {
@@ -39,6 +40,8 @@ public:
     bool isReady();
     void setReady(bool);
     QStringList getImageList();
+    void setFullscreen(QColor fullscreencolor);
+    void unsetFullscreen();
 
 public slots:
     void reloadImage();
@@ -75,6 +78,8 @@ signals:
     void needSlideshow();
 
 private:
+    QColor fullscreencolor;
+    bool isActiveFullscreen;
     hotkeysStruct * hotkeys;
     QDesktopWidget desk;
     QPixmap * imagePixmap;
@@ -141,6 +146,8 @@ protected:
     //context menu
     void contextMenuEvent(QContextMenuEvent *event);
     void dropEvent(QDropEvent *event);
+    //background
+    void drawBackground(QPainter * painter, const QRectF & rect);
 };
 
 #endif // IMAGE_H

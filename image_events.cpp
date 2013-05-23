@@ -5,8 +5,17 @@
 void image::dropEvent(QDropEvent *event)
 {
     qDebug() << "dropped = " <<event->mimeData()->objectName();
-        //loadimage();
+}
 
+//Background
+void image::drawBackground(QPainter * painter, const QRectF & rect)
+{
+    if (isActiveFullscreen)
+    {
+        QPen pen(fullscreencolor);
+        painter->setPen(pen);
+        painter->fillRect(-width(),-height(),2*width(),2*height(),QBrush(fullscreencolor));
+    }
 }
 
 //zoom grabbed moving
@@ -149,11 +158,13 @@ bool image::eventFilter(QObject *obj, QEvent *event)
             return true;  }
 
         //NEXT/PREV IMAGE
+        if ((int)keyInt == (int)Qt::Key_Left) qDebug() << "say 'yes'!";
         if ((zoom <= 1.0))
         {
             //LEFT KEY
             if ((int)keyInt == (int)Qt::Key_Left)
             {
+                qDebug() << "yes!";
                 if (imagelist_indx>0)
                 {
                     imagelist_indx--;

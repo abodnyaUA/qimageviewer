@@ -104,14 +104,22 @@ ImageShackUploader::ImageShackUploader(QString imagename) :
     qDebug() << "links.thumb_bb2" << jsonElements.value("links.thumb_bb2");
     qDebug() << "links.is_link" << jsonElements.value("links.is_link");
     qDebug() << "links.done" << jsonElements.value("links.done");*/
-    ui->linkLineEdit->setText(jsonElements.value("links.is_link"));
-    ui->fullForumsLineEdit->setText(jsonElements.value("links.image_bb"));
-    ui->fullSitesLineEdit->setText(jsonElements.value("links.image_html"));
-    ui->fullDirectLineEdit->setText(jsonElements.value("links.image_link"));
-    ui->thumbForumsLineEdit->setText(jsonElements.value("links.thumb_bb"));
-    ui->thumbsSitesLineEdit->setText(jsonElements.value("links.thumb_link"));
+    if (!jsonElements.value("links.is_link").isEmpty())
+    {
+        ui->linkLineEdit->setText(jsonElements.value("links.is_link"));
+        ui->fullForumsLineEdit->setText(jsonElements.value("links.image_bb"));
+        ui->fullSitesLineEdit->setText(jsonElements.value("links.image_html"));
+        ui->fullDirectLineEdit->setText(jsonElements.value("links.image_link"));
+        ui->thumbForumsLineEdit->setText(jsonElements.value("links.thumb_bb"));
+        ui->thumbsSitesLineEdit->setText(jsonElements.value("links.thumb_link"));
+    }
+    else
+    {
+        QMessageBox::warning(this,tr("Can't upload image!"),
+                             tr("Image can't be uploaded. Server don't answer. Please check your internet connection"),
+                             QMessageBox::Ok | QMessageBox::Default);
+    }
 }
-
 ImageShackUploader::~ImageShackUploader()
 {
     delete ui;

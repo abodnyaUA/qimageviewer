@@ -50,7 +50,7 @@ QImageViewer::QImageViewer(QString path, QWidget *parent) :
     isSettingsActive = false;
     isEditosManagerActive = false;
     isEditorAddFormActive = false;
-    //setWindowState(Qt::WindowMaximized);
+    setWindowState(Qt::WindowMaximized);
 }
 
 
@@ -202,7 +202,18 @@ void QImageViewer::filesFind()
     filter.append("*.pgm");
     QStringList imagefiles = dialog->directory().entryList(filter,QDir::NoFilter,QDir::SortByMask);
     qSort(imagefiles.begin(),imagefiles.end());
+#ifdef Q_OS_WIN32
+    for (int i=1;i<lastdirectory.size();i++)
+        if (lastdirectory[i] == '/')
+        {
+            lastdirectory.remove(i,1);
+            lastdirectory.insert(i,"\\");
+        }
+    for (int i=0;i<imagefiles.size();i++) imagefiles[i] = lastdirectory + '\\' + imagefiles[i];
+#endif
+#ifdef Q_OS_LINUX
     for (int i=0;i<imagefiles.size();i++) imagefiles[i] = lastdirectory + '/' + imagefiles[i];
+#endif
     imagewidget->loadimagelist(imagefiles);
 }
 
@@ -290,6 +301,7 @@ void QImageViewer::fullScreen()
     fullScreenWidget->show();
     this->hide();
     isfullScreenActive = true;
+    imagewidget->setFullscreen(fullscreencolor);
 }
 
 /** Hide fullscreen window, show this **/
@@ -321,6 +333,7 @@ void QImageViewer::fullScreenOvered()
     disconnect(fullScreenWidget,SIGNAL(needUndo()),imagewidget,SLOT(prevBuffer()));
     disconnect(fullScreenWidget,SIGNAL(needRedo()),imagewidget,SLOT(nextBuffer()));
     delete fullScreenWidget;
+    imagewidget->unsetFullscreen();
 }
 
 /** Start slideshow **/
@@ -643,7 +656,7 @@ void QImageViewer::resizeImage()
 /** Show this window, hide editResize window **/
 void QImageViewer::resizeImageOvered(bool result)
 {
-    this->show();
+    if (!isfullScreenActive) this->show();
     if (result)
     {
         imagewidget->addToBuffer(editFormResize->getpixmap());
@@ -687,7 +700,7 @@ void QImageViewer::cropImage()
 void QImageViewer::cropImageOvered(bool result)
 {
     // change active form //
-    this->show();
+    if (!isfullScreenActive) this->show();
     // accept changes if 'Accept' button was pressed //
     if (result)
     {
@@ -730,7 +743,7 @@ void QImageViewer::resizeImageList()
 /** Show this window, hide editResize window **/
 void QImageViewer::resizeImageListOvered(bool result)
 {
-    this->show();
+    if (!isfullScreenActive) this->show();
     if (result && editFormResizeElements->getLast() != QString::null)
     {
         if (editFormResizeElements->isSameFolder())

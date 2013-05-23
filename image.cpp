@@ -4,6 +4,7 @@
 image::image()
 {
     isPixmap = false;
+    isActiveFullscreen = false;
     setAlignment(Qt::AlignCenter);
     this->installEventFilter(this);
 
@@ -210,6 +211,9 @@ void image::loadimagelist(QStringList list)
 {
     imagelist = list;
     imagelist_indx = BinSearch(list,imagename);
+    for (int i=0;i<list.size();i++)
+        qDebug() << list[i];
+    qDebug() << "name = "<< imagename;
 }
 
 void image::setOriginalSize()
@@ -433,6 +437,17 @@ bool image::isZoomed()
     if (zoom <= 1.0) return false;
     return true;
 }
+void image::setFullscreen(QColor fullscreencolor)
+{
+    this->fullscreencolor = fullscreencolor;
+    isActiveFullscreen = true;
+}
+
+void image::unsetFullscreen()
+{
+    isActiveFullscreen = false;
+}
+
 #ifdef Q_OS_WIN32
 static wchar_t* charToWChar(const char* text)
 {

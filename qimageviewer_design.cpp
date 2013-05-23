@@ -411,9 +411,11 @@ void QImageViewer::createActions()
     ///BUTTONS///
     ui->prevButton->setToolTip(tr("Open previous image"));
     connect(ui->prevButton,SIGNAL(clicked()),this,SLOT(prevImage()));
+    ui->prevButton->setFocusPolicy(Qt::NoFocus);
 
     ui->nextButton->setToolTip(tr("Open next image"));
     connect(ui->nextButton,SIGNAL(clicked()),this,SLOT(nextImage()));
+    ui->nextButton->setFocusPolicy(Qt::NoFocus);
 
     //Changing image
     connect(imagewidget,SIGNAL(currentImageWasChanged(int)),this,SLOT(currentIndexWasChanged(int)));

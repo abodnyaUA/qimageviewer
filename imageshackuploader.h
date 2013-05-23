@@ -10,8 +10,10 @@
 #include <QFile>
 #include <QDateTime>
 #include <QHash>
-#include "zlib.h"
-
+#include <QMessageBox>
+#ifdef Q_OS_LINUX
+    #include "zlib.h"
+#endif
 namespace Ui {
 class ImageShackUploader;
 }

@@ -3,308 +3,181 @@
 
 void QImageViewer::loadsettings()
 {
-    QFile file("settings.txt");
-    QTextStream out(&file);
-    out.setCodec(QTextCodec::codecForName("UTF-8"));
+    qsettings = new QSettings("QImageViewer","QImageViewer");
+    language = qsettings->value("Programm/Language","sys").toString();
+#ifdef Q_OS_WIN32
+    QString uname = QString::fromLocal8Bit( getenv("USER") );
+    QString directory = "C:\\Users\\" + uname;
+    lastdirectory = qsettings->value("Programm/Directory",directory).toString();
+#else
+    QString uname = QString::fromLocal8Bit( getenv("USER") );
+    QString directory =  "/home/" + uname;
+    lastdirectory = qsettings->value("Programm/Directory",directory).toString();
+#endif
 
-    if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+    imagewidget->setMouseFullscreen((bool)(qsettings->value("Navigation/MouseFullscreen","1").toInt()));
+    imagewidget->setMouseZoom((bool)(qsettings->value("Navigation/MouseZoom","0").toInt()));
+
+    panelalignment = qsettings->value("Panel/Alignment","0").toInt();
+
+    slideshowSmoothTransition = ((bool)(qsettings->value("Slideshow/SmoothTransition","0").toInt()));
+    slideshowInterval = qsettings->value("Slideshow/Interval","1").toInt();
+
+    int fullscreencolor_red,fullscreencolor_green,fullscreencolor_blue;
+    fullscreencolor_red = qsettings->value("FullscreenColor/red","255").toInt();
+    fullscreencolor_green = qsettings->value("FullscreenColor/green","255").toInt();
+    fullscreencolor_blue = qsettings->value("FullscreenColor/blue","255").toInt();
+    fullscreencolor = QColor(fullscreencolor_red,fullscreencolor_green,fullscreencolor_blue);
+
+
+    /// Hotkeys ///
+    //File//
+    hotkeys.fileOpen = qsettings->value("Hotkeys/FileOpen","Ctrl+O").toString();
+    hotkeys.fileSave = qsettings->value("Hotkeys/FileSave","Ctrl+S").toString();
+    hotkeys.fileSaveAs = qsettings->value("Hotkeys/FileSaveAs","Ctrl+Shift+S").toString();
+    hotkeys.fileSettings = qsettings->value("Hotkeys/FileSettings","").toString();
+    hotkeys.fileQuit = qsettings->value("Hotkeys/FileQuit","Ctrl+Q").toString();
+
+    //Edit//
+    hotkeys.editUndo = qsettings->value("Hotkeys/EditUndo","Ctrl+Z").toString();
+    hotkeys.editRedo = qsettings->value("Hotkeys/EditRedo","Ctrl+Shift+Z").toString();
+    hotkeys.editRotateRight = qsettings->value("Hotkeys/EditRotateLeft","Ctrl+Shift+R").toString();
+    hotkeys.editRotateLeft = qsettings->value("Hotkeys/EditRotateRight","Ctrl+Shift+L").toString();
+    hotkeys.editFlipHorizontal = qsettings->value("Hotkeys/EditFlipHorizontal","").toString();
+    hotkeys.editFlipVertical = qsettings->value("Hotkeys/EditFlipVertical","").toString();
+    hotkeys.editCrop = qsettings->value("Hotkeys/EditCrop","Ctrl+Shift+C").toString();
+    hotkeys.editResize = qsettings->value("Hotkeys/EditResize","Ctrl+R").toString();
+    hotkeys.editResizeItems = qsettings->value("Hotkeys/EditResizeItems","").toString();
+
+    //Watch//
+    hotkeys.watchPrevious = qsettings->value("Hotkeys/WatchPrevious","Ctrl+Left").toString();
+    hotkeys.watchNext = qsettings->value("Hotkeys/WatchNext","Ctrl+Right").toString();
+    hotkeys.watchFullscreen = qsettings->value("Hotkeys/WatchFullscreen","F10").toString();
+    hotkeys.watchSlideshow = qsettings->value("Hotkeys/WatchSlideshow","F5").toString();
+    hotkeys.watchWallpaper = qsettings->value("Hotkeys/WatchWallpaper","").toString();
+    hotkeys.zoomIn = qsettings->value("Hotkeys/ZoomIn","+").toString();
+    hotkeys.zoomOut = qsettings->value("Hotkeys/ZoomOut","-").toString();
+    hotkeys.zoomWindow = qsettings->value("Hotkeys/ZoomWindow","").toString();
+    hotkeys.zoomOriginal = qsettings->value("Hotkeys/ZoomOriginal","").toString();
+
+    //About//
+    hotkeys.helpAbout = qsettings->value("Hotkeys/HelpAbout","F1").toString();
+
+    /// Panel ///
+    isneedBut.rotateLeft = (bool)(qsettings->value("Panel/ButtonRotateLeft","1").toInt());
+    isneedBut.rotateRight = (bool)(qsettings->value("Panel/ButtonRotateRight","1").toInt());
+    isneedBut.flipHorizontal = (bool)(qsettings->value("Panel/ButtonFlipHorizontal","1").toInt());
+    isneedBut.flipVertical = (bool)(qsettings->value("Panel/ButtonFlipVertical","1").toInt());
+    isneedBut.zoomIn = (bool)(qsettings->value("Panel/ButtonZoomIn","1").toInt());
+    isneedBut.zoomOut = (bool)(qsettings->value("Panel/ButtonZoomOut","1").toInt());
+    isneedBut.zoomWindow = (bool)(qsettings->value("Panel/ButtonZoomWindow","1").toInt());
+    isneedBut.zoomOriginal = (bool)(qsettings->value("Panel/ButtonZoomOriginal","1").toInt());
+    isneedBut.fullscreen = (bool)(qsettings->value("Panel/ButtonFullscreen","1").toInt());
+    isneedBut.slideshow = (bool)(qsettings->value("Panel/ButtonSlideshow","1").toInt());
+    isneedBut.properties = (bool)(qsettings->value("Panel/ButtonProperties","0").toInt());
+
+    int indx=0;
+    while (!qsettings->value("ExternProgram"+QString::number(indx)+"/Name","").toString().isEmpty())
     {
-        /** DEFAULT SETTINGS **/
-        QString uname;
-        if (file.open(QIODevice::WriteOnly | QIODevice::Text))
-        {
-            /// LANGUAGE ///
-            out << "LANGUAGE=sys\n";
-            language = "sys";
+        QString name = qsettings->value("ExternProgram"+QString::number(indx)+"/Name","").toString();
+        QString icon = qsettings->value("ExternProgram"+QString::number(indx)+"/Icon","").toString();
+        QString command = qsettings->value("ExternProgram"+QString::number(indx)+"/Command","").toString();
 
-            /// Default folder ///
-            out << "DEFAULT_FOLDER=";
-    #ifdef Q_OS_WIN32
-            uname = QString::fromLocal8Bit( getenv("USER") );
-            out << "C:\\Users\\";
-            lastdirectory = "C:\\Users\\"+uname;
-    #else
-            uname = QString::fromLocal8Bit( getenv("USER") );
-            out << "/home/";
-            lastdirectory = "/home/"+uname;
-    #endif
-            out << uname;
-            out << "\n";
-
-            /// Enable/Disable fullscreen mode by double-click mouse ///
-            out << "MOUSE_FULLSCREEN=1\n";
-            imagewidget->setMouseFullscreen(true);
-
-            /// Enable/Disable zooming by mouse ///
-            out << "MOUSE_ZOOM=0\n";
-            imagewidget->setMouseZoom(false);
-
-            /// Slideshow ///
-            out << "SLIDESHOW_TRANSITION=0\n";
-            slideshowSmoothTransition = false;
-            out << "SLIDESHOW_INTERVAL=1\n";
-            slideshowInterval = 1;
-            out << "PANEL=0\n";
-            panelalignment = 0;
-            fullscreencolor = QColor(255,255,255);
-            out << "FULLSCREEN_COLOR=\n" <<
-                   "RED=" << fullscreencolor.red() << "\n" <<
-                   "GREEN=" << fullscreencolor.green() << "\n" <<
-                   "BLUE=" << fullscreencolor.blue() << "\n";
-
-            /// Hotkeys ///
-            //File//
-            out << "\n#Hotkeys\n";
-            hotkeys.fileOpen = "Ctrl+O";
-            out << "File-Open="<<hotkeys.fileOpen << "\n";
-            hotkeys.fileSave = "Ctrl+S";
-            out << "File-Save="<<hotkeys.fileSave << "\n";
-            hotkeys.fileSaveAs = "Ctrl+Shift+S";
-            out << "File-Save-As="<<hotkeys.fileSaveAs << "\n";
-            hotkeys.fileSettings = "";
-            out << "File-Settings="<<hotkeys.fileSettings << "\n";
-            hotkeys.fileQuit = "Ctrl+Q";
-            out << "File-Quit="<<hotkeys.fileQuit << "\n";
-
-            //Edit//
-            hotkeys.editUndo = "Ctrl+Z";
-            out << "Edit-Undo="<<hotkeys.editUndo << "\n";
-            hotkeys.editRedo = "Ctrl+Shift+Z";
-            out << "Edit-Redo="<<hotkeys.editRedo << "\n";
-            hotkeys.editRotateRight = "Ctrl+Shift+R";
-            out << "Edit-Rotate-Right="<<hotkeys.editRotateRight << "\n";
-            hotkeys.editRotateLeft = "Ctrl+Shift+L";
-            out << "Edit-Rotate-Left="<<hotkeys.editRotateLeft << "\n";
-            hotkeys.editFlipHorizontal = "";
-            out << "Edit-Flip-Horizontal="<<hotkeys.editFlipHorizontal << "\n";
-            hotkeys.editFlipVertical = "";
-            out << "Edit-Flip-Vertical="<<hotkeys.editFlipVertical << "\n";
-            hotkeys.editCrop = "Ctrl+Shift+C";
-            out << "Edit-Crop="<<hotkeys.editCrop << "\n";
-            hotkeys.editResize = "Ctrl+R";
-            out << "Edit-Resize="<<hotkeys.editResize << "\n";
-            hotkeys.editResizeItems = "";
-            out << "Edit-Resize-Items="<<hotkeys.editResizeItems << "\n";
-
-            //Watch//
-            hotkeys.watchPrevious = "Ctrl+Left";
-            out << "Watch-Previous="<<hotkeys.watchPrevious << "\n";
-            hotkeys.watchNext = "Ctrl+Right";
-            out << "Watch-Next="<<hotkeys.watchNext << "\n";
-            hotkeys.watchFullscreen = "F10";
-            out << "Watch-Fullscreen="<<hotkeys.watchFullscreen << "\n";
-            hotkeys.watchSlideshow = "F5";
-            out << "Watch-Slideshow="<<hotkeys.watchSlideshow << "\n";
-            hotkeys.watchWallpaper = "";
-            out << "Watch-Wallpaper="<<hotkeys.watchWallpaper << "\n";
-            hotkeys.zoomIn = "+";
-            out << "Zoom-In="<<hotkeys.zoomIn << "\n";
-            hotkeys.zoomOut = "-";
-            out << "Zoom-Out="<<hotkeys.zoomOut << "\n";
-            hotkeys.zoomWindow = "";
-            out << "Zoom-Window="<<hotkeys.zoomWindow << "\n";
-            hotkeys.zoomOriginal = "";
-            out << "Zoom-Original="<<hotkeys.zoomOriginal << "\n";
-
-            //About//
-            hotkeys.helpAbout = "F1";
-            out << "Help-About="<<hotkeys.helpAbout << "\n";
-
-            /// Panel ///
-            out << "\n#Panel\n";
-            isneedBut.rotateLeft = true;
-            out << "RotateLeft="<< (int)isneedBut.rotateLeft << "\n";
-            isneedBut.rotateRight = true;
-            out << "RotateRight="<< (int)isneedBut.rotateRight << "\n";
-            isneedBut.flipHorizontal = true;
-            out << "FlipHorizontal="<< (int)isneedBut.flipHorizontal << "\n";
-            isneedBut.flipVertical = true;
-            out << "FlipVertical="<< (int)isneedBut.flipVertical << "\n";
-            isneedBut.zoomIn = true;
-            out << "Zoom In="<< (int)isneedBut.zoomIn << "\n";
-            isneedBut.zoomOut = true;
-            out << "Zoom Out="<< (int)isneedBut.zoomOut << "\n";
-            isneedBut.zoomWindow = true;
-            out << "Zoom Window="<< (int)isneedBut.zoomWindow << "\n";
-            isneedBut.zoomOriginal = true;
-            out << "Zoom Original="<< (int)isneedBut.zoomOriginal << "\n";
-            isneedBut.fullscreen = true;
-            out << "Fullscreen="<< (int)isneedBut.fullscreen << "\n";
-            isneedBut.slideshow = true;
-            out << "Slideshow="<< (int)isneedBut.slideshow << "\n";
-            isneedBut.properties = false;
-            out << "Properties="<< (int)isneedBut.properties << "\n";
-
-            /// Panel ///
-            out << "\n#Extern editors\n";
-        }
+        QExternProgram *editor = new QExternProgram(name,icon,command,imagewidget);
+        editors.append(editor);
+        QAction * action = new QAction(QIcon(QPixmap(icon)),name,this);
+        editorsActions.append(action);
+        connect(action,SIGNAL(triggered()),editor,SLOT(exec()));
+        ui->menuExtern_editors->insertAction(ui->editorsNewAction,action);
+        indx++;
     }
-    else
-    {
-        /** LOAD EXIST SETTINGS **/
-        /// Language ///
-        QString sets;
-        sets = out.readLine();
-        language = sets.right(sets.size()-9);
-
-        /// Default folder ///
-        sets = out.readLine();
-        lastdirectory = sets.right(sets.size()-15);
-
-        /// Enable/Disable fullscreen mode by double-click mouse ///
-        sets = out.readLine();
-        if (sets[sets.size()-1] == '1')
-            imagewidget->setMouseFullscreen(true);
-        else imagewidget->setMouseFullscreen(false);
-
-        /// Enable/Disable zooming by mouse ///
-        sets = out.readLine();
-        if (sets[sets.size()-1] == '1')
-            imagewidget->setMouseZoom(true);
-        else imagewidget->setMouseZoom(false);
-
-        /// Slideshow ///
-        sets = out.readLine();
-        if (sets[sets.size()-1] == '1')
-            slideshowSmoothTransition = true;
-        else slideshowSmoothTransition = false;
-
-        sets = out.readLine();
-        slideshowInterval = sets.right(sets.size()-19).toInt();
-
-        /// Panel ///
-        sets = out.readLine();
-        panelalignment = sets.right(sets.size()-6).toInt();
-
-        /// Fullscreen ///
-        sets = out.readLine();
-        sets = out.readLine();
-        int r = sets.right(sets.size()-4).toInt();
-        sets = out.readLine();
-        int g = sets.right(sets.size()-6).toInt();
-        sets = out.readLine();
-        int b = sets.right(sets.size()-5).toInt();
-        fullscreencolor = QColor::fromRgb(r,g,b);
-
-        /// Hotkeys ///
-        sets = out.readLine(); //empty
-        sets = out.readLine(); //"hotkeys"
-
-        //File//
-        sets = out.readLine();
-        hotkeys.fileOpen = sets.right(sets.size()-10);
-        sets = out.readLine();
-        hotkeys.fileSave = sets.right(sets.size()-10);
-        sets = out.readLine();
-        hotkeys.fileSaveAs = sets.right(sets.size()-13);
-        sets = out.readLine();
-        hotkeys.fileSettings = sets.right(sets.size()-14);
-        sets = out.readLine();
-        hotkeys.fileQuit = sets.right(sets.size()-10);
-
-        //Edit//
-        sets = out.readLine();
-        hotkeys.editUndo = sets.right(sets.size()-10);
-        sets = out.readLine();
-        hotkeys.editRedo = sets.right(sets.size()-10);
-        sets = out.readLine();
-        hotkeys.editRotateRight = sets.right(sets.size()-18);
-        sets = out.readLine();
-        hotkeys.editRotateLeft = sets.right(sets.size()-17);
-        sets = out.readLine();
-        hotkeys.editFlipHorizontal = sets.right(sets.size()-21);
-        sets = out.readLine();
-        hotkeys.editFlipVertical = sets.right(sets.size()-19);
-        sets = out.readLine();
-        hotkeys.editCrop = sets.right(sets.size()-10);
-        sets = out.readLine();
-        hotkeys.editResize = sets.right(sets.size()-12);
-        sets = out.readLine();
-        hotkeys.editResizeItems = sets.right(sets.size()-18);
-
-        //Watch//
-        sets = out.readLine();
-        hotkeys.watchPrevious = sets.right(sets.size()-15);
-        sets = out.readLine();
-        hotkeys.watchNext = sets.right(sets.size()-11);
-        sets = out.readLine();
-        hotkeys.watchFullscreen = sets.right(sets.size()-17);
-        sets = out.readLine();
-        hotkeys.watchSlideshow = sets.right(sets.size()-16);
-        sets = out.readLine();
-        hotkeys.watchWallpaper = sets.right(sets.size()-16);
-        sets = out.readLine();
-        hotkeys.zoomIn = sets.right(sets.size()-8);
-        sets = out.readLine();
-        hotkeys.zoomOut = sets.right(sets.size()-9);
-        sets = out.readLine();
-        hotkeys.zoomWindow = sets.right(sets.size()-12);
-        sets = out.readLine();
-        hotkeys.zoomOriginal = sets.right(sets.size()-14);
-
-        //Help//
-        sets = out.readLine();
-        hotkeys.helpAbout = sets.right(sets.size()-11);
-
-        /// Panel ///
-        sets = out.readLine(); //empty
-        sets = out.readLine(); //"Panel"
-
-        sets = out.readLine();
-        isneedBut.rotateLeft = (bool)sets.right(sets.size()-11).toInt();
-        sets = out.readLine();
-        isneedBut.rotateRight = (bool)sets.right(sets.size()-12).toInt();
-        sets = out.readLine();
-        isneedBut.flipHorizontal = (bool)sets.right(sets.size()-15).toInt();
-        sets = out.readLine();
-        isneedBut.flipVertical = (bool)sets.right(sets.size()-13).toInt();
-        sets = out.readLine();
-        isneedBut.zoomIn = (bool)sets.right(sets.size()-8).toInt();
-        sets = out.readLine();
-        isneedBut.zoomOut = (bool)sets.right(sets.size()-9).toInt();
-        sets = out.readLine();
-        isneedBut.zoomWindow = (bool)sets.right(sets.size()-12).toInt();
-        sets = out.readLine();
-        isneedBut.zoomOriginal = (bool)sets.right(sets.size()-14).toInt();
-        sets = out.readLine();
-        isneedBut.fullscreen = (bool)sets.right(sets.size()-11).toInt();
-        sets = out.readLine();
-        isneedBut.slideshow = (bool)sets.right(sets.size()-10).toInt();
-        sets = out.readLine();
-        isneedBut.properties = (bool)sets.right(sets.size()-11).toInt();
-
-        /// Extern editors ///
-        sets = out.readLine(); //empty
-        sets = out.readLine(); //"Extern editors"
-
-        /**
-          Name=
-          Icon=
-          Programm=
-          **/
-        while (!out.atEnd())
-        {
-            sets = out.readLine();
-            QString name = sets.right(sets.size()-5);
-            sets = out.readLine();
-            QString icon = sets.right(sets.size()-5);
-            sets = out.readLine();
-            QString command = sets.right(sets.size()-9);
-
-            QExternProgram *editor = new QExternProgram(name,icon,command,imagewidget);
-            editors.append(editor);
-            QAction * action = new QAction(QIcon(QPixmap(icon)),name,this);
-            editorsActions.append(action);
-            connect(action,SIGNAL(triggered()),editor,SLOT(exec()));
-            ui->menuExtern_editors->insertAction(ui->editorsNewAction,action);
-
-            sets = out.readLine(); //empty
-        }
-        if (editors.size() != 0) ui->menuExtern_editors->insertSeparator(ui->editorsNewAction);
-    }
-    file.close();
+    if (editors.size() != 0) ui->menuExtern_editors->insertSeparator(ui->editorsNewAction);
+    savesettings();
 }
 
+void QImageViewer::savesettings()
+{
+    qsettings->setValue("Programm/Language",language);
+    qsettings->setValue("Programm/Directory",lastdirectory);
+
+    qsettings->setValue("Navigation/MouseFullscreen",QString::number(imagewidget->getMouseFullscreen()));
+    qsettings->setValue("Navigation/MouseZoom",QString::number(imagewidget->getMouseZoom()));
+
+    qsettings->setValue("Panel/Alignment",panelalignment);
+
+    qsettings->setValue("Slideshow/SmoothTransition",QString::number(slideshowSmoothTransition));
+    qsettings->setValue("Slideshow/Interval",slideshowInterval);
+
+    qsettings->setValue("FullscreenColor/red",fullscreencolor.red());
+    qsettings->setValue("FullscreenColor/green",fullscreencolor.green());
+    qsettings->setValue("FullscreenColor/blue",fullscreencolor.blue());
+
+
+    /// Hotkeys ///
+    //File//
+    qsettings->setValue("Hotkeys/FileOpen",hotkeys.fileOpen);
+    qsettings->setValue("Hotkeys/FileSave",hotkeys.fileSave);
+    qsettings->setValue("Hotkeys/FileSaveAs",hotkeys.fileSaveAs);
+    qsettings->setValue("Hotkeys/FileSettings",hotkeys.fileSettings);
+    qsettings->setValue("Hotkeys/FileQuit",hotkeys.fileQuit);
+
+    //Edit//
+    qsettings->setValue("Hotkeys/EditUndo",hotkeys.editUndo);
+    qsettings->setValue("Hotkeys/EditRedo",hotkeys.editRedo);
+    qsettings->setValue("Hotkeys/EditRotateLeft",hotkeys.editRotateRight);
+    qsettings->setValue("Hotkeys/EditRotateRight",hotkeys.editRotateLeft);
+    qsettings->setValue("Hotkeys/EditFlipHorizontal",hotkeys.editFlipHorizontal);
+    qsettings->setValue("Hotkeys/EditFlipVertical",hotkeys.editFlipVertical);
+    qsettings->setValue("Hotkeys/EditCrop",hotkeys.editCrop);
+    qsettings->setValue("Hotkeys/EditResize",hotkeys.editResize);
+    qsettings->setValue("Hotkeys/EditResizeItems",hotkeys.editResizeItems);
+
+    //Watch//
+    qsettings->setValue("Hotkeys/WatchPrevious",hotkeys.watchPrevious);
+    qsettings->setValue("Hotkeys/WatchNext",hotkeys.watchNext);
+    qsettings->setValue("Hotkeys/WatchFullscreen",hotkeys.watchFullscreen);
+    qsettings->setValue("Hotkeys/WatchSlideshow",hotkeys.watchSlideshow);
+    qsettings->setValue("Hotkeys/WatchWallpaper",hotkeys.watchWallpaper);
+    qsettings->setValue("Hotkeys/ZoomIn",hotkeys.zoomIn);
+    qsettings->setValue("Hotkeys/ZoomOut",hotkeys.zoomOut);
+    qsettings->setValue("Hotkeys/ZoomWindow",hotkeys.zoomWindow);
+    qsettings->setValue("Hotkeys/ZoomOriginal",hotkeys.zoomOriginal);
+
+    //About//
+    qsettings->setValue("Hotkeys/HelpAbout",hotkeys.helpAbout);
+
+    /// Panel ///
+    qsettings->setValue("Panel/ButtonRotateLeft",QString::number(isneedBut.rotateLeft));
+    qsettings->setValue("Panel/ButtonRotateRight",QString::number(isneedBut.rotateRight));
+    qsettings->setValue("Panel/ButtonFlipHorizontal",QString::number(isneedBut.flipHorizontal));
+    qsettings->setValue("Panel/ButtonFlipVertical",QString::number(isneedBut.flipVertical));
+    qsettings->setValue("Panel/ButtonZoomIn",QString::number(isneedBut.zoomIn));
+    qsettings->setValue("Panel/ButtonZoomOut",QString::number(isneedBut.zoomOut));
+    qsettings->setValue("Panel/ButtonZoomWindow",QString::number(isneedBut.zoomWindow));
+    qsettings->setValue("Panel/ButtonZoomOriginal",QString::number(isneedBut.zoomOriginal));
+    qsettings->setValue("Panel/ButtonFullscreen",QString::number(isneedBut.fullscreen));
+    qsettings->setValue("Panel/ButtonSlideshow",QString::number(isneedBut.slideshow));
+    qsettings->setValue("Panel/ButtonProperties",QString::number(isneedBut.properties));
+
+    // remove old extern editors
+    int indx = 0;
+    while (!qsettings->value("ExternProgram"+QString::number(indx)+"/Name","").toString().isEmpty())
+    {
+        qsettings->remove("ExternProgram"+QString::number(indx)+"/Name");
+        qsettings->remove("ExternProgram"+QString::number(indx)+"/Icon");
+        qsettings->remove("ExternProgram"+QString::number(indx)+"/Command");
+        indx++;
+    }
+    //add new ectern editors
+    for (int i=0;i<editors.size();i++)
+    {
+        qsettings->setValue("ExternProgram"+QString::number(i)+"/Name",editors[i]->name);
+        qsettings->setValue("ExternProgram"+QString::number(i)+"/Icon",editors[i]->icon);
+        qsettings->setValue("ExternProgram"+QString::number(i)+"/Command",editors[i]->command);
+    }
+
+    qsettings->sync();
+}
 
 /** Set all shortcuts, signal-slots and statustips for buttons and menu actions **/
 void QImageViewer::createActions()
@@ -613,88 +486,17 @@ void QImageViewer::closeEvent(QCloseEvent *event)
         }
     }
 #endif
-    file.open(QIODevice::WriteOnly | QIODevice::Text);
-    out.seek(0);
-    out << "LANGUAGE="<<language<<"\n";
-    out << "DEFAULT_FOLDER=" << directory << "\n";
 
-    /// Enable/Disable fullscreen mode by double-click mouse ///
-    out << "MOUSE_FULLSCREEN=" << (int)imagewidget->getMouseFullscreen() << "\n";
-
-    /// Enable/Disable zooming by mouse ///
-    out << "MOUSE_ZOOM=" << (int)imagewidget->getMouseZoom() << "\n";
-
-    /// Slideshow ///
-    out << "SLIDESHOW_TRANSITION=" << (int)slideshowSmoothTransition << "\n";;
-    out << "SLIDESHOW_INTERVAL=" << slideshowInterval << "\n";
-
-    /// Panel ///
-    out << "PANEL="<<panelalignment<<"\n";
-
-    /// Fullscreen background ///
-    out << "FULLSCREEN_COLOR=\n" <<
-           "RED=" << fullscreencolor.red() << "\n" <<
-           "GREEN=" << fullscreencolor.green() << "\n" <<
-           "BLUE=" << fullscreencolor.blue() << "\n";
-
-    /// Hotkeys ///
-    out << "\n#Hotkeys\n";
-    //File//
-    out << "File-Open="<<hotkeys.fileOpen << "\n";
-    out << "File-Save="<<hotkeys.fileSave << "\n";
-    out << "File-Save-As="<<hotkeys.fileSaveAs << "\n";
-    out << "File-Settings="<<hotkeys.fileSettings << "\n";
-    out << "File-Quit="<<hotkeys.fileQuit << "\n";
-
-    //Edit//
-    out << "Edit-Undo="<<hotkeys.editUndo << "\n";
-    out << "Edit-Redo="<<hotkeys.editRedo << "\n";
-    out << "Edit-Rotate-Right="<<hotkeys.editRotateRight << "\n";
-    out << "Edit-Rotate-Left="<<hotkeys.editRotateLeft << "\n";
-    out << "Edit-Flip-Horizontal="<<hotkeys.editFlipHorizontal << "\n";
-    out << "Edit-Flip-Vertical="<<hotkeys.editFlipVertical << "\n";
-    out << "Edit-Crop="<<hotkeys.editCrop << "\n";
-    out << "Edit-Resize="<<hotkeys.editResize << "\n";
-    out << "Edit-Resize-Items="<<hotkeys.editResizeItems << "\n";
-
-    //Watch//
-    out << "Watch-Previous="<<hotkeys.watchPrevious << "\n";
-    out << "Watch-Next="<<hotkeys.watchNext << "\n";
-    out << "Watch-Fullscreen="<<hotkeys.watchFullscreen << "\n";
-    out << "Watch-Slideshow="<<hotkeys.watchSlideshow << "\n";
-    out << "Watch-Wallpaper="<<hotkeys.watchWallpaper << "\n";
-    out << "Zoom-In="<<hotkeys.zoomIn << "\n";
-    out << "Zoom-Out="<<hotkeys.zoomOut << "\n";
-    out << "Zoom-Window="<<hotkeys.zoomWindow << "\n";
-    out << "Zoom-Original="<<hotkeys.zoomOriginal << "\n";
-
-    //Help//
-    out << "Help-About="<<hotkeys.helpAbout << "\n";
-
-    /// Panel ///
-    out << "\n#Panel\n";
-    out << "RotateLeft="<< (int)isneedBut.rotateLeft << "\n";
-    out << "RotateRight="<< (int)isneedBut.rotateRight << "\n";
-    out << "FlipHorizontal="<< (int)isneedBut.flipHorizontal << "\n";
-    out << "FlipVertical="<< (int)isneedBut.flipVertical << "\n";
-    out << "Zoom In="<< (int)isneedBut.zoomIn << "\n";
-    out << "Zoom Out="<< (int)isneedBut.zoomOut << "\n";
-    out << "Zoom Window="<< (int)isneedBut.zoomWindow << "\n";
-    out << "Zoom Original="<< (int)isneedBut.zoomOriginal << "\n";
-    out << "Fullscreen="<< (int)isneedBut.fullscreen << "\n";
-    out << "Slideshow="<< (int)isneedBut.slideshow << "\n";
-    out << "Properties="<< (int)isneedBut.properties << "\n";
-
-    /// Extern Editors ///
-    out << "\n#Extern editors\n";
-    for (int i=0;i<editors.size();i++)
-    {
-        out << "Name=" << editors[i]->name << "\n";
-        out << "Icon=" << editors[i]->icon << "\n";
-        out << "Programm=" << editors[i]->command << "\n";
-        out << "\n";
-    }
-    file.close();
+    savesettings();
+//    /// Extern Editors ///
+//    out << "\n#Extern editors\n";
+//    for (int i=0;i<editors.size();i++)
+//    {
+//        out << "Name=" << editors[i]->name << "\n";
+//        out << "Icon=" << editors[i]->icon << "\n";
+//        out << "Programm=" << editors[i]->command << "\n";
+//        out << "\n";
+//    }
 
     if (!imagewidget->isSaved())
     {

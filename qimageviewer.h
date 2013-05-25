@@ -95,7 +95,7 @@ private slots:
 
 private:
     /// Settings ///
-    QSettings *settings;
+    QSettings *qsettings;
     bool isSettingsActive;
     //Default Folder//
     QString lastdirectory;
@@ -169,6 +169,7 @@ private:
     void createDesign();
     void createPanel();
     void loadsettings();
+    void savesettings();
 
 protected:
     void resizeEvent(QResizeEvent *);

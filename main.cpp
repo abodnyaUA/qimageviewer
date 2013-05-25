@@ -3,8 +3,10 @@
 #include <QTextCodec>
 #include <QLibraryInfo>
 #include <QTranslator>
+#include <QSettings>
 #include <QDebug>
-void loadStyleSheet() {
+void loadStyleSheet()
+{
     /* Let's use QFile and point to a resource... */
     QFile data(":/style.qss");
     QString style;
@@ -27,25 +29,15 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     //loadStyleSheet();
     QApplication::setApplicationName("QImageViewer");
-    QApplication::setApplicationVersion("0.1.7");
+    QApplication::setApplicationVersion("0.1.8");
 
-    QFile file("settings.txt");
-    QTextStream out(&file);
-    out.setCodec(QTextCodec::codecForName("UTF-8"));
-    QString lng;
-    if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
-        lng = QLocale::system().name();
-    else
-    {
-        lng = out.readLine();
-        lng = lng.right(lng.size()-9);
-        if (lng == "rus") lng = "ru_RU";
-        else if (lng == "ukr") lng = "uk_UA";
-        else if (lng == "eng") lng = "en_US";
-        else if (lng == "pol") lng = "pl_PL";
-        else lng = QLocale::system().name();
-    }
-    file.close();
+    QSettings *qsettings = new QSettings("QImageViewer","QImageViewer");
+    QString lng = qsettings->value("Programm/Language","sys").toString();
+    if (lng == "rus") lng = "ru_RU";
+    else if (lng == "ukr") lng = "uk_UA";
+    else if (lng == "eng") lng = "en_US";
+    else if (lng == "pol") lng = "pl_PL";
+    else lng = QLocale::system().name();
 
     /// system locale for messageboxes ///
     QTranslator qtTranslator;

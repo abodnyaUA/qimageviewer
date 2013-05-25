@@ -100,7 +100,7 @@ void QExternProgramManager::on_addButton_clicked()
 
 void QExternProgramManager::on_okButton_clicked()
 {
-    on_acceptButton_clicked();
+    if (ui->listWidget->count()>0) on_acceptButton_clicked();
     emit overed(true);
 }
 void QExternProgramManager::on_cancelButton_clicked()

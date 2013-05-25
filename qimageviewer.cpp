@@ -633,6 +633,8 @@ void QImageViewer::updateSettings(QString language,
     disconnect(settings,SIGNAL(acceptsettings(QString,QString,bool,bool,bool,double,int,hotkeysStruct,isneedButStruct,QColor)),
             this,SLOT(updateSettings(QString,QString,bool,bool,bool,double,int,hotkeysStruct,isneedButStruct,QColor)));
     delete settings;
+
+    savesettings();
 }
 
 /** Show editResize window, hide this **/
@@ -863,7 +865,7 @@ void QImageViewer::imageshackShare()
 void QImageViewer::helpAbout()
 {
     QMessageBox::about(this, tr("About"),
-        tr("QImageViewer 0.1.7\n\n"
+        tr("QImageViewer 0.1.8\n\n"
            "This program is using for viewing pictures\n"
            "It was created with using Qt 5.0.2\n\n"
            "Program author is Bodnya Alexey\n"

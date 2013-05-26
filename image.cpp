@@ -280,7 +280,7 @@ void image::setImage(int indx)
     {
         int r = QMessageBox::warning(this, tr("Warning!"),
                                         tr("This file was changed\n"
-                                           "Do you want accept changes?"),
+                                           "Do you want to save the changes?"),
                                         QMessageBox::No,
                                         QMessageBox::Yes | QMessageBox::Default,
                                         QMessageBox::Cancel | QMessageBox::Escape);
@@ -460,7 +460,7 @@ static wchar_t* charToWChar(const char* text)
 void image::setAsWallpaper()
 {
     int r = QMessageBox::question(this, tr("Setting wallpaper"),
-                                    tr("Do you want to set this image like desktop wallpaper?"),
+                                    tr("Do you want to set this image as desktop wallpaper?"),
                                     QMessageBox::Yes | QMessageBox::Default,
                                     QMessageBox::Cancel | QMessageBox::Escape);
     if (r == QMessageBox::Cancel) return;

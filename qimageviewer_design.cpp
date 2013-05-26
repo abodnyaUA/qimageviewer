@@ -264,7 +264,7 @@ void QImageViewer::createActions()
     connect(ui->zoomWindowAction,SIGNAL(triggered()),imagewidget,SLOT(reloadImage()));
 
     // Extern editors //
-    ui->editorsNewAction->setStatusTip(tr("Add new extern editor. You will can open current image with other editor"));
+    ui->editorsNewAction->setStatusTip(tr("Add new extern editor. You will be able to open current image with another editor"));
     connect(ui->editorsNewAction,SIGNAL(triggered()),this,SLOT(newExternEditor()));
 
     ui->editorsManagerAction->setStatusTip(tr("Set up your extern settings"));

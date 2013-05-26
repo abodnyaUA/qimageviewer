@@ -84,7 +84,7 @@
      <x>0</x>
      <y>0</y>
      <width>640</width>
-     <height>25</height>
+     <height>23</height>
     </rect>
    </property>
    <widget class="QMenu" name="fileMenu">
@@ -237,7 +237,7 @@
      <normaloff>:/res/rotate-right.png</normaloff>:/res/rotate-right.png</iconset>
    </property>
    <property name="text">
-    <string>Rotate to the right</string>
+    <string>Rotate right</string>
    </property>
   </action>
   <action name="rotateLeftAction">
@@ -249,7 +249,7 @@
      <normaloff>:/res/rotate-left.png</normaloff>:/res/rotate-left.png</iconset>
    </property>
    <property name="text">
-    <string>Rotate to the left</string>
+    <string>Rotate left</string>
    </property>
   </action>
   <action name="deleteFileAction">
@@ -477,6 +477,11 @@
    </property>
    <property name="text">
     <string>ImageShack.us</string>
+   </property>
+  </action>
+  <action name="aboutQtAction">
+   <property name="text">
+    <string>About Qt</string>
    </property>
   </action>
  </widget>

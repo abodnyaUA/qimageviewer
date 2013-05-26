@@ -103,7 +103,7 @@
         <locale language="English" country="UnitedStates"/>
        </property>
        <property name="text">
-        <string>Create data</string>
+        <string>Creation date</string>
        </property>
       </widget>
      </item>
@@ -120,7 +120,7 @@
         <locale language="English" country="UnitedStates"/>
        </property>
        <property name="text">
-        <string>Last changes</string>
+        <string>Last change date</string>
        </property>
       </widget>
      </item>

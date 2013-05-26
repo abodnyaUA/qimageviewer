@@ -130,7 +130,7 @@
           </size>
          </property>
          <property name="text">
-          <string>Forums:</string>
+          <string>BBCode (Forum)</string>
          </property>
         </widget>
        </item>
@@ -154,7 +154,7 @@
           </size>
          </property>
          <property name="text">
-          <string>Sites:</string>
+          <string>HTML (Site)</string>
          </property>
         </widget>
        </item>
@@ -178,7 +178,7 @@
           </size>
          </property>
          <property name="text">
-          <string>Direct:</string>
+          <string>Direct link:</string>
          </property>
         </widget>
        </item>
@@ -200,7 +200,7 @@
         </font>
        </property>
        <property name="text">
-        <string>Thumbnail Size</string>
+        <string>Preview</string>
        </property>
       </widget>
      </item>
@@ -215,7 +215,7 @@
           </size>
          </property>
          <property name="text">
-          <string>Forums:</string>
+          <string>BBCode (Forum)</string>
          </property>
         </widget>
        </item>
@@ -239,7 +239,7 @@
           </size>
          </property>
          <property name="text">
-          <string>Sites:</string>
+          <string>HTML (Site)</string>
          </property>
         </widget>
        </item>

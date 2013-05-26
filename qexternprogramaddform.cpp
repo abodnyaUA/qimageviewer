@@ -17,7 +17,7 @@ void QExternProgramAddForm::on_iconBrowseButton_clicked()
 {
     QString path;
     QFileDialog dialog;
-    path = dialog.getOpenFileName(this,tr("Opening extern image program"),
+    path = dialog.getOpenFileName(this,tr("Opening extern image application"),
                                    "",tr("All image formats (*.jpg *.jpeg *.png *.bmp *.gif *.tiff *.pbm *.pgm *.ppm *.xbm *.xpm)"));
     if(!path.isNull())
     {
@@ -30,7 +30,7 @@ void QExternProgramAddForm::on_commandBrowseButton_clicked()
 {
     QString path;
     QFileDialog dialog;
-    path = dialog.getOpenFileName(this,tr("Opening extern image program"),
+    path = dialog.getOpenFileName(this,tr("Opening extern image application"),
                                    "",tr("All file formats (*.*)"));
     if(!path.isNull()) ui->commandLineEdit->setText(path);
 }
@@ -58,7 +58,7 @@ void QExternProgramAddForm::on_addButton_clicked()
     if (ui->commandLineEdit->text().isEmpty())
     {
         QMessageBox::warning(this, tr("Invalid parameters"),
-                             tr("Program path (command) can't be empty"),
+                             tr("Application path (command) can't be empty"),
                                     QMessageBox::Ok | QMessageBox::Default);
         return;
     }

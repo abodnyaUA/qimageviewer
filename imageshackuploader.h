@@ -12,7 +12,7 @@
 #include <QHash>
 #include <QMessageBox>
 #ifdef Q_OS_LINUX
-    #include "zlib.h"
+    #include <QtZlib/zlib.h>
 #endif
 namespace Ui {
 class ImageShackUploader;

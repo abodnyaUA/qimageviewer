@@ -21,7 +21,7 @@
     <message>
         <location filename="../imageshackuploader.ui" line="96"/>
         <source>Link:</source>
-        <translation>Ссылка</translation>
+        <translation>Ссылка:</translation>
     </message>
     <message>
         <location filename="../imageshackuploader.ui" line="118"/>
@@ -31,24 +31,40 @@
     <message>
         <location filename="../imageshackuploader.ui" line="133"/>
         <location filename="../imageshackuploader.ui" line="218"/>
-        <source>Forums:</source>
-        <translation>Форум:</translation>
+        <source>BBCode (Forum)</source>
+        <translation>BBCode (Форум)</translation>
     </message>
     <message>
         <location filename="../imageshackuploader.ui" line="157"/>
         <location filename="../imageshackuploader.ui" line="242"/>
-        <source>Sites:</source>
-        <translation>Сайты:</translation>
+        <source>HTML (Site)</source>
+        <translation>HTML (Сайт)</translation>
     </message>
     <message>
         <location filename="../imageshackuploader.ui" line="181"/>
-        <source>Direct:</source>
-        <translation>Ссылка:</translation>
+        <source>Direct link:</source>
+        <translation>Прямая ссылка:</translation>
     </message>
     <message>
         <location filename="../imageshackuploader.ui" line="203"/>
+        <source>Preview</source>
+        <translation>Preview</translation>
+    </message>
+    <message>
+        <source>Forums:</source>
+        <translation type="obsolete">Форум:</translation>
+    </message>
+    <message>
+        <source>Sites:</source>
+        <translation type="obsolete">Сайты:</translation>
+    </message>
+    <message>
+        <source>Direct:</source>
+        <translation type="obsolete">Ссылка:</translation>
+    </message>
+    <message>
         <source>Thumbnail Size</source>
-        <translation>Миниатюра</translation>
+        <translation type="obsolete">Миниатюра</translation>
     </message>
     <message>
         <location filename="../imageshackuploader.ui" line="273"/>
@@ -105,13 +121,21 @@
     </message>
     <message>
         <location filename="../properties.ui" line="106"/>
-        <source>Create data</source>
+        <source>Creation date</source>
         <translation>Дата создания</translation>
     </message>
     <message>
         <location filename="../properties.ui" line="123"/>
+        <source>Last change date</source>
+        <translation>Дата последнего изменения</translation>
+    </message>
+    <message>
+        <source>Create data</source>
+        <translation type="obsolete">Дата создания</translation>
+    </message>
+    <message>
         <source>Last changes</source>
-        <translation>Последнее изменение</translation>
+        <translation type="obsolete">Последнее изменение</translation>
     </message>
     <message>
         <location filename="../properties.ui" line="140"/>
@@ -139,18 +163,30 @@
     </message>
     <message>
         <location filename="../qexternprogramaddform.ui" line="51"/>
-        <source>Program name</source>
-        <translation>Имя программы:</translation>
+        <source>Name</source>
+        <translation>Название</translation>
     </message>
     <message>
         <location filename="../qexternprogramaddform.ui" line="58"/>
-        <source>Program icon</source>
-        <translation>Иконка программы:</translation>
+        <source>Icon</source>
+        <translation>Иконка</translation>
     </message>
     <message>
         <location filename="../qexternprogramaddform.ui" line="88"/>
+        <source>Application path (command)</source>
+        <translation>Путь (команда)</translation>
+    </message>
+    <message>
+        <source>Program name</source>
+        <translation type="obsolete">Имя программы:</translation>
+    </message>
+    <message>
+        <source>Program icon</source>
+        <translation type="obsolete">Иконка программы:</translation>
+    </message>
+    <message>
         <source>Program adress (command)</source>
-        <translation>Адрес программы (или комманда)</translation>
+        <translation type="obsolete">Адрес программы (или комманда)</translation>
     </message>
     <message>
         <location filename="../qexternprogramaddform.ui" line="126"/>
@@ -168,9 +204,13 @@
         <translation>Все форматы изображений (*.jpg *.jpeg *.png *.bmp *.gif *.tiff *.pbm *.pgm *.ppm *.xbm *.xpm)</translation>
     </message>
     <message>
+        <source>Opening extern image program</source>
+        <translation type="obsolete">Открытие внешнего графического редактора</translation>
+    </message>
+    <message>
         <location filename="../qexternprogramaddform.cpp" line="20"/>
         <location filename="../qexternprogramaddform.cpp" line="33"/>
-        <source>Opening extern image program</source>
+        <source>Opening extern image application</source>
         <translation>Открытие внешнего графического редактора</translation>
     </message>
     <message>
@@ -191,8 +231,12 @@
     </message>
     <message>
         <location filename="../qexternprogramaddform.cpp" line="61"/>
+        <source>Application path (command) can&apos;t be empty</source>
+        <translation>Путь к программе не может быть пустым</translation>
+    </message>
+    <message>
         <source>Program path (command) can&apos;t be empty</source>
-        <translation>Путь к программе (комманда выполнения) не может быть пустым/ой</translation>
+        <translation type="obsolete">Путь к программе (комманда выполнения) не может быть пустым/ой</translation>
     </message>
 </context>
 <context>
@@ -209,19 +253,31 @@
         <translation>Обзор</translation>
     </message>
     <message>
-        <location filename="../qexternprogrammanager.ui" line="55"/>
         <source>Program name</source>
-        <translation>Имя программы:</translation>
+        <translation type="obsolete">Имя программы:</translation>
+    </message>
+    <message>
+        <source>Program icon</source>
+        <translation type="obsolete">Иконка программы:</translation>
+    </message>
+    <message>
+        <source>Program adress (command)</source>
+        <translation type="obsolete">Адрес программы (или комманда)</translation>
+    </message>
+    <message>
+        <location filename="../qexternprogrammanager.ui" line="55"/>
+        <source>Name</source>
+        <translation>Имя</translation>
     </message>
     <message>
         <location filename="../qexternprogrammanager.ui" line="62"/>
-        <source>Program icon</source>
-        <translation>Иконка программы:</translation>
+        <source>Icon</source>
+        <translation>Иконка</translation>
     </message>
     <message>
         <location filename="../qexternprogrammanager.ui" line="92"/>
-        <source>Program adress (command)</source>
-        <translation>Адрес программы (или комманда)</translation>
+        <source>Application path (command)</source>
+        <translation>Путь (команда)</translation>
     </message>
     <message>
         <location filename="../qexternprogrammanager.ui" line="137"/>
@@ -261,8 +317,18 @@
     </message>
     <message>
         <location filename="../qexternprogrammanager.cpp" line="54"/>
+        <source>Application path (command) can&apos;t be empty</source>
+        <translation>Путь к программе не может быть пустым</translation>
+    </message>
+    <message>
+        <location filename="../qexternprogrammanager.cpp" line="207"/>
+        <location filename="../qexternprogrammanager.cpp" line="220"/>
+        <source>Opening extern image application</source>
+        <translation>Открытие внешнего графического редактора</translation>
+    </message>
+    <message>
         <source>Program path (command) can&apos;t be empty</source>
-        <translation>Путь к программе (комманда выполнения) не может быть пустым/ой</translation>
+        <translation type="obsolete">Путь к программе (комманда выполнения) не может быть пустым/ой</translation>
     </message>
     <message>
         <location filename="../qexternprogrammanager.cpp" line="208"/>
@@ -270,10 +336,8 @@
         <translation>Все форматы изображений (*.jpg *.jpeg *.png *.bmp *.gif *.tiff *.pbm *.pgm *.ppm *.xbm *.xpm)</translation>
     </message>
     <message>
-        <location filename="../qexternprogrammanager.cpp" line="207"/>
-        <location filename="../qexternprogrammanager.cpp" line="220"/>
         <source>Opening extern image program</source>
-        <translation>Открытие внешнего графического редактора</translation>
+        <translation type="obsolete">Открытие внешнего графического редактора</translation>
     </message>
     <message>
         <location filename="../qexternprogrammanager.cpp" line="221"/>
@@ -345,6 +409,18 @@
         <translation>Oткрыть</translation>
     </message>
     <message>
+        <location filename="../qimageviewer.ui" line="240"/>
+        <location filename="../qimageviewer.cpp" line="483"/>
+        <source>Rotate right</source>
+        <translation>Повернуть вправо</translation>
+    </message>
+    <message>
+        <location filename="../qimageviewer.ui" line="252"/>
+        <location filename="../qimageviewer.cpp" line="473"/>
+        <source>Rotate left</source>
+        <translation>Повернуть влево</translation>
+    </message>
+    <message>
         <location filename="../qimageviewer.ui" line="308"/>
         <source>Undo</source>
         <translation>Отменить</translation>
@@ -395,7 +471,7 @@
     <message>
         <location filename="../qimageviewer.ui" line="409"/>
         <source>Resize items...</source>
-        <translation>Пакетное изменение размера</translation>
+        <translation>Пакетное изменение размера...</translation>
     </message>
     <message>
         <location filename="../qimageviewer.ui" line="421"/>
@@ -432,6 +508,11 @@
         <source>ImageShack.us</source>
         <translation></translation>
     </message>
+    <message>
+        <location filename="../qimageviewer.ui" line="484"/>
+        <source>About Qt</source>
+        <translation></translation>
+    </message>
     <message utf8="true">
         <source>Печать</source>
         <translation type="obsolete">Печать</translation>
@@ -458,14 +539,12 @@
         <translation>Сохранить как...</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="240"/>
         <source>Rotate to the right</source>
-        <translation>Повернуть направо</translation>
+        <translation type="obsolete">Повернуть направо</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="252"/>
         <source>Rotate to the left</source>
-        <translation>Повернуть налево</translation>
+        <translation type="obsolete">Повернуть налево</translation>
     </message>
     <message>
         <location filename="../qimageviewer.ui" line="264"/>
@@ -534,8 +613,12 @@
     </message>
     <message>
         <location filename="../qimageviewer_design.cpp" line="267"/>
+        <source>Add new extern editor. You will be able to open current image with another editor</source>
+        <translation>Добавить новый редактор. Вы сможете открывать текущее изображение в других программах</translation>
+    </message>
+    <message>
         <source>Add new extern editor. You will can open current image with other editor</source>
-        <translation>Добавить внешний редактор. Вы сможете открыть текущее изображение в другом графическом редакторе</translation>
+        <translation type="obsolete">Добавить внешний редактор. Вы сможете открыть текущее изображение в другом графическом редакторе</translation>
     </message>
     <message>
         <location filename="../qimageviewer_design.cpp" line="270"/>
@@ -709,13 +792,11 @@ Special thx Neveron for help and support!</source>
         <translation type="obsolete">Уменьшить изображение</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="473"/>
         <location filename="../qimageviewer_design.cpp" line="342"/>
         <source>Rotate picture to the left</source>
         <translation>Повернуть изображение против часовой стрелки</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="483"/>
         <location filename="../qimageviewer_design.cpp" line="352"/>
         <source>Rotate picture to the right</source>
         <translation>Повернуть изображение по часовой стрелке</translation>
@@ -756,6 +837,30 @@ Special thx Neveron for help and support!</source>
         <location filename="../qimageviewer.cpp" line="868"/>
         <source>QImageViewer 0.1.8
 
+Application for viewing pictures
+Created using Qt 5.0.2 library
+
+Program author is Bodnya Alexey
+Ukraine, Kiev, KPI, TV-11
+This program is distributed under GPLv2
+It is completely free and open-source.
+
+Thanks for testing, advice and ideas to my friends, Typical Proger and Prog.org.ru communities!</source>
+        <translation>QImageViewer 0.1.8
+
+Эта программа - просмотрщик изображений.
+Она была разработана с использованием Qt 5.0.2
+
+Автор программы - Бодня Алексей
+Украина, Киев, КПИ, ТВ-11
+Эта программа распостраняется под лицензией GPLv2
+Она бесплатна в использовании и её исходные коды доступны всем желающим
+
+Спасибо за тестирование, советы и свежие идеи моим друзьям, сообществу Типичного Программиста и сообществу сайта Prog.org.ru!</translation>
+    </message>
+    <message>
+        <source>QImageViewer 0.1.8
+
 This program is using for viewing pictures
 It was created with using Qt 5.0.2
 
@@ -765,7 +870,7 @@ This program is under license GPLv2
 It&apos;s free to use and all sources are open.
 
 Thanks for testing and helping with tips and ideas to my friends, Typical Proger community and Prog.org.ru community!</source>
-        <translation>QImageViewer 0.1.8
+        <translation type="obsolete">QImageViewer 0.1.8
 
 Эта программа - просмотрщик изображений.
 Она была разработана с использованием Qt 5.0.2
@@ -925,14 +1030,12 @@ Do you want to save changes?</source>
         <translation>Обзор</translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="68"/>
         <source>Enable/Disable fullscreen mode by double-click mouse</source>
-        <translation>Вкл./Откл. полноэкранный режим двойным щелчком</translation>
+        <translation type="obsolete">Вкл./Откл. полноэкранный режим двойным щелчком</translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="75"/>
         <source>Enable/Disable zooming by mouse</source>
-        <translation>Вкл./Выкл. масштабирование мышкой</translation>
+        <translation type="obsolete">Вкл./Выкл. масштабирование мышкой</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="91"/>
@@ -945,24 +1048,20 @@ Do you want to save changes?</source>
         <translation>Плавный переход между слайдами</translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="312"/>
         <source>Tool Panel placed at the bottom</source>
-        <translation>Панель инструментов снизу</translation>
+        <translation type="obsolete">Панель инструментов снизу</translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="317"/>
         <source>Tool Panel placed at the top</source>
-        <translation>Панель инструментов сверху</translation>
+        <translation type="obsolete">Панель инструментов сверху</translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="322"/>
         <source>Tool Panel is hidden</source>
-        <translation>Скрыть панель инструментов</translation>
+        <translation type="obsolete">Скрыть панель инструментов</translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="162"/>
         <source>Program language:</source>
-        <translation>Язык программы:</translation>
+        <translation type="obsolete">Язык программы:</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="170"/>
@@ -998,6 +1097,21 @@ Do you want to save changes?</source>
         <location filename="../settings.ui" line="297"/>
         <source>Panel</source>
         <translation>Панель инструментов</translation>
+    </message>
+    <message>
+        <location filename="../settings.ui" line="312"/>
+        <source>Panel at the bottom</source>
+        <translation>Панель инструментов снизу</translation>
+    </message>
+    <message>
+        <location filename="../settings.ui" line="317"/>
+        <source>Panel on top</source>
+        <translation>Панель инструментов сверху</translation>
+    </message>
+    <message>
+        <location filename="../settings.ui" line="322"/>
+        <source>No panel</source>
+        <translation>Скрыть панель инструментов</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="363"/>
@@ -1065,6 +1179,11 @@ Do you want to save changes?</source>
         <translation>Сбросить все настройки</translation>
     </message>
     <message>
+        <location filename="../settings.ui" line="586"/>
+        <source>Accept new settings</source>
+        <translation>Принять изменения</translation>
+    </message>
+    <message>
         <location filename="../settings.ui" line="451"/>
         <location filename="../settings_hotkeys.cpp" line="64"/>
         <source>Fullscreen</source>
@@ -1077,9 +1196,8 @@ Do you want to save changes?</source>
         <translation>Показ слайдов</translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="586"/>
         <source>Accept new settins</source>
-        <translation>Приянть изменения</translation>
+        <translation type="obsolete">Приянть изменения</translation>
     </message>
     <message>
         <location filename="../settings.ui" line="593"/>
@@ -1109,6 +1227,21 @@ Do you want to save changes?</source>
         <location filename="../settings.ui" line="14"/>
         <source>QImageViewer - Settings</source>
         <translation>QImageViewer - Настройки</translation>
+    </message>
+    <message>
+        <location filename="../settings.ui" line="68"/>
+        <source>Double-click enables/disables full screen mode</source>
+        <translation>Вкл./Откл. полноэкранный режим двойным щелчком</translation>
+    </message>
+    <message>
+        <location filename="../settings.ui" line="75"/>
+        <source>Enable/Disable mouse wheel zoom</source>
+        <translation>Вкл./Выкл. масштабирование мышкой</translation>
+    </message>
+    <message>
+        <location filename="../settings.ui" line="162"/>
+        <source>Application language:</source>
+        <translation>Язык приложения:</translation>
     </message>
     <message utf8="true">
         <location filename="../settings.ui" line="180"/>
@@ -1207,7 +1340,7 @@ Do you want to save changes?</source>
     <message>
         <location filename="../settings_hotkeys.cpp" line="55"/>
         <source>Resize items...</source>
-        <translation>Пакетное изменение размера</translation>
+        <translation>Пакетное изменение размера...</translation>
     </message>
     <message>
         <location filename="../settings_hotkeys.cpp" line="60"/>
@@ -1270,8 +1403,12 @@ Do you want to save changes?</source>
     </message>
     <message>
         <location filename="../settings.cpp" line="107"/>
+        <source>Language will be switched after application restart</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Language will be changing after restart program</source>
-        <translation>Язык будет изменен после перезапуска программы</translation>
+        <translation type="obsolete">Язык будет изменен после перезапуска программы</translation>
     </message>
     <message>
         <location filename="../settings.cpp" line="160"/>
@@ -1372,17 +1509,16 @@ Do you want to save changes?</source>
     <message>
         <location filename="../editformresizeelements.ui" line="38"/>
         <source>Preview:</source>
-        <translation>Выделенное изображение</translation>
+        <translation>Выделенное изображение:</translation>
     </message>
     <message>
         <location filename="../editformresizeelements.ui" line="69"/>
         <source>Image size:</source>
-        <translation>Размер изображения</translation>
+        <translation>Размер изображения:</translation>
     </message>
     <message>
-        <location filename="../editformresizeelements.ui" line="128"/>
         <source>by size</source>
-        <translation>фиксированый размер</translation>
+        <translation type="obsolete">фиксированый размер</translation>
     </message>
     <message>
         <location filename="../editformresizeelements.ui" line="146"/>
@@ -1395,9 +1531,8 @@ Do you want to save changes?</source>
         <translation>высота изображения</translation>
     </message>
     <message>
-        <location filename="../editformresizeelements.ui" line="199"/>
         <source>by percents</source>
-        <translation>относительный размер (в %)</translation>
+        <translation type="obsolete">относительный размер (в %)</translation>
     </message>
     <message>
         <location filename="../editformresizeelements.ui" line="76"/>
@@ -1409,6 +1544,16 @@ Do you want to save changes?</source>
         <location filename="../editformresizeelements.ui" line="83"/>
         <source>x</source>
         <translation></translation>
+    </message>
+    <message>
+        <location filename="../editformresizeelements.ui" line="128"/>
+        <source>By pixel size</source>
+        <translation>Фиксированый размер</translation>
+    </message>
+    <message>
+        <location filename="../editformresizeelements.ui" line="199"/>
+        <source>By percent</source>
+        <translation>Относительный размер (в %)</translation>
     </message>
     <message>
         <location filename="../editformresizeelements.ui" line="272"/>
@@ -1504,8 +1649,19 @@ Do you want to save changes?</source>
     <message>
         <location filename="../image.cpp" line="282"/>
         <source>This file was changed
-Do you want accept changes?</source>
+Do you want to save the changes?</source>
         <translation>Этот файл был изменен
+Хотите сохранить изменения?</translation>
+    </message>
+    <message>
+        <location filename="../image.cpp" line="463"/>
+        <source>Do you want to set this image as desktop wallpaper?</source>
+        <translation>Вы уверены, что хотите поменять обои на рабочем столе?</translation>
+    </message>
+    <message>
+        <source>This file was changed
+Do you want accept changes?</source>
+        <translation type="obsolete">Этот файл был изменен
 Хотите сохранить изменения?</translation>
     </message>
     <message>
@@ -1524,9 +1680,8 @@ Do you want accept changes?</source>
         <translation>Установить как обои на рабочий стол</translation>
     </message>
     <message>
-        <location filename="../image.cpp" line="463"/>
         <source>Do you want to set this image like desktop wallpaper?</source>
-        <translation>Вы уверены, что хотите поменять обои на рабочем столе?</translation>
+        <translation type="obsolete">Вы уверены, что хотите поменять обои на рабочем столе?</translation>
     </message>
 </context>
 <context>

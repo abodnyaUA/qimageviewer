@@ -125,7 +125,7 @@
         <enum>Qt::LeftToRight</enum>
        </property>
        <property name="text">
-        <string>by size</string>
+        <string>By pixel size</string>
        </property>
        <property name="checked">
         <bool>true</bool>
@@ -196,7 +196,7 @@
      <item>
       <widget class="QRadioButton" name="typePercentRadioButton">
        <property name="text">
-        <string>by percents</string>
+        <string>By percent</string>
        </property>
       </widget>
      </item>
@@ -311,8 +311,6 @@
     </layout>
    </item>
   </layout>
-  <zorder>horizontalLayoutWidget_2</zorder>
-  <zorder>listWidget</zorder>
  </widget>
  <resources>
   <include location="resources.qrc"/>

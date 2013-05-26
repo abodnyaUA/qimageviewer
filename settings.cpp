@@ -104,7 +104,7 @@ void Settings::on_acceptButton_clicked()
 
     if (old_lang != lang)
         QMessageBox::question(this, tr("Warning!"),
-                              tr("Language will be changing after restart program"),
+                              tr("Language will be switched after application restart"),
                               QMessageBox::Ok | QMessageBox::Default);
 
     old_lang = lang;

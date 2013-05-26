@@ -470,7 +470,7 @@ void QImageViewer::updateSettings(QString language,
     if (isneedNew.rotateLeft)
     {
         butRotateLeft = new QPushButton;
-        butRotateLeft->setToolTip(tr("Rotate picture to the left"));
+        butRotateLeft->setToolTip(tr("Rotate left"));
         connect(butRotateLeft,SIGNAL(clicked()),imagewidget,SLOT(rotateLeft()));
         butRotateLeft->setFocusPolicy(Qt::NoFocus);
         butRotateLeft->setIcon(QIcon(QPixmap(":/res/rotate-left.png")));
@@ -480,7 +480,7 @@ void QImageViewer::updateSettings(QString language,
     if (isneedNew.rotateRight)
     {
         butRotateRight = new QPushButton;
-        butRotateRight->setToolTip(tr("Rotate picture to the right"));
+        butRotateRight->setToolTip(tr("Rotate right"));
         connect(butRotateRight,SIGNAL(clicked()),imagewidget,SLOT(rotateRight()));
         butRotateRight->setFocusPolicy(Qt::NoFocus);
         butRotateRight->setIcon(QIcon(QPixmap(":/res/rotate-right.png")));
@@ -866,15 +866,15 @@ void QImageViewer::helpAbout()
 {
     QMessageBox::about(this, tr("About"),
         tr("QImageViewer 0.1.8\n\n"
-           "This program is using for viewing pictures\n"
-           "It was created with using Qt 5.0.2\n\n"
+           "Application for viewing pictures\n"
+           "Created using Qt 5.0.2 library\n\n"
            "Program author is Bodnya Alexey\n"
            "Ukraine, Kiev, KPI, TV-11\n"
-           "This program is under license GPLv2\n"
-           "It's free to use and all sources are open.\n"
+           "This program is distributed under GPLv2\n"
+           "It is completely free and open-source.\n"
            "\n"
-           "Thanks for testing and helping with tips and ideas to "
-           "my friends, Typical Proger community and Prog.org.ru community!"));
+           "Thanks for testing, advice and ideas to "
+           "my friends, Typical Proger and Prog.org.ru communities!"));
 }
 
 

@@ -21,7 +21,7 @@
    <item>
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>0</number>
+      <number>3</number>
      </property>
      <widget class="QWidget" name="tabMainSettings">
       <attribute name="title">
@@ -65,14 +65,14 @@
        <item>
         <widget class="QCheckBox" name="mouseFullscreenCheckBox">
          <property name="text">
-          <string>Enable/Disable fullscreen mode by double-click mouse</string>
+          <string>Double-click enables/disables full screen mode</string>
          </property>
         </widget>
        </item>
        <item>
         <widget class="QCheckBox" name="mouseZoomCheckBox">
          <property name="text">
-          <string>Enable/Disable zooming by mouse</string>
+          <string>Enable/Disable mouse wheel zoom</string>
          </property>
         </widget>
        </item>
@@ -159,7 +159,7 @@
          <item>
           <widget class="QLabel" name="label_9">
            <property name="text">
-            <string>Program language:</string>
+            <string>Application language:</string>
            </property>
           </widget>
          </item>
@@ -309,17 +309,17 @@
            </property>
            <item>
             <property name="text">
-             <string>Tool Panel placed at the bottom</string>
+             <string>Panel at the bottom</string>
             </property>
            </item>
            <item>
             <property name="text">
-             <string>Tool Panel placed at the top</string>
+             <string>Panel on top</string>
             </property>
            </item>
            <item>
             <property name="text">
-             <string>Tool Panel is hidden</string>
+             <string>No panel</string>
             </property>
            </item>
           </widget>
@@ -350,7 +350,7 @@
             <x>0</x>
             <y>0</y>
             <width>688</width>
-            <height>320</height>
+            <height>309</height>
            </rect>
           </property>
           <layout class="QFormLayout" name="formLayout">
@@ -583,7 +583,7 @@
      <item>
       <widget class="QPushButton" name="acceptButton">
        <property name="text">
-        <string>Accept new settins</string>
+        <string>Accept new settings</string>
        </property>
       </widget>
      </item>

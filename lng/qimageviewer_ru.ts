@@ -48,7 +48,7 @@
     <message>
         <location filename="../imageshackuploader.ui" line="203"/>
         <source>Preview</source>
-        <translation>Preview</translation>
+        <translation>Миниатюра</translation>
     </message>
     <message>
         <source>Forums:</source>
@@ -153,7 +153,7 @@
     <message>
         <location filename="../qexternprogramaddform.ui" line="26"/>
         <source>QImageViewer - New extern program</source>
-        <translation>QImageViewer - Новая внешнаяя программа</translation>
+        <translation>QImageViewer - Новая внешняя программа</translation>
     </message>
     <message>
         <location filename="../qexternprogramaddform.ui" line="44"/>
@@ -1404,7 +1404,7 @@ Do you want to save changes?</source>
     <message>
         <location filename="../settings.cpp" line="107"/>
         <source>Language will be switched after application restart</source>
-        <translation type="unfinished"></translation>
+        <translation>Язык будет изменен после перезапуска программы</translation>
     </message>
     <message>
         <source>Language will be changing after restart program</source>

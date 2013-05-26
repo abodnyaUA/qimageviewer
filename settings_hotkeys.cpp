@@ -39,8 +39,8 @@ void Settings::setHotkeys()
     hotkeyItemFileSaveAs = addHotkey(categoryFile,tr("Save as..."),old_hotkeys.fileSaveAs,"","Ctrl+Shift+S");
     hotkeyItemFileSettings = addHotkey(categoryFile,tr("Settings"),old_hotkeys.fileSettings,":/res/settings.png","");
     hotkeyItemFileQuit = addHotkey(categoryFile,tr("Quit"),old_hotkeys.fileQuit,"","Ctrl+Q");
-    currentHotkeys << old_hotkeys.fileOpen << old_hotkeys.fileSave << old_hotkeys.fileSaveAs <<
-                      old_hotkeys.fileSettings << old_hotkeys.fileQuit;
+    allactions << hotkeyItemFileOpen << hotkeyItemFileSave << hotkeyItemFileSaveAs <<
+                      hotkeyItemFileSettings << hotkeyItemFileQuit;
 
     categoryEdit = addCategory(tr("Edit"));
     categoryEdit->setExpanded(true);
@@ -53,9 +53,9 @@ void Settings::setHotkeys()
     hotkeyItemEditCrop = addHotkey(categoryEdit,tr("Crop"),old_hotkeys.editCrop,":/res/crop.png","Ctrl+Shift+C");
     hotkeyItemEditResize = addHotkey(categoryEdit,tr("Resize"),old_hotkeys.editResize,":/res/resize.png","Ctrl+R");
     hotkeyItemEditResizeItems = addHotkey(categoryEdit,tr("Resize items..."),old_hotkeys.editResizeItems,":/res/resize-items.png","Ctrl+Shift+R");
-    currentHotkeys << old_hotkeys.editUndo << old_hotkeys.editRedo << old_hotkeys.editRotateLeft << old_hotkeys.editRotateRight <<
-                      old_hotkeys.editFlipHorizontal << old_hotkeys.editFlipVertical << old_hotkeys.editCrop <<
-                      old_hotkeys.editResize << old_hotkeys.editResizeItems;
+    allactions << hotkeyItemEditUndo << hotkeyItemEditRedo << hotkeyItemEditRotateLeft << hotkeyItemEditRotateRight <<
+                      hotkeyItemEditFlipHorizontal << hotkeyItemEditFlipVertical << hotkeyItemEditCrop <<
+                      hotkeyItemEditResize << hotkeyItemEditResizeItems;
 
     categoryWatch = addCategory(tr("Preview"));
     categoryWatch->setExpanded(true);
@@ -68,14 +68,14 @@ void Settings::setHotkeys()
     hotkeyItemZoomOut = addHotkey(categoryWatch,tr("Zoom out"),old_hotkeys.zoomOut,":/res/zoom-out.png","-");
     hotkeyItemZoomWindow = addHotkey(categoryWatch,tr("Window size"),old_hotkeys.zoomWindow,":/res/zoom-window.png","");
     hotkeyItemZoomOriginal = addHotkey(categoryWatch,tr("Original size"),old_hotkeys.zoomOriginal,":/res/zoom-original.png","");
-    currentHotkeys << old_hotkeys.watchPrevious << old_hotkeys.watchNext << old_hotkeys.watchFullscreen <<
-                      old_hotkeys.watchSlideshow << old_hotkeys.watchWallpaper << old_hotkeys.zoomIn <<
-                      old_hotkeys.zoomOut << old_hotkeys.zoomWindow << old_hotkeys.zoomOriginal;
+    allactions << hotkeyItemWatchPrevious << hotkeyItemWatchNext << hotkeyItemWatchFullscreen <<
+                      hotkeyItemWatchSlideshow << hotkeyItemWatchWallpaper << hotkeyItemZoomIn <<
+                      hotkeyItemZoomOut << hotkeyItemZoomWindow << hotkeyItemZoomOriginal;
 
     categoryHelp = addCategory(tr("Help"));
     categoryHelp->setExpanded(true);
     hotkeyItemHelpAbout = addHotkey(categoryHelp,tr("About"),old_hotkeys.helpAbout,":/res/help.png","F1");
-    currentHotkeys << old_hotkeys.helpAbout;
+    allactions << hotkeyItemHelpAbout;
 }
 
 void Settings::saveHotkeys()
@@ -122,9 +122,37 @@ void Settings::changingEndAccept()
 {
     QString newhotkey = QHotkeyWidget->hotkeyEdit->text();
 
-    QHotkeyWidget->changingItem->setText(1,newhotkey);
-    QHotkeyWidget->isChanging = false;
-    QHotkeyWidget->close();
+    bool ok = true;
+
+    QTreeWidgetItem *bad = 0;
+    QTreeWidgetItem *current = QHotkeyWidget->changingItem;
+    foreach (QTreeWidgetItem* item, allactions)
+        if (item->text(1) == newhotkey && item != current)
+        {
+            ok = false;
+            bad = item;
+        }
+    if (!ok)
+    {
+        int r = QMessageBox::warning(QHotkeyWidget,tr("This hotkey is reserved"),
+                                     tr("Hotkey's already reserved to ")+
+                                     "'" + bad->text(0) +"'\n"+
+                                     tr("Do you want to set hotkey anyway?"),
+                                     QMessageBox::Yes,
+                                     QMessageBox::No | QMessageBox::Default);
+        if (r == QMessageBox::Yes)
+        {
+            ok = true;
+            bad->setText(1,"");
+        }
+    }
+
+    if (ok)
+    {
+        current->setText(1,newhotkey);
+        QHotkeyWidget->isChanging = false;
+        QHotkeyWidget->close();
+    }
 }
 void Settings::changingEndDecline()
 {

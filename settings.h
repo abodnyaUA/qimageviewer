@@ -80,7 +80,7 @@ private:
     void saveHotkeys();
     QTreeWidgetItem * addCategory(QString name);
     QTreeWidgetItem * addHotkey(QTreeWidgetItem * category, QString name, QString hotkey, QString icon, QString defaultHotkey);
-    QStringList currentHotkeys;
+    QList<QTreeWidgetItem *> allactions;
     QTreeWidgetItem *categoryFile,*categoryEdit,*categoryWatch,*categoryHelp;
     QTreeWidgetItem *hotkeyItemFileOpen,*hotkeyItemFileSave,*hotkeyItemFileSaveAs,
                     *hotkeyItemFileSettings,*hotkeyItemFileQuit;

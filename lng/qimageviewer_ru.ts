@@ -1348,6 +1348,21 @@ Do you want to save changes?</source>
         <translation>Просмотр</translation>
     </message>
     <message>
+        <location filename="../settings_hotkeys.cpp" line="137"/>
+        <source>This hotkey is reserved</source>
+        <translation>Горячая клавиша занята другой коммандой</translation>
+    </message>
+    <message>
+        <location filename="../settings_hotkeys.cpp" line="138"/>
+        <source>Hotkey&apos;s already reserved to </source>
+        <translation>Эта горячая клавиша уже используется для </translation>
+    </message>
+    <message>
+        <location filename="../settings_hotkeys.cpp" line="140"/>
+        <source>Do you want to set hotkey anyway?</source>
+        <translation>Вы хотите перезаписать горячую клавишу?</translation>
+    </message>
+    <message>
         <source>Watch</source>
         <translation type="obsolete">Просмотр</translation>
     </message>

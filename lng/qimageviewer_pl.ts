@@ -1045,6 +1045,21 @@ Do you want to save changes?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../settings_hotkeys.cpp" line="137"/>
+        <source>This hotkey is reserved</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settings_hotkeys.cpp" line="138"/>
+        <source>Hotkey&apos;s already reserved to </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settings_hotkeys.cpp" line="140"/>
+        <source>Do you want to set hotkey anyway?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../settings.cpp" line="106"/>
         <source>Warning!</source>
         <translation type="unfinished"></translation>

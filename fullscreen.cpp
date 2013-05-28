@@ -14,10 +14,13 @@ fullscreen::fullscreen(image *imagewidget, hotkeysStruct *hotkeys, QColor fullsc
     this->hotkeys = hotkeys;
     this->fullscreencolor = fullscreencolor;
 
-    //QString style = "background-color: rgb(%1, %2, %3);";
-    //setStyleSheet(style.arg(fullscreencolor.red()).arg(fullscreencolor.green()).arg(fullscreencolor.blue()));
     this->installEventFilter(this);
     this->installEventFilter(imagewidget);
+
+    //Fullscreen only for first screen
+    QDesktopWidget *desktop = QApplication::desktop();
+    QRect rect = desktop->screenGeometry(0);
+    setGeometry(rect);
 }
 
 

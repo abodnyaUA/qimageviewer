@@ -288,7 +288,7 @@ void QImageViewer::fullScreen()
     fullScreenWidget->setSlideshowInterval(slideshowInterval);
     fullScreenWidget->setSlideshowSmoothTransition(slideshowSmoothTransition);
 
-    fullScreenWidget->setWindowState(Qt::WindowFullScreen);
+    //fullScreenWidget->setWindowState(Qt::WindowFullScreen);
     fullScreenWidget->resize(desk.width(),desk.height());
     fullScreenWidget->showFullScreen();
 

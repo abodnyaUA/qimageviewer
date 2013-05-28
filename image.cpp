@@ -8,7 +8,6 @@ image::image()
     setAlignment(Qt::AlignCenter);
     this->installEventFilter(this);
 
-    createContextMenu();
     wasEdited = false;
     mouseGrabbed = false;
     mousezoomCtrlPressed = false;
@@ -19,6 +18,15 @@ image::image()
 void image::loadhotkeys(hotkeysStruct * hotkeys)
 {
     this->hotkeys = hotkeys;
+}
+void image::loadiconpack(QString iconpack)
+{
+    iconiconpack = iconpack;
+    createContextMenu();
+}
+void image::loadiconnames(QMap<QString,QString> icons)
+{
+    this->icon = icons;
 }
 
 void image::setMouseZoom(bool arg)
@@ -34,39 +42,39 @@ bool image::getMouseFullscreen()
 void image::createContextMenu()
 {
     actionZoomIn = new QAction(tr("Zoom in"),this);
-    actionZoomIn->setIcon(QIcon(QPixmap(":/res/zoom-in.png")));
+    actionZoomIn->setIcon(QIcon(QPixmap(iconiconpack+icon["ZoomIn"])));
     connect(actionZoomIn,SIGNAL(triggered()),this,SLOT(zoomInc()));
 
     actionZoomOut = new QAction(tr("Zoom out"),this);
-    actionZoomOut->setIcon(QIcon(QPixmap(":/res/zoom-out.png")));
+    actionZoomOut->setIcon(QIcon(QPixmap(iconiconpack+icon["ZoomOut"])));
     connect(actionZoomOut,SIGNAL(triggered()),this,SLOT(zoomDec()));
 
     actionZoomWindow = new QAction(tr("Zoom as Window"),this);
-    actionZoomWindow->setIcon(QIcon(QPixmap(":/res/zoom-window.png")));
+    actionZoomWindow->setIcon(QIcon(QPixmap(iconiconpack+icon["ZoomWindow"])));
     connect(actionZoomWindow,SIGNAL(triggered()),this,SLOT(reloadImage()));
 
     actionZoomOriginal = new QAction(tr("Zoom Original"),this);
-    actionZoomOriginal->setIcon(QIcon(QPixmap(":/res/zoom-original.png")));
+    actionZoomOriginal->setIcon(QIcon(QPixmap(iconiconpack+icon["ZoomOriginal"])));
     connect(actionZoomOriginal,SIGNAL(triggered()),this,SLOT(setOriginalSize()));
 
     actionFullscreen = new QAction(tr("Fullscreen"),this);
-    actionFullscreen->setIcon(QIcon(QPixmap(":/res/fullscreen.png")));
+    actionFullscreen->setIcon(QIcon(QPixmap(iconiconpack+icon["Fullscreen"])));
     connect(actionFullscreen,SIGNAL(triggered()),this,SIGNAL(needFullscreen()));
 
     actionSlideshow = new QAction(tr("Slideshow"),this);
-    actionSlideshow->setIcon(QIcon(QPixmap(":/res/slideshow.png")));
+    actionSlideshow->setIcon(QIcon(QPixmap(iconiconpack+icon["Slideshow"])));
     connect(actionSlideshow,SIGNAL(triggered()),this,SIGNAL(needSlideshow()));
 
     actionWallpaper = new QAction(tr("Set as wallpaper"),this);
     connect(actionWallpaper,SIGNAL(triggered()),this,SLOT(setAsWallpaper()));
-    actionWallpaper->setIcon(QIcon(QPixmap(":/res/wallpaper.png")));
+    actionWallpaper->setIcon(QIcon(QPixmap(iconiconpack+icon["Wallpaper"])));
 
     actionDelete = new QAction(tr("Delete"),this);
-    actionDelete->setIcon(QIcon(QPixmap(":/res/delete.png")));
+    actionDelete->setIcon(QIcon(QPixmap(iconiconpack+icon["Delete"])));
     connect(actionDelete,SIGNAL(triggered()),this,SLOT(deleteCurrentItem()));
 
     actionProperties = new QAction(tr("Properties"),this);
-    actionProperties->setIcon(QIcon(QPixmap(":/res/file-properties.png")));
+    actionProperties->setIcon(QIcon(QPixmap(iconiconpack+icon["Properties"])));
     connect(actionProperties,SIGNAL(triggered()),this,SLOT(viewProperties()));
 
     ui_prop = new Ui::Properties;

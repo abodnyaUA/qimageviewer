@@ -1,6 +1,7 @@
 #ifndef HOTKEYS_H
 #define HOTKEYS_H
 #include <QString>
+#include <QMap>
 
 struct hotkeysStruct
 {
@@ -26,5 +27,6 @@ struct isneedButStruct
          fullscreen,slideshow,
          properties;
 };
+
 
 #endif // HOTKEYS_H

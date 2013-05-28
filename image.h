@@ -25,6 +25,8 @@ class image : public QGraphicsView
 public:
     image();
     void loadhotkeys(hotkeysStruct * hotkeys);
+    void loadiconpack(QString iconpack);
+    void loadiconnames(QMap<QString,QString> icons);
     //program blocks//
     void loadimage(QString path);
     void addToBuffer(QPixmap * pixmap);
@@ -79,6 +81,9 @@ signals:
 
 private:
     QColor fullscreencolor;
+    QString iconiconpack;
+    QMap<QString,QString> icon;
+
     bool isActiveFullscreen;
     hotkeysStruct * hotkeys;
     QDesktopWidget desk;

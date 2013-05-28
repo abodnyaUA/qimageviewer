@@ -9,12 +9,12 @@ QTreeWidgetItem * Settings::addCategory(QString name)
     return item;
 }
 
-QTreeWidgetItem * Settings::addHotkey(QTreeWidgetItem * category, QString name, QString hotkey, QString icon, QString defaultHotkey)
+QTreeWidgetItem * Settings::addHotkey(QTreeWidgetItem * category, QString name, QString hotkey, QString iconkey, QString defaultHotkey)
 {
     QTreeWidgetItem *item = new QTreeWidgetItem(category);
     item->setText(0,name);
     item->setText(1,hotkey);
-    item->setIcon(0,QIcon(QPixmap(icon)));
+    item->setIcon(0,QIcon(QPixmap(iconpacks[old_currenticonpack] + icon[iconkey])));
     item->setWhatsThis(2,defaultHotkey);
     category->addChild(item);
     return item;
@@ -34,10 +34,10 @@ void Settings::setHotkeys()
 
     categoryFile = addCategory(tr("File"));
     categoryFile->setExpanded(true);
-    hotkeyItemFileOpen = addHotkey(categoryFile,tr("Open image"),old_hotkeys.fileOpen,":/res/file-open.png","Ctrl+O");
-    hotkeyItemFileSave = addHotkey(categoryFile,tr("Save"),old_hotkeys.fileSave,":/res/file-save.png","Ctrl+S");
+    hotkeyItemFileOpen = addHotkey(categoryFile,tr("Open image"),old_hotkeys.fileOpen,"FileOpen","Ctrl+O");
+    hotkeyItemFileSave = addHotkey(categoryFile,tr("Save"),old_hotkeys.fileSave,"FileSave","Ctrl+S");
     hotkeyItemFileSaveAs = addHotkey(categoryFile,tr("Save as..."),old_hotkeys.fileSaveAs,"","Ctrl+Shift+S");
-    hotkeyItemFileSettings = addHotkey(categoryFile,tr("Settings"),old_hotkeys.fileSettings,":/res/settings.png","");
+    hotkeyItemFileSettings = addHotkey(categoryFile,tr("Settings"),old_hotkeys.fileSettings,"Settings","");
     hotkeyItemFileQuit = addHotkey(categoryFile,tr("Quit"),old_hotkeys.fileQuit,"","Ctrl+Q");
     allactions << hotkeyItemFileOpen << hotkeyItemFileSave << hotkeyItemFileSaveAs <<
                       hotkeyItemFileSettings << hotkeyItemFileQuit;
@@ -46,35 +46,35 @@ void Settings::setHotkeys()
     categoryEdit->setExpanded(true);
     hotkeyItemEditUndo = addHotkey(categoryEdit,tr("Undo"),old_hotkeys.editUndo,"","Ctrl+Z");
     hotkeyItemEditRedo = addHotkey(categoryEdit,tr("Redo"),old_hotkeys.editRedo,"","Ctrl+Shift+Z");
-    hotkeyItemEditRotateRight = addHotkey(categoryEdit,tr("Rotate to the right"),old_hotkeys.editRotateRight,":/res/rotate-right.png","Ctrl+Shift+L");
-    hotkeyItemEditRotateLeft = addHotkey(categoryEdit,tr("Rotate to the left"),old_hotkeys.editRotateLeft,":/res/rotate-left.png","Ctrl+Shift+R");
-    hotkeyItemEditFlipHorizontal = addHotkey(categoryEdit,tr("Flip horizontal"),old_hotkeys.editFlipHorizontal,":/res/flip-horizontal.png","");
-    hotkeyItemEditFlipVertical = addHotkey(categoryEdit,tr("Flip vertical"),old_hotkeys.editFlipVertical,":/res/flip-vertical.png","");
-    hotkeyItemEditCrop = addHotkey(categoryEdit,tr("Crop"),old_hotkeys.editCrop,":/res/crop.png","Ctrl+Shift+C");
-    hotkeyItemEditResize = addHotkey(categoryEdit,tr("Resize"),old_hotkeys.editResize,":/res/resize.png","Ctrl+R");
-    hotkeyItemEditResizeItems = addHotkey(categoryEdit,tr("Resize items..."),old_hotkeys.editResizeItems,":/res/resize-items.png","Ctrl+Shift+R");
+    hotkeyItemEditRotateRight = addHotkey(categoryEdit,tr("Rotate to the right"),old_hotkeys.editRotateRight,"RotateRight","Ctrl+Shift+L");
+    hotkeyItemEditRotateLeft = addHotkey(categoryEdit,tr("Rotate to the left"),old_hotkeys.editRotateLeft,"RotateLeft","Ctrl+Shift+R");
+    hotkeyItemEditFlipHorizontal = addHotkey(categoryEdit,tr("Flip horizontal"),old_hotkeys.editFlipHorizontal,"FlipHorizontal","");
+    hotkeyItemEditFlipVertical = addHotkey(categoryEdit,tr("Flip vertical"),old_hotkeys.editFlipVertical,"FlipVertical","");
+    hotkeyItemEditCrop = addHotkey(categoryEdit,tr("Crop"),old_hotkeys.editCrop,"Crop","Ctrl+Shift+C");
+    hotkeyItemEditResize = addHotkey(categoryEdit,tr("Resize"),old_hotkeys.editResize,"Resize","Ctrl+R");
+    hotkeyItemEditResizeItems = addHotkey(categoryEdit,tr("Resize items..."),old_hotkeys.editResizeItems,"ResizeItems","Ctrl+Shift+R");
     allactions << hotkeyItemEditUndo << hotkeyItemEditRedo << hotkeyItemEditRotateLeft << hotkeyItemEditRotateRight <<
                       hotkeyItemEditFlipHorizontal << hotkeyItemEditFlipVertical << hotkeyItemEditCrop <<
                       hotkeyItemEditResize << hotkeyItemEditResizeItems;
 
     categoryWatch = addCategory(tr("Preview"));
     categoryWatch->setExpanded(true);
-    hotkeyItemWatchPrevious = addHotkey(categoryWatch,tr("Previous image"),old_hotkeys.watchPrevious,":/res/prev.png","Ctrl+Left");
-    hotkeyItemWatchNext = addHotkey(categoryWatch,tr("Next image"),old_hotkeys.watchNext,":/res/next.png","Ctrl+Right");
-    hotkeyItemWatchFullscreen = addHotkey(categoryWatch,tr("Fullscreen"),old_hotkeys.watchFullscreen,":/res/fullscreen.png","F11");
-    hotkeyItemWatchSlideshow = addHotkey(categoryWatch,tr("Slideshow"),old_hotkeys.watchSlideshow,":/res/slideshow.png","F5");
-    hotkeyItemWatchWallpaper = addHotkey(categoryWatch,tr("Set as wallpaper"),old_hotkeys.watchWallpaper,":/res/wallpaper.png","");
-    hotkeyItemZoomIn = addHotkey(categoryWatch,tr("Zoom in"),old_hotkeys.zoomIn,":/res/zoom-in.png","+");
-    hotkeyItemZoomOut = addHotkey(categoryWatch,tr("Zoom out"),old_hotkeys.zoomOut,":/res/zoom-out.png","-");
-    hotkeyItemZoomWindow = addHotkey(categoryWatch,tr("Window size"),old_hotkeys.zoomWindow,":/res/zoom-window.png","");
-    hotkeyItemZoomOriginal = addHotkey(categoryWatch,tr("Original size"),old_hotkeys.zoomOriginal,":/res/zoom-original.png","");
+    hotkeyItemWatchPrevious = addHotkey(categoryWatch,tr("Previous image"),old_hotkeys.watchPrevious,"Previous","Ctrl+Left");
+    hotkeyItemWatchNext = addHotkey(categoryWatch,tr("Next image"),old_hotkeys.watchNext,"Next","Ctrl+Right");
+    hotkeyItemWatchFullscreen = addHotkey(categoryWatch,tr("Fullscreen"),old_hotkeys.watchFullscreen,"Fullscreen","F11");
+    hotkeyItemWatchSlideshow = addHotkey(categoryWatch,tr("Slideshow"),old_hotkeys.watchSlideshow,"Slideshow","F5");
+    hotkeyItemWatchWallpaper = addHotkey(categoryWatch,tr("Set as wallpaper"),old_hotkeys.watchWallpaper,"Wallpaper","");
+    hotkeyItemZoomIn = addHotkey(categoryWatch,tr("Zoom in"),old_hotkeys.zoomIn,"ZoomIn","+");
+    hotkeyItemZoomOut = addHotkey(categoryWatch,tr("Zoom out"),old_hotkeys.zoomOut,"ZoomOut","-");
+    hotkeyItemZoomWindow = addHotkey(categoryWatch,tr("Window size"),old_hotkeys.zoomWindow,"ZoomWindow","");
+    hotkeyItemZoomOriginal = addHotkey(categoryWatch,tr("Original size"),old_hotkeys.zoomOriginal,"ZoomOriginal","");
     allactions << hotkeyItemWatchPrevious << hotkeyItemWatchNext << hotkeyItemWatchFullscreen <<
                       hotkeyItemWatchSlideshow << hotkeyItemWatchWallpaper << hotkeyItemZoomIn <<
                       hotkeyItemZoomOut << hotkeyItemZoomWindow << hotkeyItemZoomOriginal;
 
     categoryHelp = addCategory(tr("Help"));
     categoryHelp->setExpanded(true);
-    hotkeyItemHelpAbout = addHotkey(categoryHelp,tr("About"),old_hotkeys.helpAbout,":/res/help.png","F1");
+    hotkeyItemHelpAbout = addHotkey(categoryHelp,tr("About"),old_hotkeys.helpAbout,"Help","F1");
     allactions << hotkeyItemHelpAbout;
 }
 

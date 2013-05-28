@@ -5,15 +5,13 @@ void QImageViewer::loadsettings()
 {
     qsettings = new QSettings("QImageViewer","QImageViewer");
     language = qsettings->value("Programm/Language","sys").toString();
+    lastdirectory = qsettings->value("Programm/Directory",QDir::homePath()).toString();
 #ifdef Q_OS_WIN32
-    QString uname = QString::fromLocal8Bit( getenv("USER") );
-    QString directory = "C:\\Users\\" + uname;
-    lastdirectory = qsettings->value("Programm/Directory",directory).toString();
+    iconpacksfolder = QDir::currentPath()+"\\themes\\";
 #else
-    QString uname = QString::fromLocal8Bit( getenv("USER") );
-    QString directory =  "/home/" + uname;
-    lastdirectory = qsettings->value("Programm/Directory",directory).toString();
+    iconpacksfolder = QDir::homePath()+"/.config/QImageViewer/themes/";
 #endif
+    currenticonpackString = qsettings->value("Programm/CurrentIconPack",":/res/").toString();
 
     imagewidget->setMouseFullscreen((bool)(qsettings->value("Navigation/MouseFullscreen","1").toInt()));
     imagewidget->setMouseZoom((bool)(qsettings->value("Navigation/MouseZoom","0").toInt()));
@@ -28,7 +26,6 @@ void QImageViewer::loadsettings()
     fullscreencolor_green = qsettings->value("FullscreenColor/green","255").toInt();
     fullscreencolor_blue = qsettings->value("FullscreenColor/blue","255").toInt();
     fullscreencolor = QColor(fullscreencolor_red,fullscreencolor_green,fullscreencolor_blue);
-
 
     /// Hotkeys ///
     //File//
@@ -97,8 +94,21 @@ void QImageViewer::loadsettings()
 
 void QImageViewer::savesettings()
 {
+    QString directory = lastdirectory;
+#ifdef Q_OS_WIN32
+    for (int i=0;i<directory.size();i++)
+    {
+        if (directory[i] == '/')
+        {
+            directory.remove(i,1);
+            directory.insert(i,"\\");
+            i++;
+        }
+    }
+#endif
     qsettings->setValue("Programm/Language",language);
-    qsettings->setValue("Programm/Directory",lastdirectory);
+    qsettings->setValue("Programm/Directory",directory);
+    qsettings->setValue("Programm/CurrentIconPack",currenticonpackString);
 
     qsettings->setValue("Navigation/MouseFullscreen",QString::number(imagewidget->getMouseFullscreen()));
     qsettings->setValue("Navigation/MouseZoom",QString::number(imagewidget->getMouseZoom()));
@@ -331,7 +341,94 @@ void QImageViewer::createHotkeys()
 /** Loading all icons and design for buttons and menu actions **/
 void QImageViewer::createDesign()
 {
+    // Load icon packs
+    QFileDialog dialog;
+    if (QDir(iconpacksfolder).exists())
+    {
+        dialog.selectFile(iconpacksfolder);
+        iconpacks = dialog.directory().entryList(QDir::Dirs | QDir::NoSymLinks | QDir::NoDotAndDotDot,QDir::SortByMask);
+        for (int i=0;i<iconpacks.size();i++)
+        {
+#ifdef Q_OS_LINUX
+            iconpacks[i] = iconpacksfolder + iconpacks[i] + "/";
+#endif
+#ifdef Q_OS_WIN32
+            iconpacks[i] = iconpacksfolder + iconpacks[i]+ "\\";
+#endif
+        }
+        if (!iconpacks.isEmpty()) iconpacks.insert(0,":/res/");
+        else iconpacks.append(":/res/");
 
+        currenticonpack = 0;
+        for (int i=0;i<iconpacks.size();i++)
+            if (iconpacks[i] == currenticonpackString) currenticonpack = i;
+    }
+    else
+    {
+        iconpacks.append(":/res/");
+        currenticonpack = 0;
+        currenticonpackString = ":/res/";
+    }
+
+    //Set Map for icons
+    icon["FileOpen"] = "file-open.png";
+    icon["FileSave"] = "file-save.png";
+    icon["RotateLeft"] = "rotate-left.png";
+    icon["RotateRight"] = "rotate-right.png";
+    icon["FlipHorizontal"] = "flip-horizontal.png";
+    icon["FlipVertical"] = "flip-vertical.png";
+    icon["ZoomIn"] = "zoom-in.png";
+    icon["ZoomOut"] = "zoom-out.png";
+    icon["ZoomWindow"] = "zoom-window.png";
+    icon["ZoomOriginal"] = "zoom-original.png";
+    icon["Fullscreen"] = "fullscreen.png";
+    icon["Wallpaper"] = "wallpaper.png";
+    icon["Slideshow"] = "slideshow.png";
+    icon["Properties"] = "file-properties.png";
+    icon["Resize"] = "resize.png";
+    icon["ResizeItems"] = "resize-items.png";
+    icon["Crop"] = "crop.png";
+    icon["Add"] = "add.png";
+    icon["Remove"] = "remove.png";
+    icon["Update"] = "update.png";
+    icon["Settings"] = "settings.png";
+    icon["Hotkey"] = "hotkey.png";
+    icon["Delete"] = "delete.png";
+    icon["Help"] = "help.png";
+    icon["Imageshack"] = "imageshack.png";
+    icon["Next"] = "next.png";
+    icon["Previous"] = "prev.png";
+    icon["ExternEditorsManager"] = "extern-editor.png";
+    icon["ExternEditorNew"] = "extern-editor-new.png";
+
+    //Menu actions
+    ui->openAction->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["FileOpen"])));
+    ui->saveAction->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["FileSave"])));
+    ui->settingsAction->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Settings"])));
+    ui->resizeAction->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Resize"])));
+    ui->resizeitemsAction->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["ResizeItems"])));
+    ui->cropAction->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Crop"])));
+    ui->rotateLeftAction->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["RotateLeft"])));
+    ui->rotateRightAction->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["RotateRight"])));
+    ui->flipHorizontalAction->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["FlipHorizontal"])));
+    ui->flipVerticalAction->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["FlipVertical"])));
+    ui->fullscreenAction->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Fullscreen"])));
+    ui->slideshowAction->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Slideshow"])));
+    ui->deleteFileAction->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Delete"])));
+    ui->nextButton->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Next"])));
+    ui->prevButton->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Previous"])));
+    ui->nextimageAction->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Next"])));
+    ui->previmageAction->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Previous"])));
+    ui->zoomInAction->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["ZoomIn"])));
+    ui->zoomOutAction->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["ZoomOut"])));
+    ui->zoomOriginalAction->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["ZoomOriginal"])));
+    ui->zoomWindowAction->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["ZoomWindow"])));
+    ui->wallpaperAction->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Wallpaper"])));
+    ui->shareImageShackAction->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Imageshack"])));
+    ui->aboutAction->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Help"])));
+
+    imagewidget->loadiconnames(icon);
+    imagewidget->loadiconpack(iconpacks[currenticonpack]);
 }
 
 void QImageViewer::createPanel()
@@ -342,7 +439,7 @@ void QImageViewer::createPanel()
         butRotateLeft->setToolTip(tr("Rotate picture to the left"));
         connect(butRotateLeft,SIGNAL(clicked()),imagewidget,SLOT(rotateLeft()));
         butRotateLeft->setFocusPolicy(Qt::NoFocus);
-        butRotateLeft->setIcon(QIcon(QPixmap(":/res/rotate-left.png")));
+        butRotateLeft->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["RotateLeft"])));
         butRotateLeft->setEnabled(false);
         buttonsList << butRotateLeft;
     }
@@ -352,7 +449,7 @@ void QImageViewer::createPanel()
         butRotateRight->setToolTip(tr("Rotate picture to the right"));
         connect(butRotateRight,SIGNAL(clicked()),imagewidget,SLOT(rotateRight()));
         butRotateRight->setFocusPolicy(Qt::NoFocus);
-        butRotateRight->setIcon(QIcon(QPixmap(":/res/rotate-right.png")));
+        butRotateRight->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["RotateRight"])));
         butRotateRight->setEnabled(false);
         buttonsList << butRotateRight;
     }
@@ -362,7 +459,7 @@ void QImageViewer::createPanel()
         butFlipHorizontal->setToolTip(tr("Change this image to horizontal mirror"));
         connect(butFlipHorizontal,SIGNAL(clicked()),imagewidget,SLOT(flipHorizontal()));
         butFlipHorizontal->setFocusPolicy(Qt::NoFocus);
-        butFlipHorizontal->setIcon(QIcon(QPixmap(":/res/flip-horizontal.png")));
+        butFlipHorizontal->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["FlipHorizontal"])));
         butFlipHorizontal->setEnabled(false);
         buttonsList << butFlipHorizontal;
     }
@@ -372,7 +469,7 @@ void QImageViewer::createPanel()
         butFlipVertical->setToolTip(tr("Change this image to vertical mirror"));
         connect(butFlipVertical,SIGNAL(clicked()),imagewidget,SLOT(flipVertical()));
         butFlipVertical->setFocusPolicy(Qt::NoFocus);
-        butFlipVertical->setIcon(QIcon(QPixmap(":/res/flip-vertical.png")));
+        butFlipVertical->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["FlipVertical"])));
         butFlipVertical->setEnabled(false);
         buttonsList << butFlipVertical;
     }
@@ -382,7 +479,7 @@ void QImageViewer::createPanel()
         butZoomIn->setToolTip(tr("Zoom In"));
         connect(butZoomIn,SIGNAL(clicked()),imagewidget,SLOT(zoomInc()));
         butZoomIn->setFocusPolicy(Qt::NoFocus);
-        butZoomIn->setIcon(QIcon(QPixmap(":/res/zoom-in.png")));
+        butZoomIn->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["ZoomIn"])));
         butZoomIn->setEnabled(false);
         buttonsList << butZoomIn;
     }
@@ -392,7 +489,7 @@ void QImageViewer::createPanel()
         butZoomOut->setToolTip(tr("Zoom Out"));
         connect(butZoomOut,SIGNAL(clicked()),imagewidget,SLOT(zoomDec()));
         butZoomOut->setFocusPolicy(Qt::NoFocus);
-        butZoomOut->setIcon(QIcon(QPixmap(":/res/zoom-out.png")));
+        butZoomOut->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["ZoomOut"])));
         butZoomOut->setEnabled(false);
         buttonsList << butZoomOut;
     }
@@ -402,7 +499,7 @@ void QImageViewer::createPanel()
         butZoomWindow->setToolTip(tr("Zoom to window size"));
         connect(butZoomWindow,SIGNAL(clicked()),imagewidget,SLOT(reloadImage()));
         butZoomWindow->setFocusPolicy(Qt::NoFocus);
-        butZoomWindow->setIcon(QIcon(QPixmap(":/res/zoom-window.png")));
+        butZoomWindow->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["ZoomWindow"])));
         butZoomWindow->setEnabled(false);
         buttonsList << butZoomWindow;
     }
@@ -412,7 +509,7 @@ void QImageViewer::createPanel()
         butZoomOriginal->setToolTip(tr("Zoom to original size"));
         connect(butZoomOriginal,SIGNAL(clicked()),imagewidget,SLOT(setOriginalSize()));
         butZoomOriginal->setFocusPolicy(Qt::NoFocus);
-        butZoomOriginal->setIcon(QIcon(QPixmap(":/res/zoom-original.png")));
+        butZoomOriginal->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["ZoomOriginal"])));
         butZoomOriginal->setEnabled(false);
         buttonsList << butZoomOriginal;
     }
@@ -422,7 +519,7 @@ void QImageViewer::createPanel()
         butFullscreen->setToolTip(tr("Enable fullscreen mode"));
         connect(butFullscreen,SIGNAL(clicked()),this,SLOT(fullScreen()));
         butFullscreen->setFocusPolicy(Qt::NoFocus);
-        butFullscreen->setIcon(QIcon(QPixmap(":/res/fullscreen.png")));
+        butFullscreen->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Fullscreen"])));
         butFullscreen->setEnabled(false);
         buttonsList << butFullscreen;
     }
@@ -432,7 +529,7 @@ void QImageViewer::createPanel()
         butSlideshow->setToolTip(tr("Start slideshow in fullscreen mode"));
         connect(butSlideshow,SIGNAL(clicked()),this,SLOT(slideShow()));
         butSlideshow->setFocusPolicy(Qt::NoFocus);
-        butSlideshow->setIcon(QIcon(QPixmap(":/res/slideshow.png")));
+        butSlideshow->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Slideshow"])));
         butSlideshow->setEnabled(false);
         buttonsList << butSlideshow;
     }
@@ -442,7 +539,7 @@ void QImageViewer::createPanel()
         butProperties->setToolTip(tr("Image properties"));
         connect(butProperties,SIGNAL(clicked()),imagewidget,SLOT(viewProperties()));
         butProperties->setFocusPolicy(Qt::NoFocus);
-        butProperties->setIcon(QIcon(QPixmap(":/res/file-properties.png")));
+        butProperties->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Properties"])));
         butProperties->setEnabled(false);
         buttonsList << butProperties;
     }
@@ -471,32 +568,7 @@ void QImageViewer::createPanel()
 /** event for closing program,save file changes if need **/
 void QImageViewer::closeEvent(QCloseEvent *event)
 {
-    QFile file("settings.txt");
-    QTextStream out(&file);
-    out.setCodec(QTextCodec::codecForName("UTF-8"));
-    QString directory = lastdirectory;
-#ifdef Q_OS_WIN32
-    for (int i=1;i<directory.size();i++)
-    {
-        if (directory[i-1] == '/')
-        {
-            directory.remove(i-1,1);
-            directory.insert(i-1,"\\\\");
-            i++;
-        }
-    }
-#endif
-
     savesettings();
-//    /// Extern Editors ///
-//    out << "\n#Extern editors\n";
-//    for (int i=0;i<editors.size();i++)
-//    {
-//        out << "Name=" << editors[i]->name << "\n";
-//        out << "Icon=" << editors[i]->icon << "\n";
-//        out << "Programm=" << editors[i]->command << "\n";
-//        out << "\n";
-//    }
 
     if (!imagewidget->isSaved())
     {

@@ -1,7 +1,7 @@
 #include "settings.h"
 #include "ui_settings.h"
 
-Settings::Settings(QWidget *parent) : ui(new Ui::Settings)
+Settings::Settings(QStringList iconpacks, QMap<QString, QString> icon) : ui(new Ui::Settings)
 {
     ui->setupUi(this);
     ui->languageComboBox->setItemIcon(0,(QIcon(QPixmap(":/res/flag-sys.png"))));
@@ -12,6 +12,16 @@ Settings::Settings(QWidget *parent) : ui(new Ui::Settings)
     ui->acceptButton->setShortcut(QKeySequence(Qt::Key_Return));
     ui->cancelButton->setShortcut(QKeySequence(Qt::Key_Escape));
     isActiveHotkeyWidget = false;
+    this->iconpacks = iconpacks;
+    this->icon = icon;
+
+    ui->iconpackBox->addItem("Original");
+    for (int i=1;i<iconpacks.size();i++)
+    {
+        QDir dir(iconpacks[i]);
+        ui->iconpackBox->addItem(dir.dirName());
+    }
+
 }
 
 void Settings::setDefaultSettings(QString language,
@@ -19,7 +29,8 @@ void Settings::setDefaultSettings(QString language,
                                   bool mouseZoom, bool mouseFullscreen,
                                   bool slideshowSmoothTransition, double slideshowInterval,
                                   int panelalignment,hotkeysStruct hotkeys, isneedButStruct isneedBut,
-                                  QColor fullscreencolor)
+                                  QColor fullscreencolor,
+                                  int currenticonpack)
 {
     old_lang = language;
     old_defaultfolder = defaultfolder;
@@ -29,6 +40,7 @@ void Settings::setDefaultSettings(QString language,
     old_slideshowSmoothTransition = slideshowSmoothTransition;
     old_panelalignment = panelalignment;
     old_fullscreencolor = fullscreencolor;
+    old_currenticonpack = currenticonpack;
 
     old_hotkeys = hotkeys;
     old_isneedBut = isneedBut;
@@ -44,6 +56,8 @@ void Settings::setDefaultSettings(QString language,
     ui->mouseZoomCheckBox->setChecked(mouseZoom);
     ui->slideshowIntervalSpinBox->setValue(slideshowInterval);
     ui->slideshowTransitionCheckBox->setChecked(slideshowSmoothTransition);
+    ui->iconpackBox->setCurrentIndex(currenticonpack);
+
     QString style = "background-color: rgb(%1, %2, %3);";
     ui->fullscreenColorLabel->setStyleSheet(style.arg(fullscreencolor.red()).
                                                   arg(fullscreencolor.green()).
@@ -115,6 +129,7 @@ void Settings::on_acceptButton_clicked()
     old_slideshowSmoothTransition = ui->slideshowTransitionCheckBox->isChecked();
     old_panelalignment = ui->toolpanelComboBox->currentIndex();
     old_fullscreencolor = fullscreencolor;
+    old_currenticonpack = ui->iconpackBox->currentIndex();
 
     saveHotkeys();
     savePanelButtons();
@@ -133,7 +148,8 @@ void Settings::closeEvent(QCloseEvent *event)
                         old_slideshowInterval,
                         old_panelalignment,
                         old_hotkeys, old_isneedBut,
-                        old_fullscreencolor);
+                        old_fullscreencolor,
+                        old_currenticonpack);
     qDebug() << "old_isneed = " << old_isneedBut.rotateLeft << old_isneedBut.rotateRight;
     event->accept();
 }

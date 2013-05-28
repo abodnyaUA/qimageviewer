@@ -23,14 +23,15 @@ class Settings : public QWidget
     Q_OBJECT
     
 public:
-    explicit Settings(QWidget *parent = 0);
+    explicit Settings(QStringList iconpacks, QMap<QString, QString> icon);
     void setDefaultSettings(QString language,
                             QString defaultfolder,
                             bool mouseZoom, bool mouseFullscreen,
                             bool slideshowSmoothTransition, double slideshowInterval,
                             int panelalignment,
                             hotkeysStruct hotkeys, isneedButStruct isneedBut,
-                            QColor fullscreencolor);
+                            QColor fullscreencolor,
+                            int currenticonpack);
     ~Settings();
     
 private slots:
@@ -53,9 +54,14 @@ signals:
                         bool slideshowSmoothTransition, double slideshowInterval,
                         int panelalignment,
                         hotkeysStruct hotkeys, isneedButStruct isneedBut,
-                        QColor fullscreencolor);
+                        QColor fullscreencolor,
+                        int currenticonpack);
 
 private:
+    QStringList iconpacks;
+    QMap<QString,QString> icon;
+    int old_currenticonpack;
+
     Ui::Settings *ui;
     QString old_lang;
     QString old_defaultfolder;

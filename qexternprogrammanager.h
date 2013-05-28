@@ -18,12 +18,13 @@ class QExternProgramManager : public QWidget
     Q_OBJECT
     
 public:
-    explicit QExternProgramManager(QList<QExternProgram *> editors, image * imagewidget);
+    explicit QExternProgramManager(QList<QExternProgram *> editors, image * imagewidget,
+                                   QString theme, QMap<QString, QString> icon);
     ~QExternProgramManager();
     QList<QExternProgram *> editors;
     
 private slots:
-    void on_acceptButton_clicked();
+    void on_updateButton_clicked();
     void on_removeButton_clicked();
     void on_addButton_clicked();
     void on_okButton_clicked();

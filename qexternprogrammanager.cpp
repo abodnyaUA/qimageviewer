@@ -1,11 +1,13 @@
 #include "qexternprogrammanager.h"
 #include "ui_qexternprogrammanager.h"
 
-QExternProgramManager::QExternProgramManager(QList<QExternProgram *> editors, image * imagewidget) :
+QExternProgramManager::QExternProgramManager(QList<QExternProgram *> editors, image * imagewidget,
+                                             QString theme, QMap<QString, QString> icon) :
     ui(new Ui::QExternProgramManager)
 {
     ui->setupUi(this);
     this->editors = editors;
+    this->imagewidget = imagewidget;
     if (!editors.isEmpty())
     {
         for (int i=0;i<this->editors.size();i++)
@@ -18,7 +20,7 @@ QExternProgramManager::QExternProgramManager(QList<QExternProgram *> editors, im
         ui->nameLineEdit->setEnabled(true);
         ui->iconBrowseButton->setEnabled(true);
         ui->iconLineEdit->setEnabled(true);
-        ui->acceptButton->setEnabled(true);
+        ui->updateButton->setEnabled(true);
         ui->removeButton->setEnabled(true);
 
         ui->commandLineEdit->setText(editors[0]->command);
@@ -32,6 +34,9 @@ QExternProgramManager::QExternProgramManager(QList<QExternProgram *> editors, im
     isEditorAddFormActive = false;
     ui->listWidget->setSelectionMode(QAbstractItemView::SingleSelection);
     ui->listWidget->installEventFilter(this);
+    ui->addButton->setIcon(QIcon(QPixmap(theme + icon["Add"])));
+    ui->removeButton->setIcon(QIcon(QPixmap(theme + icon["Remove"])));
+    ui->updateButton->setIcon(QIcon(QPixmap(theme + icon["Update"])));
 }
 
 QExternProgramManager::~QExternProgramManager()
@@ -39,7 +44,7 @@ QExternProgramManager::~QExternProgramManager()
     delete ui;
 }
 
-void QExternProgramManager::on_acceptButton_clicked()
+void QExternProgramManager::on_updateButton_clicked()
 {
     if (ui->nameLineEdit->text().isEmpty())
     {
@@ -78,7 +83,7 @@ void QExternProgramManager::on_removeButton_clicked()
         ui->nameLineEdit->setEnabled(false);
         ui->iconBrowseButton->setEnabled(false);
         ui->iconLineEdit->setEnabled(false);
-        ui->acceptButton->setEnabled(false);
+        ui->updateButton->setEnabled(false);
         ui->removeButton->setEnabled(false);
         ui->iconLabel->setPixmap(QPixmap(""));
     }
@@ -100,7 +105,7 @@ void QExternProgramManager::on_addButton_clicked()
 
 void QExternProgramManager::on_okButton_clicked()
 {
-    if (ui->listWidget->count()>0) on_acceptButton_clicked();
+    if (ui->listWidget->count()>0) on_updateButton_clicked();
     emit overed(true);
 }
 void QExternProgramManager::on_cancelButton_clicked()
@@ -168,7 +173,7 @@ void QExternProgramManager::addEditor(QString name, QString icon, QString comman
         ui->nameLineEdit->setEnabled(true);
         ui->iconBrowseButton->setEnabled(true);
         ui->iconLineEdit->setEnabled(true);
-        ui->acceptButton->setEnabled(true);
+        ui->updateButton->setEnabled(true);
         ui->removeButton->setEnabled(true);
 
         ui->commandLineEdit->setText(editors[0]->command);

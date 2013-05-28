@@ -63,7 +63,7 @@ private slots:
                         bool slideshowSmoothTransition, double slideshowInterval,
                         int panelalignment,
                         hotkeysStruct hotkeys, isneedButStruct isneedBut,
-                        QColor fullscreencolor);
+                        QColor fullscreencolor,int);
     //HELP
     void helpAbout();
     //NAVIGATION
@@ -97,8 +97,16 @@ private:
     /// Settings ///
     QSettings *qsettings;
     bool isSettingsActive;
+
     //Default Folder//
     QString lastdirectory;
+
+    //Buttons iconpacks//
+    QString iconpacksfolder;
+    int currenticonpack;
+    QString currenticonpackString;
+    QStringList iconpacks;
+    QMap<QString,QString> icon;
 
     //Language//
     QString language;

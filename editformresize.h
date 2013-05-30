@@ -18,7 +18,7 @@ class editformResize : public QWidget
     Q_OBJECT
     
 public:
-    explicit editformResize();
+    explicit editformResize(int width, int height);
 
     void loadImage(QPixmap pixmap_old);
     QPixmap *getpixmap();
@@ -45,6 +45,7 @@ private:
     int im_width,im_height;
     double originalAspectratio;
     Ui::editformResize *ui;
+    int wd,hg;
 };
 
 #endif // EDITFORMRESIZE_H

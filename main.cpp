@@ -29,7 +29,7 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     //loadStyleSheet();
     QApplication::setApplicationName("QImageViewer");
-    QApplication::setApplicationVersion("0.1.8");
+    QApplication::setApplicationVersion("0.1.9");
 
     QSettings *qsettings = new QSettings("QImageViewer","QImageViewer");
     QString lng = qsettings->value("Programm/Language","sys").toString();

@@ -3,10 +3,11 @@
 
 #include <QWidget>
 #include <QPushButton>
-#include "qhotkeyedit.h"
 #include <QLayout>
 #include <QTreeWidget>
 #include <QCloseEvent>
+#include <QSizePolicy>
+#include "qhotkeyedit.h"
 
 class qhotkeywidget : public QWidget
 {

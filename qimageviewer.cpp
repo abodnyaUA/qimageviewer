@@ -50,6 +50,7 @@ QImageViewer::QImageViewer(QString path, QWidget *parent) :
     isSettingsActive = false;
     isEditosManagerActive = false;
     isEditorAddFormActive = false;
+    isImageShackListUploaderOpened = false;
     setWindowState(Qt::WindowMaximized);
 }
 
@@ -163,6 +164,7 @@ void QImageViewer::fileOpen()
         for (int i=0;i<editorsActions.size();i++)
             editorsActions[i]->setEnabled(true);
         ui->shareImageShackAction->setEnabled(true);
+        ui->shareImageShackListAction->setEnabled(true);
 
         ui->prevButton->setEnabled(true);
         ui->nextButton->setEnabled(true);
@@ -654,6 +656,7 @@ void QImageViewer::updateSettings(QString language,
     ui->zoomWindowAction->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["ZoomWindow"])));
     ui->wallpaperAction->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Wallpaper"])));
     ui->shareImageShackAction->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Imageshack"])));
+    ui->shareImageShackListAction->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Imageshack"])));
     ui->aboutAction->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Help"])));
     imagewidget->loadiconpack(iconpacks[currenticonpack]);
 
@@ -672,17 +675,17 @@ void QImageViewer::updateSettings(QString language,
 void QImageViewer::resizeImage()
 {
     // init editResize window //
-    editFormResize = new editformResize;
+    editFormResize = new editformResize(width(),height());
     editFormResize->setWindowIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Resize"])));
     connect(editFormResize,SIGNAL(editFinished(bool)),this,SLOT(resizeImageOvered(bool)));
 
-    editFormResize->loadImage(imagewidget->currentPixmap());
     if (this->windowState() == Qt::WindowMaximized) editFormResize->setWindowState(Qt::WindowMaximized);
     else
     {
         editFormResize->resize(this->width(),this->height());
         editFormResize->setWindowState(Qt::WindowNoState);
     }
+    editFormResize->loadImage(imagewidget->currentPixmap());
     editFormResize->show();
     this->hide();
 }
@@ -711,12 +714,9 @@ void QImageViewer::resizeImageOvered(bool result)
 void QImageViewer::cropImage()
 {
     // init editCrop window //
-    editFormCrop = new editformCrop;
+    editFormCrop = new editformCrop(width(),height());
     editFormCrop->setWindowIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Crop"])));
     connect(editFormCrop,SIGNAL(editFinished(bool)),this,SLOT(cropImageOvered(bool)));
-
-    // load new image to editForm //
-    editFormCrop->loadImage(imagewidget->currentPixmap());//imagewidget->currentImageName());
 
     // set window size //
     if (this->windowState() == Qt::WindowMaximized) editFormCrop->setWindowState(Qt::WindowMaximized);
@@ -725,6 +725,10 @@ void QImageViewer::cropImage()
         editFormCrop->resize(this->width(),this->height());
         editFormCrop->setWindowState(Qt::WindowNoState);
     }
+
+
+    // load new image to editForm //
+    editFormCrop->loadImage(imagewidget->currentPixmap());
 
     // change active form //
     editFormCrop->show();
@@ -889,20 +893,49 @@ void QImageViewer::exterEditorsManagerOvered(bool result)
     delete editorsManager;
 }
 
-/** Show editResize window, hide this **/
+/** upload single image to ImageShack.us**/
 void QImageViewer::imageshackShare()
 {
-    ImageShackUploader * newimage = new ImageShackUploader(imagewidget->currentImageName());
+    ImageShackUploader * newimage = new ImageShackUploader(imagewidget->currentImageName(),true);
     newimage->setWindowIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Imageshack"])));
     imageshack.append(newimage);
     newimage->show();
+}
+
+/** upload imagelist to ImageShack.us **/
+void QImageViewer::imageshackShareList()
+{
+    if (!isImageShackListUploaderOpened)
+    {
+        imageshackuploader = new ImageShackListUpload;
+        imageshackuploader->setWindowIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Imageshack"])));
+        imageshackuploader->loadlist(imagewidget->getImageList(),lastdirectory,imagewidget->currentImage());
+        connect(imageshackuploader,SIGNAL(editFinished(bool)),this,SLOT(imageshackShareListOvered(bool)));
+        imageshackuploader->show();
+        isImageShackListUploaderOpened = true;
+    }
+}
+
+void QImageViewer::imageshackShareListOvered(bool arg)
+{
+    if (arg)
+    {
+        ImageShackListView * newlist = new ImageShackListView(imageshackuploader->getlinkslist());
+        newlist->setWindowIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Imageshack"])));
+        imageshacklist.append(newlist);
+        newlist->show();
+    }
+    imageshackuploader->close();
+    disconnect(imageshackuploader,SIGNAL(editFinished(bool)),this,SLOT(imageshackShareListOvered(bool)));
+    delete imageshackuploader;
+    isImageShackListUploaderOpened = false;
 }
 
 /** Show 'About' **/
 void QImageViewer::helpAbout()
 {
     QMessageBox::about(this, tr("About"),
-        tr("QImageViewer 0.1.8\n\n"
+        tr("QImageViewer 0.1.9\n\n"
            "Application for viewing pictures\n"
            "Created using Qt 5.0.2 library\n\n"
            "Program author is Bodnya Alexey\n"

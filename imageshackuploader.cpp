@@ -1,16 +1,51 @@
 #include "imageshackuploader.h"
 #include "ui_imageshackuploader.h"
 
-ImageShackUploader::ImageShackUploader(QString imagename) :
-    ui(new Ui::ImageShackUploader)
+ImageShackUploader::ImageShackUploader(QString imagename, bool gui)
 {
-    ui->setupUi(this);
+    links = Upload(imagename);
+    if (gui)
+    {
+        ui = new Ui::ImageShackUploader;
+        ui->setupUi(this);
 
-    QPixmap * preview = new QPixmap(imagename);
-    if (preview->width() > preview->height())
-        ui->previewLabel->setPixmap(preview->scaledToWidth(150));
-    else
-        ui->previewLabel->setPixmap(preview->scaledToHeight(150));
+        QPixmap * preview = new QPixmap(imagename);
+        if (preview->width() > preview->height())
+            ui->previewLabel->setPixmap(preview->scaledToWidth(150));
+        else
+            ui->previewLabel->setPixmap(preview->scaledToHeight(150));
+
+        if (!links["Link"].isEmpty())
+        {
+            ui->linkLineEdit->setText(links["Link"]);
+            ui->fullForumsLineEdit->setText(links["ImageBB"]);
+            ui->fullSitesLineEdit->setText(links["ImageHtml"]);
+            ui->fullDirectLineEdit->setText(links["ImageLink"]);
+            ui->thumbForumsLineEdit->setText(links["ThumbBB"]);
+            ui->thumbsSitesLineEdit->setText(links["ThumbLink"]);
+        }
+        else
+        {
+            QMessageBox::warning(this,tr("Can't upload image!"),
+                                 tr("Image can't be uploaded. Server doesn't answer. Please check your internet connection"),
+                                 QMessageBox::Ok | QMessageBox::Default);
+        }
+    }
+}
+QMap<QString,QString> ImageShackUploader::getlinks()
+{
+    return links;
+}
+
+QMap<QString,QString> ImageShackUploader::Upload(QString imagename)
+{
+    QMap<QString,QString> links;
+    links["Link"] = "";
+    links["ImageBB"] = "";
+    links["ImageHtml"] = "";
+    links["ImageLink"] = "";
+    links["ThumbBB"] = "";
+    links["ThumbLink"] = "";
 
     STOP = false;
     SHOWHEADERS = true;
@@ -26,7 +61,7 @@ ImageShackUploader::ImageShackUploader(QString imagename) :
     if (!file.open(QIODevice::ReadOnly))
     {
         qDebug() << endl << "can't open file " << file.fileName() << " because: " << file.errorString();
-        return;
+        return links;
     }
     QByteArray imageData = file.readAll();
 
@@ -48,78 +83,28 @@ ImageShackUploader::ImageShackUploader(QString imagename) :
     postData.append("\r\nContent-Disposition: form-data; name=\"format\"\r\n\r\n" + formatValue);
     postData.append("\r\n-----------------------------" + boundary + "--\r\n");
 
-//    qDebug() << endl << "postData" << postData;
-
     request.setRawHeader("Content-Type", "multipart/form-data; boundary=---------------------------" + boundary);
     request.setRawHeader("Accept-Encoding", "identity");
     request.setRawHeader("Connection", "close");
     request.setUrl(QUrl("https://post.imageshack.us/upload_api.php"));
 
-    if (STOP) return;
+    if (STOP) return links;
     POST(qnam, readAnswerToString, showHeaders, autoRedirect, request.rawHeader("Content-Type"));
-    if (STOP) return;
+    if (STOP) return links;
     writeOnFile("test/1.html", answer);
 
     QHash<QString, QString> jsonElements;
     parseJson(jsonElements, answer);
-/*
-    qDebug() << endl << "status" << jsonElements.value("status");
-    qDebug() << "version" << jsonElements.value("version");
-    qDebug() << "timestamp" << jsonElements.value("timestamp");
-    qDebug() << "base_url" << jsonElements.value("base_url");
-    qDebug() << "id" << jsonElements.value("id");
 
-    qDebug() << endl << "rating.ratings" << jsonElements.value("rating.ratings");
-    qDebug() << "rating.avg" << jsonElements.value("rating.avg");
-
-    qDebug() << endl << "files.server" << jsonElements.value("files.server");
-    qDebug() << "files.bucket" << jsonElements.value("files.bucket");
-
-    qDebug() << endl << "files.image.size" << jsonElements.value("files.image.size");
-    qDebug() << "files.image.content-type" << jsonElements.value("files.image.content-type");
-    qDebug() << "files.image.filename" << jsonElements.value("files.image.filename");
-    qDebug() << "files.image.original_filename" << jsonElements.value("files.image.original_filename");
-
-    qDebug() << endl << "files.thumb.size" << jsonElements.value("files.thumb.size");
-    qDebug() << "files.thumb.content" << jsonElements.value("files.thumb.content");
-    qDebug() << "files.thumb.filename" << jsonElements.value("files.thumb.filename");
-
-    qDebug() << endl << "resolution.width" << jsonElements.value("resolution.width");
-    qDebug() << "resolution.height" << jsonElements.value("resolution.height");
-
-    qDebug() << endl << "class" << jsonElements.value("class");
-    qDebug() << "visibility" << jsonElements.value("visibility");
-
-    qDebug() << endl << "uploader.ip" << jsonElements.value("uploader.ip");
-    qDebug() << "uploader.cookie" << jsonElements.value("uploader.cookie");
-
-
-    QString imageLink = jsonElements.value("links.image_link");
-    qDebug() << endl << "links.image_link" << imageLink;
-    qDebug() << "links.image_html" << jsonElements.value("links.image_html");
-    qDebug() << "links.image_bb" << jsonElements.value("links.image_bb");
-    qDebug() << "links.image_bb2" << jsonElements.value("links.image_bb2");
-    qDebug() << "links.thumb_link" << jsonElements.value("links.thumb_link");
-    qDebug() << "links.thumb_bb" << jsonElements.value("links.thumb_bb");
-    qDebug() << "links.thumb_bb2" << jsonElements.value("links.thumb_bb2");
-    qDebug() << "links.is_link" << jsonElements.value("links.is_link");
-    qDebug() << "links.done" << jsonElements.value("links.done");*/
-    if (!jsonElements.value("links.is_link").isEmpty())
-    {
-        ui->linkLineEdit->setText(jsonElements.value("links.is_link"));
-        ui->fullForumsLineEdit->setText(jsonElements.value("links.image_bb"));
-        ui->fullSitesLineEdit->setText(jsonElements.value("links.image_html"));
-        ui->fullDirectLineEdit->setText(jsonElements.value("links.image_link"));
-        ui->thumbForumsLineEdit->setText(jsonElements.value("links.thumb_bb"));
-        ui->thumbsSitesLineEdit->setText(jsonElements.value("links.thumb_link"));
-    }
-    else
-    {
-        QMessageBox::warning(this,tr("Can't upload image!"),
-                             tr("Image can't be uploaded. Server don't answer. Please check your internet connection"),
-                             QMessageBox::Ok | QMessageBox::Default);
-    }
+    links["Link"] = jsonElements.value("links.is_link");
+    links["ImageBB"] = jsonElements.value("links.image_bb");
+    links["ImageHtml"] = jsonElements.value("links.image_html");
+    links["ImageLink"] = jsonElements.value("links.image_link");
+    links["ThumbBB"] = jsonElements.value("links.thumb_bb");
+    links["ThumbLink"] = jsonElements.value("links.thumb_link");
+    return links;
 }
+
 ImageShackUploader::~ImageShackUploader()
 {
     delete ui;

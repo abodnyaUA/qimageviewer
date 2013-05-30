@@ -47,6 +47,8 @@ private slots:
     void on_panelReset_clicked();
     void on_fullscreenColorButton_clicked();
 
+    void on_iconpackBox_activated(int index);
+
 signals:
     void acceptsettings(QString language,
                         QString defaultfolder,

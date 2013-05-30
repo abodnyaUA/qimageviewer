@@ -21,7 +21,6 @@ Settings::Settings(QStringList iconpacks, QMap<QString, QString> icon) : ui(new 
         QDir dir(iconpacks[i]);
         ui->iconpackBox->addItem(dir.dirName());
     }
-
 }
 
 void Settings::setDefaultSettings(QString language,
@@ -64,6 +63,7 @@ void Settings::setDefaultSettings(QString language,
                                                   arg(fullscreencolor.blue()));
 
     ui->toolpanelComboBox->setCurrentIndex(panelalignment);
+    ui->currentIconLabel->setPixmap(QPixmap(iconpacks[old_currenticonpack] + icon["Settings"]).scaledToHeight(16));
 
     setHotkeys();
     setPanelButtons();
@@ -214,4 +214,9 @@ void Settings::on_fullscreenColorButton_clicked()
     ui->fullscreenColorLabel->setStyleSheet(style.arg(fullscreencolor.red()).
                                                   arg(fullscreencolor.green()).
                                                   arg(fullscreencolor.blue()));
+}
+
+void Settings::on_iconpackBox_activated(int index)
+{
+    ui->currentIconLabel->setPixmap(QPixmap(iconpacks[index] + icon["Settings"]).scaledToHeight(16));
 }

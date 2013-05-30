@@ -16,7 +16,7 @@ class editformCrop : public QWidget
     Q_OBJECT
 
 public:
-    explicit editformCrop();
+    explicit editformCrop(int width, int height);
 
     void loadImage(QPixmap pixmap_old);
     QPixmap *getpixmap();
@@ -49,6 +49,7 @@ private:
 
     int left,right,top,down;
     bool isStartedCrop;
+    int wd,hg;
 
 protected:
     bool mouseisGrabbing;

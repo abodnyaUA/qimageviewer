@@ -23,7 +23,8 @@ class ImageShackUploader : public QWidget
     Q_OBJECT
     
 public:
-    explicit ImageShackUploader(QString imagename);
+    explicit ImageShackUploader(QString imagename, bool gui);
+    QMap<QString,QString> getlinks();
     ~ImageShackUploader();
     
 private slots:
@@ -31,6 +32,8 @@ private slots:
 
 private:
     Ui::ImageShackUploader *ui;
+    QMap<QString,QString> Upload(QString imagename);
+    QMap<QString,QString> links;
 
     enum answerType {
         readAnswerToString,

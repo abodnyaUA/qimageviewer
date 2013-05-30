@@ -287,6 +287,9 @@ void QImageViewer::createActions()
     ui->shareImageShackAction->setStatusTip(tr("Share this image with ImageShack.us"));
     connect(ui->shareImageShackAction,SIGNAL(triggered()),this,SLOT(imageshackShare()));
 
+    ui->shareImageShackListAction->setStatusTip(tr("Share list of images with ImageShack.us"));
+    connect(ui->shareImageShackListAction,SIGNAL(triggered()),this,SLOT(imageshackShareList()));
+
     // Help //
     ui->aboutAction->setStatusTip(tr("Information about program"));
     connect(ui->aboutAction,SIGNAL(triggered()),this,SLOT(helpAbout()));
@@ -425,6 +428,7 @@ void QImageViewer::createDesign()
     ui->zoomWindowAction->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["ZoomWindow"])));
     ui->wallpaperAction->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Wallpaper"])));
     ui->shareImageShackAction->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Imageshack"])));
+    ui->shareImageShackListAction->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Imageshack"])));
     ui->aboutAction->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Help"])));
 
     imagewidget->loadiconnames(icon);

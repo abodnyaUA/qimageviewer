@@ -6,7 +6,9 @@ void image::reloadImage()
 {
     delete imageScene;
     imageScene = new QGraphicsScene;
-    zoom = 1.0;
+    zoom = qMax((double)imagePixmap->width()/(double)width(),
+                (double)imagePixmap->height()/(double)height());
+    if (zoom > 1) zoom = 1;
     zoomMin = false;
     zoomMax = false;
     zoomOriginal = false;
@@ -40,7 +42,9 @@ void image::addToBuffer(QPixmap * pixmap)
     delete imageScene;
     imagePixmap = pixmap;
 
-    zoom = 1.0;
+    zoom = qMax((double)imagePixmap->width()/(double)width(),
+                (double)imagePixmap->height()/(double)height());
+    if (zoom > 1) zoom = 1;
     zoomMin = false;
     zoomMax = false;
 
@@ -107,11 +111,10 @@ void image::prevBuffer()
 void image::nextBuffer()
 {
     wasEdited = true;
+    if (buffer_indx == 0)
+        emit itsSaved(false);
     if (buffer_indx < buffer.size()-1)
-    {
-        qDebug() << "current index is changed";
         buffer_indx++;
-    }
     *imagePixmap = buffer[buffer_indx];
     reloadImage();
     if (buffer_indx < buffer.size()-1)
@@ -125,8 +128,8 @@ void image::nextBuffer()
 void image::rotateLeft()
 {
     QTransform transform;
-    QTransform trans = transform.rotate(-90);
-    QPixmap * newpixmap = new QPixmap(imagePixmap->transformed(trans));
+    transform = transform.rotate(-90);
+    QPixmap * newpixmap = new QPixmap(imagePixmap->transformed(transform));
     addToBuffer(newpixmap);
     wasEdited = true;
 }
@@ -135,8 +138,8 @@ void image::rotateLeft()
 void image::rotateRight()
 {
     QTransform transform;
-    QTransform trans = transform.rotate(90);
-    QPixmap * newpixmap = new QPixmap(imagePixmap->transformed(trans));
+    transform = transform.rotate(90);
+    QPixmap * newpixmap = new QPixmap(imagePixmap->transformed(transform));
     addToBuffer(newpixmap);
     wasEdited = true;
 }
@@ -145,7 +148,6 @@ void image::rotateRight()
 void image::flipHorizontal()
 {
     QImage image = imagePixmap->toImage();
-    qDebug() << "ims=" << image.width() << image.height();
     image = image.mirrored(true,false);
     QPixmap * newpixmap = new QPixmap(QPixmap::fromImage(image));
     addToBuffer(newpixmap);

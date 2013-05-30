@@ -153,7 +153,9 @@ void image::loadimage(QString path)
     }
     imagePixmap = new QPixmap(path);
 
-    zoom = 1.0;
+    zoom = qMax((double)imagePixmap->width()/(double)width(),
+                (double)imagePixmap->height()/(double)height());
+    if (zoom > 1) zoom = 1;
     zoomMin = false;
     zoomMax = false;
 
@@ -177,7 +179,6 @@ void image::loadimage(QString path)
     else
     {
         imageScene->addPixmap(*imagePixmap);
-        zoomMax = true;
     }
 
     setSceneRect(0,0,imageScene->width(),imageScene->height());
@@ -219,14 +220,6 @@ void image::loadimagelist(QStringList list)
 {
     imagelist = list;
     imagelist_indx = BinSearch(list,imagename);
-    for (int i=0;i<list.size();i++)
-        qDebug() << list[i];
-    qDebug() << "name = "<< imagename;
-}
-
-void image::setOriginalSize()
-{
-     while (!zoomOriginal) zoomInc();
 }
 
 /** return current index **/
@@ -276,7 +269,13 @@ void image::resetZoom()
     zoomOriginal = false;
     zoomMin = false;
     zoomMax = false;
-    zoom = 1.0;
+    zoom = qMin((double)width()/(double)imagePixmap->width(),
+                (double)height()/(double)imagePixmap->height());
+    if (zoom > 1)
+    {
+        zoom = 1;
+        zoomOriginal = true;
+    }
     sumMousePos.setX( imageScene->width()/2.0 );
     sumMousePos.setY( imageScene->height()/2.0 );
 }
@@ -303,6 +302,28 @@ void image::setImage(int indx)
     }
 }
 
+/** zoom to original size **/
+void image::setOriginalSize()
+{
+    int oldwidth = imageScene->width();
+    imageScene->clear();
+    imageScene->setSceneRect(0,0,1,1);
+    imageScene->clear();
+    zoom = qMax((double)imagePixmap->width()/(double)width(),
+                (double)imagePixmap->height()/(double)height());
+    imageScene->setSceneRect(0,0,(*imagePixmap).width(),(*imagePixmap).height());
+    imageScene->addPixmap(*imagePixmap);
+    setSceneRect(0,0,imageScene->width(),imageScene->height());
+    setScene(imageScene);
+
+
+    ////Center position////
+    qDebug() << "Proportion: " << (imageScene->width() / oldwidth)<<"zoom="<<zoom;
+    sumMousePos.setX(sumMousePos.x() * (imageScene->width() / oldwidth));
+    sumMousePos.setY(sumMousePos.y() * (imageScene->width() / oldwidth));
+    centerOn(sumMousePos.x(),sumMousePos.y());
+}
+
 /** zoom in **/
 void image::zoomInc()
 {
@@ -316,38 +337,19 @@ void image::zoomInc()
         if ((double)imagePixmap->width()/(double)width() > (double)imagePixmap->height()/(double)height())
         {
             if ((zoom+0.2)*(width()*0.95) < imagePixmap->width()*5) zoom += 0.2;
-            if ((zoom+0.2)*(width()*0.95) < imagePixmap->width())
-            {
-                imageScene->setSceneRect(0,0,(width()*0.95)*zoom,(*imagePixmap).scaledToWidth((width()*0.95)*zoom).height());
-                imageScene->addPixmap((*imagePixmap).scaledToWidth((width()*0.95)*zoom));
-            }
-            else
-            {
-                imageScene->setSceneRect(0,0,(*imagePixmap).width(),(*imagePixmap).height());
-                imageScene->addPixmap(*imagePixmap);
-                zoomOriginal = true;
-            }
-            if ((zoom+0.2)*(width()*0.95) > imagePixmap->width()) zoomMax = true;
+            imageScene->setSceneRect(0,0,(width()*0.95)*zoom,(*imagePixmap).scaledToWidth((width()*0.95)*zoom).height());
+            imageScene->addPixmap((*imagePixmap).scaledToWidth((width()*0.95)*zoom));
+            if ((zoom+0.2)*(width()*0.95) > imagePixmap->width()*5.0) zoomMax = true;
         }
         else
         {
             if ((zoom+0.2)*(height()*0.98) < imagePixmap->height()*5) zoom += 0.2;
-            if ((zoom+0.2)*(height()*0.98) < imagePixmap->height())
-            {
-                imageScene->setSceneRect(0,0,(*imagePixmap).scaledToHeight(((height()*0.98))*zoom).width(),((height()*0.98))*zoom);
-                imageScene->addPixmap((*imagePixmap).scaledToHeight(((height()*0.98))*zoom));
-            }
-            else
-            {
-                imageScene->setSceneRect(0,0,(*imagePixmap).width(),(*imagePixmap).height());
-                imageScene->addPixmap(*imagePixmap);
-                zoomOriginal = true;
-            }
-            if ((zoom+0.2)*(height()*0.98) > imagePixmap->height()) zoomMax = true;
+            imageScene->setSceneRect(0,0,(*imagePixmap).scaledToHeight(((height()*0.98))*zoom).width(),((height()*0.98))*zoom);
+            imageScene->addPixmap((*imagePixmap).scaledToHeight(((height()*0.98))*zoom));
+            if ((zoom+0.2)*(height()*0.98) > imagePixmap->height()*5.0) zoomMax = true;
         }
         setSceneRect(0,0,imageScene->width(),imageScene->height());
         setScene(imageScene);
-
 
         ////Center position////
         qDebug() << "Proportion: " << (imageScene->width() / oldwidth)<<"zoom="<<zoom;
@@ -388,6 +390,7 @@ void image::zoomDec()
         sumMousePos.setX(sumMousePos.x() * (imageScene->width() / oldwidth));
         sumMousePos.setY(sumMousePos.y() * (imageScene->width() / oldwidth));
         centerOn(sumMousePos.x(),sumMousePos.y());
+        qDebug() << "!zoom! = " << zoom;
 
         if (fabs(zoom - 0.2) < 0.001) zoomMin = true;
         zoomMax = false;

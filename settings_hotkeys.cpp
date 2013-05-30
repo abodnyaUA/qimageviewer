@@ -9,7 +9,8 @@ QTreeWidgetItem * Settings::addCategory(QString name)
     return item;
 }
 
-QTreeWidgetItem * Settings::addHotkey(QTreeWidgetItem * category, QString name, QString hotkey, QString iconkey, QString defaultHotkey)
+QTreeWidgetItem * Settings::addHotkey(QTreeWidgetItem * category, QString name,
+                                      QString hotkey, QString iconkey, QString defaultHotkey)
 {
     QTreeWidgetItem *item = new QTreeWidgetItem(category);
     item->setText(0,name);
@@ -115,6 +116,7 @@ void Settings::on_hotkeyWidget_itemDoubleClicked(QTreeWidgetItem *item, int colu
         QHotkeyWidget->loadItem(item);
         QHotkeyWidget->show();
         QHotkeyWidget->isChanging = true;
+        isActiveHotkeyWidget = true;
     }
 }
 

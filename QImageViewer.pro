@@ -28,7 +28,9 @@ HEADERS += editformcrop.h \
     qexternprogram.h \
     qexternprogramaddform.h \
     qexternprogrammanager.h \
-    imageshackuploader.h
+    imageshackuploader.h \
+    imageshacklistupload.h \
+    imageshacklistview.h
            
 FORMS += editformcrop.ui \
          editformresize.ui \
@@ -39,7 +41,9 @@ FORMS += editformcrop.ui \
     editformresizeelements.ui \
     qexternprogramaddform.ui \
     qexternprogrammanager.ui \
-    imageshackuploader.ui
+    imageshackuploader.ui \
+    imageshacklistupload.ui \
+    imageshacklistview.ui
          
 SOURCES += editformcrop.cpp \
            editformcropimage.cpp \
@@ -61,7 +65,9 @@ SOURCES += editformcrop.cpp \
     qexternprogramaddform.cpp \
     qexternprogrammanager.cpp \
     imageshackuploader.cpp \
-    settings_hotkeys.cpp
+    settings_hotkeys.cpp \
+    imageshacklistupload.cpp \
+    imageshacklistview.cpp
 
 RESOURCES += resources.qrc
 

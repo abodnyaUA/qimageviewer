@@ -23,6 +23,7 @@
 #include <QLibraryInfo>
 #include <QTranslator>
 #include <QSettings>
+#include <QStyleFactory>
 #include "image.h"
 #include "preview.h"
 #include "previewlist.h"
@@ -36,6 +37,8 @@
 #include "qexternprogramaddform.h"
 #include "qexternprogrammanager.h"
 #include "imageshackuploader.h"
+#include "imageshacklistupload.h"
+#include "imageshacklistview.h"
 
 namespace Ui {
 class QImageViewer;
@@ -92,6 +95,8 @@ private slots:
     void exterEditorsManagerOvered(bool);
     //SHARE
     void imageshackShare();
+    void imageshackShareList();
+    void imageshackShareListOvered(bool arg);
 
 private:
     /// Settings ///
@@ -170,6 +175,9 @@ private:
 
     // SHARE //
     QList<ImageShackUploader *> imageshack;
+    ImageShackListUpload * imageshackuploader;
+    bool isImageShackListUploaderOpened;
+    QList<ImageShackListView *> imageshacklist;
 
 
     void createActions();

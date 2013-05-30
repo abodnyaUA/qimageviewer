@@ -1,17 +1,19 @@
 #include "editformresize.h"
 #include "ui_editformresize.h"
 #include <QDebug>
-editformResize::editformResize() : ui(new Ui::editformResize)
+editformResize::editformResize(int width, int height) : ui(new Ui::editformResize)
 {
     ui->setupUi(this);
     scene = new QGraphicsScene;
     ui->cancelButton->setShortcut(QKeySequence(Qt::Key_Escape));
+    wd = width;
+    hg = height;
 }
 
 /** load image to the window **/
 void editformResize::loadImage(QPixmap pixmap_old)
 {
-    ui->imageView->resize(width()-224,height()-48);
+    ui->imageView->resize(wd-224,hg-48);
     pixmap = new QPixmap(pixmap_old);
 
     ui->oldSizeLabel->setText(QString::number(pixmap->width())+" x "+QString::number(pixmap->height()));

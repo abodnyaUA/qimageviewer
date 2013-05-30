@@ -19,6 +19,7 @@ qhotkeywidget::qhotkeywidget(QWidget *parent) :
     buttDefault->setFocusPolicy(Qt::NoFocus);
     buttCancel->setFocusPolicy(Qt::NoFocus);
     setWindowIcon(QIcon(QPixmap(":/res/hotkey.png")));
+    setWindowModality(Qt::WindowModal);
 
     connect(buttOK,SIGNAL(clicked()),this,SIGNAL(butOKClicked()));
     connect(buttCancel,SIGNAL(clicked()),this,SIGNAL(butCancelClicked()));
@@ -26,7 +27,7 @@ qhotkeywidget::qhotkeywidget(QWidget *parent) :
     connect(hotkeyEdit,SIGNAL(needAccept()),this,SIGNAL(butOKClicked()));
     connect(hotkeyEdit,SIGNAL(needDecline()),this,SIGNAL(butCancelClicked()));
 
-    setFixedSize(250,80);
+    setFixedSize(QSize(sizePolicy().horizontalStretch(),sizePolicy().verticalStretch()));
 }
 
 void qhotkeywidget::loadItem(QTreeWidgetItem *item)

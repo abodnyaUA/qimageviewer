@@ -1,7 +1,7 @@
 #include "editformcrop.h"
 #include "ui_editformcrop.h"
 #include <QDebug>
-editformCrop::editformCrop() : ui(new Ui::editformCrop)
+editformCrop::editformCrop(int width, int height) : ui(new Ui::editformCrop)
 {
     ui->setupUi(this);
     scene = new QGraphicsScene;
@@ -12,11 +12,13 @@ editformCrop::editformCrop() : ui(new Ui::editformCrop)
     ui->imageLayout->addWidget(imagepreview);
     connect(imagepreview,SIGNAL(lefttopWasChanged(int,int)),this,SLOT(setnewLeftTop(int,int)));
     connect(imagepreview,SIGNAL(rightdownWasChanged(int,int)),this,SLOT(setnewRightDown(int,int)));
+    wd = width;
+    hg = height;
 }
 
 void editformCrop::loadImage(QPixmap pixmap_old)
 {
-    imagepreview->resize(width()-224,height()-48);
+    imagepreview->resize(wd-224,hg-48);
     pixmap = new QPixmap(pixmap_old);
 
     ui->oldSizeLabel->setText(QString::number(pixmap->width())+" x "+QString::number(pixmap->height()));

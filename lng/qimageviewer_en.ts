@@ -2,6 +2,110 @@
 <!DOCTYPE TS>
 <TS version="2.0" language="en_US">
 <context>
+    <name>ImageShackListUpload</name>
+    <message>
+        <location filename="../imageshacklistupload.ui" line="14"/>
+        <source>QImageViewer - ImageShack.us Uploader - Choose images</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../imageshacklistupload.ui" line="27"/>
+        <source>Preview:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../imageshacklistupload.ui" line="78"/>
+        <source>Upload</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../imageshacklistupload.ui" line="85"/>
+        <source>Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../imageshacklistupload.ui" line="98"/>
+        <source>TextLabel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../imageshacklistupload.cpp" line="57"/>
+        <location filename="../imageshacklistupload.cpp" line="67"/>
+        <source>Uploading: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../imageshacklistupload.cpp" line="84"/>
+        <source>Can&apos;t upload image!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../imageshacklistupload.cpp" line="85"/>
+        <source>Image can&apos;t be uploaded. Server doesn&apos;t answer. Please check your internet connection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../imageshacklistupload.cpp" line="105"/>
+        <source>Can&apos;t cancel uploading!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../imageshacklistupload.cpp" line="106"/>
+        <source>Please wait while all images will be uploaded</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ImageShackListView</name>
+    <message>
+        <location filename="../imageshacklistview.ui" line="14"/>
+        <source>QImageViewer - ImageShack.us Uploader - List of uploaded images</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../imageshacklistview.ui" line="33"/>
+        <source>Full size</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../imageshacklistview.ui" line="46"/>
+        <source>Direct link:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../imageshacklistview.ui" line="59"/>
+        <location filename="../imageshacklistview.ui" line="147"/>
+        <source>BBCode (Forum)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../imageshacklistview.ui" line="72"/>
+        <location filename="../imageshacklistview.ui" line="160"/>
+        <source>HTML (Site)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../imageshacklistview.ui" line="108"/>
+        <source>Short Link</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../imageshacklistview.ui" line="121"/>
+        <source>Link:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../imageshacklistview.ui" line="134"/>
+        <source>Preview</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../imageshacklistview.ui" line="195"/>
+        <source>OK</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>ImageShackUploader</name>
     <message>
         <location filename="../imageshackuploader.ui" line="14"/>
@@ -14,7 +118,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../imageshackuploader.ui" line="81"/>
+        <location filename="../imageshackuploader.ui" line="83"/>
         <source>Short Link</source>
         <translation type="unfinished"></translation>
     </message>
@@ -24,45 +128,45 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../imageshackuploader.ui" line="118"/>
+        <location filename="../imageshackuploader.ui" line="116"/>
         <source>Full size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../imageshackuploader.ui" line="133"/>
-        <location filename="../imageshackuploader.ui" line="218"/>
+        <location filename="../imageshackuploader.ui" line="129"/>
+        <location filename="../imageshackuploader.ui" line="202"/>
         <source>BBCode (Forum)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../imageshackuploader.ui" line="157"/>
-        <location filename="../imageshackuploader.ui" line="242"/>
+        <location filename="../imageshackuploader.ui" line="149"/>
+        <location filename="../imageshackuploader.ui" line="222"/>
         <source>HTML (Site)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../imageshackuploader.ui" line="181"/>
+        <location filename="../imageshackuploader.ui" line="169"/>
         <source>Direct link:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../imageshackuploader.ui" line="203"/>
+        <location filename="../imageshackuploader.ui" line="189"/>
         <source>Preview</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../imageshackuploader.ui" line="273"/>
+        <location filename="../imageshackuploader.ui" line="253"/>
         <source>OK</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../imageshackuploader.cpp" line="118"/>
+        <location filename="../imageshackuploader.cpp" line="29"/>
         <source>Can&apos;t upload image!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../imageshackuploader.cpp" line="119"/>
-        <source>Image can&apos;t be uploaded. Server don&apos;t answer. Please check your internet connection</source>
+        <location filename="../imageshackuploader.cpp" line="30"/>
+        <source>Image can&apos;t be uploaded. Server doesn&apos;t answer. Please check your internet connection</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -290,11 +394,11 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="79"/>
-        <location filename="../qimageviewer.cpp" line="94"/>
-        <location filename="../qimageviewer.cpp" line="106"/>
-        <location filename="../qimageviewer.cpp" line="184"/>
-        <location filename="../qimageviewer.cpp" line="255"/>
+        <location filename="../qimageviewer.cpp" line="80"/>
+        <location filename="../qimageviewer.cpp" line="95"/>
+        <location filename="../qimageviewer.cpp" line="107"/>
+        <location filename="../qimageviewer.cpp" line="186"/>
+        <location filename="../qimageviewer.cpp" line="257"/>
         <source> of </source>
         <translation type="unfinished"></translation>
     </message>
@@ -329,153 +433,158 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="194"/>
+        <location filename="../qimageviewer.ui" line="195"/>
         <source>Open image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="240"/>
-        <location filename="../qimageviewer.cpp" line="486"/>
+        <location filename="../qimageviewer.ui" line="241"/>
+        <location filename="../qimageviewer.cpp" line="488"/>
         <source>Rotate right</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="252"/>
-        <location filename="../qimageviewer.cpp" line="476"/>
+        <location filename="../qimageviewer.ui" line="253"/>
+        <location filename="../qimageviewer.cpp" line="478"/>
         <source>Rotate left</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="308"/>
+        <location filename="../qimageviewer.ui" line="309"/>
         <source>Undo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="316"/>
+        <location filename="../qimageviewer.ui" line="317"/>
         <source>Redo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="328"/>
+        <location filename="../qimageviewer.ui" line="329"/>
         <source>Set as wallpaper</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="340"/>
+        <location filename="../qimageviewer.ui" line="341"/>
         <source>Start slideshow</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="349"/>
+        <location filename="../qimageviewer.ui" line="350"/>
         <source>Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="361"/>
-        <location filename="../qimageviewer.cpp" line="516"/>
-        <location filename="../qimageviewer_design.cpp" line="479"/>
+        <location filename="../qimageviewer.ui" line="362"/>
+        <location filename="../qimageviewer.cpp" line="518"/>
+        <location filename="../qimageviewer_design.cpp" line="483"/>
         <source>Zoom In</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="373"/>
+        <location filename="../qimageviewer.ui" line="374"/>
         <location filename="../qimageviewer_design.cpp" line="267"/>
         <source>Zoom out</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="385"/>
+        <location filename="../qimageviewer.ui" line="386"/>
         <source>Window size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="397"/>
+        <location filename="../qimageviewer.ui" line="398"/>
         <source>Original size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="409"/>
+        <location filename="../qimageviewer.ui" line="410"/>
         <source>Resize items...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="421"/>
+        <location filename="../qimageviewer.ui" line="422"/>
         <source>Flip horizontal</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="433"/>
+        <location filename="../qimageviewer.ui" line="434"/>
         <source>Flip vertical</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="445"/>
+        <location filename="../qimageviewer.ui" line="446"/>
         <source>Next image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="457"/>
+        <location filename="../qimageviewer.ui" line="458"/>
         <source>Previous image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="462"/>
+        <location filename="../qimageviewer.ui" line="463"/>
         <source>Add editor</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="467"/>
+        <location filename="../qimageviewer.ui" line="468"/>
         <source>Editors manager</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="479"/>
+        <location filename="../qimageviewer.ui" line="480"/>
         <source>ImageShack.us</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="484"/>
+        <location filename="../qimageviewer.ui" line="485"/>
         <source>About Qt</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="199"/>
+        <location filename="../qimageviewer.ui" line="493"/>
+        <source>List to ImageShack.us</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qimageviewer.ui" line="200"/>
         <source>Quit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="208"/>
-        <location filename="../qimageviewer.cpp" line="904"/>
+        <location filename="../qimageviewer.ui" line="209"/>
+        <location filename="../qimageviewer.cpp" line="937"/>
         <source>About</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="220"/>
+        <location filename="../qimageviewer.ui" line="221"/>
         <source>Save</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="228"/>
+        <location filename="../qimageviewer.ui" line="229"/>
         <source>Save as...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="264"/>
+        <location filename="../qimageviewer.ui" line="265"/>
         <source>Delete file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="276"/>
+        <location filename="../qimageviewer.ui" line="277"/>
         <source>Resize</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="288"/>
+        <location filename="../qimageviewer.ui" line="289"/>
         <source>Fullscreen mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="300"/>
+        <location filename="../qimageviewer.ui" line="301"/>
         <source>Crop</source>
         <translation type="unfinished"></translation>
     </message>
@@ -540,16 +649,21 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="496"/>
+        <location filename="../qimageviewer_design.cpp" line="290"/>
+        <source>Share list of images with ImageShack.us</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qimageviewer.cpp" line="498"/>
         <location filename="../qimageviewer_design.cpp" line="228"/>
-        <location filename="../qimageviewer_design.cpp" line="459"/>
+        <location filename="../qimageviewer_design.cpp" line="463"/>
         <source>Change this image to horizontal mirror</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="506"/>
+        <location filename="../qimageviewer.cpp" line="508"/>
         <location filename="../qimageviewer_design.cpp" line="231"/>
-        <location filename="../qimageviewer_design.cpp" line="469"/>
+        <location filename="../qimageviewer_design.cpp" line="473"/>
         <source>Change this image to vertical mirror</source>
         <translation type="unfinished"></translation>
     </message>
@@ -584,16 +698,16 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="556"/>
+        <location filename="../qimageviewer.cpp" line="558"/>
         <location filename="../qimageviewer_design.cpp" line="253"/>
-        <location filename="../qimageviewer_design.cpp" line="519"/>
+        <location filename="../qimageviewer_design.cpp" line="523"/>
         <source>Enable fullscreen mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="566"/>
+        <location filename="../qimageviewer.cpp" line="568"/>
         <location filename="../qimageviewer_design.cpp" line="257"/>
-        <location filename="../qimageviewer_design.cpp" line="529"/>
+        <location filename="../qimageviewer_design.cpp" line="533"/>
         <source>Start slideshow in fullscreen mode</source>
         <translation type="unfinished"></translation>
     </message>
@@ -608,79 +722,79 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="546"/>
+        <location filename="../qimageviewer.cpp" line="548"/>
         <location filename="../qimageviewer_design.cpp" line="270"/>
-        <location filename="../qimageviewer_design.cpp" line="509"/>
+        <location filename="../qimageviewer_design.cpp" line="513"/>
         <source>Zoom to original size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="536"/>
+        <location filename="../qimageviewer.cpp" line="538"/>
         <location filename="../qimageviewer_design.cpp" line="273"/>
-        <location filename="../qimageviewer_design.cpp" line="499"/>
+        <location filename="../qimageviewer_design.cpp" line="503"/>
         <source>Zoom to window size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer_design.cpp" line="291"/>
+        <location filename="../qimageviewer_design.cpp" line="294"/>
         <source>Information about program</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer_design.cpp" line="295"/>
+        <location filename="../qimageviewer_design.cpp" line="298"/>
         <source>Open previous image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer_design.cpp" line="299"/>
+        <location filename="../qimageviewer_design.cpp" line="302"/>
         <source>Open next image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer_design.cpp" line="439"/>
+        <location filename="../qimageviewer_design.cpp" line="443"/>
         <source>Rotate picture to the left</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer_design.cpp" line="449"/>
+        <location filename="../qimageviewer_design.cpp" line="453"/>
         <source>Rotate picture to the right</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="118"/>
+        <location filename="../qimageviewer.cpp" line="119"/>
         <source>Opening image file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="119"/>
+        <location filename="../qimageviewer.cpp" line="120"/>
         <source>All pictures formats (*.jpg *.jpeg *.png *.bmp *.gif *.tiff *.pbm *.pgm *.ppm *.xbm *.xpm);;Joint Photographic Experts Group (*.jpeg *.jpg);;Portable Network Graphics(*.png);;Windows Bitmap (*.bmp);;Graphic Interchange Format (*.gif);;Tagged Image File Format (*.tiff);;Portable Bitmap (*.pbm);;Portable Graymap (*.pgm);;Portable Pixmap (*.ppm);;X11 Bitmap (*.xbm *.xpm</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="235"/>
+        <location filename="../qimageviewer.cpp" line="237"/>
         <source>Saving files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="236"/>
+        <location filename="../qimageviewer.cpp" line="238"/>
         <source>All picture formats (*.jpg *.jpeg *.png *.bmp *.tiff *.ppm *.xbm *.xpm);;Joint Photographic Experts Group (*.jpeg *.jpg);;Portable Network Graphics (*.png);;Windows Bitmap (*.bmp);;Tagged Image File Format (*.tiff);;Portable Pixmap (*.ppm);;X11 Bitmap (*.xbm *.xpm)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="526"/>
-        <location filename="../qimageviewer_design.cpp" line="489"/>
+        <location filename="../qimageviewer.cpp" line="528"/>
+        <location filename="../qimageviewer_design.cpp" line="493"/>
         <source>Zoom Out</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="576"/>
-        <location filename="../qimageviewer_design.cpp" line="539"/>
+        <location filename="../qimageviewer.cpp" line="578"/>
+        <location filename="../qimageviewer_design.cpp" line="543"/>
         <source>Image properties</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="905"/>
-        <source>QImageViewer 0.1.8
+        <location filename="../qimageviewer.cpp" line="938"/>
+        <source>QImageViewer 0.1.9
 
 Application for viewing pictures
 Created using Qt 5.0.2 library
@@ -694,12 +808,12 @@ Thanks for testing, advice and ideas to my friends, Typical Proger and Prog.org.
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer_design.cpp" line="575"/>
+        <location filename="../qimageviewer_design.cpp" line="579"/>
         <source>Warning!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer_design.cpp" line="576"/>
+        <location filename="../qimageviewer_design.cpp" line="580"/>
         <source>This file was changed
 Do you want to save changes?</source>
         <translation type="unfinished"></translation>
@@ -758,97 +872,97 @@ Do you want to save changes?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="331"/>
+        <location filename="../settings.ui" line="338"/>
         <source>Panel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="346"/>
+        <location filename="../settings.ui" line="353"/>
         <source>Panel at the bottom</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="351"/>
+        <location filename="../settings.ui" line="358"/>
         <source>Panel on top</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="356"/>
+        <location filename="../settings.ui" line="363"/>
         <source>No panel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="397"/>
+        <location filename="../settings.ui" line="404"/>
         <source>Rotate Left</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="408"/>
+        <location filename="../settings.ui" line="415"/>
         <source>Rotate Right</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="419"/>
+        <location filename="../settings.ui" line="426"/>
         <source>Flip hotizontal</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="430"/>
+        <location filename="../settings.ui" line="437"/>
         <source>Flip Vertical</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="441"/>
+        <location filename="../settings.ui" line="448"/>
         <source>Zoom In</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="452"/>
+        <location filename="../settings.ui" line="459"/>
         <source>Zoom Out</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="463"/>
+        <location filename="../settings.ui" line="470"/>
         <source>Zoom to window size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="474"/>
+        <location filename="../settings.ui" line="481"/>
         <source>Zoom to original size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="507"/>
+        <location filename="../settings.ui" line="514"/>
         <source>Properties</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="524"/>
+        <location filename="../settings.ui" line="531"/>
         <source>Reset panel settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="547"/>
+        <location filename="../settings.ui" line="554"/>
         <source>Hotkeys</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="572"/>
+        <location filename="../settings.ui" line="579"/>
         <source>Reset hotkeys to defaults</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="600"/>
+        <location filename="../settings.ui" line="607"/>
         <source>Reset all settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="620"/>
+        <location filename="../settings.ui" line="627"/>
         <source>Accept new settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="485"/>
+        <location filename="../settings.ui" line="492"/>
         <location filename="../settings_hotkeys.cpp" line="64"/>
         <source>Fullscreen</source>
         <translation type="unfinished"></translation>
@@ -859,13 +973,13 @@ Do you want to save changes?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="496"/>
+        <location filename="../settings.ui" line="503"/>
         <location filename="../settings_hotkeys.cpp" line="65"/>
         <source>Slideshow</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings.ui" line="627"/>
+        <location filename="../settings.ui" line="634"/>
         <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1050,17 +1164,17 @@ Do you want to save changes?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings_hotkeys.cpp" line="137"/>
+        <location filename="../settings_hotkeys.cpp" line="138"/>
         <source>This hotkey is reserved</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings_hotkeys.cpp" line="138"/>
+        <location filename="../settings_hotkeys.cpp" line="139"/>
         <source>Hotkey&apos;s already reserved to </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings_hotkeys.cpp" line="140"/>
+        <location filename="../settings_hotkeys.cpp" line="141"/>
         <source>Do you want to set hotkey anyway?</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1173,53 +1287,53 @@ Do you want to save changes?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../editformresizeelements.ui" line="38"/>
+        <location filename="../editformresizeelements.ui" line="52"/>
         <source>Preview:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../editformresizeelements.ui" line="69"/>
+        <location filename="../editformresizeelements.ui" line="83"/>
         <source>Image size:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../editformresizeelements.ui" line="146"/>
+        <location filename="../editformresizeelements.ui" line="160"/>
         <source>images width</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../editformresizeelements.ui" line="168"/>
+        <location filename="../editformresizeelements.ui" line="182"/>
         <source>images height</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../editformresizeelements.ui" line="76"/>
         <location filename="../editformresizeelements.ui" line="90"/>
+        <location filename="../editformresizeelements.ui" line="104"/>
         <source>00</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../editformresizeelements.ui" line="83"/>
+        <location filename="../editformresizeelements.ui" line="97"/>
         <source>x</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../editformresizeelements.ui" line="128"/>
+        <location filename="../editformresizeelements.ui" line="142"/>
         <source>By pixel size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../editformresizeelements.ui" line="199"/>
+        <location filename="../editformresizeelements.ui" line="213"/>
         <source>By percent</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../editformresizeelements.ui" line="272"/>
+        <location filename="../editformresizeelements.ui" line="286"/>
         <source>Accept</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../editformresizeelements.ui" line="291"/>
+        <location filename="../editformresizeelements.ui" line="305"/>
         <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1300,33 +1414,33 @@ Do you want to save changes?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../image.cpp" line="289"/>
+        <location filename="../image.cpp" line="288"/>
         <source>Warning!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../image.cpp" line="290"/>
+        <location filename="../image.cpp" line="289"/>
         <source>This file was changed
 Do you want to save the changes?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../image.cpp" line="471"/>
+        <location filename="../image.cpp" line="474"/>
         <source>Do you want to set this image as desktop wallpaper?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../image.cpp" line="406"/>
+        <location filename="../image.cpp" line="409"/>
         <source>Delete file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../image.cpp" line="407"/>
+        <location filename="../image.cpp" line="410"/>
         <source>Do you really want to delete this file?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../image.cpp" line="470"/>
+        <location filename="../image.cpp" line="473"/>
         <source>Setting wallpaper</source>
         <translation type="unfinished"></translation>
     </message>

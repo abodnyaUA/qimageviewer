@@ -40,6 +40,7 @@ private:
     QGraphicsScene * scene;
     QPixmap pixmap;
     bool startUpload;
+    bool exit;
     QList< QMap<QString,QString> > linkslist;
 
 protected:

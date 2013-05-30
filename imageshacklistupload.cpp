@@ -10,6 +10,7 @@ ImageShackListUpload::ImageShackListUpload(QWidget *parent) :
     ui->progressBar->hide();
     ui->status->hide();
     startUpload = false;
+    exit = false;
 }
 
 ImageShackListUpload::~ImageShackListUpload()
@@ -71,6 +72,7 @@ void ImageShackListUpload::on_acceptButton_clicked()
             ui->progressBar->setValue((int)((double)((i+1)*100.0)/(double)(uploadImageAmount)));
         }
         startUpload = false;
+        exit = true;
         emit editFinished(true);
     }
     else
@@ -95,6 +97,7 @@ QList< QMap<QString,QString> > ImageShackListUpload::getlinkslist()
 
 void ImageShackListUpload::on_cancelButton_clicked()
 {
+    exit = true;
     emit editFinished(false);
 }
 
@@ -106,6 +109,11 @@ void ImageShackListUpload::closeEvent(QCloseEvent *event)
                            tr("Please wait while all images will be uploaded"),
                            QMessageBox::Ok | QMessageBox::Default);
         event->ignore();
+    }
+    else
+    {
+        if(!exit) emit editFinished(false);
+        event->accept();
     }
 }
 

@@ -33,12 +33,18 @@
 #include "editformcrop.h"
 #include "settings.h"
 #include "hotkeys.h"
+//EXTERN APPLICATION
 #include "qexternprogram.h"
 #include "qexternprogramaddform.h"
 #include "qexternprogrammanager.h"
+//IMAGESHACK
 #include "imageshackuploader.h"
 #include "imageshacklistupload.h"
 #include "imageshacklistview.h"
+//VK
+#include "qvk/qvk.h"
+#include "qvk/vkuploadimageform.h"
+#include "qvk/vkuploadimagesform.h"
 
 namespace Ui {
 class QImageViewer;
@@ -97,6 +103,19 @@ private slots:
     void imageshackShare();
     void imageshackShareList();
     void imageshackShareListOvered(bool arg);
+    //VKONTAKTE
+    void vkStart();
+    void vkLogIn();
+    void vkLogOut();
+    void vkUploadImage();
+    void vkUploadImageOvered(bool);
+    void vkUploadImageUpdateAlbums();
+    void vkUploadImageList();
+    void vkUploadImageListOvered(bool);
+    void vkUploadImageListUpdate();
+    void vkUploadImageListAbort();
+    void vkUploadImageListUpdateAlbums();
+    void vkDownloadAlbum();
 
 private:
     /// Settings ///
@@ -179,6 +198,15 @@ private:
     bool isImageShackListUploaderOpened;
     QList<ImageShackListView *> imageshacklist;
 
+    // Vkontakte //
+    QVk *vkApi;
+    QString vkToken;
+    int vkUserId;
+    vkUploadImageForm *vkuploadimageform;
+    bool isVkUploadImageFormActive;
+    vkUploadImagesForm *vkuploadimagesform;
+    bool isVkUploadImagesFormActive;
+    int vkUploadImagesCount, vkUploadImagesAmount;
 
     void createActions();
     void createHotkeys();

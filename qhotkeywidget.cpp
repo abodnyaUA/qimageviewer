@@ -18,7 +18,6 @@ qhotkeywidget::qhotkeywidget(QWidget *parent) :
     buttOK->setFocusPolicy(Qt::NoFocus);
     buttDefault->setFocusPolicy(Qt::NoFocus);
     buttCancel->setFocusPolicy(Qt::NoFocus);
-    setWindowIcon(QIcon(QPixmap(":/res/hotkey.png")));
     setWindowModality(Qt::WindowModal);
 
     connect(buttOK,SIGNAL(clicked()),this,SIGNAL(butOKClicked()));

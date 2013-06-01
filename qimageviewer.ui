@@ -162,8 +162,14 @@
    </widget>
    <widget class="QMenu" name="menuShare">
     <property name="title">
-     <string>&amp;Share</string>
+     <string>&amp;Network</string>
     </property>
+    <addaction name="vkLogInAction"/>
+    <addaction name="vkLogOutAction"/>
+    <addaction name="vkUploadImageAction"/>
+    <addaction name="vkUploadImagesAction"/>
+    <addaction name="vkDownloadAlbumAction"/>
+    <addaction name="separator"/>
     <addaction name="shareImageShackAction"/>
     <addaction name="shareImageShackListAction"/>
    </widget>
@@ -477,7 +483,7 @@
      <normaloff>:/res/imageshack.png</normaloff>:/res/imageshack.png</iconset>
    </property>
    <property name="text">
-    <string>ImageShack.us</string>
+    <string>Upload image via ImageShack.us</string>
    </property>
   </action>
   <action name="aboutQtAction">
@@ -490,7 +496,38 @@
     <bool>false</bool>
    </property>
    <property name="text">
-    <string>List to ImageShack.us</string>
+    <string>Upload images via ImageShack.us</string>
+   </property>
+  </action>
+  <action name="vkLogInAction">
+   <property name="text">
+    <string>Login to vk.com</string>
+   </property>
+  </action>
+  <action name="vkLogOutAction">
+   <property name="text">
+    <string>Log out of vk.com</string>
+   </property>
+  </action>
+  <action name="vkUploadImageAction">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Upload image to vk.com</string>
+   </property>
+  </action>
+  <action name="vkUploadImagesAction">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Upload images to vk.com</string>
+   </property>
+  </action>
+  <action name="vkDownloadAlbumAction">
+   <property name="text">
+    <string>Download album from vk.com</string>
    </property>
   </action>
  </widget>

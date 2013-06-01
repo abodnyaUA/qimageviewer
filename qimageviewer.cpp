@@ -51,6 +51,8 @@ QImageViewer::QImageViewer(QString path, QWidget *parent) :
     isEditosManagerActive = false;
     isEditorAddFormActive = false;
     isImageShackListUploaderOpened = false;
+    isVkUploadImageFormActive = false;
+    isVkUploadImagesFormActive = false;
     setWindowState(Qt::WindowMaximized);
 }
 
@@ -165,6 +167,11 @@ void QImageViewer::fileOpen()
             editorsActions[i]->setEnabled(true);
         ui->shareImageShackAction->setEnabled(true);
         ui->shareImageShackListAction->setEnabled(true);
+        if (!vkToken.isEmpty())
+        {
+            ui->vkUploadImageAction->setEnabled(true);
+            ui->vkUploadImagesAction->setEnabled(true);
+        }
 
         ui->prevButton->setEnabled(true);
         ui->nextButton->setEnabled(true);

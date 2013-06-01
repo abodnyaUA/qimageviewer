@@ -1,5 +1,5 @@
 
-QT       += core gui network
+QT       += core gui network webkitwidgets
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -30,7 +30,12 @@ HEADERS += editformcrop.h \
     qexternprogrammanager.h \
     imageshackuploader.h \
     imageshacklistupload.h \
-    imageshacklistview.h
+    imageshacklistview.h \
+    qvk/reply.h \
+    qvk/qvk.h \
+    qvk/json.h \
+    qvk/vkuploadimageform.h \
+    qvk/vkuploadimagesform.h
            
 FORMS += editformcrop.ui \
          editformresize.ui \
@@ -43,7 +48,9 @@ FORMS += editformcrop.ui \
     qexternprogrammanager.ui \
     imageshackuploader.ui \
     imageshacklistupload.ui \
-    imageshacklistview.ui
+    imageshacklistview.ui \
+    qvk/vkuploadimageform.ui \
+    qvk/vkuploadimagesform.ui
          
 SOURCES += editformcrop.cpp \
            editformcropimage.cpp \
@@ -67,7 +74,13 @@ SOURCES += editformcrop.cpp \
     imageshackuploader.cpp \
     settings_hotkeys.cpp \
     imageshacklistupload.cpp \
-    imageshacklistview.cpp
+    imageshacklistview.cpp \
+    qvk/reply.cpp \
+    qvk/qvk.cpp \
+    qvk/json.cpp \
+    qimageviewer_vk.cpp \
+    qvk/vkuploadimageform.cpp \
+    qvk/vkuploadimagesform.cpp
 
 RESOURCES += resources.qrc
 
@@ -126,3 +139,5 @@ OTHER_FILES += \
     android/src/org/kde/necessitas/ministro/IMinistroCallback.aidl \
     android/src/org/kde/necessitas/ministro/IMinistro.aidl \
     style.qss
+
+QMAKE_CXXFLAGS += -std=c++11

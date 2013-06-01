@@ -35,8 +35,6 @@ private:
     Ui::ImageShackListUpload *ui;
     QStringList list;
     QString folder;
-    int last_element_indx;
-    QString last_element;
     QGraphicsScene * scene;
     QPixmap pixmap;
     bool startUpload;

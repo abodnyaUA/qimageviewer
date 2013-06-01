@@ -87,7 +87,6 @@ void ImageShackListUpload::on_acceptButton_clicked()
                              tr("Image can't be uploaded. Server doesn't answer. Please check your internet connection"),
                              QMessageBox::Ok | QMessageBox::Default);
     }
-
 }
 
 QList< QMap<QString,QString> > ImageShackListUpload::getlinkslist()

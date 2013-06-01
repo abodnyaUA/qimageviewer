@@ -29,6 +29,7 @@ void Settings::setHotkeys()
     ui->hotkeyWidget->setHeaderLabels(ColumnNames);
 
     QHotkeyWidget = new qhotkeywidget;
+    QHotkeyWidget->setWindowIcon(QIcon(QPixmap(iconpacks[old_currenticonpack] + icon["Hotkey"])));
     connect(QHotkeyWidget,SIGNAL(butOKClicked()),this,SLOT(changingEndAccept()));
     connect(QHotkeyWidget,SIGNAL(butCancelClicked()),this,SLOT(changingEndDecline()));
     QHotkeyWidget->isChanging = false;

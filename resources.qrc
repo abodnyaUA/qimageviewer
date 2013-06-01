@@ -51,5 +51,6 @@
         <file>res/extern-editor-new.png</file>
         <file>res/imageshack.png</file>
         <file>style.qss</file>
+        <file>res/vkontakte.png</file>
     </qresource>
 </RCC>

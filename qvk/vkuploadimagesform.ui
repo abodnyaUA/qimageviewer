@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>ImageShackListUpload</class>
- <widget class="QWidget" name="ImageShackListUpload">
+ <class>vkUploadImagesForm</class>
+ <widget class="QWidget" name="vkUploadImagesForm">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>629</width>
-    <height>346</height>
+    <width>621</width>
+    <height>458</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>QImageViewer - ImageShack.us Uploader - Choose images</string>
+   <string>QImageViewer - Vkontakte - Upload images</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_3">
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_2">
+    <layout class="QHBoxLayout" name="horizontalLayout_3">
      <item>
       <layout class="QVBoxLayout" name="verticalLayout_2">
        <item>
@@ -62,6 +62,53 @@
         </widget>
        </item>
        <item>
+        <widget class="QRadioButton" name="userAlbumButton">
+         <property name="text">
+          <string>Upload to your album</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_2">
+         <item>
+          <widget class="QComboBox" name="albumUserBox"/>
+         </item>
+         <item>
+          <widget class="QToolButton" name="toolButton">
+           <property name="minimumSize">
+            <size>
+             <width>27</width>
+             <height>27</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>...</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="otherAlbumButton">
+         <property name="text">
+          <string>Upload to different album</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="differentAlbumEdit">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="toolTip">
+          <string>Please put here album's id</string>
+         </property>
+        </widget>
+       </item>
+       <item>
         <spacer name="verticalSpacer">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
@@ -75,16 +122,22 @@
         </spacer>
        </item>
        <item>
-        <widget class="QProgressBar" name="progressBar">
-         <property name="value">
-          <number>0</number>
-         </property>
-        </widget>
-       </item>
-       <item>
         <layout class="QHBoxLayout" name="horizontalLayout">
          <item>
-          <widget class="QPushButton" name="acceptButton">
+          <spacer name="horizontalSpacer">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QPushButton" name="uploadButton">
            <property name="text">
             <string>Upload</string>
            </property>
@@ -104,6 +157,13 @@
     </layout>
    </item>
    <item>
+    <widget class="QProgressBar" name="progressBar">
+     <property name="value">
+      <number>0</number>
+     </property>
+    </widget>
+   </item>
+   <item>
     <widget class="QLabel" name="status">
      <property name="text">
       <string>TextLabel</string>
@@ -111,6 +171,10 @@
     </widget>
    </item>
   </layout>
+  <zorder>status</zorder>
+  <zorder>toolButton</zorder>
+  <zorder>listWidget</zorder>
+  <zorder>progressBar</zorder>
  </widget>
  <resources/>
  <connections/>

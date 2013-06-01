@@ -73,6 +73,7 @@ void QImageViewer::loadsettings()
     isneedBut.slideshow = (bool)(qsettings->value("Panel/ButtonSlideshow","1").toInt());
     isneedBut.properties = (bool)(qsettings->value("Panel/ButtonProperties","0").toInt());
 
+    /// Extern Editors ///
     int indx=0;
     while (!qsettings->value("ExternProgram"+QString::number(indx)+"/Name","").toString().isEmpty())
     {
@@ -89,6 +90,26 @@ void QImageViewer::loadsettings()
         indx++;
     }
     if (editors.size() != 0) ui->menuExtern_editors->insertSeparator(ui->editorsNewAction);
+
+    /// VK ///
+    vkToken = qsettings->value("Vkontakte/Token","").toString();
+    vkUserId = qsettings->value("Vkontakte/UserID","0").toInt();
+    if (vkToken.isEmpty())
+    {
+        ui->vkLogOutAction->setVisible(false);
+        ui->vkDownloadAlbumAction->setEnabled(false);
+    }
+    else
+    {
+        vkApi = new QVk;
+        vkApi->setAccessToken(vkToken);
+        vkApi->setUserID(vkUserId);
+        ui->vkLogInAction->setVisible(false);
+    }
+
+    ui->vkUploadImageAction->setEnabled(false);
+    ui->vkUploadImagesAction->setEnabled(false);
+
     savesettings();
 }
 
@@ -169,6 +190,7 @@ void QImageViewer::savesettings()
     qsettings->setValue("Panel/ButtonSlideshow",QString::number(isneedBut.slideshow));
     qsettings->setValue("Panel/ButtonProperties",QString::number(isneedBut.properties));
 
+    /// Estern Editors ///
     // remove old extern editors
     int indx = 0;
     while (!qsettings->value("ExternProgram"+QString::number(indx)+"/Name","").toString().isEmpty())
@@ -185,6 +207,10 @@ void QImageViewer::savesettings()
         qsettings->setValue("ExternProgram"+QString::number(i)+"/Icon",editors[i]->icon);
         qsettings->setValue("ExternProgram"+QString::number(i)+"/Command",editors[i]->command);
     }
+
+    /// VK ///
+    qsettings->setValue("Vkontakte/Token",vkToken);
+    qsettings->setValue("Vkontakte/UserID",QString::number(vkUserId));
 
     qsettings->sync();
 }
@@ -289,6 +315,22 @@ void QImageViewer::createActions()
 
     ui->shareImageShackListAction->setStatusTip(tr("Share list of images with ImageShack.us"));
     connect(ui->shareImageShackListAction,SIGNAL(triggered()),this,SLOT(imageshackShareList()));
+
+    // Vkontakte //
+    ui->vkLogInAction->setStatusTip(tr("Log in to social network vk.com to enable upload images"));
+    connect(ui->vkLogInAction,SIGNAL(triggered()),this,SLOT(vkLogIn()));
+
+    ui->vkLogOutAction->setStatusTip(tr("Log out of social network vk.com."));
+    connect(ui->vkLogOutAction,SIGNAL(triggered()),this,SLOT(vkLogOut()));
+
+    ui->vkUploadImageAction->setStatusTip(tr("Upload current image to your vk.com's account"));
+    connect(ui->vkUploadImageAction,SIGNAL(triggered()),this,SLOT(vkUploadImage()));
+
+    ui->vkUploadImagesAction->setStatusTip(tr("Upload some images to your vk.com's account"));
+    connect(ui->vkUploadImagesAction,SIGNAL(triggered()),this,SLOT(vkUploadImageList()));
+
+    ui->vkDownloadAlbumAction->setStatusTip(tr("Download images from vk.com's account"));
+    connect(ui->vkDownloadAlbumAction,SIGNAL(triggered()),this,SLOT(vkDownloadAlbum()));
 
     // Help //
     ui->aboutAction->setStatusTip(tr("Information about program"));
@@ -403,6 +445,7 @@ void QImageViewer::createDesign()
     icon["Previous"] = "prev.png";
     icon["ExternEditorsManager"] = "extern-editor.png";
     icon["ExternEditorNew"] = "extern-editor-new.png";
+    icon["Vkontakte"] = "vkontakte.png";
 
     //Menu actions
     ui->openAction->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["FileOpen"])));
@@ -429,6 +472,11 @@ void QImageViewer::createDesign()
     ui->wallpaperAction->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Wallpaper"])));
     ui->shareImageShackAction->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Imageshack"])));
     ui->shareImageShackListAction->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Imageshack"])));
+    ui->vkLogInAction->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Vkontakte"])));
+    ui->vkLogOutAction->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Vkontakte"])));
+    ui->vkUploadImageAction->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Vkontakte"])));
+    ui->vkUploadImagesAction->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Vkontakte"])));
+    ui->vkDownloadAlbumAction->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Vkontakte"])));
     ui->aboutAction->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Help"])));
 
     imagewidget->loadiconnames(icon);
@@ -597,6 +645,9 @@ void QImageViewer::closeEvent(QCloseEvent *event)
     if (isEditosManagerActive) editorsManager->close();
     for (int i=0; i<imageshack.size();i++)
         if (imageshack[i] != 0) imageshack[i]->close();
+    if (isImageShackListUploaderOpened) imageshackuploader->close();
+    if (isVkUploadImageFormActive) vkuploadimageform->close();
+    if (isVkUploadImagesFormActive) vkuploadimagesform->close();
 
     event->accept();
 }

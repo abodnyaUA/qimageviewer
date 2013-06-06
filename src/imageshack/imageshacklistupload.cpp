@@ -70,13 +70,13 @@ void ImageShackListUpload::update(QMap<QString,QString> links)
 {
     if (!links["Link"].isEmpty())
     {
-        uploadImageCount++;
         if (uploadImageCount < uploadImageAmount)
         {
             ui->status->setText(tr("Uploading: ")+uploadlist[uploadImageCount]);
             ui->progressBar->setValue((int)((double)((uploadImageCount)*100.0)/(double)(uploadImageAmount)));
             linkslist.append(links);
             upload(folder+"/"+uploadlist[uploadImageCount]);
+            uploadImageCount++;
         }
         else
         {

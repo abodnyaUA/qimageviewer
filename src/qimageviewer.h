@@ -34,9 +34,9 @@
 #include "settings/settings.h"
 #include "settings/hotkeys.h"
 //EXTERN APPLICATION
-#include "qexternprogram.h"
-#include "qexternprogramaddform.h"
-#include "qexternprogrammanager.h"
+#include "externeditor/qexternprogram.h"
+#include "externeditor/qexternprogramaddform.h"
+#include "externeditor/qexternprogrammanager.h"
 //IMAGESHACK
 #include "imageshack/imageshackuploader.h"
 #include "imageshack/imageshacklistupload.h"

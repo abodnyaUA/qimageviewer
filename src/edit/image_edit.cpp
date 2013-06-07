@@ -17,16 +17,16 @@ void image::reloadImage()
             (imagePixmap->width() >= width() || imagePixmap->height() >= height()))
     {
         if ((double)imagePixmap->width()/(double)width() > (double)imagePixmap->height()/(double)height())
-            imageScene->addPixmap((*imagePixmap).scaledToWidth(width()));
+            imageScene->addPixmap((*imagePixmap).scaledToWidth(width(), Qt::SmoothTransformation));
         else
-            imageScene->addPixmap((*imagePixmap).scaledToHeight(height()));
+            imageScene->addPixmap((*imagePixmap).scaledToHeight(height(), Qt::SmoothTransformation));
     }
     else if (imagePixmap->width() > width() || imagePixmap->height() > height())
     {
         if ((double)imagePixmap->width()/(double)width() > (double)imagePixmap->height()/(double)height())
-            imageScene->addPixmap((*imagePixmap).scaledToWidth(width()-5));
+            imageScene->addPixmap((*imagePixmap).scaledToWidth(width()-5, Qt::SmoothTransformation));
         else
-            imageScene->addPixmap((*imagePixmap).scaledToHeight(height()-5));
+            imageScene->addPixmap((*imagePixmap).scaledToHeight(height()-5, Qt::SmoothTransformation));
     }
     else imageScene->addPixmap(*imagePixmap);
 
@@ -54,16 +54,16 @@ void image::addToBuffer(QPixmap * pixmap)
             (imagePixmap->width() >= width() || imagePixmap->height() >= height()))
     {
         if ((double)imagePixmap->width()/(double)width() > (double)imagePixmap->height()/(double)height())
-            imageScene->addPixmap((*imagePixmap).scaledToWidth(width()));
+            imageScene->addPixmap((*imagePixmap).scaledToWidth(width(), Qt::SmoothTransformation));
         else
-            imageScene->addPixmap((*imagePixmap).scaledToHeight(height()));
+            imageScene->addPixmap((*imagePixmap).scaledToHeight(height(), Qt::SmoothTransformation));
     }
     else if (imagePixmap->width() > width() || imagePixmap->height() > height())
     {
         if ((double)imagePixmap->width()/(double)width() > (double)imagePixmap->height()/(double)height())
-            imageScene->addPixmap((*imagePixmap).scaledToWidth(width()-5));
+            imageScene->addPixmap((*imagePixmap).scaledToWidth(width()-5, Qt::SmoothTransformation));
         else
-            imageScene->addPixmap((*imagePixmap).scaledToHeight(height()-5));
+            imageScene->addPixmap((*imagePixmap).scaledToHeight(height()-5, Qt::SmoothTransformation));
     }
     else imageScene->addPixmap(*imagePixmap);
 

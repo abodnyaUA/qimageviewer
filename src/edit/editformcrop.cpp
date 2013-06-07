@@ -54,7 +54,7 @@ void editformCrop::resizeprewiew()
 {
     scene->clear();
     scene->setSceneRect(0,0,im_width*zoom,im_height*zoom);
-    scene->addPixmap(pixmap->scaled(im_width*zoom,im_height*zoom));
+    scene->addPixmap(pixmap->scaled(im_width*zoom,im_height*zoom,Qt::IgnoreAspectRatio,Qt::SmoothTransformation));
 
     imagepreview->setSceneRect(0,0,scene->width(),scene->height());
     imagepreview->setScene(scene);

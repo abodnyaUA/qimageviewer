@@ -88,7 +88,7 @@ void editformResize::on_heightSpinBox_editingFinished()
 /** if "accept button" has clicked, replace old picture and emit exit signal with 'true', what meens 'save changes'**/
 void editformResize::on_acceptButton_clicked()
 {
-    *pixmap = pixmap->scaled(im_width,im_height);
+    *pixmap = pixmap->scaled(im_width,im_height,Qt::IgnoreAspectRatio,Qt::SmoothTransformation);
     emit editFinished(true);
 }
 

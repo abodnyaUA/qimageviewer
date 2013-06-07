@@ -89,7 +89,7 @@ void editformResizeElements::on_acceptButton_clicked()
                 if (ui->listWidget->isItemSelected(ui->listWidget->item(i)))
                 {
                     QPixmap temp(list[i]);
-                    temp = temp.scaled(ui->sizeWidthSpinBox->value(),ui->sizeHeightSpinBox->value());
+                    temp = temp.scaled(ui->sizeWidthSpinBox->value(),ui->sizeHeightSpinBox->value(),Qt::IgnoreAspectRatio,Qt::SmoothTransformation);
                     temp.save(prefix+list[i].right(list[i].size()-size));
                     qDebug() << "current="<<list[i] << "w="<<temp.width()<<"h="<<temp.height();
                 }
@@ -103,7 +103,7 @@ void editformResizeElements::on_acceptButton_clicked()
                 if (ui->listWidget->isItemSelected(ui->listWidget->item(i)))
                 {
                     QPixmap temp(list[i]);
-                    temp = temp.scaledToWidth(temp.width()*ui->sizePercentSpinBox->value()/100.0);
+                    temp = temp.scaledToWidth(temp.width()*ui->sizePercentSpinBox->value()/100.0,Qt::SmoothTransformation);
                     temp.save(prefix+list[i].right(list[i].size()-size));
                 }
             }
@@ -129,9 +129,9 @@ void editformResizeElements::on_listWidget_currentRowChanged(int currentRow)
     pixmap.load(list[currentRow]);
     if ((double)pixmap.width()/(double)ui->graphicsView->width() >
             (double)pixmap.height()/(double)ui->graphicsView->height())
-        scene->addPixmap(pixmap.scaledToWidth(ui->graphicsView->width()-5));
+        scene->addPixmap(pixmap.scaledToWidth(ui->graphicsView->width()-5, Qt::SmoothTransformation));
     else
-        scene->addPixmap(pixmap.scaledToHeight(ui->graphicsView->height()-5));
+        scene->addPixmap(pixmap.scaledToHeight(ui->graphicsView->height()-5, Qt::SmoothTransformation));
     ui->graphicsView->setScene(scene);
     ui->previewWidthLabel->setText(QString::number(pixmap.width()));
     ui->previewHeightLabel->setText(QString::number(pixmap.height()));

@@ -14,14 +14,14 @@
    <string>QImageViewer - Settings</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="resources.qrc">
+   <iconset resource="../resources.qrc">
     <normaloff>:/res/settings.png</normaloff>:/res/settings.png</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_3">
    <item>
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tabMainSettings">
       <attribute name="title">
@@ -390,8 +390,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>216</width>
-            <height>320</height>
+            <width>166</width>
+            <height>298</height>
            </rect>
           </property>
           <layout class="QFormLayout" name="formLayout">
@@ -404,7 +404,7 @@
               <string>Rotate Left</string>
              </property>
              <property name="icon">
-              <iconset resource="resources.qrc">
+              <iconset resource="../resources.qrc">
                <normaloff>:/res/rotate-left.png</normaloff>:/res/rotate-left.png</iconset>
              </property>
             </widget>
@@ -415,7 +415,7 @@
               <string>Rotate Right</string>
              </property>
              <property name="icon">
-              <iconset resource="resources.qrc">
+              <iconset resource="../resources.qrc">
                <normaloff>:/res/rotate-right.png</normaloff>:/res/rotate-right.png</iconset>
              </property>
             </widget>
@@ -426,7 +426,7 @@
               <string>Flip hotizontal</string>
              </property>
              <property name="icon">
-              <iconset resource="resources.qrc">
+              <iconset resource="../resources.qrc">
                <normaloff>:/res/flip-horizontal.png</normaloff>:/res/flip-horizontal.png</iconset>
              </property>
             </widget>
@@ -437,7 +437,7 @@
               <string>Flip Vertical</string>
              </property>
              <property name="icon">
-              <iconset resource="resources.qrc">
+              <iconset resource="../resources.qrc">
                <normaloff>:/res/flip-vertical.png</normaloff>:/res/flip-vertical.png</iconset>
              </property>
             </widget>
@@ -448,7 +448,7 @@
               <string>Zoom In</string>
              </property>
              <property name="icon">
-              <iconset resource="resources.qrc">
+              <iconset resource="../resources.qrc">
                <normaloff>:/res/zoom-in.png</normaloff>:/res/zoom-in.png</iconset>
              </property>
             </widget>
@@ -459,7 +459,7 @@
               <string>Zoom Out</string>
              </property>
              <property name="icon">
-              <iconset resource="resources.qrc">
+              <iconset resource="../resources.qrc">
                <normaloff>:/res/zoom-out.png</normaloff>:/res/zoom-out.png</iconset>
              </property>
             </widget>
@@ -470,7 +470,7 @@
               <string>Zoom to window size</string>
              </property>
              <property name="icon">
-              <iconset resource="resources.qrc">
+              <iconset resource="../resources.qrc">
                <normaloff>:/res/zoom-window.png</normaloff>:/res/zoom-window.png</iconset>
              </property>
             </widget>
@@ -481,7 +481,7 @@
               <string>Zoom to original size</string>
              </property>
              <property name="icon">
-              <iconset resource="resources.qrc">
+              <iconset resource="../resources.qrc">
                <normaloff>:/res/zoom-original.png</normaloff>:/res/zoom-original.png</iconset>
              </property>
             </widget>
@@ -492,7 +492,7 @@
               <string>Fullscreen</string>
              </property>
              <property name="icon">
-              <iconset resource="resources.qrc">
+              <iconset resource="../resources.qrc">
                <normaloff>:/res/fullscreen.png</normaloff>:/res/fullscreen.png</iconset>
              </property>
             </widget>
@@ -503,7 +503,7 @@
               <string>Slideshow</string>
              </property>
              <property name="icon">
-              <iconset resource="resources.qrc">
+              <iconset resource="../resources.qrc">
                <normaloff>:/res/slideshow.png</normaloff>:/res/slideshow.png</iconset>
              </property>
             </widget>
@@ -514,7 +514,7 @@
               <string>Properties</string>
              </property>
              <property name="icon">
-              <iconset resource="resources.qrc">
+              <iconset resource="../resources.qrc">
                <normaloff>:/res/file-properties.png</normaloff>:/res/file-properties.png</iconset>
              </property>
             </widget>
@@ -640,7 +640,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="resources.qrc"/>
+  <include location="../resources.qrc"/>
  </resources>
  <connections/>
 </ui>

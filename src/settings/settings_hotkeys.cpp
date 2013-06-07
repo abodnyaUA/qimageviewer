@@ -124,7 +124,7 @@ void Settings::on_hotkeyWidget_itemDoubleClicked(QTreeWidgetItem *item, int colu
 void Settings::changingEndAccept()
 {
     QString newhotkey = QHotkeyWidget->hotkeyEdit->text();
-
+    isActiveHotkeyWidget = false;
     bool ok = true;
 
     QTreeWidgetItem *bad = 0;
@@ -159,6 +159,7 @@ void Settings::changingEndAccept()
 }
 void Settings::changingEndDecline()
 {
+    isActiveHotkeyWidget = false;
     QHotkeyWidget->isChanging = false;
     QHotkeyWidget->close();
 }

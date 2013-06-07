@@ -7,7 +7,7 @@ void QImageViewer::loadsettings()
     language = qsettings->value("Programm/Language","sys").toString();
     lastdirectory = qsettings->value("Programm/Directory",QDir::homePath()).toString();
 #ifdef Q_OS_WIN32
-    iconpacksfolder = QDir::currentPath()+"\\themes\\";
+    iconpacksfolder = QApplication::applicationDirPath()+"\\themes\\";
 #else
     iconpacksfolder = QDir::homePath()+"/.config/QImageViewer/themes/";
 #endif

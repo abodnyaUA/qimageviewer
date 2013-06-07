@@ -161,16 +161,16 @@ void image::loadimage(QString path)
             (imagePixmap->width() >= width() || imagePixmap->height() >= height()))
     {
         if ((double)imagePixmap->width()/(double)width() > (double)imagePixmap->height()/(double)height())
-            imageScene->addPixmap((*imagePixmap).scaledToWidth(width()));
+            imageScene->addPixmap((*imagePixmap).scaledToWidth(width(), Qt::SmoothTransformation));
         else
-            imageScene->addPixmap((*imagePixmap).scaledToHeight(height()));
+            imageScene->addPixmap((*imagePixmap).scaledToHeight(height(), Qt::SmoothTransformation));
     }
     else if (imagePixmap->width() > width() || imagePixmap->height() > height())
     {
         if ((double)imagePixmap->width()/(double)width() > (double)imagePixmap->height()/(double)height())
-            imageScene->addPixmap((*imagePixmap).scaledToWidth(width()-5));
+            imageScene->addPixmap((*imagePixmap).scaledToWidth(width()-5, Qt::SmoothTransformation));
         else
-            imageScene->addPixmap((*imagePixmap).scaledToHeight(height()-5));
+            imageScene->addPixmap((*imagePixmap).scaledToHeight(height()-5, Qt::SmoothTransformation));
     }
     else
     {
@@ -334,14 +334,14 @@ void image::zoomInc()
         {
             if ((zoom+0.2)*(width()*0.95) < imagePixmap->width()*5) zoom += 0.2;
             imageScene->setSceneRect(0,0,(width()*0.95)*zoom,(*imagePixmap).scaledToWidth((width()*0.95)*zoom).height());
-            imageScene->addPixmap((*imagePixmap).scaledToWidth((width()*0.95)*zoom));
+            imageScene->addPixmap((*imagePixmap).scaledToWidth((width()*0.95)*zoom, Qt::SmoothTransformation));
             if ((zoom+0.2)*(width()*0.95) > imagePixmap->width()*5.0) zoomMax = true;
         }
         else
         {
             if ((zoom+0.2)*(height()*0.98) < imagePixmap->height()*5) zoom += 0.2;
-            imageScene->setSceneRect(0,0,(*imagePixmap).scaledToHeight(((height()*0.98))*zoom).width(),((height()*0.98))*zoom);
-            imageScene->addPixmap((*imagePixmap).scaledToHeight(((height()*0.98))*zoom));
+            imageScene->setSceneRect(0,0,(*imagePixmap).scaledToHeight(height()*0.98*zoom, Qt::SmoothTransformation).width(),height()*0.98*zoom);
+            imageScene->addPixmap((*imagePixmap).scaledToHeight(height()*0.98*zoom, Qt::SmoothTransformation));
             if ((zoom+0.2)*(height()*0.98) > imagePixmap->height()*5.0) zoomMax = true;
         }
         setSceneRect(0,0,imageScene->width(),imageScene->height());
@@ -369,14 +369,14 @@ void image::zoomDec()
         if ((double)imagePixmap->width()/(double)width() > (double)imagePixmap->height()/(double)height())
         {
             if (zoom > 0.2 &&  (zoom-0.2)*(width()*0.95) > 10) zoom -= 0.2;
-            imageScene->setSceneRect(0,0,(width()*0.95)*zoom,(*imagePixmap).scaledToWidth((width()*0.95)*zoom).height());
+            imageScene->setSceneRect(0,0,(width()*0.95)*zoom,(*imagePixmap).scaledToWidth(width()*0.95*zoom, Qt::SmoothTransformation).height());
             imageScene->addPixmap((*imagePixmap).scaledToWidth((width()*0.95)*zoom));
         }
         else
         {
             if (zoom > 0.2 && (zoom-0.2)*(height()*0.98) > 10) zoom -= 0.2;
-            imageScene->setSceneRect(0,0,(*imagePixmap).scaledToHeight(((height()*0.98))*zoom).width(),((height()*0.98))*zoom);
-            imageScene->addPixmap((*imagePixmap).scaledToHeight(((height()*0.98))*zoom));
+            imageScene->setSceneRect(0,0,(*imagePixmap).scaledToHeight(height()*0.98*zoom, Qt::SmoothTransformation).width(),height()*0.98*zoom);
+            imageScene->addPixmap((*imagePixmap).scaledToHeight(height()*0.98*zoom, Qt::SmoothTransformation));
         }
         setSceneRect(0,0,imageScene->width(),imageScene->height());
         setScene(imageScene);

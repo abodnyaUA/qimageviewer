@@ -156,7 +156,7 @@ void QImageViewer::vkDownloadAlbumOvered(bool res)
         vkApi->downloadUserAlbum(args["user"].toInt(),args["album"].toInt(),args["folder"].toString());
         connect(vkApi,SIGNAL(downloadFinished()),this,SLOT(vkDownloadAlbumUpdate()));
         connect(vkdownloadalbumform,SIGNAL(abort(bool)),this,SLOT(vkDownloadAlbumAbort(bool)));
-        connect(vkApi,SIGNAL(downloadReady(int)),this,SLOT(vkDownloadAlbumReady(int)));
+        connect(vkApi,&QVk::downloadReady,[=](int amount) {vkDownloadImagesAmount = amount;});
         vkDownloadImagesCount = 0;
         disconnect(vkdownloadalbumform,SIGNAL(overed(bool)),this,SLOT(vkDownloadAlbumOvered(bool)));
     }
@@ -169,11 +169,6 @@ void QImageViewer::vkDownloadAlbumOvered(bool res)
     }
 }
 
-void QImageViewer::vkDownloadAlbumReady(int amount)
-{
-    vkDownloadImagesAmount = amount;
-    disconnect(vkApi,SIGNAL(downloadReady(int)),this,SLOT(vkDownloadAlbumReady(int)));
-}
 
 void QImageViewer::vkDownloadAlbumUpdate()
 {

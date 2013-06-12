@@ -58,7 +58,9 @@ p Сделать MAC-версию.
 p Сделать версию для Windows 8 Metro.
 p Сделать Android-версию.
 
-0.2 stable
+================================================================================================
+
+0.2a stable
 Исправлены баги:
 f Добавлено сглаживание картинок
 f При открытии прогромы через "Открыть с помощью" слетала папка тем на Windows
@@ -71,3 +73,18 @@ f После установки хоткея следующий можно бы�
 
 Идеи:
 i Обновление программы в один клик
+
+================================================================================================
+
+0.2b beta
+Add:
++ Drag'n'drop technology
++ Windows installer
+
+Change:
+c Empty polish translation has changed to czech translation (thx Pavel Fric)
+c Application in linux will be available in menus
+
+Ideas:
+i Move vk module in separate plugin
+i Qt4 Support (for Fedora, Debian, ALT and other distributives, which doesn't have Qt5 libraries in their repositories

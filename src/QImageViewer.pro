@@ -3,14 +3,30 @@ QT       += core gui network webkitwidgets
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = QImageViewer
+TARGET = qimageviewer
 TEMPLATE = app
 unix {
-    target.path = /usr/local/bin
+    isEmpty(PREFIX)
+    {
+        PREFIX = /usr
+    }
+    target.path = $$PREFIX/bin
+
+    desktop.files = qimageviewer.desktop
+    desktop.path =  $$PREFIX/share/applications
+
+    target1.files = res/icon.png
+    target1.path =  $$PREFIX/share/pixmaps
+
+    icon_32.files =  res/icon_32-32.png
+    icon_64.files =  res/icon.png
+    icon_32.path =  $$PREFIX/share/icons/hicolor/32x32/apps
+    icon_64.path =  $$PREFIX/share/icons/hicolor/64x64/apps
+
+    INSTALLS += target desktop target1
+    INSTALLS += icon_32 icon_64
 }
 # Input
-
-INSTALLS += target
 
 HEADERS += \
     fullscreen.h \
@@ -101,7 +117,7 @@ RESOURCES += resources.qrc
 TRANSLATIONS += lng/qimageviewer_en.ts \
                 lng/qimageviewer_ru.ts \
                 lng/qimageviewer_uk.ts \
-                lng/qimageviewer_pl.ts
+                lng/qimageviewer_cz.ts
 
 win32 {
 #OS WIN
@@ -151,6 +167,9 @@ OTHER_FILES += \
     android/src/org/kde/necessitas/origo/QtActivity.java \
     android/src/org/kde/necessitas/ministro/IMinistroCallback.aidl \
     android/src/org/kde/necessitas/ministro/IMinistro.aidl \
-    style.qss
+    style.qss \
+    lng/qimageviewer_cz.ts \
+    lng/qimageviewer_cz.qm \
+    qimageviewer.desktop
 
 QMAKE_CXXFLAGS += -std=c++11

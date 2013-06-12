@@ -96,6 +96,7 @@ void vkDownloadAlbumForm::setCurrentDownloadedProcent(int procent)
     ui->progressBar->setValue(procent);
     if (procent == 100)
     {
+        startDownload = false;
         exitMessageBox.close();
     }
 }

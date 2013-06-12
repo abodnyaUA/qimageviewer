@@ -21,11 +21,8 @@
         <file>res/zoom-in.png</file>
         <file>res/zoom-out.png</file>
         <file>lng/qimageviewer_en.qm</file>
-        <file>lng/qimageviewer_en.ts</file>
         <file>lng/qimageviewer_ru.qm</file>
-        <file>lng/qimageviewer_ru.ts</file>
         <file>lng/qimageviewer_uk.qm</file>
-        <file>lng/qimageviewer_uk.ts</file>
         <file>res/icon.png</file>
         <file>res/logo.png</file>
         <file>res/help.png</file>
@@ -42,8 +39,6 @@
         <file>res/wallpaper.png</file>
         <file>res/hotkey.png</file>
         <file>res/flag-pol.png</file>
-        <file>lng/qimageviewer_pl.ts</file>
-        <file>lng/qimageviewer_pl.qm</file>
         <file>res/extern-editor.png</file>
         <file>res/add.png</file>
         <file>res/remove.png</file>
@@ -52,5 +47,8 @@
         <file>res/imageshack.png</file>
         <file>style.qss</file>
         <file>res/vkontakte.png</file>
+        <file>res/flag-cze.png</file>
+        <file>lng/qimageviewer_cz.qm</file>
+        <file>res/stylesheet.css</file>
     </qresource>
 </RCC>

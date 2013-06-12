@@ -187,7 +187,7 @@
            </item>
            <item>
             <property name="text">
-             <string>Polski</string>
+             <string>Česko</string>
             </property>
            </item>
           </widget>
@@ -390,8 +390,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>166</width>
-            <height>298</height>
+            <width>688</width>
+            <height>320</height>
            </rect>
           </property>
           <layout class="QFormLayout" name="formLayout">

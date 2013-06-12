@@ -1,0 +1,21 @@
+[Desktop Entry]
+Encoding=UTF-8
+Categories=Graphics;Utility;Core;GTK;Viewer;RasterGraphics;2DGraphics;Photography;
+Exec=qimageviewer %f
+Icon=qimageviewer
+StartupNotify=true
+Type=Application
+Terminal=false
+MimeType=image/bmp;image/gif;image/jpeg;image/jpg;image/png;image/tiff;image/x-bmp;image/x-pcx;image/x-tga;image/x-portable-pixmap;image/x-portable-bitmap;image/x-targa;image/x-portable-greymap;application/pcx;image/svg+xml;image/svg-xml;
+Name=QImageViewer
+Name[cs]=Prohlížeč obrázků QImageViewer
+Name[ru]=Просмотр изображений QImageViewer
+Name[uk]=Переглядач зображень QImageViewer
+GenericName=QImageViewer
+GenericName[cs]=Prohlížeč obrázků QImageViewer
+GenericName[ru]=Просмотр изображений QImageViewer
+GenericName[uk]=Переглядач зображень QImageViewer
+Comment=View your images easily
+Comment[cs]=Prohlížejte si svoje obrázky jednoduše
+Comment[ru]=Смотрите ваши изображения без проблем
+Comment[uk]=Легко переглядайте Ваші зображення

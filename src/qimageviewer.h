@@ -15,6 +15,7 @@
 #include <QDebug>
 #include <QCloseEvent>
 #include <QDropEvent>
+#include <QDragEnterEvent>
 #include <QScrollArea>
 #include <QSpacerItem>
 #include <QFile>
@@ -121,7 +122,6 @@ private slots:
     void vkUploadImageListAbort(bool);
     void vkUploadImageListUpdateAlbums();
     void vkDownloadAlbum();
-    void vkDownloadAlbumReady(int);
     void vkDownloadAlbumOvered(bool);
     void vkDownloadAlbumUpdate();
     void vkDownloadAlbumAbort(bool);
@@ -234,6 +234,8 @@ private:
 protected:
     void resizeEvent(QResizeEvent *);
     void closeEvent(QCloseEvent *event);
+    void dragEnterEvent(QDragEnterEvent *);
+    void dropEvent(QDropEvent *);
 };
 
 

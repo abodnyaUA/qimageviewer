@@ -8,7 +8,7 @@ Settings::Settings(QStringList iconpacks, QMap<QString, QString> icon) : ui(new 
     ui->languageComboBox->setItemIcon(1,(QIcon(QPixmap(":/res/flag-usa.png"))));
     ui->languageComboBox->setItemIcon(2,(QIcon(QPixmap(":/res/flag-rus.png"))));
     ui->languageComboBox->setItemIcon(3,(QIcon(QPixmap(":/res/flag-ukr.png"))));
-    ui->languageComboBox->setItemIcon(4,(QIcon(QPixmap(":/res/flag-pol.png"))));
+    ui->languageComboBox->setItemIcon(4,(QIcon(QPixmap(":/res/flag-cze.png"))));
     ui->acceptButton->setShortcut(QKeySequence(Qt::Key_Return));
     ui->cancelButton->setShortcut(QKeySequence(Qt::Key_Escape));
     isActiveHotkeyWidget = false;
@@ -47,7 +47,7 @@ void Settings::setDefaultSettings(QString language,
     if (language == "eng") ui->languageComboBox->setCurrentIndex(1);
     else if (language == "rus") ui->languageComboBox->setCurrentIndex(2);
     else if (language == "ukr") ui->languageComboBox->setCurrentIndex(3);
-    else if (language == "pol") ui->languageComboBox->setCurrentIndex(4);
+    else if (language == "cze") ui->languageComboBox->setCurrentIndex(4);
     else ui->languageComboBox->setCurrentIndex(0);
 
     ui->defaultfolderLineEdit->setText(defaultfolder);
@@ -113,7 +113,7 @@ void Settings::on_acceptButton_clicked()
     case 1:lang = "eng";break;
     case 2:lang = "rus";break;
     case 3:lang = "ukr";break;
-    case 4:lang = "pol";break;
+    case 4:lang = "cze";break;
     }
 
     if (old_lang != lang)
@@ -150,7 +150,6 @@ void Settings::closeEvent(QCloseEvent *event)
                         old_hotkeys, old_isneedBut,
                         old_fullscreencolor,
                         old_currenticonpack);
-    qDebug() << "old_isneed = " << old_isneedBut.rotateLeft << old_isneedBut.rotateRight;
     event->accept();
 }
 

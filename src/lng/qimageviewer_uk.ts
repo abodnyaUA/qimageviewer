@@ -70,7 +70,7 @@
     </message>
     <message>
         <location filename="../imageshack/imageshacklistupload.cpp" line="64"/>
-        <location filename="../imageshack/imageshacklistupload.cpp" line="76"/>
+        <location filename="../imageshack/imageshacklistupload.cpp" line="75"/>
         <source>Uploading: </source>
         <translation>Завантажується: </translation>
     </message>
@@ -248,42 +248,43 @@
         <translation>QImageViewer - Властивості файлу</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="45"/>
+        <location filename="../properties.ui" line="35"/>
         <source>File properties:</source>
         <translation>Властивості файлу:</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="55"/>
+        <location filename="../properties.ui" line="45"/>
         <source>Filename</source>
         <translation>Назва файлу</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="62"/>
-        <location filename="../properties.ui" line="79"/>
-        <location filename="../properties.ui" line="96"/>
-        <location filename="../properties.ui" line="113"/>
-        <location filename="../properties.ui" line="130"/>
-        <location filename="../properties.ui" line="147"/>
+        <location filename="../properties.ui" line="52"/>
+        <location filename="../properties.ui" line="69"/>
+        <location filename="../properties.ui" line="86"/>
+        <location filename="../properties.ui" line="103"/>
+        <location filename="../properties.ui" line="120"/>
+        <location filename="../properties.ui" line="137"/>
+        <location filename="../properties.ui" line="144"/>
         <source>TextLabel</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="72"/>
+        <location filename="../properties.ui" line="62"/>
         <source>Work folder</source>
         <translation>Тека з зображенням</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="89"/>
+        <location filename="../properties.ui" line="96"/>
         <source>File size</source>
         <translation>Розмір файлу</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="106"/>
+        <location filename="../properties.ui" line="113"/>
         <source>Creation date</source>
         <translation>Дата створення</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="123"/>
+        <location filename="../properties.ui" line="130"/>
         <source>Last change date</source>
         <translation>Останні зміни</translation>
     </message>
@@ -296,12 +297,12 @@
         <translation type="obsolete">Останні зміни</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="140"/>
+        <location filename="../properties.ui" line="79"/>
         <source>Image size</source>
         <translation>Розмір зображення</translation>
     </message>
     <message>
-        <location filename="../properties.ui" line="174"/>
+        <location filename="../properties.ui" line="171"/>
         <source>&amp;Ok</source>
         <translation>&amp;Ок</translation>
     </message>
@@ -309,28 +310,28 @@
 <context>
     <name>QExternProgramAddForm</name>
     <message>
-        <location filename="../qexternprogramaddform.ui" line="26"/>
+        <location filename="../externeditor/qexternprogramaddform.ui" line="26"/>
         <source>QImageViewer - New extern program</source>
         <translation>QImageViewer - Новий графічний редактор</translation>
     </message>
     <message>
-        <location filename="../qexternprogramaddform.ui" line="44"/>
-        <location filename="../qexternprogramaddform.ui" line="115"/>
+        <location filename="../externeditor/qexternprogramaddform.ui" line="44"/>
+        <location filename="../externeditor/qexternprogramaddform.ui" line="115"/>
         <source>Browse</source>
         <translation>Обзор</translation>
     </message>
     <message>
-        <location filename="../qexternprogramaddform.ui" line="51"/>
+        <location filename="../externeditor/qexternprogramaddform.ui" line="51"/>
         <source>Name</source>
         <translation>Назва</translation>
     </message>
     <message>
-        <location filename="../qexternprogramaddform.ui" line="58"/>
+        <location filename="../externeditor/qexternprogramaddform.ui" line="58"/>
         <source>Icon</source>
         <translation>Іконка</translation>
     </message>
     <message>
-        <location filename="../qexternprogramaddform.ui" line="88"/>
+        <location filename="../externeditor/qexternprogramaddform.ui" line="88"/>
         <source>Application path (command)</source>
         <translation>Адреса програми (або її комманда)</translation>
     </message>
@@ -347,17 +348,17 @@
         <translation type="obsolete">Адреса програми (або її комманда)</translation>
     </message>
     <message>
-        <location filename="../qexternprogramaddform.ui" line="126"/>
+        <location filename="../externeditor/qexternprogramaddform.ui" line="126"/>
         <source>Add</source>
         <translation>Додати</translation>
     </message>
     <message>
-        <location filename="../qexternprogramaddform.ui" line="133"/>
+        <location filename="../externeditor/qexternprogramaddform.ui" line="133"/>
         <source>Cancel</source>
         <translation>Скасувати</translation>
     </message>
     <message>
-        <location filename="../qexternprogramaddform.cpp" line="21"/>
+        <location filename="../externeditor/qexternprogramaddform.cpp" line="21"/>
         <source>All image formats (*.jpg *.jpeg *.png *.bmp *.gif *.tiff *.pbm *.pgm *.ppm *.xbm *.xpm)</source>
         <translation>Всі формати зображень (*.jpg *.jpeg *.png *.bmp *.gif *.tiff *.pbm *.pgm *.ppm *.xbm *.xpm)</translation>
     </message>
@@ -366,29 +367,29 @@
         <translation type="obsolete">Відкриття зовнішнього редактору</translation>
     </message>
     <message>
-        <location filename="../qexternprogramaddform.cpp" line="20"/>
-        <location filename="../qexternprogramaddform.cpp" line="33"/>
+        <location filename="../externeditor/qexternprogramaddform.cpp" line="20"/>
+        <location filename="../externeditor/qexternprogramaddform.cpp" line="33"/>
         <source>Opening extern image application</source>
         <translation>Відкриття зовнішнього редактору</translation>
     </message>
     <message>
-        <location filename="../qexternprogramaddform.cpp" line="34"/>
+        <location filename="../externeditor/qexternprogramaddform.cpp" line="34"/>
         <source>All file formats (*.*)</source>
         <translation>Всі формати файлів (*.*)</translation>
     </message>
     <message>
-        <location filename="../qexternprogramaddform.cpp" line="53"/>
-        <location filename="../qexternprogramaddform.cpp" line="60"/>
+        <location filename="../externeditor/qexternprogramaddform.cpp" line="53"/>
+        <location filename="../externeditor/qexternprogramaddform.cpp" line="60"/>
         <source>Invalid parameters</source>
         <translation>Неправильні параметри</translation>
     </message>
     <message>
-        <location filename="../qexternprogramaddform.cpp" line="54"/>
+        <location filename="../externeditor/qexternprogramaddform.cpp" line="54"/>
         <source>Name can&apos;t be empty</source>
         <translation>Назва не може бути порожньою</translation>
     </message>
     <message>
-        <location filename="../qexternprogramaddform.cpp" line="61"/>
+        <location filename="../externeditor/qexternprogramaddform.cpp" line="61"/>
         <source>Application path (command) can&apos;t be empty</source>
         <translation>Адреса програми (комманда) не може бути пустою</translation>
     </message>
@@ -400,13 +401,13 @@
 <context>
     <name>QExternProgramManager</name>
     <message>
-        <location filename="../qexternprogrammanager.ui" line="14"/>
+        <location filename="../externeditor/qexternprogrammanager.ui" line="14"/>
         <source>QImageViewer - Extern programs manager</source>
         <translation>QImageViewer - Менеджер зовнішніх редакторів</translation>
     </message>
     <message>
-        <location filename="../qexternprogrammanager.ui" line="48"/>
-        <location filename="../qexternprogrammanager.ui" line="126"/>
+        <location filename="../externeditor/qexternprogrammanager.ui" line="48"/>
+        <location filename="../externeditor/qexternprogrammanager.ui" line="126"/>
         <source>Browse</source>
         <translation>Обзор</translation>
     </message>
@@ -423,64 +424,64 @@
         <translation type="obsolete">Адреса програми (або її комманда)</translation>
     </message>
     <message>
-        <location filename="../qexternprogrammanager.ui" line="55"/>
+        <location filename="../externeditor/qexternprogrammanager.ui" line="55"/>
         <source>Name</source>
         <translation>Назва</translation>
     </message>
     <message>
-        <location filename="../qexternprogrammanager.ui" line="62"/>
+        <location filename="../externeditor/qexternprogrammanager.ui" line="62"/>
         <source>Icon</source>
         <translation>Іконка</translation>
     </message>
     <message>
-        <location filename="../qexternprogrammanager.ui" line="92"/>
+        <location filename="../externeditor/qexternprogrammanager.ui" line="92"/>
         <source>Application path (command)</source>
         <translation>Адреса програми (або її комманда)</translation>
     </message>
     <message>
-        <location filename="../qexternprogrammanager.ui" line="137"/>
+        <location filename="../externeditor/qexternprogrammanager.ui" line="137"/>
         <source>Add new</source>
         <translation>Додати новий</translation>
     </message>
     <message>
-        <location filename="../qexternprogrammanager.ui" line="151"/>
+        <location filename="../externeditor/qexternprogrammanager.ui" line="151"/>
         <source>Update</source>
         <translation>Оновити</translation>
     </message>
     <message>
-        <location filename="../qexternprogrammanager.ui" line="165"/>
+        <location filename="../externeditor/qexternprogrammanager.ui" line="165"/>
         <source>Remove</source>
         <translation>Вилучити</translation>
     </message>
     <message>
-        <location filename="../qexternprogrammanager.ui" line="193"/>
+        <location filename="../externeditor/qexternprogrammanager.ui" line="193"/>
         <source>Update data</source>
         <translation>Оновити данні</translation>
     </message>
     <message>
-        <location filename="../qexternprogrammanager.ui" line="200"/>
+        <location filename="../externeditor/qexternprogrammanager.ui" line="200"/>
         <source>Cancel updates</source>
         <translation>Скасувати зміни</translation>
     </message>
     <message>
-        <location filename="../qexternprogrammanager.cpp" line="51"/>
-        <location filename="../qexternprogrammanager.cpp" line="58"/>
+        <location filename="../externeditor/qexternprogrammanager.cpp" line="51"/>
+        <location filename="../externeditor/qexternprogrammanager.cpp" line="58"/>
         <source>Invalid parameters</source>
         <translation>Неправильні параметри</translation>
     </message>
     <message>
-        <location filename="../qexternprogrammanager.cpp" line="52"/>
+        <location filename="../externeditor/qexternprogrammanager.cpp" line="52"/>
         <source>Name can&apos;t be empty</source>
         <translation>Назва не може бути порожньою</translation>
     </message>
     <message>
-        <location filename="../qexternprogrammanager.cpp" line="59"/>
+        <location filename="../externeditor/qexternprogrammanager.cpp" line="59"/>
         <source>Application path (command) can&apos;t be empty</source>
         <translation>Адреса програми (комманда) не може бути пустою</translation>
     </message>
     <message>
-        <location filename="../qexternprogrammanager.cpp" line="212"/>
-        <location filename="../qexternprogrammanager.cpp" line="225"/>
+        <location filename="../externeditor/qexternprogrammanager.cpp" line="212"/>
+        <location filename="../externeditor/qexternprogrammanager.cpp" line="225"/>
         <source>Opening extern image application</source>
         <translation>Відкриття зовнішнього редактору</translation>
     </message>
@@ -489,7 +490,7 @@
         <translation type="obsolete">Адреса програми (комманда) не може бути пустою</translation>
     </message>
     <message>
-        <location filename="../qexternprogrammanager.cpp" line="213"/>
+        <location filename="../externeditor/qexternprogrammanager.cpp" line="213"/>
         <source>All image formats (*.jpg *.jpeg *.png *.bmp *.gif *.tiff *.pbm *.pgm *.ppm *.xbm *.xpm)</source>
         <translation>Всі формати зображень (*.jpg *.jpeg *.png *.bmp *.gif *.tiff *.pbm *.pgm *.ppm *.xbm *.xpm)</translation>
     </message>
@@ -498,7 +499,7 @@
         <translation type="obsolete">Відкриття зовнішнього редактору</translation>
     </message>
     <message>
-        <location filename="../qexternprogrammanager.cpp" line="226"/>
+        <location filename="../externeditor/qexternprogrammanager.cpp" line="226"/>
         <source>All file formats (*.*)</source>
         <translation>Всі формати файлів (*.*)</translation>
     </message>
@@ -511,11 +512,11 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="84"/>
-        <location filename="../qimageviewer.cpp" line="99"/>
-        <location filename="../qimageviewer.cpp" line="111"/>
-        <location filename="../qimageviewer.cpp" line="195"/>
-        <location filename="../qimageviewer.cpp" line="266"/>
+        <location filename="../qimageviewer.cpp" line="87"/>
+        <location filename="../qimageviewer.cpp" line="102"/>
+        <location filename="../qimageviewer.cpp" line="114"/>
+        <location filename="../qimageviewer.cpp" line="198"/>
+        <location filename="../qimageviewer.cpp" line="269"/>
         <source> of </source>
         <translation> з </translation>
     </message>
@@ -572,13 +573,13 @@
     </message>
     <message>
         <location filename="../qimageviewer.ui" line="247"/>
-        <location filename="../qimageviewer.cpp" line="496"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="752"/>
         <source>Rotate right</source>
         <translation>Повернути праворуч</translation>
     </message>
     <message>
         <location filename="../qimageviewer.ui" line="259"/>
-        <location filename="../qimageviewer.cpp" line="486"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="742"/>
         <source>Rotate left</source>
         <translation>Повернути ліворуч</translation>
     </message>
@@ -609,8 +610,8 @@
     </message>
     <message>
         <location filename="../qimageviewer.ui" line="368"/>
-        <location filename="../qimageviewer.cpp" line="526"/>
         <location filename="../settings/qimageviewer_design.cpp" line="530"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="782"/>
         <source>Zoom In</source>
         <translation>Збільшити</translation>
     </message>
@@ -856,16 +857,16 @@
         <translation>Поділитися зображенням через ImageShack.us</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="506"/>
         <location filename="../settings/qimageviewer_design.cpp" line="254"/>
         <location filename="../settings/qimageviewer_design.cpp" line="510"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="762"/>
         <source>Change this image to horizontal mirror</source>
         <translation>Замінити зображення на відзеркалену по горизонталі копію</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="516"/>
         <location filename="../settings/qimageviewer_design.cpp" line="257"/>
         <location filename="../settings/qimageviewer_design.cpp" line="520"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="772"/>
         <source>Change this image to vertical mirror</source>
         <translation>Замінити зображення на відзеркалену по вертикалі копію</translation>
     </message>
@@ -930,16 +931,16 @@ Special thx Neveron for help and support!</source>
         <translation>Перейти до попереднього зображення</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="566"/>
         <location filename="../settings/qimageviewer_design.cpp" line="279"/>
         <location filename="../settings/qimageviewer_design.cpp" line="570"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="822"/>
         <source>Enable fullscreen mode</source>
         <translation>Увімкнути повноекраний режим</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="576"/>
         <location filename="../settings/qimageviewer_design.cpp" line="283"/>
         <location filename="../settings/qimageviewer_design.cpp" line="580"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="832"/>
         <source>Start slideshow in fullscreen mode</source>
         <translation>Розпочати показ слайдів в повноекраному режимі</translation>
     </message>
@@ -954,16 +955,16 @@ Special thx Neveron for help and support!</source>
         <translation>Збільшити зображення</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="556"/>
         <location filename="../settings/qimageviewer_design.cpp" line="296"/>
         <location filename="../settings/qimageviewer_design.cpp" line="560"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="812"/>
         <source>Zoom to original size</source>
         <translation>Масштабувати до оригінального розміру</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="546"/>
         <location filename="../settings/qimageviewer_design.cpp" line="299"/>
         <location filename="../settings/qimageviewer_design.cpp" line="550"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="802"/>
         <source>Zoom to window size</source>
         <translation>Масшатбувати до розміру вікна</translation>
     </message>
@@ -1027,34 +1028,34 @@ Special thx Neveron for help and support!</source>
         <translation>Повернути зображення за годинниковою стрілкою</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="123"/>
+        <location filename="../qimageviewer.cpp" line="126"/>
         <source>Opening image file</source>
         <translation>Відкриття зображення</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="124"/>
+        <location filename="../qimageviewer.cpp" line="127"/>
         <source>All pictures formats (*.jpg *.jpeg *.png *.bmp *.gif *.tiff *.pbm *.pgm *.ppm *.xbm *.xpm);;Joint Photographic Experts Group (*.jpeg *.jpg);;Portable Network Graphics(*.png);;Windows Bitmap (*.bmp);;Graphic Interchange Format (*.gif);;Tagged Image File Format (*.tiff);;Portable Bitmap (*.pbm);;Portable Graymap (*.pgm);;Portable Pixmap (*.ppm);;X11 Bitmap (*.xbm *.xpm</source>
         <translation>Всі формати зображень (*.jpg *.jpeg *.png *.bmp *.gif *.tiff *.pbm *.pgm *.ppm *.xbm *.xpm);;Joint Photographic Experts Group (*.jpeg *.jpg);;Portable Network Graphics(*.png);;Windows Bitmap (*.bmp);;Graphic Interchange Format (*.gif);;Tagged Image File Format (*.tiff);;Portable Bitmap (*.pbm);;Portable Graymap (*.pgm);;Portable Pixmap (*.ppm);;X11 Bitmap (*.xbm *.xpm)</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="246"/>
+        <location filename="../qimageviewer.cpp" line="249"/>
         <source>Saving files</source>
         <translation>Збереження файлу</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="247"/>
+        <location filename="../qimageviewer.cpp" line="250"/>
         <source>All picture formats (*.jpg *.jpeg *.png *.bmp *.tiff *.ppm *.xbm *.xpm);;Joint Photographic Experts Group (*.jpeg *.jpg);;Portable Network Graphics (*.png);;Windows Bitmap (*.bmp);;Tagged Image File Format (*.tiff);;Portable Pixmap (*.ppm);;X11 Bitmap (*.xbm *.xpm)</source>
         <translation>Всі формати зображень (*.jpg *.jpeg *.png *.bmp *.tiff *.ppm *.xbm *.xpm);;Joint Photographic Experts Group (*.jpeg *.jpg);;Portable Network Graphics (*.png);;Windows Bitmap (*.bmp);;Tagged Image File Format (*.tiff);;Portable Pixmap (*.ppm);;X11 Bitmap (*.xbm *.xpm)</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="536"/>
         <location filename="../settings/qimageviewer_design.cpp" line="540"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="792"/>
         <source>Zoom Out</source>
         <translation>Зменшити зображення</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="586"/>
         <location filename="../settings/qimageviewer_design.cpp" line="590"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="842"/>
         <source>Image properties</source>
         <translation>Властивості зображення</translation>
     </message>
@@ -1229,12 +1230,12 @@ It&apos;s free to use and all sources are open</source>
 Вона безкоштовна і її код доступний для редагування кожному бажаючому</translation>
     </message>
     <message>
-        <location filename="../settings/qimageviewer_design.cpp" line="626"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="945"/>
         <source>Warning!</source>
         <translation>Увага!</translation>
     </message>
     <message>
-        <location filename="../settings/qimageviewer_design.cpp" line="627"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="946"/>
         <source>This file was changed
 Do you want to save changes?</source>
         <translation>Цей файл було змінено
@@ -1262,22 +1263,22 @@ Do you want to save changes?</source>
         <translation>Всі зображення були завантажені до облікового запису Вконтакті</translation>
     </message>
     <message>
-        <location filename="../qvk/qimageviewer_vk.cpp" line="187"/>
+        <location filename="../qvk/qimageviewer_vk.cpp" line="182"/>
         <source>Downloading has been completed</source>
         <translation>Вивантаження завершено</translation>
     </message>
     <message>
-        <location filename="../qvk/qimageviewer_vk.cpp" line="188"/>
+        <location filename="../qvk/qimageviewer_vk.cpp" line="183"/>
         <source>All images have been downloading to </source>
         <translation>Всі зоображення збережені в </translation>
     </message>
     <message>
-        <location filename="../qvk/qimageviewer_vk.cpp" line="213"/>
+        <location filename="../qvk/qimageviewer_vk.cpp" line="208"/>
         <source>Some images have been downloaded</source>
         <translation>Декілька зображень були вивантажені</translation>
     </message>
     <message>
-        <location filename="../qvk/qimageviewer_vk.cpp" line="214"/>
+        <location filename="../qvk/qimageviewer_vk.cpp" line="209"/>
         <source>Do you want to delete them?</source>
         <translation>Чи хочете ви видалити їх?</translation>
     </message>
@@ -1338,9 +1339,9 @@ Do you want to save changes?</source>
         <source>English</source>
         <translation></translation>
     </message>
-    <message>
+    <message utf8="true">
         <location filename="../settings/settings.ui" line="190"/>
-        <source>Polski</source>
+        <source>Česko</source>
         <translation></translation>
     </message>
     <message>
@@ -1734,7 +1735,12 @@ Do you want to save changes?</source>
         <translation>Закрити</translation>
     </message>
     <message>
-        <location filename="../aboutform.ui" line="153"/>
+        <location filename="../aboutform.ui" line="139"/>
+        <source>Ctrl+Return</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../aboutform.ui" line="156"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -1765,12 +1771,12 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Дякую за тестування, поради та ідеї своїм друзям, спільноті Типового Програміста та спільноті сайта Prog.org.ru!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../aboutform.ui" line="173"/>
+        <location filename="../aboutform.ui" line="176"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Sources: &lt;a href=&quot;https://github.com/abodnyaUA/qimageviewer&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;https://github.com/abodnyaUA/qimageviewer&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Сирці: &lt;a href=&quot;https://github.com/abodnyaUA/qimageviewer&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;https://github.com/abodnyaUA/qimageviewer&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../aboutform.ui" line="183"/>
+        <location filename="../aboutform.ui" line="186"/>
         <source>Contact: &lt;a href=&quot;mailto:fermerasb@gmail.com&quot;&gt;fermerasb@gmail.com&lt;/a&gt;</source>
         <translation>Зворотній зв’язок: &lt;a href=&quot;mailto:fermerasb@gmail.com&quot;&gt;fermerasb@gmail.com&lt;/a&gt;</translation>
     </message>
@@ -1994,34 +2000,34 @@ p, li { white-space: pre-wrap; }
         <translation>Встановити як шпалери</translation>
     </message>
     <message>
-        <location filename="../image.cpp" line="132"/>
+        <location filename="../image.cpp" line="128"/>
         <source>byte</source>
         <translation>байт</translation>
     </message>
     <message>
-        <location filename="../image.cpp" line="136"/>
+        <location filename="../image.cpp" line="132"/>
         <source>KB</source>
         <translation>КБ</translation>
     </message>
     <message>
-        <location filename="../image.cpp" line="140"/>
+        <location filename="../image.cpp" line="136"/>
         <source>MB</source>
         <translation>МБ</translation>
     </message>
     <message>
-        <location filename="../image.cpp" line="288"/>
+        <location filename="../image.cpp" line="284"/>
         <source>Warning!</source>
         <translation>Увага!</translation>
     </message>
     <message>
-        <location filename="../image.cpp" line="289"/>
+        <location filename="../image.cpp" line="285"/>
         <source>This file was changed
 Do you want to save the changes?</source>
         <translation>Цей файл було змінено
 Ви бажаєте зберегти зміни?</translation>
     </message>
     <message>
-        <location filename="../image.cpp" line="474"/>
+        <location filename="../image.cpp" line="470"/>
         <source>Do you want to set this image as desktop wallpaper?</source>
         <translation>Ви справді хочете змінити шпалери стільниці?</translation>
     </message>
@@ -2032,17 +2038,17 @@ Do you want accept changes?</source>
 Ви бажаєте зберегти зміни?</translation>
     </message>
     <message>
-        <location filename="../image.cpp" line="409"/>
+        <location filename="../image.cpp" line="405"/>
         <source>Delete file</source>
         <translation>Видалення файлу</translation>
     </message>
     <message>
-        <location filename="../image.cpp" line="410"/>
+        <location filename="../image.cpp" line="406"/>
         <source>Do you really want to delete this file?</source>
         <translation>Ви справді бажаєте видалити цей файл?</translation>
     </message>
     <message>
-        <location filename="../image.cpp" line="473"/>
+        <location filename="../image.cpp" line="469"/>
         <source>Setting wallpaper</source>
         <translation>Встановлення шпалер</translation>
     </message>
@@ -2172,7 +2178,7 @@ Do you want accept changes?</source>
         <translation>Шлях до теки для збереження зображень порожній. Будь-ласка перевірте його</translation>
     </message>
     <message>
-        <location filename="../qvk/vkdownloadalbumform.cpp" line="170"/>
+        <location filename="../qvk/vkdownloadalbumform.cpp" line="171"/>
         <source>Open directory</source>
         <translation>Відкрити теку</translation>
     </message>

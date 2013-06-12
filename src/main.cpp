@@ -37,7 +37,7 @@ int main(int argc, char *argv[])
     if (lng == "rus") lng = "ru_RU";
     else if (lng == "ukr") lng = "uk_UA";
     else if (lng == "eng") lng = "en_US";
-    else if (lng == "pol") lng = "pl_PL";
+    else if (lng == "cze") lng = "cz_CZ";
     else lng = QLocale::system().name();
 
     /// system locale for messageboxes ///
@@ -54,8 +54,24 @@ int main(int argc, char *argv[])
 
     QStringList args = QApplication::arguments();
     QImageViewer * w;
+
+    // check incomming file. Image or not. If it isn't image, so ignore it.
+    if (args.size() != 1)
+    {
+        QString url = args[1];
+        if (!url.endsWith("jpg",Qt::CaseInsensitive) && !url.endsWith("png",Qt::CaseInsensitive) &&
+            !url.endsWith("bmp",Qt::CaseInsensitive) && !url.endsWith("jpeg",Qt::CaseInsensitive) &&
+            !url.endsWith("ppm",Qt::CaseInsensitive) && !url.endsWith("xbm",Qt::CaseInsensitive) &&
+            !url.endsWith("xbm",Qt::CaseInsensitive) && !url.endsWith("tiff",Qt::CaseInsensitive) &&
+            !url.endsWith("pbm",Qt::CaseInsensitive) && !url.endsWith("pgm",Qt::CaseInsensitive)) args.removeAt(1);
+    }
+
+    //Run application without any images
     if (args.size() == 1) w = new QImageViewer;
+    //Run application with extern image
     else w = new QImageViewer(args[1]);
+
+    //Show application
     w->show();
     
     return a.exec();

@@ -208,6 +208,20 @@
         </layout>
        </item>
        <item>
+        <widget class="Line" name="line_4">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="checkUpdatesCheckBox">
+         <property name="text">
+          <string>Check for updates automaticaly</string>
+         </property>
+        </widget>
+       </item>
+       <item>
         <spacer name="verticalSpacer">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
@@ -390,8 +404,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>688</width>
-            <height>320</height>
+            <width>680</width>
+            <height>397</height>
            </rect>
           </property>
           <layout class="QFormLayout" name="formLayout">

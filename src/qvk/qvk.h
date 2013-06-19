@@ -9,8 +9,14 @@
 #include <QFileInfo>
 #include <QHttpMultiPart>
 #include <QHttpPart>
+#if QT_VERSION >= 0x050000
 #include <QUrlQuery>
 #include <QtWebKitWidgets/QWebView>
+#else
+#include <QUrl>
+#include <QQueue>
+#include <QtWebKit/QWebView>
+#endif
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
 #include <QNetworkRequest>

@@ -9,7 +9,7 @@ QVk::QVk(int application_id)
 void QVk::startAuth(QString icon) // auth step 1
 {
     QUrl authUrl("http://api.vkontakte.ru/oauth/authorize");
-
+#if QT_VERSION >= 0x050000
     QUrlQuery *args = new QUrlQuery();
     args->addQueryItem("client_id", QString::number(app_id));
     args->addQueryItem("display", "popup");
@@ -17,6 +17,13 @@ void QVk::startAuth(QString icon) // auth step 1
     args->addQueryItem("redirect_uri", "http://oauth.vk.com/blank.html");
     args->addQueryItem("response_type", "token");
     authUrl.setQuery(*args);
+#else
+    authUrl.addQueryItem("client_id", QString::number(app_id));
+    authUrl.addQueryItem("display", "popup");
+    authUrl.addQueryItem("scope", "photos,wall,offline");
+    authUrl.addQueryItem("redirect_uri", "http://oauth.vk.com/blank.html");
+    authUrl.addQueryItem("response_type", "token");
+#endif
 
     authWindow = new QWebView();
     authWindow->resize(470, 350);
@@ -33,9 +40,14 @@ void QVk::onAuthRedirected(QUrl new_url) // auth step 2
         authWindow->hide();
         disconnect(this);
         new_url = new_url.toString().replace("#","?");
+#if QT_VERSION >= 0x050000
         QUrlQuery *args = new QUrlQuery(new_url);
         access_token = args->queryItemValue("access_token");
         currentUser_id = args->queryItemValue("user_id").toInt();
+#else
+        access_token = new_url.queryItemValue("access_token");
+        currentUser_id = new_url.queryItemValue("user_id").toInt();
+#endif
         initAlbumList();
 
         emit authSuccess();
@@ -70,6 +82,7 @@ void QVk::onGotAlbumList(QVariant reply)
 Reply* QVk::request(const QString &method, const QVariantMap &args) // standart request method, Reply is wrapper over QNetworkReply
 {
     QUrl requestUrl = QString("https://api.vk.com/method/")+method;
+#if QT_VERSION >= 0x050000
     QUrlQuery *requestArgs = new QUrlQuery();
 
     for (auto it = args.begin(); it!=args.end(); ++it)
@@ -79,6 +92,13 @@ Reply* QVk::request(const QString &method, const QVariantMap &args) // standart 
     requestArgs->addQueryItem("access_token", access_token);
 
     requestUrl.setQuery(*requestArgs);
+#else
+    for (auto it = args.begin(); it!=args.end(); ++it)
+    {
+        requestUrl.addQueryItem(it.key(), it.value().toString());
+    }
+    requestUrl.addQueryItem("access_token", access_token);
+#endif
 
     manager = new QNetworkAccessManager();
     return new Reply(manager->get(QNetworkRequest(requestUrl)));

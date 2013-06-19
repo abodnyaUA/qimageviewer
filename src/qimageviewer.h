@@ -25,6 +25,9 @@
 #include <QTranslator>
 #include <QSettings>
 #include <QStyleFactory>
+#include <QNetworkReply>
+#include <QNetworkAccessManager>
+#include <QNetworkRequest>
 #include "image.h"
 #include "preview.h"
 #include "previewlist.h"
@@ -72,6 +75,7 @@ private slots:
     void settingsWindow();
     void updateSettings(QString language,
                         QString defaultfolder,
+                        bool autoUpdate,
                         bool mouseZoom, bool mouseFullscreen,
                         bool slideshowSmoothTransition, double slideshowInterval,
                         int panelalignment,
@@ -124,7 +128,11 @@ private slots:
     void vkDownloadAlbum();
     void vkDownloadAlbumOvered(bool);
     void vkDownloadAlbumUpdate();
+    void vkDownloadAlbumReady(int);
     void vkDownloadAlbumAbort(bool);
+    //UPDATE
+    void getUpdates(QNetworkReply* reply);
+    void checkupdates();
 
 private:
     /// Settings ///
@@ -224,10 +232,22 @@ private:
     aboutForm *aboutform;
     bool isAboutFormOpened;
 
+    // Preview //
+    QListWidget * previewListWidget;
+    QThread previewThread;
+    previewList *previewLoader;
+
+    // Update //
+    QNetworkAccessManager * updater;
+    bool automateUpdate;
+    bool checkAutoUpdates;
+    int timesToUpdate;
+
     void createActions();
     void createHotkeys();
     void createDesign();
     void createPanel();
+    void createPreviews();
     void loadsettings();
     void savesettings();
 
@@ -236,6 +256,7 @@ protected:
     void closeEvent(QCloseEvent *event);
     void dragEnterEvent(QDragEnterEvent *);
     void dropEvent(QDropEvent *);
+    void run();
 };
 
 

@@ -25,6 +25,7 @@ Settings::Settings(QStringList iconpacks, QMap<QString, QString> icon) : ui(new 
 
 void Settings::setDefaultSettings(QString language,
                                   QString defaultfolder,
+                                  bool autoUpdate,
                                   bool mouseZoom, bool mouseFullscreen,
                                   bool slideshowSmoothTransition, double slideshowInterval,
                                   int panelalignment,hotkeysStruct hotkeys, isneedButStruct isneedBut,
@@ -33,6 +34,7 @@ void Settings::setDefaultSettings(QString language,
 {
     old_lang = language;
     old_defaultfolder = defaultfolder;
+    old_autoUpdate = autoUpdate;
     old_mouseZoom = mouseZoom;
     old_mouseFullscreen = mouseFullscreen;
     old_slideshowInterval = slideshowInterval;
@@ -51,6 +53,7 @@ void Settings::setDefaultSettings(QString language,
     else ui->languageComboBox->setCurrentIndex(0);
 
     ui->defaultfolderLineEdit->setText(defaultfolder);
+    ui->checkUpdatesCheckBox->setChecked(autoUpdate);
     ui->mouseFullscreenCheckBox->setChecked(mouseFullscreen);
     ui->mouseZoomCheckBox->setChecked(mouseZoom);
     ui->slideshowIntervalSpinBox->setValue(slideshowInterval);
@@ -123,6 +126,7 @@ void Settings::on_acceptButton_clicked()
 
     old_lang = lang;
     old_defaultfolder = ui->defaultfolderLineEdit->text();
+    old_autoUpdate = ui->checkUpdatesCheckBox->isChecked();
     old_mouseZoom = ui->mouseZoomCheckBox->isChecked();
     old_mouseFullscreen = ui->mouseFullscreenCheckBox->isChecked();
     old_slideshowInterval = ui->slideshowIntervalSpinBox->value();
@@ -142,6 +146,7 @@ void Settings::closeEvent(QCloseEvent *event)
     if (isActiveHotkeyWidget) QHotkeyWidget->close();
     emit acceptsettings(old_lang,
                         old_defaultfolder,
+                        old_autoUpdate,
                         old_mouseZoom,
                         old_mouseFullscreen,
                         old_slideshowSmoothTransition,

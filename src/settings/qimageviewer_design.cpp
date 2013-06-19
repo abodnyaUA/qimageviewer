@@ -12,9 +12,12 @@ void QImageViewer::loadsettings()
     iconpacksfolder = QDir::homePath()+"/.config/QImageViewer/themes/";
 #endif
     currenticonpackString = qsettings->value("Programm/CurrentIconPack",":/res/").toString();
+    timesToUpdate = qsettings->value("Programm/TimesToUpdate","0").toInt();
+    checkAutoUpdates = (bool)(qsettings->value("Programm/AutomaticalyCheckUpdates","0").toInt());
 
     imagewidget->setMouseFullscreen((bool)(qsettings->value("Navigation/MouseFullscreen","1").toInt()));
     imagewidget->setMouseZoom((bool)(qsettings->value("Navigation/MouseZoom","0").toInt()));
+
 
     panelalignment = qsettings->value("Panel/Alignment","0").toInt();
 
@@ -130,6 +133,8 @@ void QImageViewer::savesettings()
     qsettings->setValue("Programm/Language",language);
     qsettings->setValue("Programm/Directory",directory);
     qsettings->setValue("Programm/CurrentIconPack",currenticonpackString);
+    qsettings->setValue("Programm/TimesToUpdate",timesToUpdate);
+    qsettings->setValue("Programm/AutomaticalyCheckUpdates",QString::number(checkAutoUpdates));
 
     qsettings->setValue("Navigation/MouseFullscreen",QString::number(imagewidget->getMouseFullscreen()));
     qsettings->setValue("Navigation/MouseZoom",QString::number(imagewidget->getMouseZoom()));
@@ -335,6 +340,9 @@ void QImageViewer::createActions()
     ui->aboutAction->setStatusTip(tr("Information about program"));
     connect(ui->aboutAction,SIGNAL(triggered()),this,SLOT(helpAbout()));
 
+    ui->updatesAction->setStatusTip(tr("Check updates"));
+    connect(ui->updatesAction,SIGNAL(triggered()),this,SLOT(checkupdates()));
+
     ///BUTTONS///
     ui->prevButton->setToolTip(tr("Open previous image"));
     connect(ui->prevButton,SIGNAL(clicked()),this,SLOT(prevImage()));
@@ -477,6 +485,7 @@ void QImageViewer::createDesign()
     ui->vkUploadImagesAction->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Vkontakte"])));
     ui->vkDownloadAlbumAction->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Vkontakte"])));
     ui->aboutAction->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Help"])));
+    ui->updatesAction->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Update"])));
 
     imagewidget->loadiconnames(icon);
     imagewidget->loadiconpack(iconpacks[currenticonpack]);
@@ -624,11 +633,12 @@ void QImageViewer::settingsWindow()
         isSettingsActive = true;
         settings = new Settings(iconpacks,icon);
         settings->setWindowIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Settings"])));
-        connect(settings,SIGNAL(acceptsettings(QString,QString,bool,bool,bool,double,int,hotkeysStruct,isneedButStruct,QColor,int)),
-                this,SLOT(updateSettings(QString,QString,bool,bool,bool,double,int,hotkeysStruct,isneedButStruct,QColor,int)));
+        connect(settings,SIGNAL(acceptsettings(QString,QString,bool,bool,bool,bool,double,int,hotkeysStruct,isneedButStruct,QColor,int)),
+                this,SLOT(updateSettings(QString,QString,bool,bool,bool,bool,double,int,hotkeysStruct,isneedButStruct,QColor,int)));
 
         settings->setDefaultSettings(language,
                                      lastdirectory,
+                                     checkAutoUpdates,
                                      imagewidget->getMouseZoom(),
                                      imagewidget->getMouseFullscreen(),
                                      slideshowSmoothTransition,
@@ -642,6 +652,7 @@ void QImageViewer::settingsWindow()
 /** Update program settings **/
 void QImageViewer::updateSettings(QString language,
                     QString defaultfolder,
+                    bool checkAutoUpdates,
                     bool mouseZoom, bool mouseFullscreen,
                     bool slideshowSmoothTransition, double slideshowInterval,
                     int panelalignment,hotkeysStruct hotkeys, isneedButStruct isneedNew,
@@ -650,6 +661,8 @@ void QImageViewer::updateSettings(QString language,
     isSettingsActive = false;
     this->language = language;
     this->lastdirectory = defaultfolder;
+    if (!this->checkAutoUpdates && checkAutoUpdates) timesToUpdate = 0;
+    this->checkAutoUpdates = checkAutoUpdates;
     imagewidget->setMouseZoom(mouseZoom);
     imagewidget->setMouseFullscreen(mouseFullscreen);
     this->slideshowSmoothTransition = slideshowSmoothTransition;
@@ -922,14 +935,15 @@ void QImageViewer::updateSettings(QString language,
     ui->shareImageShackAction->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Imageshack"])));
     ui->shareImageShackListAction->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Imageshack"])));
     ui->aboutAction->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Help"])));
+    ui->updatesAction->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Update"])));
     imagewidget->loadiconpack(iconpacks[currenticonpack]);
 
     /// Hotkeys ///
     this->hotkeys = hotkeys;
     createHotkeys();
 
-    disconnect(settings,SIGNAL(acceptsettings(QString,QString,bool,bool,bool,double,int,hotkeysStruct,isneedButStruct,QColor,int)),
-            this,SLOT(updateSettings(QString,QString,bool,bool,bool,double,int,hotkeysStruct,isneedButStruct,QColor,int)));
+    disconnect(settings,SIGNAL(acceptsettings(QString,QString,bool,bool,bool,bool,double,int,hotkeysStruct,isneedButStruct,QColor,int)),
+            this,SLOT(updateSettings(QString,QString,bool,bool,bool,bool,double,int,hotkeysStruct,isneedButStruct,QColor,int)));
     delete settings;
 
     savesettings();
@@ -938,6 +952,7 @@ void QImageViewer::updateSettings(QString language,
 /** event for closing program,save file changes if need **/
 void QImageViewer::closeEvent(QCloseEvent *event)
 {
+    timesToUpdate++;
     savesettings();
 
     if (!imagewidget->isSaved())

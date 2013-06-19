@@ -88,3 +88,14 @@ c Application in linux will be available in menus
 Ideas:
 i Move vk module in separate plugin
 i Qt4 Support (for Fedora, Debian, ALT and other distributives, which doesn't have Qt5 libraries in their repositories
+
+================================================================================================
+
+0.2c beta
+Add:
++ Qt4 Support
++ in "About" is true information about application version, Qt version and GCC version
+
+In work:
+w Updates
+w Previews

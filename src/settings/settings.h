@@ -26,6 +26,7 @@ public:
     explicit Settings(QStringList iconpacks, QMap<QString, QString> icon);
     void setDefaultSettings(QString language,
                             QString defaultfolder,
+                            bool autoUpdate,
                             bool mouseZoom, bool mouseFullscreen,
                             bool slideshowSmoothTransition, double slideshowInterval,
                             int panelalignment,
@@ -52,6 +53,7 @@ private slots:
 signals:
     void acceptsettings(QString language,
                         QString defaultfolder,
+                        bool autoUpdate,
                         bool mouseZoom, bool mouseFullscreen,
                         bool slideshowSmoothTransition, double slideshowInterval,
                         int panelalignment,
@@ -67,6 +69,7 @@ private:
     Ui::Settings *ui;
     QString old_lang;
     QString old_defaultfolder;
+    bool old_autoUpdate;
     bool old_mouseZoom;
     bool old_mouseFullscreen;
     bool old_slideshowSmoothTransition;

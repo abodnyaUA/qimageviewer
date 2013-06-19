@@ -6,6 +6,10 @@ aboutForm::aboutForm(QWidget *parent) :
     ui(new Ui::aboutForm)
 {
     ui->setupUi(this);
+    ui->buildDateLabel->setText(tr("build: ")+QDate::currentDate().toString(Qt::ISODate));
+    ui->versionLabel->setText(tr("version: ")+QApplication::applicationVersion());
+    ui->qtversionLabel->setText("Qt "+QString(qVersion()));
+    ui->compillerLabel->setText("GCC "+QString::number(__GNUC__)+"."+QString::number(__GNUC_MINOR__)+"."+QString::number(__GNUC_PATCHLEVEL__));
 }
 
 aboutForm::~aboutForm()

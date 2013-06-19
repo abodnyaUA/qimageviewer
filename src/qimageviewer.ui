@@ -132,6 +132,7 @@
      <string>&amp;Help</string>
     </property>
     <addaction name="aboutAction"/>
+    <addaction name="updatesAction"/>
    </widget>
    <widget class="QMenu" name="previewMenu">
     <property name="locale">
@@ -528,6 +529,11 @@
   <action name="vkDownloadAlbumAction">
    <property name="text">
     <string>Download album from vk.com</string>
+   </property>
+  </action>
+  <action name="updatesAction">
+   <property name="text">
+    <string>Check updates</string>
    </property>
   </action>
  </widget>

@@ -1,12 +1,24 @@
 #include "previewlist.h"
 
-previewList::previewList(QStringList list)
+previewList::previewList(QListWidget * previewListWidget)
 {
-    for (int i=0;i<list.size();i++)
+    listWidget = previewListWidget;
+}
+void previewList::loadList(QStringList list)
+{
+    lst.clear();
+    foreach(QString item, list)
+        lst.append(item);
+}
+
+void previewList::run()
+{
+    foreach (QString image, lst)
     {
-        preview * temp = new preview(list[i],100);
-        lst.append(temp);
-        layout.addWidget(temp);
+        QListWidgetItem * item = new QListWidgetItem(QIcon(QPixmap(image)),"");
+        qDebug() << "item width="<<item->icon().actualSize(QPixmap(image).size()).width()
+                    <<item->icon().actualSize(QPixmap(image).size()).height();
+        listWidget->addItem(item);
     }
-    setLayout(&layout);
+    emit finished();
 }

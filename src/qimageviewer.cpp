@@ -12,9 +12,6 @@ QImageViewer::QImageViewer(QString path, QWidget *parent) :
     isfullScreenActive = false;
 
     ui->verticalLayout->addWidget(imagewidget);
-    //previewArea.setMinimumHeight(120);
-    //previewArea.setWindowState(Qt::WindowMinimized);
-    //ui->previewLayout->addWidget(&previewArea);
 
     dialog = new QFileDialog(this);
     // Default Folder //
@@ -29,6 +26,8 @@ QImageViewer::QImageViewer(QString path, QWidget *parent) :
     createDesign();
     // Panel with buttons //
     createPanel();
+    // Load preview panel //
+    createPreviews();
 
     // Default open or open argv[1] image //
     if (path == "\0")
@@ -46,7 +45,6 @@ QImageViewer::QImageViewer(QString path, QWidget *parent) :
         fileOpen();
     }
 
-    ui->mainToolBar->hide();
     isSettingsActive = false;
     isEditosManagerActive = false;
     isEditorAddFormActive = false;
@@ -59,8 +57,79 @@ QImageViewer::QImageViewer(QString path, QWidget *parent) :
     setWindowState(Qt::WindowMaximized);
     imagewidget->setAcceptDrops(false);
     setAcceptDrops(true);
+    if (checkAutoUpdates)
+    {
+        if (timesToUpdate > 10) timesToUpdate = 0;
+        if (timesToUpdate == 0)
+        {
+            automateUpdate = true;
+            checkupdates();
+        }
+        else automateUpdate = false;
+    }
 }
 
+void QImageViewer::createPreviews()
+{
+    previewListWidget = new QListWidget;
+    previewListWidget->setIconSize(QSize(70, 70));
+    previewListWidget->setViewMode(QListWidget::IconMode);
+    previewListWidget->setMaximumHeight(100);
+    previewListWidget->resize(previewListWidget->sizePolicy().horizontalPolicy(),
+                              previewListWidget->sizePolicy().verticalPolicy());
+    previewListWidget->showNormal();
+    previewListWidget->setUniformItemSizes(true);
+    previewListWidget->setWrapping(false);
+    previewListWidget->setGridSize(QSize(100,100));
+    ui->mainToolBar->addWidget(previewListWidget);
+
+    //
+    ui->mainToolBar->hide();
+    //
+    previewLoader = new previewList(previewListWidget);
+}
+void QImageViewer::checkupdates()
+{
+    updater = new QNetworkAccessManager;
+    updater->get(QNetworkRequest(QUrl("http://qiv.p.ht/version.php?notfuckyou=true")));
+    updater->connect(updater,SIGNAL(finished(QNetworkReply*)),this,SLOT(getUpdates(QNetworkReply*)));
+}
+
+void QImageViewer::getUpdates(QNetworkReply* reply)
+{
+    QByteArray replyContent = reply->readAll();
+    if (replyContent == "Invalid request")
+    {
+        qDebug() << "Invalid request";
+        return;
+    }
+    QVariant response = JSON::parse(replyContent);
+    QString lastVersion(response.toMap()["current_version"].toString());
+    QString currentVersion = QApplication::applicationVersion();
+    if (lastVersion <= currentVersion)
+    {
+        if (!automateUpdate) QMessageBox::information(this,tr("Last version"),tr("You have last version"),
+                                 QMessageBox::Ok);
+        return;
+    }
+    QStringList files;
+    for(auto i : response.toMap()["updated"].toList()) files << i.toString();
+    QString changelog = response.toMap()["changelog_ru"].toString();
+    int r = QMessageBox::question(this,tr("You can update"),
+                              tr("Update application?\n")+
+                              tr("Current version: ")+currentVersion+"\n"+
+                              tr("Last version: ")+lastVersion+"\n\n"+
+                              tr("What's new?\n")+
+                              changelog,
+                              QMessageBox::Yes, QMessageBox::No);
+    if (r == QMessageBox::Yes)
+    {
+        /****UPDATE****/
+    }
+
+    automateUpdate = false;
+    delete updater;
+}
 
 void QImageViewer::setStatusName(bool arg)
 {
@@ -228,7 +297,18 @@ void QImageViewer::filesFind()
 #ifdef Q_OS_LINUX
     for (int i=0;i<imagefiles.size();i++) imagefiles[i] = lastdirectory + '/' + imagefiles[i];
 #endif
+
+    previewListWidget->clear();
+    previewListWidget->setResizeMode(QListView::Adjust);
+
     imagewidget->loadimagelist(imagefiles);
+
+    //Previews//
+    previewLoader->loadList(imagefiles);
+    connect(&previewThread,SIGNAL(started()),previewLoader,SLOT(run()));
+    connect(previewLoader,SIGNAL(finished()),&previewThread,SLOT(terminate()));
+    previewLoader->moveToThread(&previewThread);
+    previewThread.start();
 }
 
 /** Save current file with same name **/

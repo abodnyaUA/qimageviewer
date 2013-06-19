@@ -34,15 +34,12 @@ unix {
     desktop.files = qimageviewer.desktop
     desktop.path =  $$PREFIX/share/applications
 
-    target1.files = res/icon.png
-    target1.path =  $$PREFIX/share/pixmaps
-
-    icon_32.files =  res/icon_32-32.png
-    icon_64.files =  res/icon.png
+    icon_32.files = res/icon/32/qimageviewer.png
+    icon_64.files = res/icon/64/qimageviewer.png
     icon_32.path =  $$PREFIX/share/icons/hicolor/32x32/apps
     icon_64.path =  $$PREFIX/share/icons/hicolor/64x64/apps
 
-    INSTALLS += target desktop target1
+    INSTALLS += target desktop
     INSTALLS += icon_32 icon_64
 }
 win32 {

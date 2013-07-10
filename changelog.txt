@@ -74,7 +74,7 @@ f После установки хоткея следующий можно бы�
 Идеи:
 i Обновление программы в один клик
 
-================================================================================================
+=================
 
 0.2b beta
 Add:
@@ -89,7 +89,7 @@ Ideas:
 i Move vk module in separate plugin
 i Qt4 Support (for Fedora, Debian, ALT and other distributives, which doesn't have Qt5 libraries in their repositories
 
-================================================================================================
+=================
 
 0.2c beta
 Add:
@@ -99,3 +99,16 @@ Add:
 In work:
 w Updates
 w Previews
+
+=================
+
+0.21 beta
+Add:
++ Autoupdate
++ Official application's site
+
+=================
+
+0.22 beta
+Fixed:
+f Autoupdating 

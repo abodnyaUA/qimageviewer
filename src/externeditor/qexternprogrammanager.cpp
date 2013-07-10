@@ -1,18 +1,20 @@
 #include "qexternprogrammanager.h"
 #include "ui_qexternprogrammanager.h"
 
-QExternProgramManager::QExternProgramManager(QList<QExternProgram *> editors, image * imagewidget,
+QExternProgramManager::QExternProgramManager(QList<QExternProgram *> * installedSoft,
+                                             QList<QExternProgram *> editors, image * imagewidget,
                                              QString theme, QMap<QString, QString> icon) :
     ui(new Ui::QExternProgramManager)
 {
     ui->setupUi(this);
     this->editors = editors;
     this->imagewidget = imagewidget;
+    this->installedSoft = installedSoft;
     if (!editors.isEmpty())
     {
         for (int i=0;i<this->editors.size();i++)
         {
-            QListWidgetItem * newitem = new QListWidgetItem(QIcon(QPixmap(editors[i]->icon)),editors[i]->name);
+            QListWidgetItem * newitem = new QListWidgetItem(editors[i]->icon,editors[i]->name);
             ui->listWidget->addItem(newitem);
         }
         ui->commandBrowseButton->setEnabled(true);
@@ -25,8 +27,8 @@ QExternProgramManager::QExternProgramManager(QList<QExternProgram *> editors, im
 
         ui->commandLineEdit->setText(editors[0]->command);
         ui->nameLineEdit->setText(editors[0]->name);
-        ui->iconLineEdit->setText(editors[0]->icon);
-        ui->iconLabel->setPixmap(QPixmap(editors[0]->icon).scaled(32,32,Qt::KeepAspectRatioByExpanding));
+        ui->iconLineEdit->setText(editors[0]->icon.name());
+        ui->iconLabel->setPixmap(editors[0]->icon.pixmap(32,32));
 
         ui->listWidget->setCurrentRow(0);
 
@@ -61,7 +63,8 @@ void QExternProgramManager::on_updateButton_clicked()
         return;
     }
 
-    editors[ui->listWidget->currentRow()]->icon = ui->iconLineEdit->text();
+    if (!ui->iconLineEdit->text().isEmpty())
+        editors[ui->listWidget->currentRow()]->icon = QIcon(QPixmap(ui->iconLineEdit->text()));
     editors[ui->listWidget->currentRow()]->name = ui->nameLineEdit->text();
     editors[ui->listWidget->currentRow()]->command = ui->commandLineEdit->text();
     ui->listWidget->currentItem()->setIcon(QIcon(QPixmap(ui->iconLineEdit->text())));
@@ -146,21 +149,21 @@ void QExternProgramManager::on_listWidget_itemChanged(QListWidgetItem *item)
 {
     ui->commandLineEdit->setText(editors[ui->listWidget->currentRow()]->command);
     ui->nameLineEdit->setText(editors[ui->listWidget->currentRow()]->name);
-    ui->iconLineEdit->setText(editors[ui->listWidget->currentRow()]->icon);
-    ui->iconLabel->setPixmap(QPixmap(ui->iconLineEdit->text()).scaled(32,32,Qt::KeepAspectRatioByExpanding));
+    ui->iconLineEdit->setText(editors[ui->listWidget->currentRow()]->icon.name());
+    ui->iconLabel->setPixmap(editors[ui->listWidget->currentRow()]->icon.pixmap(32,32));
 }
 
 
 void QExternProgramManager::newExternEditor()
 {
-    editorAddForm = new QExternProgramAddForm;
-    connect(editorAddForm,SIGNAL(accept(QString,QString,QString)),this,SLOT(addEditor(QString,QString,QString)));
+    editorAddForm = new QExternProgramAddForm(*installedSoft);
+    connect(editorAddForm,SIGNAL(accept(QString,QIcon,QString)),this,SLOT(addEditor(QString,QIcon,QString)));
     connect(editorAddForm,SIGNAL(cancel()),this,SLOT(abortAddingNewExternEditor()));
     editorAddForm->show();
     isEditorAddFormActive = true;
 }
 
-void QExternProgramManager::addEditor(QString name, QString icon, QString command)
+void QExternProgramManager::addEditor(QString name, QIcon icon, QString command)
 {
 
     QExternProgram *editor = new QExternProgram(name,icon,command,imagewidget);
@@ -178,16 +181,33 @@ void QExternProgramManager::addEditor(QString name, QString icon, QString comman
 
         ui->commandLineEdit->setText(editors[0]->command);
         ui->nameLineEdit->setText(editors[0]->name);
-        ui->iconLineEdit->setText(editors[0]->icon);
-        ui->iconLabel->setPixmap(QPixmap(editors[0]->icon).scaled(32,32,Qt::KeepAspectRatioByExpanding));
+        ui->iconLineEdit->setText(editors[0]->icon.name());
+        ui->iconLabel->setPixmap(editors[0]->icon.pixmap(32,32));
     }
 
-    QListWidgetItem * newitem = new QListWidgetItem(QIcon(QPixmap(editor->icon)),editor->name);
+    QListWidgetItem * newitem = new QListWidgetItem(editor->icon,editor->name);
     editorsItems.append(newitem);
     ui->listWidget->addItem(newitem);
 
-    qDebug() << name << icon <<command;
-    disconnect(editorAddForm,SIGNAL(accept(QString,QString,QString)),this,SLOT(addEditor(QString,QString,QString)));
+    QString dir;
+#ifdef Q_OS_LINUX
+    dir = QDir::homePath()+"/.config/QImageViewer/extern/";
+#endif
+#ifdef Q_OS_WIN32
+    dir = QApplication::applicationDirPath()+"\\extern\\";
+#endif
+    if (!QDir(dir).exists())
+    {
+        QDir creator;
+        creator.mkdir(dir);
+    }
+    QFile file(dir+name+".png");
+    file.open(QIODevice::WriteOnly);
+    QPixmap pixmap = icon.pixmap(32,32);
+    pixmap.save(&file, QString("PNG").toStdString().c_str());
+
+    qDebug() << name << icon.name() <<command;
+    disconnect(editorAddForm,SIGNAL(accept(QString,QIcon,QString)),this,SLOT(addEditor(QString,QIcon,QString)));
     disconnect(editorAddForm,SIGNAL(cancel()),this,SLOT(abortAddingNewExternEditor()));
     editorAddForm->close();
     delete editorAddForm;
@@ -196,7 +216,7 @@ void QExternProgramManager::addEditor(QString name, QString icon, QString comman
 
 void QExternProgramManager::abortAddingNewExternEditor()
 {
-    disconnect(editorAddForm,SIGNAL(accept(QString,QString,QString)),this,SLOT(addEditor(QString,QString,QString)));
+    disconnect(editorAddForm,SIGNAL(accept(QString,QIcon,QString)),this,SLOT(addEditor(QString,QIcon,QString)));
     disconnect(editorAddForm,SIGNAL(cancel()),this,SLOT(abortAddingNewExternEditor()));
 
     editorAddForm->close();
@@ -232,7 +252,6 @@ void QExternProgramManager::closeEvent(QCloseEvent *event)
     if (isEditorAddFormActive) editorAddForm->close();
     event->accept();
 }
-
 
 void QExternProgramManager::on_listWidget_itemClicked(QListWidgetItem *item)
 {

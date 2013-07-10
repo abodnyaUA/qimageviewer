@@ -18,7 +18,8 @@ class QExternProgramManager : public QWidget
     Q_OBJECT
     
 public:
-    explicit QExternProgramManager(QList<QExternProgram *> editors, image * imagewidget,
+    explicit QExternProgramManager(QList<QExternProgram *> * installedSoft,
+                                   QList<QExternProgram *> editors, image * imagewidget,
                                    QString theme, QMap<QString, QString> icon);
     ~QExternProgramManager();
     QList<QExternProgram *> editors;
@@ -34,18 +35,17 @@ private slots:
 
     //Adding new
     void newExternEditor();
-    void addEditor(QString name, QString icon, QString command);
+    void addEditor(QString name, QIcon icon, QString command);
     void abortAddingNewExternEditor();
 
     void on_cancelButton_clicked();
-
     void on_listWidget_itemChanged(QListWidgetItem *item);
-
     void on_listWidget_itemClicked(QListWidgetItem *item);
 
 private:
     Ui::QExternProgramManager *ui;
     QList<QListWidgetItem *> editorsItems;
+    QList<QExternProgram *> * installedSoft;
     QExternProgramAddForm * editorAddForm;
     bool isEditorAddFormActive;
     image * imagewidget;

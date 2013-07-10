@@ -1,6 +1,6 @@
 #include "qexternprogram.h"
 
-QExternProgram::QExternProgram(QString name,QString icon,QString command, image *imagewidget)
+QExternProgram::QExternProgram(QString name,QIcon icon,QString command, image *imagewidget)
 {
     this->name = name;
     this->icon = icon;

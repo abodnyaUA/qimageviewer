@@ -81,12 +81,18 @@ void QImageViewer::loadsettings()
     while (!qsettings->value("ExternProgram"+QString::number(indx)+"/Name","").toString().isEmpty())
     {
         QString name = qsettings->value("ExternProgram"+QString::number(indx)+"/Name","").toString();
-        QString icon = qsettings->value("ExternProgram"+QString::number(indx)+"/Icon","").toString();
         QString command = qsettings->value("ExternProgram"+QString::number(indx)+"/Command","").toString();
 
+        QIcon icon;
+#ifdef Q_OS_LINUX
+        icon.addPixmap(QDir::homePath()+"/.config/QImageViewer/extern/"+name+".png");
+#endif
+#ifdef Q_OS_WIN32
+        icon.addPixmap(QApplication::applicationDirPath()+"\\extern\\"+name+".png");
+#endif
         QExternProgram *editor = new QExternProgram(name,icon,command,imagewidget);
         editors.append(editor);
-        QAction * action = new QAction(QIcon(QPixmap(icon)),name,this);
+        QAction * action = new QAction(icon,name,this);
         editorsActions.append(action);
         connect(action,SIGNAL(triggered()),editor,SLOT(exec()));
         ui->menuExtern_editors->insertAction(ui->editorsNewAction,action);
@@ -201,15 +207,34 @@ void QImageViewer::savesettings()
     while (!qsettings->value("ExternProgram"+QString::number(indx)+"/Name","").toString().isEmpty())
     {
         qsettings->remove("ExternProgram"+QString::number(indx)+"/Name");
-        qsettings->remove("ExternProgram"+QString::number(indx)+"/Icon");
         qsettings->remove("ExternProgram"+QString::number(indx)+"/Command");
         indx++;
     }
-    //add new ectern editors
+    QString dir;
+#ifdef Q_OS_LINUX
+    dir = QDir::homePath()+"/.config/QImageViewer/extern/";
+#endif
+#ifdef Q_OS_WIN32
+    dir = QApplication::applicationDirPath()+"\\extern\\";
+#endif
+    //delete old icons
+    QDir creator;
+    if (!QDir(dir).exists()) creator.mkdir(dir);
+    else
+    {
+        creator.setPath(dir);
+        QStringList currentIcons = creator.entryList(QDir::Files);
+        foreach (QString icon, currentIcons) creator.remove(icon);
+    }
+
+    //add new extern editors
     for (int i=0;i<editors.size();i++)
     {
+        QFile file(dir+editors[i]->name+".png");
+        file.open(QIODevice::WriteOnly);
+        QPixmap pixmap = editors[i]->icon.pixmap(32,32);
+        pixmap.save(&file, QString("PNG").toStdString().c_str());
         qsettings->setValue("ExternProgram"+QString::number(i)+"/Name",editors[i]->name);
-        qsettings->setValue("ExternProgram"+QString::number(i)+"/Icon",editors[i]->icon);
         qsettings->setValue("ExternProgram"+QString::number(i)+"/Command",editors[i]->command);
     }
 

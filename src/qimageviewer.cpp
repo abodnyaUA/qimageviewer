@@ -53,6 +53,7 @@ QImageViewer::QImageViewer(QString path, QWidget *parent) :
     isVkUploadImagesFormActive = false;
     isVkDownloadAlbumFormActive = false;
     isAboutFormOpened = false;
+    isUpdateDialogRunning = false;
 
     setWindowState(Qt::WindowMaximized);
     imagewidget->setAcceptDrops(false);
@@ -65,8 +66,8 @@ QImageViewer::QImageViewer(QString path, QWidget *parent) :
             automateUpdate = true;
             checkupdates();
         }
-        else automateUpdate = false;
     }
+    automateUpdate = false;
 }
 
 void QImageViewer::createPreviews()
@@ -90,45 +91,238 @@ void QImageViewer::createPreviews()
 }
 void QImageViewer::checkupdates()
 {
+    if (isUpdateDialogRunning) return;
+    isUpdateDialogRunning = true;
     updater = new QNetworkAccessManager;
     updater->get(QNetworkRequest(QUrl("http://qiv.p.ht/version.php?notfuckyou=true")));
     updater->connect(updater,SIGNAL(finished(QNetworkReply*)),this,SLOT(getUpdates(QNetworkReply*)));
 }
 
+QByteArray md5 (const QByteArray& data)
+{
+    return QCryptographicHash::hash(data,QCryptographicHash::Md5).toHex();
+}
+
+QStringList getDirFiles(QString dir_name)
+{
+    QStringList ret_list;
+    QDir dir(dir_name);
+    QFileInfoList info_list = dir.entryInfoList();
+    QList<QFileInfo>::iterator iter=info_list.begin();
+    QString path;
+    for(iter=info_list.begin();iter != info_list.end();iter++)
+    {
+        path = iter->absoluteFilePath();
+        if(iter->isDir() && !path.endsWith("\\..") && !path.endsWith("\\.")) ret_list += getDirFiles(path);
+        else ret_list.append(path);
+    }
+    return ret_list;
+}
+
 void QImageViewer::getUpdates(QNetworkReply* reply)
 {
+    // Check request
     QByteArray replyContent = reply->readAll();
     if (replyContent == "Invalid request")
     {
         qDebug() << "Invalid request";
         return;
     }
+
+    // Parse answer
     QVariant response = JSON::parse(replyContent);
+    // Last avaiable version
     QString lastVersion(response.toMap()["current_version"].toString());
+    qDebug() << lastVersion;
+
+    // If it's last version, show message;
     QString currentVersion = QApplication::applicationVersion();
     if (lastVersion <= currentVersion)
     {
+        isUpdateDialogRunning = false;
         if (!automateUpdate) QMessageBox::information(this,tr("Last version"),tr("You have last version"),
                                  QMessageBox::Ok);
         return;
     }
-    QStringList files;
-    for(auto i : response.toMap()["updated"].toList()) files << i.toString();
-    QString changelog = response.toMap()["changelog_ru"].toString();
-    int r = QMessageBox::question(this,tr("You can update"),
-                              tr("Update application?\n")+
-                              tr("Current version: ")+currentVersion+"\n"+
-                              tr("Last version: ")+lastVersion+"\n\n"+
-                              tr("What's new?\n")+
-                              changelog,
-                              QMessageBox::Yes, QMessageBox::No);
-    if (r == QMessageBox::Yes)
+
+    // Get last version
+
+#ifdef Q_OS_WIN32
+    // All files for windows version
+    QStringList updateFiles(response.toMap()["files"].toString().split(";"));
+    updateFiles.removeLast();
+    for (int i=0;i<updateFiles.size();i++) updateFiles[i] = updateFiles[i].right(updateFiles[i].size()-37);
+    // Take map file:md5
+    QMap<QString,QString> updateFilesMap;
+    foreach (QString file, updateFiles)
     {
-        /****UPDATE****/
+        QStringList detail = file.split(":");
+        detail[0] = detail[0].toLower();
+        updateFilesMap[detail[0]] = detail[1];
     }
+    updateFiles = updateFilesMap.keys();
+    qDebug() << "UPDATED:";
+    foreach (QString file, updateFiles)
+    {
+        qDebug() << "file:"<<file;
+        qDebug() << "md5: "<<updateFilesMap[file];
+    }
+
+    // Check current files
+    existDir = QApplication::applicationDirPath();
+    QStringList existFiles = getDirFiles(existDir);
+    for (int i=0;i<existFiles.size();i++)
+    {
+        existFiles[i] = existFiles[i].right(existFiles[i].size()-existDir.size()-1);
+        existFiles[i] = existFiles[i].toLower();
+    }
+
+    QMap<QString,QString> existFilesMap;
+    foreach (QString file,existFiles)
+    {
+        QFile truefile(existDir+"\\"+file);
+        truefile.open(QIODevice::ReadOnly);
+        if (!truefile.exists()) qDebug() << "file "<<existDir+"\\"+file<<"is missing!!!!!!!!!!!!!";
+        existFilesMap[file] = QString(md5(truefile.readAll()));
+    }
+    qDebug() << "EXIST:";
+    foreach (QString file, existFiles)
+    {
+        qDebug() << "file:"<<file;
+        qDebug() << "md5: "<<existFilesMap[file];
+    }
+
+    needToUpdate.clear();
+    foreach (QString file, updateFiles)
+    {
+        if (existFilesMap[file] != updateFilesMap[file]) needToUpdate.append(file);
+    }
+
+    qDebug() << "===================================";
+    if (needToUpdate.isEmpty())
+    {
+        qDebug() << "NOTHING TO UPDATE";
+        return;
+    }
+    else foreach (QString file, needToUpdate) qDebug() << "Update: "<< file;
+#endif
+#ifdef Q_OS_LINUX
+    existDir = QDir::homePath();
+    qDebug() << "http://qiv.p.ht/bin/"+response.toMap()["deb-package"].toString();
+    needToUpdate.append(response.toMap()["deb-package"].toString());
+#endif
+    // Get changelog
+    QNetworkAccessManager * m_NetworkMngr = new QNetworkAccessManager(this);
+    QNetworkReply *replyChangelog = m_NetworkMngr->get(
+                QNetworkRequest(QUrl("http://qiv.p.ht/changelog.txt")));
+    QEventLoop loop;
+    connect(replyChangelog, SIGNAL(finished()),&loop, SLOT(quit()));
+    loop.exec();
+    QString changelog(replyChangelog->readAll());
+
+    // Ask about update
+    if (UpdateDialog(this,currentVersion,lastVersion,changelog).exec())
+    {
+        qDebug() << "Okey, lets start";
+        QDir().mkdir(existDir+"/update");
+        updateInformer = new UpdateInformer;
+        updateInformer->show();
+        updateFile(0);
+    } else isUpdateDialogRunning = false;
 
     automateUpdate = false;
     delete updater;
+}
+
+void QImageViewer::updateFile(int number)
+{
+    updateInformer->setProgress((double)number / (double)needToUpdate.size(),needToUpdate[number]);
+    QNetworkAccessManager * m_NetworkMngr = new QNetworkAccessManager(this);
+#ifdef Q_OS_WIN32
+    QNetworkReply *reply = m_NetworkMngr->get(
+                QNetworkRequest(QUrl("http://qiv.p.ht/windows/"+needToUpdate[number])));
+#endif
+#ifdef Q_OS_LINUX
+    QNetworkReply *reply = m_NetworkMngr->get(
+                QNetworkRequest(QUrl("http://qiv.p.ht/bin/"+needToUpdate[number])));
+#endif
+    QEventLoop loop;
+    connect(reply, SIGNAL(finished()),&loop, SLOT(quit()));
+    loop.exec();
+
+    if (needToUpdate[number].contains('/'))
+    {
+        int slashPos;
+        for (int i=needToUpdate[number].size()-1;i>0;i--)
+            if (needToUpdate[number][i] == '/')
+            {
+                slashPos = i;
+                break;
+            }
+        QDir().mkdir(existDir+"/update/"+needToUpdate[number].left(slashPos));
+    }
+    QFile file(existDir+"/update/"+needToUpdate[number]);
+    if (!file.open(QIODevice::WriteOnly)) qDebug() <<"Can't open file";
+    file.write(reply->readAll());
+    file.flush();
+    file.close();
+    delete reply;
+    if (number < needToUpdate.size()-1) updateFile(number+1);
+    else afterUpdates();
+}
+
+void QImageViewer::afterUpdates()
+{
+    qDebug() << "Updating finished";
+    updateInformer->close();
+    delete updateInformer;
+    isUpdateDialogRunning = false;
+#ifdef Q_OS_WIN32
+    QFile updater(existDir+"\\updater.bat");
+    updater.open(QIODevice::WriteOnly);
+    QTextStream out(&updater);
+    // Clear console
+    out << "@echo off\n";
+    out << "prompt Please wait some seconds ;)\n";
+    // Delay for closing application
+    out << "ping -n 3 127.0.0.1 > NUL\n";
+    // moving all new files
+    foreach(QString file, needToUpdate)
+    {
+        file.replace('/','\\');
+        out << "move /y ";
+        out << '"' << existDir+"\\update\\"+file<<'"';
+        out << " ";
+        out << '"' << existDir+"\\"+file<<'"';
+        out << "\n";
+    }
+    // clear temp files
+    out << "rd /s /q " << '"' << existDir+"\\update\\" << '"' << "\n";
+    // run new version
+    out << '"'<<QApplication::applicationDirPath()+"\\QImageViewer.exe"<<'"' << "\n";
+    // delete temp 'bat' updater
+    out << "del "<< '"' << existDir+"\\updater.bat" << '"';
+    updater.flush();
+    updater.close();
+    QProcess::startDetached("cmd.exe", QStringList() << "/c" << existDir+"\\updater.bat");
+    imagewidget->setSaved();
+    close();
+#endif
+#ifdef Q_OS_LINUX
+    QFile updater(existDir+"/updater.sh");
+    updater.open(QIODevice::WriteOnly);
+    QTextStream out(&updater);
+    out << "#!/bin/sh\n";
+    out << "gksu "<< '"' << "gdebi -n " << existDir+"/update/"+needToUpdate[0]<< '"' << "\n";
+    out << "qimageviewer\n";
+    out << "rm "<< '"' << existDir+"/updater.sh" << '"' << "\n";
+    out << "rm -rf "<< '"' << existDir+"/update"<< '"' << "\n";
+    updater.flush();
+    updater.close();
+    QProcess::startDetached("bash", QStringList() << existDir+"/updater.sh");
+    imagewidget->setSaved();
+    close();
+#endif
 }
 
 void QImageViewer::setStatusName(bool arg)
@@ -580,31 +774,227 @@ void QImageViewer::resizeImageListOvered(bool result)
     delete editFormResizeElements;
 }
 
+#ifdef Q_OS_WIN32
+QStringList GetArchivesList(QString dir_name)
+{
+    QStringList ret_list;
+    QDir dir(dir_name);
+    QFileInfoList info_list = dir.entryInfoList();
+    if(info_list.size() > 2)
+    {
+        QList<QFileInfo>::iterator iter=info_list.begin();
+        QString path;
+        for(iter=info_list.begin()+2;iter != info_list.end();iter++)
+        {
+            path = iter->absoluteFilePath();
+            if(iter->isDir()) ret_list += GetArchivesList(path);
+            else if (path.endsWith(".lnk",Qt::CaseInsensitive)) ret_list.append(path);
+        }
+    }
+    return ret_list;
+}
+#endif
+void QImageViewer::makeInstalledSoftList()
+{
+#ifdef Q_OS_LINUX
+    QDir dir;
+    dir.setPath("/usr/share/applications/");
+    QStringList filter("*.desktop");
+    QStringList applications = dir.entryList(filter,QDir::NoFilter,QDir::SortByMask);
+    for (int i=0;i<applications.size();i++)
+    {
+        applications[i] = applications[i].left( applications[i].size() - 8 );
+        QString iconpath;
+        if (QFile("/usr/share/icons/hicolor/32x32/apps/"+applications[i]+".png").exists())
+            iconpath = "/usr/share/icons/hicolor/32x32/apps/"+applications[i]+".png";
+        else if (QFile("/usr/share/icons/hicolor/36x36/apps/"+applications[i]+".png").exists())
+            iconpath = "/usr/share/icons/hicolor/36x36/apps/"+applications[i]+".png";
+        else if (QFile("/usr/share/icons/hicolor/48x48/apps/"+applications[i]+".png").exists())
+            iconpath = "/usr/share/icons/hicolor/48x48/apps/"+applications[i]+".png";
+        else if (QFile("/usr/share/icons/hicolor/64x64/apps/"+applications[i]+".png").exists())
+            iconpath = "/usr/share/icons/hicolor/64x64/apps/"+applications[i]+".png";
+        else if (QFile("/usr/share/icons/hicolor/72x72/apps/"+applications[i]+".png").exists())
+            iconpath = "/usr/share/icons/hicolor/72x72/apps/"+applications[i]+".png";
+        else if (QFile("/usr/share/icons/hicolor/96x96/apps/"+applications[i]+".png").exists())
+            iconpath = "/usr/share/icons/hicolor/96x96/apps/"+applications[i]+".png";
+        else if (QFile("/usr/share/icons/hicolor/24x24/apps/"+applications[i]+".png").exists())
+            iconpath = "/usr/share/icons/hicolor/24x24/apps/"+applications[i]+".png";
+        else if (QFile("/usr/share/icons/hicolor/22x22/apps/"+applications[i]+".png").exists())
+            iconpath = "/usr/share/icons/hicolor/22x22/apps/"+applications[i]+".png";
+        else if (QFile("/usr/share/icons/hicolor/16x16/apps/"+applications[i]+".png").exists())
+            iconpath = "/usr/share/icons/hicolor/16x16/apps/"+applications[i]+".png";
+        else if (QFile("/usr/share/pixmaps/"+applications[i]+".png").exists())
+            iconpath = "/usr/share/pixmaps/"+applications[i]+".png";
+
+        // Application is GUI and has icon
+        if (!iconpath.isEmpty())
+        {
+            // Read *.desktop file //
+            QFile file("/usr/share/applications/"+applications[i]+".desktop");
+            file.open(QIODevice::ReadOnly);
+            QTextStream stream(&file);
+            QString desktopFile;
+            while (!stream.atEnd()) desktopFile += stream.readLine() + "\n";
+
+            // Application is graphical application //
+            if (desktopFile.contains("Graphics"))
+            {
+                QStringList data = desktopFile.split("\n");
+
+                // Parse name //
+                QString name = "";
+                foreach (QString str, data)
+                {
+                    if (str.startsWith("Name="))
+                    {
+                        name = str.right(str.size()-5);
+                        break;
+                    }
+                }
+                // Parse command //
+                QString command = "";
+                foreach (QString str, data)
+                {
+                    if (str.startsWith("Exec="))
+                    {
+                        command = str.right(str.size()-5);
+                        break;
+                    }
+                }
+                command = command.left(command.size() - 3);
+
+                // Confirm new application
+                installedSoft.append(new QExternProgram(name,QIcon(QPixmap(iconpath)),command,imagewidget));
+            }
+        }
+    }
+
+#endif
+#ifdef Q_OS_WIN32
+    // CURRENT USER APPLICATIONS //
+    // Get links
+    QString userApplications = QStandardPaths::standardLocations(QStandardPaths::ApplicationsLocation)[0];
+    QStringList targets = GetArchivesList(userApplications);
+    QFileIconProvider iconGetter;
+
+    // Check all links
+    foreach (QString app, targets)
+    {
+        // Parse lnk
+        QString str = QFile::symLinkTarget(app);
+        if (str.endsWith(".exe",Qt::CaseInsensitive)
+                && !str.contains("unins",Qt::CaseInsensitive)
+                && !str.contains("cmd.exe",Qt::CaseInsensitive)
+                && !str.contains("Example",Qt::CaseInsensitive))
+        {
+            // Get icon from exe
+            QIcon icon = iconGetter.icon(QFileInfo(str));
+
+            // Parse name
+            int lastSlash = 0;
+            for (int i=0;i<app.size();i++) if (app[i] == '/') lastSlash = i+1;
+            app = app.right(app.size()-lastSlash);
+            app = app.left(app.size()-4);
+
+            installedSoft.append(new QExternProgram(app,icon,str,imagewidget));
+        }
+    }
+    // ALL USERS APPLICATIONS //
+    int secondSlash = 0;
+    int thirdSlash = 0;
+    int slashAmount = 0;
+    //find second slash
+    for (int i=0;i<userApplications.size();i++)
+    {
+        if (userApplications[i] == '/')
+        {
+            secondSlash = i+1;
+            slashAmount++;
+        }
+        if (slashAmount == 2) break;
+    }
+    //find third slash
+    for (int i=secondSlash+1;i<userApplications.size();i++)
+        if (userApplications[i] == '/')
+        {
+            thirdSlash = i;
+            break;
+        }
+    QString allUsersApplications = userApplications.left(secondSlash) +
+            "All Users" + userApplications.right(userApplications.size() - thirdSlash);
+
+    targets = GetArchivesList(allUsersApplications);
+
+    // Check all links
+    foreach (QString app, targets)
+    {
+        // Parse lnk
+        QString str = QFile::symLinkTarget(app);
+        if (str.endsWith(".exe",Qt::CaseInsensitive)
+                && !str.contains("unins",Qt::CaseInsensitive)
+                && !str.contains("cmd.exe",Qt::CaseInsensitive)
+                && !str.contains("Example",Qt::CaseInsensitive))
+        {
+            // Get icon from exe
+            QIcon icon = iconGetter.icon(QFileInfo(str));
+
+            // Parse name
+            int lastSlash = 0;
+            for (int i=0;i<app.size();i++) if (app[i] == '/') lastSlash = i+1;
+            app = app.right(app.size()-lastSlash);
+            app = app.left(app.size()-4);
+
+            installedSoft.append(new QExternProgram(app,icon,str,imagewidget));
+        }
+    }
+
+#endif
+
+}
+
 void QImageViewer::newExternEditor()
 {
     if (!isEditorAddFormActive)
     {
-        editorAddForm = new QExternProgramAddForm;
+        if (installedSoft.isEmpty()) makeInstalledSoftList();
+        editorAddForm = new QExternProgramAddForm(installedSoft);
         editorAddForm->setWindowIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["ExternEditorNew"])));
-        connect(editorAddForm,SIGNAL(accept(QString,QString,QString)),this,SLOT(addEditor(QString,QString,QString)));
+        connect(editorAddForm,SIGNAL(accept(QString,QIcon,QString)),this,SLOT(addEditor(QString,QIcon,QString)));
         connect(editorAddForm,SIGNAL(cancel()),this,SLOT(abortAddingNewExternEditor()));
         editorAddForm->show();
         isEditorAddFormActive = true;
     }
 }
 
-void QImageViewer::addEditor(QString name, QString icon, QString command)
+void QImageViewer::addEditor(QString name, QIcon icon, QString command)
 {
     QExternProgram *editor = new QExternProgram(name,icon,command,imagewidget);
     editors.append(editor);
-    QAction * action = new QAction(QIcon(QPixmap(icon)),name,this);
+    QAction * action = new QAction(icon,name,this);
     editorsActions.append(action);
     connect(action,SIGNAL(triggered()),editor,SLOT(exec()));
     ui->menuExtern_editors->insertAction(ui->editorsNewAction,action);
     if (!imagewidget->isReady()) action->setEnabled(false);
 
+    QString dir;
+#ifdef Q_OS_LINUX
+    dir = QDir::homePath()+"/.config/QImageViewer/extern/";
+#endif
+#ifdef Q_OS_WIN32
+    dir = QApplication::applicationDirPath()+"\\extern\\";
+#endif
+    if (!QDir(dir).exists())
+    {
+        QDir creator;
+        creator.mkdir(dir);
+    }
+    QFile file(dir+name+".png");
+    file.open(QIODevice::WriteOnly);
+    QPixmap pixmap = icon.pixmap(32,32);
+    pixmap.save(&file, QString("PNG").toStdString().c_str());
+
     qDebug() << name << icon <<command;
-    disconnect(editorAddForm,SIGNAL(accept(QString,QString,QString)),this,SLOT(addEditor(QString,QString,QString)));
+    disconnect(editorAddForm,SIGNAL(accept(QString,QIcon,QString)),this,SLOT(addEditor(QString,QIcon,QString)));
     disconnect(editorAddForm,SIGNAL(cancel()),this,SLOT(abortAddingNewExternEditor()));
     editorAddForm->close();
     delete editorAddForm;
@@ -613,7 +1003,7 @@ void QImageViewer::addEditor(QString name, QString icon, QString command)
 
 void QImageViewer::abortAddingNewExternEditor()
 {
-    disconnect(editorAddForm,SIGNAL(accept(QString,QString,QString)),this,SLOT(addEditor(QString,QString,QString)));
+    disconnect(editorAddForm,SIGNAL(accept(QString,QIcon,QString)),this,SLOT(addEditor(QString,QIcon,QString)));
     disconnect(editorAddForm,SIGNAL(cancel()),this,SLOT(abortAddingNewExternEditor()));
 
     editorAddForm->close();
@@ -627,7 +1017,8 @@ void QImageViewer::exterEditorsManager()
     if (!isEditosManagerActive)
     {
         isEditosManagerActive = true;
-        editorsManager = new QExternProgramManager(editors,imagewidget,iconpacks[currenticonpack],icon);
+        if (installedSoft.isEmpty()) makeInstalledSoftList();
+        editorsManager = new QExternProgramManager(&installedSoft, editors,imagewidget,iconpacks[currenticonpack],icon);
         editorsManager->setWindowIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["ExternEditorsManager"])));
         connect(editorsManager,SIGNAL(overed(bool)),this,SLOT(exterEditorsManagerOvered(bool)));
 
@@ -654,7 +1045,7 @@ void QImageViewer::exterEditorsManagerOvered(bool result)
         // Add new links //
         for (int i=0;i<editors.size();i++)
         {
-            QAction * action = new QAction(QIcon(QPixmap(editors[i]->icon)),editors[i]->name,this);
+            QAction * action = new QAction(editors[i]->icon,editors[i]->name,this);
             editorsActions.append(action);
             connect(action,SIGNAL(triggered()),editors[i],SLOT(exec()));
             ui->menuExtern_editors->insertAction(ui->editorsNewAction,action);

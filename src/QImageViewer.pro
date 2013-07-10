@@ -74,7 +74,9 @@ HEADERS += aboutform.h \
            settings/hotkeys.h \
            settings/qhotkeyedit.h \
            settings/qhotkeywidget.h \
-           settings/settings.h
+           settings/settings.h \
+    updatedialog.h \
+    updateinformer.h
 FORMS += aboutform.ui \
          fullscreen.ui \
          properties.ui \
@@ -90,7 +92,9 @@ FORMS += aboutform.ui \
          qvk/vkdownloadalbumform.ui \
          qvk/vkuploadimageform.ui \
          qvk/vkuploadimagesform.ui \
-         settings/settings.ui
+         settings/settings.ui \
+    updatedialog.ui \
+    updateinformer.ui
 SOURCES += aboutform.cpp \
            fullscreen.cpp \
            image.cpp \
@@ -123,7 +127,9 @@ SOURCES += aboutform.cpp \
            settings/qhotkeywidget.cpp \
            settings/qimageviewer_design.cpp \
            settings/settings.cpp \
-           settings/settings_hotkeys.cpp
+           settings/settings_hotkeys.cpp \
+    updatedialog.cpp \
+    updateinformer.cpp
 RESOURCES += resources.qrc
 TRANSLATIONS += lng/qimageviewer_cz.ts \
                 lng/qimageviewer_en.ts \

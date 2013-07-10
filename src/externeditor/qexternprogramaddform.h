@@ -5,6 +5,7 @@
 #include <QFileDialog>
 #include <QCloseEvent>
 #include <QMessageBox>
+#include "qexternprogram.h"
 
 namespace Ui {
 class QExternProgramAddForm;
@@ -15,14 +16,16 @@ class QExternProgramAddForm : public QWidget
     Q_OBJECT
     
 public:
-    explicit QExternProgramAddForm(QWidget *parent = 0);
+    explicit QExternProgramAddForm(QList<QExternProgram *> installedSoft);
     ~QExternProgramAddForm();
     
 private:
     Ui::QExternProgramAddForm *ui;
+    QString name,command;
+    QIcon icon;
 
 signals:
-    void accept(QString name, QString icon, QString command);
+    void accept(QString name, QIcon icon, QString command);
     void cancel();
 
 private slots:

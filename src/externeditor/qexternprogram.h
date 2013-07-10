@@ -9,8 +9,9 @@ class QExternProgram : public QObject
 {
     Q_OBJECT
 public:
-    explicit QExternProgram(QString name,QString icon,QString command,image * imagewidget);
-    QString name,icon,command;
+    explicit QExternProgram(QString name,QIcon icon,QString command,image * imagewidget);
+    QString name,command;
+    QIcon icon;
     image *imagewidget;
 public slots:
     void exec();

@@ -198,7 +198,7 @@ void QImageViewer::vkDownloadAlbumUpdate()
     }
 }
 
-void QImageViewer::vkDownloadAlbumAbort(bool)
+void QImageViewer::vkDownloadAlbumAbort(bool exit)
 {
     if (exit)
     {

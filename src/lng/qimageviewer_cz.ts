@@ -280,65 +280,75 @@
         <translation>QImageViewer - Nový vnější program</translation>
     </message>
     <message>
-        <location filename="../externeditor/qexternprogramaddform.ui" line="44"/>
-        <location filename="../externeditor/qexternprogramaddform.ui" line="115"/>
+        <location filename="../externeditor/qexternprogramaddform.ui" line="40"/>
+        <source>Installed software</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../externeditor/qexternprogramaddform.ui" line="50"/>
+        <source>Command line</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../externeditor/qexternprogramaddform.ui" line="64"/>
+        <location filename="../externeditor/qexternprogramaddform.ui" line="135"/>
         <source>Browse</source>
         <translation>Procházet</translation>
     </message>
     <message>
-        <location filename="../externeditor/qexternprogramaddform.ui" line="51"/>
+        <location filename="../externeditor/qexternprogramaddform.ui" line="71"/>
         <source>Name</source>
         <translation>Název</translation>
     </message>
     <message>
-        <location filename="../externeditor/qexternprogramaddform.ui" line="58"/>
+        <location filename="../externeditor/qexternprogramaddform.ui" line="78"/>
         <source>Icon</source>
         <translation>Ikona</translation>
     </message>
     <message>
-        <location filename="../externeditor/qexternprogramaddform.ui" line="88"/>
+        <location filename="../externeditor/qexternprogramaddform.ui" line="108"/>
         <source>Application path (command)</source>
         <translation>Cesta k programu</translation>
     </message>
     <message>
-        <location filename="../externeditor/qexternprogramaddform.ui" line="126"/>
+        <location filename="../externeditor/qexternprogramaddform.ui" line="163"/>
         <source>Add</source>
         <translation>Přidat</translation>
     </message>
     <message>
-        <location filename="../externeditor/qexternprogramaddform.ui" line="133"/>
+        <location filename="../externeditor/qexternprogramaddform.ui" line="170"/>
         <source>Cancel</source>
         <translation>Zrušit</translation>
     </message>
     <message>
-        <location filename="../externeditor/qexternprogramaddform.cpp" line="21"/>
+        <location filename="../externeditor/qexternprogramaddform.cpp" line="28"/>
         <source>All image formats (*.jpg *.jpeg *.png *.bmp *.gif *.tiff *.pbm *.pgm *.ppm *.xbm *.xpm)</source>
         <translation>Všechny obrázkové formáty (*.jpg *.jpeg *.png *.bmp *.gif *.tiff *.pbm *.pgm *.ppm *.xbm *.xpm)</translation>
     </message>
     <message>
-        <location filename="../externeditor/qexternprogramaddform.cpp" line="20"/>
-        <location filename="../externeditor/qexternprogramaddform.cpp" line="33"/>
+        <location filename="../externeditor/qexternprogramaddform.cpp" line="27"/>
+        <location filename="../externeditor/qexternprogramaddform.cpp" line="40"/>
         <source>Opening extern image application</source>
         <translation>Otevírá se vnější program na obrázky</translation>
     </message>
     <message>
-        <location filename="../externeditor/qexternprogramaddform.cpp" line="34"/>
+        <location filename="../externeditor/qexternprogramaddform.cpp" line="41"/>
         <source>All file formats (*.*)</source>
         <translation>Všechny souborové formáty (*.*)</translation>
     </message>
     <message>
-        <location filename="../externeditor/qexternprogramaddform.cpp" line="53"/>
-        <location filename="../externeditor/qexternprogramaddform.cpp" line="60"/>
+        <location filename="../externeditor/qexternprogramaddform.cpp" line="63"/>
+        <location filename="../externeditor/qexternprogramaddform.cpp" line="70"/>
         <source>Invalid parameters</source>
         <translation>Neplatné parametry</translation>
     </message>
     <message>
-        <location filename="../externeditor/qexternprogramaddform.cpp" line="54"/>
+        <location filename="../externeditor/qexternprogramaddform.cpp" line="64"/>
         <source>Name can&apos;t be empty</source>
         <translation>Název nemůže být prázdný</translation>
     </message>
     <message>
-        <location filename="../externeditor/qexternprogramaddform.cpp" line="61"/>
+        <location filename="../externeditor/qexternprogramaddform.cpp" line="71"/>
         <source>Application path (command) can&apos;t be empty</source>
         <translation>Cesta k programu nemůže být prázdná</translation>
     </message>
@@ -397,34 +407,34 @@
         <translation>Zrušit aktualizace</translation>
     </message>
     <message>
-        <location filename="../externeditor/qexternprogrammanager.cpp" line="51"/>
-        <location filename="../externeditor/qexternprogrammanager.cpp" line="58"/>
+        <location filename="../externeditor/qexternprogrammanager.cpp" line="53"/>
+        <location filename="../externeditor/qexternprogrammanager.cpp" line="60"/>
         <source>Invalid parameters</source>
         <translation>Neplatné parametry</translation>
     </message>
     <message>
-        <location filename="../externeditor/qexternprogrammanager.cpp" line="52"/>
+        <location filename="../externeditor/qexternprogrammanager.cpp" line="54"/>
         <source>Name can&apos;t be empty</source>
         <translation>Název nemůže být prázdný</translation>
     </message>
     <message>
-        <location filename="../externeditor/qexternprogrammanager.cpp" line="59"/>
+        <location filename="../externeditor/qexternprogrammanager.cpp" line="61"/>
         <source>Application path (command) can&apos;t be empty</source>
         <translation>Cesta k programu nemůže být prázdná</translation>
     </message>
     <message>
-        <location filename="../externeditor/qexternprogrammanager.cpp" line="212"/>
-        <location filename="../externeditor/qexternprogrammanager.cpp" line="225"/>
+        <location filename="../externeditor/qexternprogrammanager.cpp" line="232"/>
+        <location filename="../externeditor/qexternprogrammanager.cpp" line="245"/>
         <source>Opening extern image application</source>
         <translation>Otevírá se vnější program na obrázky</translation>
     </message>
     <message>
-        <location filename="../externeditor/qexternprogrammanager.cpp" line="213"/>
+        <location filename="../externeditor/qexternprogrammanager.cpp" line="233"/>
         <source>All image formats (*.jpg *.jpeg *.png *.bmp *.gif *.tiff *.pbm *.pgm *.ppm *.xbm *.xpm)</source>
         <translation>Všechny obrázkové formáty (*.jpg *.jpeg *.png *.bmp *.gif *.tiff *.pbm *.pgm *.ppm *.xbm *.xpm)</translation>
     </message>
     <message>
-        <location filename="../externeditor/qexternprogrammanager.cpp" line="226"/>
+        <location filename="../externeditor/qexternprogrammanager.cpp" line="246"/>
         <source>All file formats (*.*)</source>
         <translation>Všechny souborové formáty (*.*)</translation>
     </message>
@@ -437,11 +447,11 @@
         <translation>QImageViewer</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="156"/>
-        <location filename="../qimageviewer.cpp" line="171"/>
-        <location filename="../qimageviewer.cpp" line="183"/>
-        <location filename="../qimageviewer.cpp" line="267"/>
         <location filename="../qimageviewer.cpp" line="349"/>
+        <location filename="../qimageviewer.cpp" line="364"/>
+        <location filename="../qimageviewer.cpp" line="376"/>
+        <location filename="../qimageviewer.cpp" line="460"/>
+        <location filename="../qimageviewer.cpp" line="542"/>
         <source> of </source>
         <translation> z </translation>
     </message>
@@ -482,13 +492,13 @@
     </message>
     <message>
         <location filename="../qimageviewer.ui" line="248"/>
-        <location filename="../settings/qimageviewer_design.cpp" line="765"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="790"/>
         <source>Rotate right</source>
         <translation>Otočit vpravo</translation>
     </message>
     <message>
         <location filename="../qimageviewer.ui" line="260"/>
-        <location filename="../settings/qimageviewer_design.cpp" line="755"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="780"/>
         <source>Rotate left</source>
         <translation>Otočit vlevo</translation>
     </message>
@@ -519,14 +529,14 @@
     </message>
     <message>
         <location filename="../qimageviewer.ui" line="369"/>
-        <location filename="../settings/qimageviewer_design.cpp" line="539"/>
-        <location filename="../settings/qimageviewer_design.cpp" line="795"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="564"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="820"/>
         <source>Zoom In</source>
         <translation>Přiblížit</translation>
     </message>
     <message>
         <location filename="../qimageviewer.ui" line="381"/>
-        <location filename="../settings/qimageviewer_design.cpp" line="298"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="323"/>
         <source>Zoom out</source>
         <translation>Oddálit</translation>
     </message>
@@ -612,7 +622,7 @@
     </message>
     <message>
         <location filename="../qimageviewer.ui" line="536"/>
-        <location filename="../settings/qimageviewer_design.cpp" line="343"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="368"/>
         <source>Check updates</source>
         <translation type="unfinished"></translation>
     </message>
@@ -662,278 +672,251 @@
         <translation>Oříznout</translation>
     </message>
     <message>
-        <location filename="../settings/qimageviewer_design.cpp" line="228"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="253"/>
         <source>Open current image</source>
         <translation>Otevřít nynější obrázek</translation>
     </message>
     <message>
-        <location filename="../settings/qimageviewer_design.cpp" line="231"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="256"/>
         <source>Save current image with same name and format</source>
         <translation>Uložit nynější obrázek se stejným názvem a ve stejném formátu</translation>
     </message>
     <message>
-        <location filename="../settings/qimageviewer_design.cpp" line="235"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="260"/>
         <source>Save current image with new name and format</source>
         <translation>Uložit nynější obrázek s novým názvem a formátem</translation>
     </message>
     <message>
-        <location filename="../settings/qimageviewer_design.cpp" line="238"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="263"/>
         <source>Program settings</source>
         <translation>Nastavení programu</translation>
     </message>
     <message>
-        <location filename="../settings/qimageviewer_design.cpp" line="241"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="266"/>
         <source>Close program</source>
         <translation>Zavřít program</translation>
     </message>
     <message>
-        <location filename="../settings/qimageviewer_design.cpp" line="245"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="270"/>
         <source>Cancel last changes</source>
         <translation>Zrušit poslední změny</translation>
     </message>
     <message>
-        <location filename="../settings/qimageviewer_design.cpp" line="249"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="274"/>
         <source>Do last changes</source>
         <translation>Udělat poslední změny</translation>
     </message>
     <message>
-        <location filename="../settings/qimageviewer_design.cpp" line="253"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="278"/>
         <source>Rotate image to the left</source>
         <translation>Otočit obrázek doleva</translation>
     </message>
     <message>
-        <location filename="../settings/qimageviewer_design.cpp" line="256"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="281"/>
         <source>Rotate image to the right</source>
         <translation>Otočit obrázek doprava</translation>
     </message>
     <message>
-        <location filename="../settings/qimageviewer_design.cpp" line="308"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="333"/>
         <source>Add new extern editor. You will be able to open current image with another editor</source>
         <translation>Přidat nový vnější editor. Budete moci otevřít nynější obrázek v jiném editoru</translation>
     </message>
     <message>
-        <location filename="../settings/qimageviewer_design.cpp" line="311"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="336"/>
         <source>Set up your extern settings</source>
         <translation>Nastavení vaše vnější nastavení</translation>
     </message>
     <message>
-        <location filename="../settings/qimageviewer_design.cpp" line="318"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="343"/>
         <source>Share this image with ImageShack.us</source>
         <translation>Sdílet tento obrázek s ImageShack.us</translation>
     </message>
     <message>
-        <location filename="../settings/qimageviewer_design.cpp" line="321"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="346"/>
         <source>Share list of images with ImageShack.us</source>
         <translation>Sdílet seznam obrázků s ImageShack.us</translation>
     </message>
     <message>
-        <location filename="../settings/qimageviewer_design.cpp" line="324"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="349"/>
         <source>Log in to social network vk.com to enable upload images</source>
         <translation>Přihlásit se do společenské sítě vk.com pro povolení nahrávání obrázků</translation>
     </message>
     <message>
-        <location filename="../settings/qimageviewer_design.cpp" line="327"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="352"/>
         <source>Log out of social network vk.com.</source>
         <translation>Odhlásit se ze společenské sítě vk.com.</translation>
     </message>
     <message>
-        <location filename="../settings/qimageviewer_design.cpp" line="330"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="355"/>
         <source>Upload current image to your vk.com&apos;s account</source>
         <translation>Nahrát nynější obrázek na váš účet u vk.com</translation>
     </message>
     <message>
-        <location filename="../settings/qimageviewer_design.cpp" line="333"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="358"/>
         <source>Upload some images to your vk.com&apos;s account</source>
         <translation>Nahrát nějaké obrázky na váš účet u vk.com</translation>
     </message>
     <message>
-        <location filename="../settings/qimageviewer_design.cpp" line="336"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="361"/>
         <source>Download images from vk.com&apos;s account</source>
         <translation>Stáhnout obrázky z účtu u vk.com</translation>
     </message>
     <message>
-        <location filename="../settings/qimageviewer_design.cpp" line="259"/>
-        <location filename="../settings/qimageviewer_design.cpp" line="519"/>
-        <location filename="../settings/qimageviewer_design.cpp" line="775"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="284"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="544"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="800"/>
         <source>Change this image to horizontal mirror</source>
         <translation>Změnit tento obrázek k vodorovnému zrcadlu</translation>
     </message>
     <message>
-        <location filename="../settings/qimageviewer_design.cpp" line="262"/>
-        <location filename="../settings/qimageviewer_design.cpp" line="529"/>
-        <location filename="../settings/qimageviewer_design.cpp" line="785"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="287"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="554"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="810"/>
         <source>Change this image to vertical mirror</source>
         <translation>Změnit tento obrázek k svislému zrcadlu</translation>
     </message>
     <message>
-        <location filename="../settings/qimageviewer_design.cpp" line="265"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="290"/>
         <source>Delete current image</source>
         <translation>Smazat nynější obrázek</translation>
     </message>
     <message>
-        <location filename="../settings/qimageviewer_design.cpp" line="271"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="296"/>
         <source>Resize current image</source>
         <translation>Změnit velikost nynějšího obrázku</translation>
     </message>
     <message>
-        <location filename="../settings/qimageviewer_design.cpp" line="268"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="293"/>
         <source>Crop current image</source>
         <translation>Oříznout nynější obrázek</translation>
     </message>
     <message>
-        <location filename="../settings/qimageviewer_design.cpp" line="274"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="299"/>
         <source>Resize list of images</source>
         <translation>Změnit velikost seznamu obrázků</translation>
     </message>
     <message>
-        <location filename="../settings/qimageviewer_design.cpp" line="278"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="303"/>
         <source>Show next image</source>
         <translation>Ukázat další obrázek</translation>
     </message>
     <message>
-        <location filename="../settings/qimageviewer_design.cpp" line="281"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="306"/>
         <source>Show previous image</source>
         <translation>Ukázat předchozí obrázek</translation>
     </message>
     <message>
-        <location filename="../settings/qimageviewer_design.cpp" line="284"/>
-        <location filename="../settings/qimageviewer_design.cpp" line="579"/>
-        <location filename="../settings/qimageviewer_design.cpp" line="835"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="309"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="604"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="860"/>
         <source>Enable fullscreen mode</source>
         <translation>Povolit režim na celou obrazovku</translation>
     </message>
     <message>
-        <location filename="../settings/qimageviewer_design.cpp" line="288"/>
-        <location filename="../settings/qimageviewer_design.cpp" line="589"/>
-        <location filename="../settings/qimageviewer_design.cpp" line="845"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="313"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="614"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="870"/>
         <source>Start slideshow in fullscreen mode</source>
         <translation>Spustit promítání v režimu na celou obrazovku</translation>
     </message>
     <message>
-        <location filename="../settings/qimageviewer_design.cpp" line="292"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="317"/>
         <source>Set picture as wallpaper</source>
         <translation>Nastavit obrázekjako obrázek na pozadí</translation>
     </message>
     <message>
-        <location filename="../settings/qimageviewer_design.cpp" line="295"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="320"/>
         <source>Zoom in</source>
         <translation>Přiblížit</translation>
     </message>
     <message>
-        <location filename="../settings/qimageviewer_design.cpp" line="301"/>
-        <location filename="../settings/qimageviewer_design.cpp" line="569"/>
-        <location filename="../settings/qimageviewer_design.cpp" line="825"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="326"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="594"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="850"/>
         <source>Zoom to original size</source>
         <translation>Zvětšit na původní velikost</translation>
     </message>
     <message>
-        <location filename="../settings/qimageviewer_design.cpp" line="304"/>
-        <location filename="../settings/qimageviewer_design.cpp" line="559"/>
-        <location filename="../settings/qimageviewer_design.cpp" line="815"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="329"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="584"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="840"/>
         <source>Zoom to window size</source>
         <translation>Zvětšit na  velikost okna</translation>
     </message>
     <message>
-        <location filename="../settings/qimageviewer_design.cpp" line="340"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="365"/>
         <source>Information about program</source>
         <translation>Informace o programu</translation>
     </message>
     <message>
-        <location filename="../settings/qimageviewer_design.cpp" line="347"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="372"/>
         <source>Open previous image</source>
         <translation>Otevřít předchozí obrázek</translation>
     </message>
     <message>
-        <location filename="../settings/qimageviewer_design.cpp" line="351"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="376"/>
         <source>Open next image</source>
         <translation>Otevřít další obrázek</translation>
     </message>
     <message>
-        <location filename="../settings/qimageviewer_design.cpp" line="499"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="524"/>
         <source>Rotate picture to the left</source>
         <translation>Otočit obrázek doleva</translation>
     </message>
     <message>
-        <location filename="../settings/qimageviewer_design.cpp" line="509"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="534"/>
         <source>Rotate picture to the right</source>
         <translation>Otočit obrázek doprava</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="111"/>
+        <location filename="../qimageviewer.cpp" line="142"/>
         <source>Last version</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="111"/>
+        <location filename="../qimageviewer.cpp" line="142"/>
         <source>You have last version</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="118"/>
-        <source>You can update</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qimageviewer.cpp" line="119"/>
-        <source>Update application?
-</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qimageviewer.cpp" line="120"/>
-        <source>Current version: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qimageviewer.cpp" line="121"/>
-        <source>Last version: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qimageviewer.cpp" line="122"/>
-        <source>What&apos;s new?
-</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qimageviewer.cpp" line="195"/>
+        <location filename="../qimageviewer.cpp" line="388"/>
         <source>Opening image file</source>
         <translation>Otevírá se soubor s obrázkem</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="196"/>
+        <location filename="../qimageviewer.cpp" line="389"/>
         <source>All pictures formats (*.jpg *.jpeg *.png *.bmp *.gif *.tiff *.pbm *.pgm *.ppm *.xbm *.xpm);;Joint Photographic Experts Group (*.jpeg *.jpg);;Portable Network Graphics(*.png);;Windows Bitmap (*.bmp);;Graphic Interchange Format (*.gif);;Tagged Image File Format (*.tiff);;Portable Bitmap (*.pbm);;Portable Graymap (*.pgm);;Portable Pixmap (*.ppm);;X11 Bitmap (*.xbm *.xpm</source>
         <translation>Všechny obrázkové formáty (*.jpg *.jpeg *.png *.bmp *.gif *.tiff *.pbm *.pgm *.ppm *.xbm *.xpm);;Joint Photographic Experts Group (*.jpeg *.jpg);;Portable Network Graphics(*.png);;Windows Bitmap (*.bmp);;Graphic Interchange Format (*.gif);;Tagged Image File Format (*.tiff);;Portable Bitmap (*.pbm);;Portable Graymap (*.pgm);;Portable Pixmap (*.ppm);;X11 Bitmap (*.xbm *.xpm</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="329"/>
+        <location filename="../qimageviewer.cpp" line="522"/>
         <source>Saving files</source>
         <translation>Ukládají se soubory</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="330"/>
+        <location filename="../qimageviewer.cpp" line="523"/>
         <source>All picture formats (*.jpg *.jpeg *.png *.bmp *.tiff *.ppm *.xbm *.xpm);;Joint Photographic Experts Group (*.jpeg *.jpg);;Portable Network Graphics (*.png);;Windows Bitmap (*.bmp);;Tagged Image File Format (*.tiff);;Portable Pixmap (*.ppm);;X11 Bitmap (*.xbm *.xpm)</source>
         <translation>Všechny obrázkové formáty (*.jpg *.jpeg *.png *.bmp *.tiff *.ppm *.xbm *.xpm);;Joint Photographic Experts Group (*.jpeg *.jpg);;Portable Network Graphics (*.png);;Windows Bitmap (*.bmp);;Tagged Image File Format (*.tiff);;Portable Pixmap (*.ppm);;X11 Bitmap (*.xbm *.xpm)</translation>
     </message>
     <message>
-        <location filename="../settings/qimageviewer_design.cpp" line="549"/>
-        <location filename="../settings/qimageviewer_design.cpp" line="805"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="574"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="830"/>
         <source>Zoom Out</source>
         <translation>Oddálit</translation>
     </message>
     <message>
-        <location filename="../settings/qimageviewer_design.cpp" line="599"/>
-        <location filename="../settings/qimageviewer_design.cpp" line="855"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="624"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="880"/>
         <source>Image properties</source>
         <translation>Vlastnosti obrázku</translation>
     </message>
     <message>
-        <location filename="../settings/qimageviewer_design.cpp" line="960"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="985"/>
         <source>Warning!</source>
         <translation>Varování!</translation>
     </message>
     <message>
-        <location filename="../settings/qimageviewer_design.cpp" line="961"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="986"/>
         <source>This file was changed
 Do you want to save changes?</source>
         <translation>Tento soubor byl změněn.
@@ -1366,6 +1349,58 @@ Chcete uložit změny?</translation>
     </message>
 </context>
 <context>
+    <name>UpdateDialog</name>
+    <message>
+        <location filename="../updatedialog.ui" line="14"/>
+        <source>QImageViewer - New update</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../updatedialog.ui" line="30"/>
+        <source>Update to new version?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../updatedialog.ui" line="39"/>
+        <source>Current version: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../updatedialog.ui" line="46"/>
+        <location filename="../updatedialog.ui" line="77"/>
+        <source>TextLabel</source>
+        <translation type="unfinished">Textový štítek</translation>
+    </message>
+    <message>
+        <location filename="../updatedialog.ui" line="70"/>
+        <source>Avaiable version: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../updatedialog.ui" line="99"/>
+        <source>Full changelog:</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>UpdateInformer</name>
+    <message>
+        <location filename="../updateinformer.ui" line="14"/>
+        <source>QImageViewer - Updating</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../updateinformer.ui" line="26"/>
+        <source>Updating:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../updateinformer.ui" line="33"/>
+        <source>TextLabel</source>
+        <translation type="unfinished">Textový štítek</translation>
+    </message>
+</context>
+<context>
     <name>aboutForm</name>
     <message>
         <location filename="../aboutform.ui" line="14"/>
@@ -1412,17 +1447,22 @@ Chcete uložit změny?</translation>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Cantarell&apos;; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Ubuntu&apos;;&quot;&gt;Main developer: Bodnya Alexey (Ukraine, Kiev, KPI, TV-11)&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Ubuntu&apos;;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Ubuntu&apos;;&quot;&gt;Recent developers:&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Ubuntu&apos;;&quot;&gt;Anton Konstantinov (Russia, Vyborg)&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Ubuntu&apos;;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Ubuntu&apos;;&quot;&gt;Other help:&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Ubuntu&apos;;&quot;&gt;Neveron (Ukraine)&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Ubuntu&apos;;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Ubuntu&apos;;&quot;&gt;This program is distributed under GPLv2. It is completely free and open-source.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Ubuntu&apos;;&quot;&gt;Thanks for testing, advice and ideas to my friends, Typical Proger and Prog.org.ru communities!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Ubuntu&apos;; font-size:11pt;&quot;&gt;Main developer: Bodnya Alexey (Ukraine, Kiev, KPI, TV-11)&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Ubuntu&apos;; font-size:11pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Ubuntu&apos;; font-size:11pt;&quot;&gt;Recent developers:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Ubuntu&apos;; font-size:11pt;&quot;&gt;Anton Konstantinov (Russia, Vyborg)&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Ubuntu&apos;; font-size:11pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Ubuntu&apos;; font-size:11pt;&quot;&gt;Other help:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Ubuntu&apos;; font-size:11pt;&quot;&gt;Neveron (Ukraine)&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Ubuntu&apos;; font-size:11pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Ubuntu&apos;; font-size:11pt;&quot;&gt;This program is distributed under GPLv2. It is completely free and open-source.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Ubuntu&apos;; font-size:11pt;&quot;&gt;Thanks for testing, advice and ideas to my friends, Typical Proger and Prog.org.ru communities!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../aboutform.ui" line="183"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Official site: &lt;a href=&quot;http://qiv.p.ht&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://qiv.p.ht&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1456,12 +1496,12 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Poděkování za zkoušení, rady a myšlenky mým přátelům, společenstvím Typical Proger a Prog.org.ru!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../aboutform.ui" line="183"/>
+        <location filename="../aboutform.ui" line="196"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Sources: &lt;a href=&quot;https://github.com/abodnyaUA/qimageviewer&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;https://github.com/abodnyaUA/qimageviewer&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Sources: &lt;a href=&quot;https://github.com/abodnyaUA/qimageviewer&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;https://github.com/abodnyaUA/qimageviewer&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../aboutform.ui" line="193"/>
+        <location filename="../aboutform.ui" line="206"/>
         <source>Contact: &lt;a href=&quot;mailto:fermerasb@gmail.com&quot;&gt;fermerasb@gmail.com&lt;/a&gt;</source>
         <translation>Spojení: &lt;a href=&quot;mailto:fermerasb@gmail.com&quot;&gt;fermerasb@gmail.com&lt;/a&gt;</translation>
     </message>

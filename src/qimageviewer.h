@@ -28,6 +28,7 @@
 #include <QNetworkReply>
 #include <QNetworkAccessManager>
 #include <QNetworkRequest>
+#include <QEventLoop>
 #include "image.h"
 #include "preview.h"
 #include "previewlist.h"
@@ -38,6 +39,7 @@
 #include "settings/settings.h"
 #include "settings/hotkeys.h"
 //EXTERN APPLICATION
+#include <QFileIconProvider>
 #include "externeditor/qexternprogram.h"
 #include "externeditor/qexternprogramaddform.h"
 #include "externeditor/qexternprogrammanager.h"
@@ -52,6 +54,9 @@
 #include "qvk/vkdownloadalbumform.h"
 //Help
 #include "aboutform.h"
+//UPDATE
+#include "updateinformer.h"
+#include "updatedialog.h"
 
 namespace Ui {
 class QImageViewer;
@@ -103,8 +108,9 @@ private slots:
     void setRedoEnable(bool);
     void setStatusName(bool);
     //EXTERN PROGRAM
+    void makeInstalledSoftList();
     void newExternEditor();
-    void addEditor(QString name, QString icon, QString command);
+    void addEditor(QString name, QIcon icon, QString command);
     void abortAddingNewExternEditor();
     void exterEditorsManager();
     void exterEditorsManagerOvered(bool);
@@ -132,7 +138,9 @@ private slots:
     void vkDownloadAlbumAbort(bool);
     //UPDATE
     void getUpdates(QNetworkReply* reply);
+    void updateFile(int number);
     void checkupdates();
+    void afterUpdates();
 
 private:
     /// Settings ///
@@ -203,6 +211,7 @@ private:
 
     // EXTERN EDITORS //
     QList<QExternProgram *> editors;
+    QList<QExternProgram *> installedSoft;
     QList<QAction*> editorsActions;
     QExternProgramAddForm * editorAddForm;
     bool isEditorAddFormActive;
@@ -239,9 +248,13 @@ private:
 
     // Update //
     QNetworkAccessManager * updater;
+    UpdateInformer * updateInformer;
+    QString existDir ;
+    QStringList needToUpdate;
     bool automateUpdate;
     bool checkAutoUpdates;
     int timesToUpdate;
+    bool isUpdateDialogRunning;
 
     void createActions();
     void createHotkeys();
@@ -250,6 +263,9 @@ private:
     void createPreviews();
     void loadsettings();
     void savesettings();
+
+signals:
+    void updateFinished();
 
 protected:
     void resizeEvent(QResizeEvent *);

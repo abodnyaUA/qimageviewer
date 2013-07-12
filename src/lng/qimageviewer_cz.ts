@@ -282,12 +282,12 @@
     <message>
         <location filename="../externeditor/qexternprogramaddform.ui" line="40"/>
         <source>Installed software</source>
-        <translation type="unfinished"></translation>
+        <translation>Nainstalovaný software</translation>
     </message>
     <message>
         <location filename="../externeditor/qexternprogramaddform.ui" line="50"/>
         <source>Command line</source>
-        <translation type="unfinished"></translation>
+        <translation>Příkazový řádek</translation>
     </message>
     <message>
         <location filename="../externeditor/qexternprogramaddform.ui" line="64"/>
@@ -624,7 +624,7 @@
         <location filename="../qimageviewer.ui" line="536"/>
         <location filename="../settings/qimageviewer_design.cpp" line="368"/>
         <source>Check updates</source>
-        <translation type="unfinished"></translation>
+        <translation>Ověřit aktualizace</translation>
     </message>
     <message>
         <location filename="../qimageviewer.ui" line="492"/>
@@ -871,12 +871,12 @@
     <message>
         <location filename="../qimageviewer.cpp" line="142"/>
         <source>Last version</source>
-        <translation type="unfinished"></translation>
+        <translation>Poslední verze</translation>
     </message>
     <message>
         <location filename="../qimageviewer.cpp" line="142"/>
         <source>You have last version</source>
-        <translation type="unfinished"></translation>
+        <translation>Máte poslední verzi</translation>
     </message>
     <message>
         <location filename="../qimageviewer.cpp" line="388"/>
@@ -1008,7 +1008,7 @@ Chcete uložit změny?</translation>
     <message>
         <location filename="../settings/settings.ui" line="220"/>
         <source>Check for updates automaticaly</source>
-        <translation type="unfinished"></translation>
+        <translation>Prověřit, zda již je novější vydání, automaticky</translation>
     </message>
     <message>
         <location filename="../settings/settings.ui" line="241"/>
@@ -1353,33 +1353,33 @@ Chcete uložit změny?</translation>
     <message>
         <location filename="../updatedialog.ui" line="14"/>
         <source>QImageViewer - New update</source>
-        <translation type="unfinished"></translation>
+        <translation>QImageViewer - Nová aktualizace</translation>
     </message>
     <message>
         <location filename="../updatedialog.ui" line="30"/>
         <source>Update to new version?</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktualizovat na novou verzi?</translation>
     </message>
     <message>
         <location filename="../updatedialog.ui" line="39"/>
         <source>Current version: </source>
-        <translation type="unfinished"></translation>
+        <translation>Stávající verze: </translation>
     </message>
     <message>
         <location filename="../updatedialog.ui" line="46"/>
         <location filename="../updatedialog.ui" line="77"/>
         <source>TextLabel</source>
-        <translation type="unfinished">Textový štítek</translation>
+        <translation>Textový štítek</translation>
     </message>
     <message>
         <location filename="../updatedialog.ui" line="70"/>
         <source>Avaiable version: </source>
-        <translation type="unfinished"></translation>
+        <translation>Dostupná verze: </translation>
     </message>
     <message>
         <location filename="../updatedialog.ui" line="99"/>
         <source>Full changelog:</source>
-        <translation type="unfinished"></translation>
+        <translation>Úplný seznam změn:</translation>
     </message>
 </context>
 <context>
@@ -1387,17 +1387,17 @@ Chcete uložit změny?</translation>
     <message>
         <location filename="../updateinformer.ui" line="14"/>
         <source>QImageViewer - Updating</source>
-        <translation type="unfinished"></translation>
+        <translation>QImageViewer - Aktualizace</translation>
     </message>
     <message>
         <location filename="../updateinformer.ui" line="26"/>
         <source>Updating:</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktualizace:</translation>
     </message>
     <message>
         <location filename="../updateinformer.ui" line="33"/>
         <source>TextLabel</source>
-        <translation type="unfinished">Textový štítek</translation>
+        <translation>Textový štítek</translation>
     </message>
 </context>
 <context>
@@ -1430,7 +1430,7 @@ Chcete uložit změny?</translation>
     <message>
         <location filename="../aboutform.ui" line="117"/>
         <source>GCC</source>
-        <translation type="unfinished"></translation>
+        <translation>GCC</translation>
     </message>
     <message>
         <location filename="../aboutform.ui" line="143"/>
@@ -1458,12 +1458,25 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Ubuntu&apos;; font-size:11pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Ubuntu&apos;; font-size:11pt;&quot;&gt;This program is distributed under GPLv2. It is completely free and open-source.&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Ubuntu&apos;; font-size:11pt;&quot;&gt;Thanks for testing, advice and ideas to my friends, Typical Proger and Prog.org.ru communities!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Hlavní vývojář: Bodnya Alexey (Ukraine, Kiev, KPI, TV-11)&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Poslední vývojáři:&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Anton Konstantinov (Russia, Vyborg)&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Další pomoc:&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Neveron (Ukraine)&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Tento program je šířen pod GPLv2. Je zcela zdarma a jeho zdrojový kód je otevřený.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Poděkování za zkoušení, rady a myšlenky mým přátelům, společenstvím Typical Proger a Prog.org.ru!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../aboutform.ui" line="183"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Official site: &lt;a href=&quot;http://qiv.p.ht&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://qiv.p.ht&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Stránky: &lt;a href=&quot;http://qiv.p.ht&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://qiv.p.ht&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -1508,12 +1521,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../aboutform.cpp" line="9"/>
         <source>build: </source>
-        <translation type="unfinished"></translation>
+        <translation>Sestavení: </translation>
     </message>
     <message>
         <location filename="../aboutform.cpp" line="10"/>
         <source>version: </source>
-        <translation type="unfinished"></translation>
+        <translation>Verze:       </translation>
     </message>
 </context>
 <context>

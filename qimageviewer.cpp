@@ -17,6 +17,8 @@ QImageViewer::QImageViewer(QString path, QWidget *parent) :
     previewwiget->hide();
     mode = ModeImage;
 
+    ui->mainToolBar->hide();
+
     dialog = new QFileDialog(this);
     // Default Folder //
     loadsettings();

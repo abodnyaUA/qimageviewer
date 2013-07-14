@@ -11,6 +11,7 @@
 #include <QGraphicsPixmapItem>
 #include <QScrollBar>
 #include <qdrawutil.h>
+#include <QMovie>
 #include "settings/hotkeys.h"
 #include "algorithms.h"
 
@@ -75,6 +76,9 @@ public slots:
     bool getMouseZoom();
     bool getMouseFullscreen();
 
+private slots:
+    void onMovieUpdated();
+
 signals:
     void currentImageWasChanged(int indx);
     void itsPossibleToRedo(bool);
@@ -94,6 +98,9 @@ private:
     QPixmap * imagePixmap;
     QGraphicsScene *imageScene;
     QGraphicsPixmapItem *imagePixmapItem;
+    QMovie *imageMovie;
+    bool isMovie;
+    bool wasMovie;
     bool mouseGrabbed;
     bool isPixmap;
     double zoom;

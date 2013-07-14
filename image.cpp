@@ -4,6 +4,8 @@
 image::image()
 {
     isPixmap = false;
+    isMovie = false;
+    wasMovie = false;
     isActiveFullscreen = false;
     setAlignment(Qt::AlignCenter);
     this->installEventFilter(this);
@@ -142,6 +144,13 @@ void image::viewProperties()
 /** load new image and zoom out it if need**/
 void image::loadimage(QString path)
 {
+    if (isMovie)
+    {
+        imageMovie->stop();
+        delete imageMovie;
+        isMovie = false;
+        wasMovie = false;
+    }
     if (isPixmap)
     {
         delete imagePixmap;
@@ -192,6 +201,25 @@ void image::loadimage(QString path)
     emit currentImageWasChanged(imagelist_indx);
     sumMousePos.setX( imageScene->width()/2.0 );
     sumMousePos.setY( imageScene->height()/2.0 );
+
+    // Movie //
+    if (path.endsWith(".gif"))
+    {
+        imageMovie = new QMovie(path);
+        if (imageMovie->frameCount() > 1)
+        {
+            imageMovie->start();
+            connect(imageMovie,SIGNAL(updated(QRect)),this,SLOT(onMovieUpdated()));
+            isMovie = true;
+            wasMovie = true;
+        }
+        else delete imageMovie;
+    }
+    else
+    {
+        isMovie = false;
+        wasMovie = false;
+    }
 }
 
 /** load other images in this folder **/
@@ -199,6 +227,13 @@ void image::loadimagelist(QStringList list)
 {
     imagelist = list;
     imagelist_indx = BinSearch(list,imagename);
+}
+
+void image::onMovieUpdated()
+{
+    if (isPixmap) delete imagePixmap;
+    imagePixmap = new QPixmap(imageMovie->currentPixmap());
+    reloadImage();
 }
 
 /** return current index **/
@@ -274,6 +309,13 @@ void image::setImage(int indx)
         if (r == QMessageBox::Yes) saveimage(imagename);
         wasEdited = false;
     }
+    if (isMovie)
+    {
+        imageMovie->stop();
+        delete imageMovie;
+        isMovie = false;
+        wasMovie = false;
+    }
     if (indx >= 0 && indx < imagelist.size())
     {
         imagelist_indx = indx;
@@ -284,6 +326,7 @@ void image::setImage(int indx)
 /** zoom to original size **/
 void image::setOriginalSize()
 {
+    if (isMovie) return;
     int oldwidth = imageScene->width();
     imageScene->clear();
     imageScene->setSceneRect(0,0,1,1);
@@ -306,6 +349,7 @@ void image::setOriginalSize()
 /** zoom in **/
 void image::zoomInc()
 {
+    if (isMovie) return;
     if (!zoomMax)
     {
         int oldwidth = imageScene->width();
@@ -342,6 +386,7 @@ void image::zoomInc()
 /** zoom out **/
 void image::zoomDec()
 {
+    if (isMovie) return;
     if (!zoomMin)
     {
         zoomOriginal = false;

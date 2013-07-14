@@ -637,7 +637,11 @@ void QImageViewer::createPanel()
     butMODE->setFocusPolicy(Qt::NoFocus);
     butMODE->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Mode_Image"])));
     butMODE->setEnabled(false);
+  //  butMODE->setStyleSheet("background-color: red;");
     buttonsList << butMODE;
+    foreach (QPushButton * but, buttonsList) {
+        but->setMaximumWidth(30);
+    }
 
     spacerLeft = new QSpacerItem(40,20,QSizePolicy::Expanding);
     spacerRight = new QSpacerItem(40,20,QSizePolicy::Expanding);
@@ -645,15 +649,21 @@ void QImageViewer::createPanel()
     if (panelalignment == 0)
     {
         ui->panelBottomLayout->addSpacerItem(spacerLeft);
-        for (int i=0;i<buttonsList.size();i++)
+        for (int i=0;i<buttonsList.size()-1;i++)
+        {
+            if (i == buttonsList.size() / 2) ui->panelBottomLayout->addWidget(butMODE);
             ui->panelBottomLayout->addWidget(buttonsList[i]);
+        }
         ui->panelBottomLayout->addSpacerItem(spacerRight);
     }
     else if (panelalignment == 1)
     {
         ui->panelTopLayout->addSpacerItem(spacerLeft);
-        for (int i=0;i<buttonsList.size();i++)
-            ui->panelTopLayout->addWidget(buttonsList[i]);
+        for (int i=0;i<buttonsList.size()-1;i++)
+        {
+            if (i == buttonsList.size() / 2) ui->panelBottomLayout->addWidget(butMODE);
+            ui->panelBottomLayout->addWidget(buttonsList[i]);
+        }
         ui->panelTopLayout->addSpacerItem(spacerRight);
     }
 }
@@ -904,6 +914,10 @@ void QImageViewer::updateSettings(QString language,
     buttonsList << butMODE;
     isneedBut = isneedNew;
 
+    foreach (QPushButton * but, buttonsList) {
+        but->setMaximumWidth(27);
+    }
+
     if (mode == ModePreview)
     {
         if (isneedBut.fullscreen)  butFullscreen->hide();
@@ -940,8 +954,11 @@ void QImageViewer::updateSettings(QString language,
                 buttonsList[i]->show();
 
         ui->panelBottomLayout->addSpacerItem(spacerLeft);
-        for (int i=0;i<buttonsList.size();i++)
+        for (int i=0;i<buttonsList.size()-1;i++)
+        {
+            if (i == buttonsList.size() / 2) ui->panelBottomLayout->addWidget(butMODE);
             ui->panelBottomLayout->addWidget(buttonsList[i]);
+        }
         ui->panelBottomLayout->addSpacerItem(spacerRight);
     }
     else if (panelalignment == 1)
@@ -951,8 +968,11 @@ void QImageViewer::updateSettings(QString language,
                 buttonsList[i]->show();
 
         ui->panelTopLayout->addSpacerItem(spacerLeft);
-        for (int i=0;i<buttonsList.size();i++)
-            ui->panelTopLayout->addWidget(buttonsList[i]);
+        for (int i=0;i<buttonsList.size()-1;i++)
+        {
+            if (i == buttonsList.size() / 2) ui->panelBottomLayout->addWidget(butMODE);
+            ui->panelBottomLayout->addWidget(buttonsList[i]);
+        }
         ui->panelTopLayout->addSpacerItem(spacerRight);
     }
     else if (panelalignment == 2)

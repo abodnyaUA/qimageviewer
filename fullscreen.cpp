@@ -39,6 +39,7 @@ QColor fullscreen::getBkgColor()
 
 void fullscreen::startSlideShow()
 {
+    qDebug() << "START SLIDESHOW";
     timer->start(slideshowInterval*1000);
     slideshowStarted = true;
 }
@@ -89,6 +90,7 @@ void fullscreen::nextSlide()
     }
     else
     {
+        qDebug() << "NEED NEXT SLIDE";
         if (imagewidget->currentImage() < imagewidget->size()-1)
             imagewidget->setImage(imagewidget->currentImage()+1);
         else

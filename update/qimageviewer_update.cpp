@@ -160,6 +160,9 @@ void QImageViewer::updateFile(int number)
     QNetworkReply *reply = m_NetworkMngr->get(
                 QNetworkRequest(QUrl("http://qiv.p.ht/bin/"+needToUpdate[number])));
 #endif
+#ifdef Q_OS_MAC
+    QNetworkReply *reply;
+#endif
     QEventLoop loop;
     connect(reply, SIGNAL(finished()),&loop, SLOT(quit()));
     loop.exec();

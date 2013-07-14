@@ -10,7 +10,12 @@ QExternProgram::QExternProgram(QString name,QIcon icon,QString command, image *i
 
 void QExternProgram::exec()
 {
-    QProcess *vec = new QProcess;
+#ifdef Q_OS_MAC
+    QString progname = command;
+    QString start;
+    if (command.contains(" ")) progname = '"' + progname + '"';
+    start = "open -a " + progname + " " + '"' + imagewidget->currentImageName() + '"';
+#endif
 #ifdef Q_OS_LINUX
     QString prog = command;
     QString start;
@@ -33,5 +38,5 @@ void QExternProgram::exec()
     QString start = '"' + command + '"' + " " + '"' + filename + '"';
 #endif
     qDebug() << start;
-    vec->startDetached(start);
+    QProcess::startDetached(start);
 }

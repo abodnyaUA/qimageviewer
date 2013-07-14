@@ -91,7 +91,6 @@ void image::addToBuffer(QPixmap * pixmap)
     sumMousePos.setX( imageScene->width()/2.0 );
     sumMousePos.setY( imageScene->height()/2.0 );
 
-
 }
 
 /** 'undo' function **/

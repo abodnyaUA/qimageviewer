@@ -92,6 +92,9 @@ bool PreviewMode::rotateLeft(QString currentImage, bool isSaved)
     bool needReload = false;
     foreach(QListWidgetItem *item,selectedItems())
     {
+#ifdef Q_OS_MAC
+        QString imagename = folder() + "/" + item->text();
+#endif
 #ifdef Q_OS_LINUX
         QString imagename = folder() + "/" + item->text();
 #endif
@@ -121,6 +124,9 @@ bool PreviewMode::rotateRight(QString currentImage, bool isSaved)
     bool needReload = false;
     foreach(QListWidgetItem *item,selectedItems())
     {
+#ifdef Q_OS_MAC
+        QString imagename = folder() + "/" + item->text();
+#endif
 #ifdef Q_OS_LINUX
         QString imagename = folder() + "/" + item->text();
 #endif
@@ -150,6 +156,9 @@ bool PreviewMode::flipHorizontal(QString currentImage, bool isSaved)
     bool needReload = false;
     foreach(QListWidgetItem *item,selectedItems())
     {
+#ifdef Q_OS_MAC
+        QString imagename = folder() + "/" + item->text();
+#endif
 #ifdef Q_OS_LINUX
         QString imagename = folder() + "/" + item->text();
 #endif
@@ -179,6 +188,9 @@ bool PreviewMode::flipVertical(QString currentImage, bool isSaved)
     bool needReload = false;
     foreach(QListWidgetItem *item,selectedItems())
     {
+#ifdef Q_OS_MAC
+        QString imagename = folder() + "/" + item->text();
+#endif
 #ifdef Q_OS_LINUX
         QString imagename = folder() + "/" + item->text();
 #endif
@@ -208,6 +220,9 @@ QStringList PreviewMode::selectedImages()
     QStringList items;
     foreach(QListWidgetItem *item,selectedItems())
     {
+#ifdef Q_OS_MAC
+        QString imagename = folder() + "/" + item->text();
+#endif
 #ifdef Q_OS_LINUX
         QString imagename = folder() + "/" + item->text();
 #endif

@@ -85,6 +85,9 @@ void QImageViewer::loadsettings()
         QString command = qsettings->value("ExternProgram"+QString::number(indx)+"/Command","").toString();
 
         QIcon icon;
+#ifdef Q_OS_MAC
+        icon.addPixmap(QDir::homePath()+"/.config/QImageViewer/extern/"+name+".png");
+#endif
 #ifdef Q_OS_LINUX
         icon.addPixmap(QDir::homePath()+"/.config/QImageViewer/extern/"+name+".png");
 #endif
@@ -213,6 +216,9 @@ void QImageViewer::savesettings()
         indx++;
     }
     QString dir;
+#ifdef Q_OS_MAC
+    dir = QDir::homePath()+"/.config/QImageViewer/extern/";
+#endif
 #ifdef Q_OS_LINUX
     dir = QDir::homePath()+"/.config/QImageViewer/extern/";
 #endif
@@ -424,11 +430,10 @@ void QImageViewer::createDesign()
         iconpacks = dialog.directory().entryList(QDir::Dirs | QDir::NoSymLinks | QDir::NoDotAndDotDot,QDir::SortByMask);
         for (int i=0;i<iconpacks.size();i++)
         {
-#ifdef Q_OS_LINUX
-            iconpacks[i] = iconpacksfolder + iconpacks[i] + "/";
-#endif
 #ifdef Q_OS_WIN32
             iconpacks[i] = iconpacksfolder + iconpacks[i]+ "\\";
+#else
+            iconpacks[i] = iconpacksfolder + iconpacks[i] + "/";
 #endif
         }
         if (!iconpacks.isEmpty()) iconpacks.insert(0,":/res/");
@@ -639,9 +644,18 @@ void QImageViewer::createPanel()
     butMODE->setEnabled(false);
   //  butMODE->setStyleSheet("background-color: red;");
     buttonsList << butMODE;
+#ifdef Q_OS_MAC
+    foreach (QPushButton * but, buttonsList) {
+        but->setMaximumWidth(50);
+        but->setMinimumHeight(40);
+    }
+#endif
+#ifdef Q_OS_LINUX
     foreach (QPushButton * but, buttonsList) {
         but->setMaximumWidth(30);
     }
+#endif
+
 
     spacerLeft = new QSpacerItem(40,20,QSizePolicy::Expanding);
     spacerRight = new QSpacerItem(40,20,QSizePolicy::Expanding);
@@ -914,9 +928,17 @@ void QImageViewer::updateSettings(QString language,
     buttonsList << butMODE;
     isneedBut = isneedNew;
 
+#ifdef Q_OS_MAC
     foreach (QPushButton * but, buttonsList) {
-        but->setMaximumWidth(27);
+        but->setMaximumWidth(50);
+        but->setMinimumHeight(40);
     }
+#endif
+#ifdef Q_OS_LINUX
+    foreach (QPushButton * but, buttonsList) {
+        but->setMaximumWidth(30);
+    }
+#endif
 
     if (mode == ModePreview)
     {

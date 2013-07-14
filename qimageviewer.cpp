@@ -255,8 +255,7 @@ void QImageViewer::filesFind()
             lastdirectory.insert(i,"\\");
         }
     for (int i=0;i<imagefiles.size();i++) imagefiles[i] = lastdirectory + '\\' + imagefiles[i];
-#endif
-#ifdef Q_OS_LINUX
+#else
     for (int i=0;i<imagefiles.size();i++) imagefiles[i] = lastdirectory + '/' + imagefiles[i];
 #endif
 

@@ -53,5 +53,6 @@
         <file>res/mode_Image.png</file>
         <file>res/mode_Loading.png</file>
         <file>res/mode_Previews.png</file>
+        <file>res/icon.icns</file>
     </qresource>
 </RCC>

@@ -41,11 +41,19 @@ unix {
 
     INSTALLS += target desktop
     INSTALLS += icon_32 icon_64
+    QMAKE_CXXFLAGS = -std=c++11
 }
 win32 {
 #OS WIN
 RC_FILE = myapp.rc
- }
+    QMAKE_CXXFLAGS = -std=c++11
+}
+macx {
+    ICON = res/icon.icns
+    #CONFIG-=app_bundle
+    QMAKE_CXXFLAGS = -mmacosx-version-min=10.7 -std=gnu0x -stdlib=libc+
+    CONFIG+=c++11
+}
 
 # Input
 HEADERS += \
@@ -144,7 +152,6 @@ TRANSLATIONS += lng/qimageviewer_cz.ts \
                 lng/qimageviewer_pl.ts \
                 lng/qimageviewer_ru.ts \
                 lng/qimageviewer_uk.ts
-QMAKE_CXXFLAGS += -std=c++11
 
 OTHER_FILES += \
     lng/qimageviewer_uk.ts \

@@ -6,6 +6,7 @@
 #include <QSettings>
 #include <QStringList>
 #include <QDebug>
+#include <QMessageBox>
 void loadStyleSheet()
 {
     /* Let's use QFile and point to a resource... */
@@ -59,13 +60,14 @@ int main(int argc, char *argv[])
     if (args.size() != 1)
     {
         QString url = args[1];
+        //QMessageBox::about(0,"",url);
         if (!url.endsWith("jpg",Qt::CaseInsensitive) && !url.endsWith("png",Qt::CaseInsensitive) &&
             !url.endsWith("bmp",Qt::CaseInsensitive) && !url.endsWith("jpeg",Qt::CaseInsensitive) &&
             !url.endsWith("ppm",Qt::CaseInsensitive) && !url.endsWith("xbm",Qt::CaseInsensitive) &&
             !url.endsWith("xbm",Qt::CaseInsensitive) && !url.endsWith("tiff",Qt::CaseInsensitive) &&
             !url.endsWith("gif",Qt::CaseInsensitive) &&
             !url.endsWith("pbm",Qt::CaseInsensitive) && !url.endsWith("pgm",Qt::CaseInsensitive)) args.removeAt(1);
-    }
+    } //else QMessageBox::about(0,"","nothing");
 
     //Run application without any images
     if (args.size() == 1) w = new QImageViewer;

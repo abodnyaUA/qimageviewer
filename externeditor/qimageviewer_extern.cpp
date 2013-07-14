@@ -177,6 +177,20 @@ void QImageViewer::makeInstalledSoftList()
 
 #endif
 
+#ifdef Q_OS_MAC
+    QDir dir;
+    dir.setPath("/Applications");
+    QStringList filter("*.app");
+    QStringList applications = dir.entryList(filter,QDir::NoFilter,QDir::SortByMask);
+    QFileIconProvider iconGetter;
+    for (int i=0;i<applications.size();i++)
+    {
+        QIcon icon = iconGetter.icon(QFileInfo("/Applications/"+applications[i]));
+        applications[i] = applications[i].left( applications[i].size() - 4 );
+        QString command = applications[i];
+        installedSoft.append(new QExternProgram(applications[i],icon,command,imagewidget));
+    }
+#endif
 }
 
 void QImageViewer::newExternEditor()
@@ -204,11 +218,10 @@ void QImageViewer::addEditor(QString name, QIcon icon, QString command)
     if (!imagewidget->isReady()) action->setEnabled(false);
 
     QString dir;
-#ifdef Q_OS_LINUX
-    dir = QDir::homePath()+"/.config/QImageViewer/extern/";
-#endif
 #ifdef Q_OS_WIN32
     dir = QApplication::applicationDirPath()+"\\extern\\";
+#else
+    dir = QDir::homePath()+"/.config/QImageViewer/extern/";
 #endif
     if (!QDir(dir).exists())
     {

@@ -39,6 +39,13 @@ void image::reloadImage()
 /** load pixmap from argument 0 to form and make buffer bigger **/
 void image::addToBuffer(QPixmap * pixmap)
 {
+    if (isMovie)
+    {
+        imageMovie->stop();
+        delete imageMovie;
+        isMovie = false;
+    }
+
     delete imageScene;
     imagePixmap = pixmap;
 
@@ -84,6 +91,7 @@ void image::addToBuffer(QPixmap * pixmap)
     sumMousePos.setX( imageScene->width()/2.0 );
     sumMousePos.setY( imageScene->height()/2.0 );
 
+
 }
 
 /** 'undo' function **/
@@ -101,6 +109,13 @@ void image::prevBuffer()
     }
     else
     {
+        if (wasMovie)
+        {
+            imageMovie = new QMovie(imagename);
+            imageMovie->start();
+            connect(imageMovie,SIGNAL(updated(QRect)),this,SLOT(onMovieUpdated()));
+            isMovie = true;
+        }
         emit itsPossibleToUndo(false);
         setSaved();
     }
@@ -111,6 +126,12 @@ void image::prevBuffer()
 void image::nextBuffer()
 {
     wasEdited = true;
+    if (isMovie)
+    {
+        imageMovie->stop();
+        delete imageMovie;
+        isMovie = false;
+    }
     if (buffer_indx == 0)
         emit itsSaved(false);
     if (buffer_indx < buffer.size()-1)
@@ -175,7 +196,11 @@ void image::saveimage(QString filename)
     }
     if (format != "PNG" && format != "BMP" && format != "JPG" &&
             format != "JPEG" && format != "PPM" && format != "XBM" &&
-            format != "XPM" && format != "TIFF") format = "PNG";
+            format != "XPM" && format != "TIFF")
+    {
+        filename = filename.left(filename.size() - format.size()) + QString(".png");
+        format = "PNG";
+    }
 
     QFile file(filename);
     file.open(QIODevice::WriteOnly);

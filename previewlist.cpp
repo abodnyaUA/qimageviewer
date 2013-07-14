@@ -1,21 +1,29 @@
 #include "previewlist.h"
 
-previewList::previewList(QListWidget * previewListWidget)
+previewList::previewList(QListWidget * previewListWidget, QThread *thread)
 {
     listWidget = previewListWidget;
+    this->thread = thread;
 }
 void previewList::loadList(QStringList list)
 {
     lst.clear();
     foreach(QString item, list)
         lst.append(item);
+    current = 0;
 }
 
 void previewList::run()
 {
-    for (int i=0;i<lst.size();i++)
+    while (thread->isRunning() && current!=lst.size())
     {
-        listWidget->item(i)->setIcon(QIcon(QPixmap(lst[i]).scaled(100,100)));
+        if (listWidget->count() > current)
+        {
+            qDebug() << "current = "<<current<<"; size = "<<listWidget->count();
+            listWidget->item(current)->setIcon(QIcon(QPixmap(lst[current]).scaled(100,100)));
+            current++;
+            thread->start();
+        }
     }
-    emit finished();
+    if (thread->isRunning()) emit finished();
 }

@@ -12,7 +12,14 @@ void QExternProgram::exec()
 {
     QProcess *vec = new QProcess;
 #ifdef Q_OS_LINUX
-    QString start = command + " " + '"' + imagewidget->currentImageName() + '"';
+    QString prog = command;
+    QString start;
+    if (command.endsWith(".exe") || prog.endsWith(".bat") || prog.endsWith(".msn"))
+    {
+        start = QString("wine ") + '"' + command +'"' + " " +
+            '"' + imagewidget->currentImageName() + '"';
+    }
+    else start = command + " " + '"' + imagewidget->currentImageName() + '"';
 #endif
 #ifdef Q_OS_WIN32
     QString filename = imagewidget->currentImageName();

@@ -10,15 +10,16 @@ PreviewMode::PreviewMode()
     setResizeMode(QListView::Adjust);
     //setWrapping(false);
     setGridSize(QSize(100,100));
-    previewLoader = new previewList(this);
+    previewThread = new QThread;
+    previewLoader = new previewList(this,previewThread);
     connect(this,SIGNAL(itemDoubleClicked(QListWidgetItem*)),this,SLOT(onItemDoubleClicked(QListWidgetItem*)));
     setSelectionMode(QAbstractItemView::ExtendedSelection);
 }
 
 void PreviewMode::loadImages(QStringList images)
 {
+    previewThread->terminate();
     clear();
-    setResizeMode(QListView::Adjust);
     this->images = images;
     qDebug() << "Folder"<<folder();
     foreach (QString image, images)
@@ -26,15 +27,18 @@ void PreviewMode::loadImages(QStringList images)
         addItem(image.right(image.size()-folder().size()-1));
     }
     previewLoader->loadList(images);
-    connect(&previewThread,SIGNAL(started()),previewLoader,SLOT(run()));
-    connect(previewLoader,SIGNAL(finished()),&previewThread,SLOT(terminate()));
+    connect(previewThread,SIGNAL(started()),previewLoader,SLOT(run()));
+    connect(previewLoader,SIGNAL(finished()),previewThread,SLOT(terminate()));
     connect(previewLoader,SIGNAL(finished()),this,SLOT(updateView()));
-    previewLoader->moveToThread(&previewThread);
-    previewThread.start();
+    qDebug() << "I'm here";
+    previewLoader->moveToThread(previewThread);
+    previewThread->start();
 }
 
 void PreviewMode::updateView()
 {
+    qDebug() << "I'm ready";
+    if (count() > 0) item(0)->setIcon(QIcon(QPixmap(images[0]).scaled(100,100)));
     repaint();
     emit ready();
 }

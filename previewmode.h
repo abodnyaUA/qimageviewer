@@ -30,7 +30,7 @@ public:
     
 private:
     QStringList images;
-    QThread previewThread;
+    QThread *previewThread;
     previewList *previewLoader;
 
 private slots:

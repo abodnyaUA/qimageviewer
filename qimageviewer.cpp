@@ -164,7 +164,7 @@ void QImageViewer::fileOpen()
         path = defaultpath;
         defaultpath = QString::null;
     }
-    if( !path.isNull() )
+    if( !path.isNull() && QFile(path).exists())
     {
         if (mode == ModePreview) changeMode();
         // Remember last directory //
@@ -228,6 +228,7 @@ void QImageViewer::fileOpen()
 
         previewwiget->loadImages(imagewidget->getImageList());
     }
+    defaultpath = QString::null;
 }
 
 /** Find pictures in current folder **/

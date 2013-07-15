@@ -38,7 +38,7 @@ int main(int argc, char *argv[])
     if (lng == "rus") lng = "ru_RU";
     else if (lng == "ukr") lng = "uk_UA";
     else if (lng == "eng") lng = "en_US";
-    else if (lng == "cze") lng = "cz_CZ";
+    else if (lng == "cze") lng = "cs_CS";
     else lng = QLocale::system().name();
 
     /// system locale for messageboxes ///

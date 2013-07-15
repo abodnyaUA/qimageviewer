@@ -205,9 +205,6 @@ void QImageViewer::modeDelete()
     }
     if (previewwiget->size() == 0)
     {
-        setWindowTitle("QImageViewer");
-        if (mode == ModePreview) changeMode();
-        ui->actionMode->setEnabled(false);
-        butMODE->setEnabled(false);
+        listIsEmpty();
     }
 }

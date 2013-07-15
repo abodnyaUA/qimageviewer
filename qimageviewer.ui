@@ -108,7 +108,7 @@
      <x>0</x>
      <y>0</y>
      <width>640</width>
-     <height>22</height>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="fileMenu">
@@ -133,9 +133,22 @@
     <property name="title">
      <string>&amp;Edit</string>
     </property>
+    <widget class="QMenu" name="menuAccept_filter">
+     <property name="title">
+      <string>Accept filter</string>
+     </property>
+     <addaction name="actionGray_Scale"/>
+     <addaction name="actionSepia"/>
+     <addaction name="actionBrightness"/>
+     <addaction name="actionWarm"/>
+     <addaction name="actionSaturation"/>
+     <addaction name="actionBlur"/>
+     <addaction name="actionSharpen"/>
+    </widget>
     <addaction name="actionUndo"/>
     <addaction name="actionRedo"/>
     <addaction name="separator"/>
+    <addaction name="menuAccept_filter"/>
     <addaction name="rotateRightAction"/>
     <addaction name="rotateLeftAction"/>
     <addaction name="separator"/>
@@ -564,6 +577,62 @@
    </property>
    <property name="text">
     <string>Switch view mode</string>
+   </property>
+  </action>
+  <action name="actionBrightness">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Brightness</string>
+   </property>
+  </action>
+  <action name="actionGray_Scale">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Gray Scale</string>
+   </property>
+  </action>
+  <action name="actionWarm">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Warm / Cold</string>
+   </property>
+  </action>
+  <action name="actionSaturation">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Saturation</string>
+   </property>
+  </action>
+  <action name="actionBlur">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Blur</string>
+   </property>
+  </action>
+  <action name="actionSharpen">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Sharpen</string>
+   </property>
+  </action>
+  <action name="actionSepia">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Sepia</string>
    </property>
   </action>
  </widget>

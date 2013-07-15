@@ -304,6 +304,27 @@ void QImageViewer::createActions()
     ui->resizeAction->setStatusTip(tr("Resize current image"));
     connect(ui->resizeAction,SIGNAL(triggered()),this,SLOT(modeResize()));
 
+    ui->actionBlur->setStatusTip(tr("Accept Blur filter to image"));
+    connect(ui->actionBlur,SIGNAL(triggered()),this,SLOT(acceptFilterBlur()));
+
+    ui->actionBrightness->setStatusTip(tr("Change image brightness"));
+    connect(ui->actionBrightness,SIGNAL(triggered()),this,SLOT(acceptFilterBrightness()));
+
+    ui->actionGray_Scale->setStatusTip(tr("Convert image colors to grey"));
+    connect(ui->actionGray_Scale,SIGNAL(triggered()),this,SLOT(acceptFilterGrayScale()));
+
+    ui->actionSaturation->setStatusTip(tr("Saturated images have more vivid colors and use to be more spectacular."));
+    connect(ui->actionSaturation,SIGNAL(triggered()),this,SLOT(acceptFilterSaturate()));
+
+    ui->actionSharpen->setStatusTip(tr("Sharpening is useful with blurry images, it helps to improve the level of detail."));
+    connect(ui->actionSharpen,SIGNAL(triggered()),this,SLOT(acceptFilterSharpen()));
+
+    ui->actionSepia->setStatusTip(tr("With a warmer image we can get a retro effect and for example in images where there's sand we'll get a more vivid image."));
+    connect(ui->actionSepia,SIGNAL(triggered()),this,SLOT(acceptFilterSepia()));
+
+    ui->actionWarm->setStatusTip(tr("With a warmer image we can get a retro effect and for example in images where there's sand we'll get a more vivid image."));
+    connect(ui->actionWarm,SIGNAL(triggered()),this,SLOT(acceptFilterTemperature()));
+
     // Watching //
     ui->nextimageAction->setStatusTip(tr("Show next image"));
     connect(ui->nextimageAction,SIGNAL(triggered()),this,SLOT(nextImage()));
@@ -484,6 +505,13 @@ void QImageViewer::createDesign()
     icon["Mode_Image"] = "mode_Image.png";
     icon["Mode_Previews"] = "mode_Previews.png";
     icon["Mode_Loading"] = "mode_Loading.png";
+    icon["Filter_Blur"] = "filter-blur.png";
+    icon["Filter_Brightness"] = "filter-brightness.png";
+    icon["Filter_Sharpen"] = "filter-sharpen.png";
+    icon["Filter_Temperature"] = "filter-temperature.png";
+    icon["Filter_Gray"] = "filter-gray-scale.png";
+    icon["Filter_Saturation"] = "filter-saturation.png";
+    icon["Filter_Sepia"] = "filter-sepia.png";
 
     //Menu actions
     ui->openAction->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["FileOpen"])));
@@ -518,6 +546,13 @@ void QImageViewer::createDesign()
     ui->aboutAction->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Help"])));
     ui->updatesAction->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Update"])));
     ui->actionMode->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Mode_Image"])));
+    ui->actionBlur->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Filter_Blur"])));
+    ui->actionBrightness->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Filter_Brightness"])));
+    ui->actionGray_Scale->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Filter_Gray"])));
+    ui->actionSaturation->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Filter_Saturation"])));
+    ui->actionSharpen->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Filter_Sharpen"])));
+    ui->actionWarm->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Filter_Temperature"])));
+    ui->actionSepia->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Filter_Sepia"])));
 
     imagewidget->loadiconnames(icon);
     imagewidget->loadiconpack(iconpacks[currenticonpack]);

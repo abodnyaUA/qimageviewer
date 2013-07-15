@@ -119,6 +119,9 @@ f Autoupdating
 Add:
 + Previews mode
 + Multiple rotating, flipping
++ GIF Animation support
++ Editing filters
++ Mac OS X support
 
 Changed:
 c Buttons "Next", "Previous" occupy all the available space in height

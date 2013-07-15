@@ -86,7 +86,9 @@ HEADERS += \
     update/updatedialog.h \
     update/updateinformer.h \
     previewmode.h \
-    algorithms.h
+    algorithms.h \
+    edit/imagefilter.h \
+    edit/editformfilters.h
 FORMS += \
     aboutform.ui \
     fullscreen.ui \
@@ -105,7 +107,8 @@ FORMS += \
     qvk/vkuploadimagesform.ui \
     settings/settings.ui \
     update/updatedialog.ui \
-    update/updateinformer.ui
+    update/updateinformer.ui \
+    edit/editformfilters.ui
 SOURCES += \
     aboutform.cpp \
     fullscreen.cpp \
@@ -145,7 +148,9 @@ SOURCES += \
     previewmode.cpp \
     externeditor/qimageviewer_extern.cpp \
     algorithms.cpp \
-    qimageviewer_mode.cpp
+    qimageviewer_mode.cpp \
+    edit/imagefilter.cpp \
+    edit/editformfilters.cpp
 RESOURCES += resources.qrc
 TRANSLATIONS += lng/qimageviewer_cz.ts \
                 lng/qimageviewer_en.ts \
@@ -162,7 +167,7 @@ OTHER_FILES += \
     lng/qimageviewer_pl.qm \
     lng/qimageviewer_en.ts \
     lng/qimageviewer_en.qm \
-    lng/qimageviewer_cz.ts \
-    lng/qimageviewer_cz.qm \
     android/src/org/qtproject/qt5/android/bindings/QtApplication.java \
-    android/src/org/qtproject/qt5/android/bindings/QtActivity.java
+    android/src/org/qtproject/qt5/android/bindings/QtActivity.java \
+    lng/qimageviewer_cs.ts \
+    lng/qimageviewer_cs.qm

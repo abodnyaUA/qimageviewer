@@ -1,80 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="pl">
+<TS version="2.0" language="cs_CZ">
 <context>
     <name>ImageShackListUpload</name>
     <message>
         <location filename="../imageshack/imageshacklistupload.ui" line="14"/>
         <source>QImageViewer - ImageShack.us Uploader - Choose images</source>
-        <translation type="unfinished"></translation>
+        <translation>QImageViewer - Nahrávač ImageShack.us - Vybrat obrázky</translation>
     </message>
     <message>
-        <location filename="../imageshack/imageshacklistupload.ui" line="29"/>
+        <location filename="../imageshack/imageshacklistupload.ui" line="24"/>
+        <source>Choose images:</source>
+        <translation>Vybrat obrázky:</translation>
+    </message>
+    <message>
+        <location filename="../imageshack/imageshacklistupload.ui" line="38"/>
+        <source>Preview:</source>
+        <translation>Náhled:</translation>
+    </message>
+    <message>
+        <location filename="../imageshack/imageshacklistupload.ui" line="82"/>
+        <source>Upload</source>
+        <translation>Nahrát</translation>
+    </message>
+    <message>
+        <location filename="../imageshack/imageshacklistupload.ui" line="85"/>
+        <source>Ctrl+Return</source>
+        <translation>Ctrl+Return</translation>
+    </message>
+    <message>
+        <location filename="../imageshack/imageshacklistupload.ui" line="92"/>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Zrušit</translation>
     </message>
     <message>
-        <location filename="../imageshack/imageshacklistupload.ui" line="32"/>
+        <location filename="../imageshack/imageshacklistupload.ui" line="95"/>
         <source>Esc</source>
-        <translation type="unfinished"></translation>
+        <translation>Esc</translation>
     </message>
     <message>
-        <location filename="../imageshack/imageshacklistupload.ui" line="41"/>
+        <location filename="../imageshack/imageshacklistupload.ui" line="115"/>
         <source>TextLabel</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../imageshack/imageshacklistupload.cpp" line="12"/>
-        <source>Images are uploading</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../imageshack/imageshacklistupload.cpp" line="13"/>
-        <source>Images are uploading now. Do you want to cancel uploading?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../imageshack/imageshacklistupload.cpp" line="14"/>
-        <source>Minimize</source>
-        <translation type="unfinished"></translation>
+        <translation>Textový štítek</translation>
     </message>
     <message>
         <location filename="../imageshack/imageshacklistupload.cpp" line="15"/>
-        <source>Yes</source>
-        <translation type="unfinished"></translation>
+        <source>Images are uploading</source>
+        <translation>Nahrávají se obrázky</translation>
     </message>
     <message>
         <location filename="../imageshack/imageshacklistupload.cpp" line="16"/>
+        <source>Images are uploading now. Do you want to cancel uploading?</source>
+        <translation>Nyní se nahrávají obrázky. Chcete nahrávání zrušit?</translation>
+    </message>
+    <message>
+        <location filename="../imageshack/imageshacklistupload.cpp" line="17"/>
+        <source>Minimize</source>
+        <translation>Zmenšit</translation>
+    </message>
+    <message>
+        <location filename="../imageshack/imageshacklistupload.cpp" line="18"/>
+        <source>Yes</source>
+        <translation>Ano</translation>
+    </message>
+    <message>
+        <location filename="../imageshack/imageshacklistupload.cpp" line="19"/>
         <source>No</source>
-        <translation type="unfinished"></translation>
+        <translation>Ne</translation>
     </message>
     <message>
-        <location filename="../imageshack/imageshacklistupload.cpp" line="34"/>
-        <location filename="../imageshack/imageshacklistupload.cpp" line="46"/>
+        <location filename="../imageshack/imageshacklistupload.cpp" line="64"/>
+        <location filename="../imageshack/imageshacklistupload.cpp" line="75"/>
         <source>Uploading: </source>
-        <translation type="unfinished"></translation>
+        <translation>Nahrávání:</translation>
     </message>
     <message>
-        <location filename="../imageshack/imageshacklistupload.cpp" line="65"/>
+        <location filename="../imageshack/imageshacklistupload.cpp" line="97"/>
         <source>Can&apos;t upload image!</source>
-        <translation type="unfinished"></translation>
+        <translation>Obrázek nelze nahrát!</translation>
     </message>
     <message>
-        <location filename="../imageshack/imageshacklistupload.cpp" line="66"/>
+        <location filename="../imageshack/imageshacklistupload.cpp" line="98"/>
         <source>Image can&apos;t be uploaded. Server doesn&apos;t answer. Please check your internet connection</source>
-        <translation type="unfinished"></translation>
+        <translation>Obrázek nelze nahrát! Server neodpovídá. Prověřte, prosím, své internetové připojení</translation>
     </message>
     <message>
-        <location filename="../imageshack/imageshacklistupload.cpp" line="92"/>
-        <location filename="../imageshack/imageshacklistupload.cpp" line="130"/>
+        <location filename="../imageshack/imageshacklistupload.cpp" line="119"/>
+        <location filename="../imageshack/imageshacklistupload.cpp" line="158"/>
         <source>Pictures have been uploaded</source>
-        <translation type="unfinished"></translation>
+        <translation>Obrázky byly nahrány</translation>
     </message>
     <message>
-        <location filename="../imageshack/imageshacklistupload.cpp" line="93"/>
-        <location filename="../imageshack/imageshacklistupload.cpp" line="131"/>
+        <location filename="../imageshack/imageshacklistupload.cpp" line="120"/>
+        <location filename="../imageshack/imageshacklistupload.cpp" line="159"/>
         <source>Do you want to see uploaded images?</source>
-        <translation type="unfinished"></translation>
+        <translation>Chcete vidět nahrané obrázky?</translation>
     </message>
 </context>
 <context>
@@ -82,49 +102,49 @@
     <message>
         <location filename="../imageshack/imageshacklistview.ui" line="14"/>
         <source>QImageViewer - ImageShack.us Uploader - List of uploaded images</source>
-        <translation type="unfinished"></translation>
+        <translation>QImageViewer - Nahrávač ImageShack.us - Seznam nahraných obrázků</translation>
     </message>
     <message>
         <location filename="../imageshack/imageshacklistview.ui" line="33"/>
         <source>Full size</source>
-        <translation type="unfinished"></translation>
+        <translation>Celá velikost</translation>
     </message>
     <message>
         <location filename="../imageshack/imageshacklistview.ui" line="46"/>
         <source>Direct link:</source>
-        <translation type="unfinished"></translation>
+        <translation>Přímý odkaz:</translation>
     </message>
     <message>
         <location filename="../imageshack/imageshacklistview.ui" line="59"/>
         <location filename="../imageshack/imageshacklistview.ui" line="147"/>
         <source>BBCode (Forum)</source>
-        <translation type="unfinished"></translation>
+        <translation>BBCode (fórum)</translation>
     </message>
     <message>
         <location filename="../imageshack/imageshacklistview.ui" line="72"/>
         <location filename="../imageshack/imageshacklistview.ui" line="160"/>
         <source>HTML (Site)</source>
-        <translation type="unfinished"></translation>
+        <translation>HTML (stránka)</translation>
     </message>
     <message>
         <location filename="../imageshack/imageshacklistview.ui" line="108"/>
         <source>Short Link</source>
-        <translation type="unfinished"></translation>
+        <translation>Krátký odkaz</translation>
     </message>
     <message>
         <location filename="../imageshack/imageshacklistview.ui" line="121"/>
         <source>Link:</source>
-        <translation type="unfinished"></translation>
+        <translation>Odkaz:</translation>
     </message>
     <message>
         <location filename="../imageshack/imageshacklistview.ui" line="134"/>
         <source>Preview</source>
-        <translation type="unfinished"></translation>
+        <translation>Náhled</translation>
     </message>
     <message>
         <location filename="../imageshack/imageshacklistview.ui" line="195"/>
         <source>OK</source>
-        <translation type="unfinished"></translation>
+        <translation>OK</translation>
     </message>
 </context>
 <context>
@@ -132,64 +152,64 @@
     <message>
         <location filename="../imageshack/imageshackuploader.ui" line="14"/>
         <source>QImageViewer - Image Shack Uploader</source>
-        <translation type="unfinished"></translation>
+        <translation>QImageViewer - Nahrávač Image Shack</translation>
     </message>
     <message>
         <location filename="../imageshack/imageshackuploader.ui" line="28"/>
         <source>Preview:</source>
-        <translation type="unfinished"></translation>
+        <translation>Náhled:</translation>
     </message>
     <message>
         <location filename="../imageshack/imageshackuploader.ui" line="79"/>
         <source>Short Link</source>
-        <translation type="unfinished"></translation>
+        <translation>Krátký odkaz</translation>
     </message>
     <message>
         <location filename="../imageshack/imageshackuploader.ui" line="92"/>
         <source>Link:</source>
-        <translation type="unfinished"></translation>
+        <translation>Odkaz:</translation>
     </message>
     <message>
         <location filename="../imageshack/imageshackuploader.ui" line="112"/>
         <source>Full size</source>
-        <translation type="unfinished"></translation>
+        <translation>Celá velikost</translation>
     </message>
     <message>
         <location filename="../imageshack/imageshackuploader.ui" line="125"/>
         <location filename="../imageshack/imageshackuploader.ui" line="198"/>
         <source>BBCode (Forum)</source>
-        <translation type="unfinished"></translation>
+        <translation>BBCode (fórum)</translation>
     </message>
     <message>
         <location filename="../imageshack/imageshackuploader.ui" line="145"/>
         <location filename="../imageshack/imageshackuploader.ui" line="218"/>
         <source>HTML (Site)</source>
-        <translation type="unfinished"></translation>
+        <translation>HTML (stránka)</translation>
     </message>
     <message>
         <location filename="../imageshack/imageshackuploader.ui" line="165"/>
         <source>Direct link:</source>
-        <translation type="unfinished"></translation>
+        <translation>Přímý odkaz:</translation>
     </message>
     <message>
         <location filename="../imageshack/imageshackuploader.ui" line="185"/>
         <source>Preview</source>
-        <translation type="unfinished"></translation>
+        <translation>Náhled</translation>
     </message>
     <message>
         <location filename="../imageshack/imageshackuploader.ui" line="249"/>
         <source>OK</source>
-        <translation type="unfinished"></translation>
+        <translation>OK</translation>
     </message>
     <message>
         <location filename="../imageshack/imageshackuploader.cpp" line="33"/>
         <source>Can&apos;t upload image!</source>
-        <translation type="unfinished"></translation>
+        <translation>Obrázek nelze nahrát!</translation>
     </message>
     <message>
         <location filename="../imageshack/imageshackuploader.cpp" line="34"/>
         <source>Image can&apos;t be uploaded. Server doesn&apos;t answer. Please check your internet connection</source>
-        <translation type="unfinished"></translation>
+        <translation>Obrázek nelze nahrát! Server neodpovídá. Prověřte, prosím, své internetové připojení</translation>
     </message>
 </context>
 <context>
@@ -198,17 +218,17 @@
         <location filename="../properties.ui" line="14"/>
         <source>QImageViewer - Properties</source>
         <oldsource>QImageViewer - Свойства изображения</oldsource>
-        <translation>QImageViewer - Właściwości</translation>
+        <translation>QImageViewer - Vlastnosti</translation>
     </message>
     <message>
         <location filename="../properties.ui" line="35"/>
         <source>File properties:</source>
-        <translation type="unfinished"></translation>
+        <translation>Vlastnosti souboru:</translation>
     </message>
     <message>
         <location filename="../properties.ui" line="45"/>
         <source>Filename</source>
-        <translation type="unfinished"></translation>
+        <translation>Název souboru</translation>
     </message>
     <message>
         <location filename="../properties.ui" line="52"/>
@@ -219,37 +239,37 @@
         <location filename="../properties.ui" line="137"/>
         <location filename="../properties.ui" line="144"/>
         <source>TextLabel</source>
-        <translation type="unfinished"></translation>
+        <translation>Textový štítek</translation>
     </message>
     <message>
         <location filename="../properties.ui" line="62"/>
         <source>Work folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Pracovní složka</translation>
     </message>
     <message>
         <location filename="../properties.ui" line="96"/>
         <source>File size</source>
-        <translation type="unfinished"></translation>
+        <translation>Velikost souboru</translation>
     </message>
     <message>
         <location filename="../properties.ui" line="113"/>
         <source>Creation date</source>
-        <translation type="unfinished"></translation>
+        <translation>Datum vytvoření</translation>
     </message>
     <message>
         <location filename="../properties.ui" line="130"/>
         <source>Last change date</source>
-        <translation type="unfinished"></translation>
+        <translation>Datum poslední změny</translation>
     </message>
     <message>
         <location filename="../properties.ui" line="79"/>
         <source>Image size</source>
-        <translation type="unfinished"></translation>
+        <translation>Velikost obrázku</translation>
     </message>
     <message>
         <location filename="../properties.ui" line="171"/>
         <source>&amp;Ok</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;OK</translation>
     </message>
 </context>
 <context>
@@ -257,80 +277,80 @@
     <message>
         <location filename="../externeditor/qexternprogramaddform.ui" line="26"/>
         <source>QImageViewer - New extern program</source>
-        <translation type="unfinished"></translation>
+        <translation>QImageViewer - Nový vnější program</translation>
     </message>
     <message>
         <location filename="../externeditor/qexternprogramaddform.ui" line="40"/>
         <source>Installed software</source>
-        <translation type="unfinished"></translation>
+        <translation>Nainstalovaný software</translation>
     </message>
     <message>
         <location filename="../externeditor/qexternprogramaddform.ui" line="50"/>
         <source>Command line</source>
-        <translation type="unfinished"></translation>
+        <translation>Příkazový řádek</translation>
     </message>
     <message>
         <location filename="../externeditor/qexternprogramaddform.ui" line="64"/>
         <location filename="../externeditor/qexternprogramaddform.ui" line="135"/>
         <source>Browse</source>
-        <translation type="unfinished"></translation>
+        <translation>Procházet</translation>
     </message>
     <message>
         <location filename="../externeditor/qexternprogramaddform.ui" line="71"/>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Název</translation>
     </message>
     <message>
         <location filename="../externeditor/qexternprogramaddform.ui" line="78"/>
         <source>Icon</source>
-        <translation type="unfinished"></translation>
+        <translation>Ikona</translation>
     </message>
     <message>
         <location filename="../externeditor/qexternprogramaddform.ui" line="108"/>
         <source>Application path (command)</source>
-        <translation type="unfinished"></translation>
+        <translation>Cesta k programu</translation>
     </message>
     <message>
         <location filename="../externeditor/qexternprogramaddform.ui" line="163"/>
         <source>Add</source>
-        <translation type="unfinished"></translation>
+        <translation>Přidat</translation>
     </message>
     <message>
         <location filename="../externeditor/qexternprogramaddform.ui" line="170"/>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Zrušit</translation>
     </message>
     <message>
         <location filename="../externeditor/qexternprogramaddform.cpp" line="28"/>
         <source>All image formats (*.jpg *.jpeg *.png *.bmp *.gif *.tiff *.pbm *.pgm *.ppm *.xbm *.xpm)</source>
-        <translation type="unfinished"></translation>
+        <translation>Všechny obrázkové formáty (*.jpg *.jpeg *.png *.bmp *.gif *.tiff *.pbm *.pgm *.ppm *.xbm *.xpm)</translation>
     </message>
     <message>
         <location filename="../externeditor/qexternprogramaddform.cpp" line="27"/>
         <location filename="../externeditor/qexternprogramaddform.cpp" line="40"/>
         <source>Opening extern image application</source>
-        <translation type="unfinished"></translation>
+        <translation>Otevírá se vnější program na obrázky</translation>
     </message>
     <message>
         <location filename="../externeditor/qexternprogramaddform.cpp" line="41"/>
         <source>All file formats (*.*)</source>
-        <translation type="unfinished"></translation>
+        <translation>Všechny souborové formáty (*.*)</translation>
     </message>
     <message>
         <location filename="../externeditor/qexternprogramaddform.cpp" line="63"/>
         <location filename="../externeditor/qexternprogramaddform.cpp" line="70"/>
         <source>Invalid parameters</source>
-        <translation type="unfinished"></translation>
+        <translation>Neplatné parametry</translation>
     </message>
     <message>
         <location filename="../externeditor/qexternprogramaddform.cpp" line="64"/>
         <source>Name can&apos;t be empty</source>
-        <translation type="unfinished"></translation>
+        <translation>Název nemůže být prázdný</translation>
     </message>
     <message>
         <location filename="../externeditor/qexternprogramaddform.cpp" line="71"/>
         <source>Application path (command) can&apos;t be empty</source>
-        <translation type="unfinished"></translation>
+        <translation>Cesta k programu nemůže být prázdná</translation>
     </message>
 </context>
 <context>
@@ -338,85 +358,85 @@
     <message>
         <location filename="../externeditor/qexternprogrammanager.ui" line="14"/>
         <source>QImageViewer - Extern programs manager</source>
-        <translation type="unfinished"></translation>
+        <translation>QImageViewer - Správce vnějších programů</translation>
     </message>
     <message>
         <location filename="../externeditor/qexternprogrammanager.ui" line="48"/>
         <location filename="../externeditor/qexternprogrammanager.ui" line="126"/>
         <source>Browse</source>
-        <translation type="unfinished"></translation>
+        <translation>Procházet</translation>
     </message>
     <message>
         <location filename="../externeditor/qexternprogrammanager.ui" line="55"/>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Název</translation>
     </message>
     <message>
         <location filename="../externeditor/qexternprogrammanager.ui" line="62"/>
         <source>Icon</source>
-        <translation type="unfinished"></translation>
+        <translation>Ikona</translation>
     </message>
     <message>
         <location filename="../externeditor/qexternprogrammanager.ui" line="92"/>
         <source>Application path (command)</source>
-        <translation type="unfinished"></translation>
+        <translation>Cesta k programu</translation>
     </message>
     <message>
         <location filename="../externeditor/qexternprogrammanager.ui" line="137"/>
         <source>Add new</source>
-        <translation type="unfinished"></translation>
+        <translation>Přidat nový</translation>
     </message>
     <message>
         <location filename="../externeditor/qexternprogrammanager.ui" line="151"/>
         <source>Update</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktualizovat</translation>
     </message>
     <message>
         <location filename="../externeditor/qexternprogrammanager.ui" line="165"/>
         <source>Remove</source>
-        <translation type="unfinished"></translation>
+        <translation>Odstranit</translation>
     </message>
     <message>
         <location filename="../externeditor/qexternprogrammanager.ui" line="193"/>
         <source>Update data</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktualizovat data</translation>
     </message>
     <message>
         <location filename="../externeditor/qexternprogrammanager.ui" line="200"/>
         <source>Cancel updates</source>
-        <translation type="unfinished"></translation>
+        <translation>Zrušit aktualizace</translation>
     </message>
     <message>
         <location filename="../externeditor/qexternprogrammanager.cpp" line="53"/>
         <location filename="../externeditor/qexternprogrammanager.cpp" line="60"/>
         <source>Invalid parameters</source>
-        <translation type="unfinished"></translation>
+        <translation>Neplatné parametry</translation>
     </message>
     <message>
         <location filename="../externeditor/qexternprogrammanager.cpp" line="54"/>
         <source>Name can&apos;t be empty</source>
-        <translation type="unfinished"></translation>
+        <translation>Název nemůže být prázdný</translation>
     </message>
     <message>
         <location filename="../externeditor/qexternprogrammanager.cpp" line="61"/>
         <source>Application path (command) can&apos;t be empty</source>
-        <translation type="unfinished"></translation>
+        <translation>Cesta k programu nemůže být prázdná</translation>
     </message>
     <message>
-        <location filename="../externeditor/qexternprogrammanager.cpp" line="235"/>
-        <location filename="../externeditor/qexternprogrammanager.cpp" line="248"/>
+        <location filename="../externeditor/qexternprogrammanager.cpp" line="232"/>
+        <location filename="../externeditor/qexternprogrammanager.cpp" line="245"/>
         <source>Opening extern image application</source>
-        <translation type="unfinished"></translation>
+        <translation>Otevírá se vnější program na obrázky</translation>
     </message>
     <message>
-        <location filename="../externeditor/qexternprogrammanager.cpp" line="236"/>
+        <location filename="../externeditor/qexternprogrammanager.cpp" line="233"/>
         <source>All image formats (*.jpg *.jpeg *.png *.bmp *.gif *.tiff *.pbm *.pgm *.ppm *.xbm *.xpm)</source>
-        <translation type="unfinished"></translation>
+        <translation>Všechny obrázkové formáty (*.jpg *.jpeg *.png *.bmp *.gif *.tiff *.pbm *.pgm *.ppm *.xbm *.xpm)</translation>
     </message>
     <message>
-        <location filename="../externeditor/qexternprogrammanager.cpp" line="249"/>
+        <location filename="../externeditor/qexternprogrammanager.cpp" line="246"/>
         <source>All file formats (*.*)</source>
-        <translation type="unfinished"></translation>
+        <translation>Všechny souborové formáty (*.*)</translation>
     </message>
 </context>
 <context>
@@ -424,622 +444,524 @@
     <message>
         <location filename="../qimageviewer.ui" line="14"/>
         <source>QImageViewer</source>
-        <translation type="unfinished"></translation>
+        <translation>QImageViewer</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="110"/>
-        <location filename="../qimageviewer.cpp" line="125"/>
-        <location filename="../qimageviewer.cpp" line="137"/>
-        <location filename="../qimageviewer.cpp" line="225"/>
-        <location filename="../qimageviewer.cpp" line="299"/>
+        <location filename="../qimageviewer.cpp" line="349"/>
+        <location filename="../qimageviewer.cpp" line="364"/>
+        <location filename="../qimageviewer.cpp" line="376"/>
+        <location filename="../qimageviewer.cpp" line="460"/>
+        <location filename="../qimageviewer.cpp" line="542"/>
         <source> of </source>
-        <translation type="unfinished"></translation>
+        <translation> z </translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="119"/>
+        <location filename="../qimageviewer.ui" line="95"/>
         <source>&amp;File</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Soubor</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="134"/>
+        <location filename="../qimageviewer.ui" line="110"/>
         <source>&amp;Edit</source>
-        <translation type="unfinished"></translation>
+        <translation>Ú&amp;pravy</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="138"/>
-        <source>Accept filter</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qimageviewer.ui" line="168"/>
+        <location filename="../qimageviewer.ui" line="132"/>
         <source>&amp;Help</source>
-        <translation type="unfinished"></translation>
+        <translation>Nápo&amp;věda</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="178"/>
+        <location filename="../qimageviewer.ui" line="142"/>
         <source>&amp;Preview</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Náhled</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="196"/>
+        <location filename="../qimageviewer.ui" line="159"/>
         <source>&amp;Extern editors</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Vnější editory</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="203"/>
+        <location filename="../qimageviewer.ui" line="166"/>
         <source>&amp;Network</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Síť</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="237"/>
+        <location filename="../qimageviewer.ui" line="202"/>
         <source>Open image</source>
-        <translation type="unfinished"></translation>
+        <translation>Otevřít obrázek</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="283"/>
-        <location filename="../settings/qimageviewer_design.cpp" line="860"/>
+        <location filename="../qimageviewer.ui" line="248"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="790"/>
         <source>Rotate right</source>
-        <translation type="unfinished"></translation>
+        <translation>Otočit vpravo</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="295"/>
-        <location filename="../settings/qimageviewer_design.cpp" line="850"/>
+        <location filename="../qimageviewer.ui" line="260"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="780"/>
         <source>Rotate left</source>
-        <translation type="unfinished"></translation>
+        <translation>Otočit vlevo</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="351"/>
+        <location filename="../qimageviewer.ui" line="316"/>
         <source>Undo</source>
-        <translation type="unfinished"></translation>
+        <translation>Zpět</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="359"/>
+        <location filename="../qimageviewer.ui" line="324"/>
         <source>Redo</source>
-        <translation type="unfinished"></translation>
+        <translation>Znovu</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="371"/>
+        <location filename="../qimageviewer.ui" line="336"/>
         <source>Set as wallpaper</source>
-        <translation type="unfinished"></translation>
+        <translation>Nastavit jako obrázek na pozadí</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="383"/>
+        <location filename="../qimageviewer.ui" line="348"/>
         <source>Start slideshow</source>
-        <translation type="unfinished"></translation>
+        <translation>Spustit promítání</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="392"/>
+        <location filename="../qimageviewer.ui" line="357"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Nastavení</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="404"/>
-        <location filename="../settings/qimageviewer_design.cpp" line="606"/>
-        <location filename="../settings/qimageviewer_design.cpp" line="890"/>
+        <location filename="../qimageviewer.ui" line="369"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="564"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="820"/>
         <source>Zoom In</source>
-        <translation type="unfinished"></translation>
+        <translation>Přiblížit</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="416"/>
-        <location filename="../settings/qimageviewer_design.cpp" line="349"/>
+        <location filename="../qimageviewer.ui" line="381"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="323"/>
         <source>Zoom out</source>
-        <translation type="unfinished"></translation>
+        <translation>Oddálit</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="428"/>
+        <location filename="../qimageviewer.ui" line="393"/>
         <source>Window size</source>
-        <translation type="unfinished"></translation>
+        <translation>Velikost okna</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="440"/>
+        <location filename="../qimageviewer.ui" line="405"/>
         <source>Original size</source>
-        <translation type="unfinished"></translation>
+        <translation>Původní velikost</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="452"/>
+        <location filename="../qimageviewer.ui" line="417"/>
         <source>Resize items...</source>
-        <translation type="unfinished"></translation>
+        <translation>Změnit velikost položek...</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="464"/>
+        <location filename="../qimageviewer.ui" line="429"/>
         <source>Flip horizontal</source>
-        <translation type="unfinished"></translation>
+        <translation>Převrátit vodorovně</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="476"/>
+        <location filename="../qimageviewer.ui" line="441"/>
         <source>Flip vertical</source>
-        <translation type="unfinished"></translation>
+        <translation>Převrátit svisle</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="488"/>
+        <location filename="../qimageviewer.ui" line="453"/>
         <source>Next image</source>
-        <translation type="unfinished"></translation>
+        <translation>Další obrázek</translation>
+    </message>
+    <message>
+        <location filename="../qimageviewer.ui" line="465"/>
+        <source>Previous image</source>
+        <translation>Předchozí obrázek</translation>
+    </message>
+    <message>
+        <location filename="../qimageviewer.ui" line="470"/>
+        <source>Add editor</source>
+        <translation>Přidat editor</translation>
+    </message>
+    <message>
+        <location filename="../qimageviewer.ui" line="475"/>
+        <source>Editors manager</source>
+        <translation>Správce editorů</translation>
+    </message>
+    <message>
+        <location filename="../qimageviewer.ui" line="487"/>
+        <source>Upload image via ImageShack.us</source>
+        <translation>Nahrát obrázek přes ImageShack.us</translation>
     </message>
     <message>
         <location filename="../qimageviewer.ui" line="500"/>
-        <source>Previous image</source>
-        <translation type="unfinished"></translation>
+        <source>Upload images via ImageShack.us</source>
+        <translation>Nahrát obrázky přes ImageShack.us</translation>
     </message>
     <message>
         <location filename="../qimageviewer.ui" line="505"/>
-        <source>Add editor</source>
-        <translation type="unfinished"></translation>
+        <source>Login to vk.com</source>
+        <translation>Přihlásit se k vk.com</translation>
     </message>
     <message>
         <location filename="../qimageviewer.ui" line="510"/>
-        <source>Editors manager</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qimageviewer.ui" line="522"/>
-        <source>Upload image via ImageShack.us</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qimageviewer.ui" line="535"/>
-        <source>Upload images via ImageShack.us</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qimageviewer.ui" line="540"/>
-        <source>Login to vk.com</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qimageviewer.ui" line="545"/>
         <source>Log out of vk.com</source>
-        <translation type="unfinished"></translation>
+        <translation>Odhlásit se z vk.com</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="553"/>
+        <location filename="../qimageviewer.ui" line="518"/>
         <source>Upload image to vk.com</source>
-        <translation type="unfinished"></translation>
+        <translation>Nahrát obrázek na vk.com</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="561"/>
+        <location filename="../qimageviewer.ui" line="526"/>
         <source>Upload images to vk.com</source>
-        <translation type="unfinished"></translation>
+        <translation>Nahrát obrázky na vk.com</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="566"/>
+        <location filename="../qimageviewer.ui" line="531"/>
         <source>Download album from vk.com</source>
-        <translation type="unfinished"></translation>
+        <translation>Stáhnout album z vk.com</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="571"/>
-        <location filename="../settings/qimageviewer_design.cpp" line="391"/>
+        <location filename="../qimageviewer.ui" line="536"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="368"/>
         <source>Check updates</source>
-        <translation type="unfinished"></translation>
+        <translation>Ověřit aktualizace</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="579"/>
-        <source>Switch view mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qimageviewer.ui" line="584"/>
-        <source>Brightness</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qimageviewer.ui" line="589"/>
-        <source>Gray Scale</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qimageviewer.ui" line="594"/>
-        <source>Warm / Cold</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qimageviewer.ui" line="599"/>
-        <source>Saturation</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qimageviewer.ui" line="604"/>
-        <source>Blur</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qimageviewer.ui" line="609"/>
-        <source>Sharpen</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qimageviewer.ui" line="614"/>
-        <source>Sepia</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qimageviewer.ui" line="527"/>
+        <location filename="../qimageviewer.ui" line="492"/>
         <source>About Qt</source>
-        <translation type="unfinished"></translation>
+        <translation>O Qt</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="242"/>
+        <location filename="../qimageviewer.ui" line="207"/>
         <source>Quit</source>
-        <translation type="unfinished"></translation>
+        <translation>Ukončit</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="251"/>
+        <location filename="../qimageviewer.ui" line="216"/>
         <source>About</source>
-        <translation type="unfinished"></translation>
+        <translation>O programu</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="263"/>
+        <location filename="../qimageviewer.ui" line="228"/>
         <source>Save</source>
-        <translation type="unfinished"></translation>
+        <translation>Uložit</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="271"/>
+        <location filename="../qimageviewer.ui" line="236"/>
         <source>Save as...</source>
-        <translation type="unfinished"></translation>
+        <translation>Uložit jako...</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="307"/>
-        <location filename="../qimageviewer_mode.cpp" line="172"/>
-        <location filename="../qimageviewer_mode.cpp" line="187"/>
+        <location filename="../qimageviewer.ui" line="272"/>
         <source>Delete file</source>
-        <translation type="unfinished"></translation>
+        <translation>Smazat soubor</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="319"/>
+        <location filename="../qimageviewer.ui" line="284"/>
         <source>Resize</source>
-        <translation type="unfinished"></translation>
+        <translation>Změnit velikost</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="331"/>
+        <location filename="../qimageviewer.ui" line="296"/>
         <source>Fullscreen mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Režim na celou obrazovku</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.ui" line="343"/>
+        <location filename="../qimageviewer.ui" line="308"/>
         <source>Crop</source>
-        <translation type="unfinished"></translation>
+        <translation>Oříznout</translation>
     </message>
     <message>
-        <location filename="../settings/qimageviewer_design.cpp" line="261"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="253"/>
         <source>Open current image</source>
-        <translation type="unfinished"></translation>
+        <translation>Otevřít nynější obrázek</translation>
     </message>
     <message>
-        <location filename="../settings/qimageviewer_design.cpp" line="264"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="256"/>
         <source>Save current image with same name and format</source>
-        <translation type="unfinished"></translation>
+        <translation>Uložit nynější obrázek se stejným názvem a ve stejném formátu</translation>
     </message>
     <message>
-        <location filename="../settings/qimageviewer_design.cpp" line="268"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="260"/>
         <source>Save current image with new name and format</source>
-        <translation type="unfinished"></translation>
+        <translation>Uložit nynější obrázek s novým názvem a formátem</translation>
     </message>
     <message>
-        <location filename="../settings/qimageviewer_design.cpp" line="271"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="263"/>
         <source>Program settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Nastavení programu</translation>
+    </message>
+    <message>
+        <location filename="../settings/qimageviewer_design.cpp" line="266"/>
+        <source>Close program</source>
+        <translation>Zavřít program</translation>
+    </message>
+    <message>
+        <location filename="../settings/qimageviewer_design.cpp" line="270"/>
+        <source>Cancel last changes</source>
+        <translation>Zrušit poslední změny</translation>
     </message>
     <message>
         <location filename="../settings/qimageviewer_design.cpp" line="274"/>
-        <source>Close program</source>
-        <translation type="unfinished"></translation>
+        <source>Do last changes</source>
+        <translation>Udělat poslední změny</translation>
     </message>
     <message>
         <location filename="../settings/qimageviewer_design.cpp" line="278"/>
-        <source>Cancel last changes</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../settings/qimageviewer_design.cpp" line="282"/>
-        <source>Do last changes</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../settings/qimageviewer_design.cpp" line="286"/>
         <source>Rotate image to the left</source>
-        <translation type="unfinished"></translation>
+        <translation>Otočit obrázek doleva</translation>
     </message>
     <message>
-        <location filename="../settings/qimageviewer_design.cpp" line="289"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="281"/>
         <source>Rotate image to the right</source>
-        <translation type="unfinished"></translation>
+        <translation>Otočit obrázek doprava</translation>
     </message>
     <message>
-        <location filename="../settings/qimageviewer_design.cpp" line="307"/>
-        <source>Accept Blur filter to image</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../settings/qimageviewer_design.cpp" line="310"/>
-        <source>Change image brightness</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../settings/qimageviewer_design.cpp" line="313"/>
-        <source>Convert image colors to grey</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../settings/qimageviewer_design.cpp" line="316"/>
-        <source>Saturated images have more vivid colors and use to be more spectacular.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../settings/qimageviewer_design.cpp" line="319"/>
-        <source>Sharpening is useful with blurry images, it helps to improve the level of detail.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../settings/qimageviewer_design.cpp" line="322"/>
-        <location filename="../settings/qimageviewer_design.cpp" line="325"/>
-        <source>With a warmer image we can get a retro effect and for example in images where there&apos;s sand we&apos;ll get a more vivid image.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../settings/qimageviewer_design.cpp" line="358"/>
-        <source>Switch view mode between image and previews</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../settings/qimageviewer_design.cpp" line="362"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="333"/>
         <source>Add new extern editor. You will be able to open current image with another editor</source>
-        <translation type="unfinished"></translation>
+        <translation>Přidat nový vnější editor. Budete moci otevřít nynější obrázek v jiném editoru</translation>
     </message>
     <message>
-        <location filename="../settings/qimageviewer_design.cpp" line="365"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="336"/>
         <source>Set up your extern settings</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../settings/qimageviewer_design.cpp" line="375"/>
-        <source>Log in to social network vk.com to enable upload images</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../settings/qimageviewer_design.cpp" line="378"/>
-        <source>Log out of social network vk.com.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../settings/qimageviewer_design.cpp" line="381"/>
-        <source>Upload current image to your vk.com&apos;s account</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../settings/qimageviewer_design.cpp" line="384"/>
-        <source>Download images from vk.com&apos;s account</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../settings/qimageviewer_design.cpp" line="292"/>
-        <location filename="../settings/qimageviewer_design.cpp" line="586"/>
-        <location filename="../settings/qimageviewer_design.cpp" line="870"/>
-        <source>Change this image to horizontal mirror</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../settings/qimageviewer_design.cpp" line="295"/>
-        <location filename="../settings/qimageviewer_design.cpp" line="596"/>
-        <location filename="../settings/qimageviewer_design.cpp" line="880"/>
-        <source>Change this image to vertical mirror</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../settings/qimageviewer_design.cpp" line="298"/>
-        <source>Delete current image</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../settings/qimageviewer_design.cpp" line="304"/>
-        <source>Resize current image</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../settings/qimageviewer_design.cpp" line="301"/>
-        <source>Crop current image</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../settings/qimageviewer_design.cpp" line="329"/>
-        <source>Show next image</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../settings/qimageviewer_design.cpp" line="332"/>
-        <source>Show previous image</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../settings/qimageviewer_design.cpp" line="335"/>
-        <location filename="../settings/qimageviewer_design.cpp" line="646"/>
-        <location filename="../settings/qimageviewer_design.cpp" line="930"/>
-        <source>Enable fullscreen mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../settings/qimageviewer_design.cpp" line="339"/>
-        <location filename="../settings/qimageviewer_design.cpp" line="656"/>
-        <location filename="../settings/qimageviewer_design.cpp" line="940"/>
-        <source>Start slideshow in fullscreen mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Nastavení vaše vnější nastavení</translation>
     </message>
     <message>
         <location filename="../settings/qimageviewer_design.cpp" line="343"/>
-        <source>Set picture as wallpaper</source>
-        <translation type="unfinished"></translation>
+        <source>Share this image with ImageShack.us</source>
+        <translation>Sdílet tento obrázek s ImageShack.us</translation>
     </message>
     <message>
         <location filename="../settings/qimageviewer_design.cpp" line="346"/>
-        <source>Zoom in</source>
-        <translation type="unfinished"></translation>
+        <source>Share list of images with ImageShack.us</source>
+        <translation>Sdílet seznam obrázků s ImageShack.us</translation>
+    </message>
+    <message>
+        <location filename="../settings/qimageviewer_design.cpp" line="349"/>
+        <source>Log in to social network vk.com to enable upload images</source>
+        <translation>Přihlásit se do společenské sítě vk.com pro povolení nahrávání obrázků</translation>
     </message>
     <message>
         <location filename="../settings/qimageviewer_design.cpp" line="352"/>
-        <location filename="../settings/qimageviewer_design.cpp" line="636"/>
-        <location filename="../settings/qimageviewer_design.cpp" line="920"/>
-        <source>Zoom to original size</source>
-        <translation type="unfinished"></translation>
+        <source>Log out of social network vk.com.</source>
+        <translation>Odhlásit se ze společenské sítě vk.com.</translation>
     </message>
     <message>
         <location filename="../settings/qimageviewer_design.cpp" line="355"/>
-        <location filename="../settings/qimageviewer_design.cpp" line="626"/>
-        <location filename="../settings/qimageviewer_design.cpp" line="910"/>
+        <source>Upload current image to your vk.com&apos;s account</source>
+        <translation>Nahrát nynější obrázek na váš účet u vk.com</translation>
+    </message>
+    <message>
+        <location filename="../settings/qimageviewer_design.cpp" line="358"/>
+        <source>Upload some images to your vk.com&apos;s account</source>
+        <translation>Nahrát nějaké obrázky na váš účet u vk.com</translation>
+    </message>
+    <message>
+        <location filename="../settings/qimageviewer_design.cpp" line="361"/>
+        <source>Download images from vk.com&apos;s account</source>
+        <translation>Stáhnout obrázky z účtu u vk.com</translation>
+    </message>
+    <message>
+        <location filename="../settings/qimageviewer_design.cpp" line="284"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="544"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="800"/>
+        <source>Change this image to horizontal mirror</source>
+        <translation>Změnit tento obrázek k vodorovnému zrcadlu</translation>
+    </message>
+    <message>
+        <location filename="../settings/qimageviewer_design.cpp" line="287"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="554"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="810"/>
+        <source>Change this image to vertical mirror</source>
+        <translation>Změnit tento obrázek k svislému zrcadlu</translation>
+    </message>
+    <message>
+        <location filename="../settings/qimageviewer_design.cpp" line="290"/>
+        <source>Delete current image</source>
+        <translation>Smazat nynější obrázek</translation>
+    </message>
+    <message>
+        <location filename="../settings/qimageviewer_design.cpp" line="296"/>
+        <source>Resize current image</source>
+        <translation>Změnit velikost nynějšího obrázku</translation>
+    </message>
+    <message>
+        <location filename="../settings/qimageviewer_design.cpp" line="293"/>
+        <source>Crop current image</source>
+        <translation>Oříznout nynější obrázek</translation>
+    </message>
+    <message>
+        <location filename="../settings/qimageviewer_design.cpp" line="299"/>
+        <source>Resize list of images</source>
+        <translation>Změnit velikost seznamu obrázků</translation>
+    </message>
+    <message>
+        <location filename="../settings/qimageviewer_design.cpp" line="303"/>
+        <source>Show next image</source>
+        <translation>Ukázat další obrázek</translation>
+    </message>
+    <message>
+        <location filename="../settings/qimageviewer_design.cpp" line="306"/>
+        <source>Show previous image</source>
+        <translation>Ukázat předchozí obrázek</translation>
+    </message>
+    <message>
+        <location filename="../settings/qimageviewer_design.cpp" line="309"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="604"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="860"/>
+        <source>Enable fullscreen mode</source>
+        <translation>Povolit režim na celou obrazovku</translation>
+    </message>
+    <message>
+        <location filename="../settings/qimageviewer_design.cpp" line="313"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="614"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="870"/>
+        <source>Start slideshow in fullscreen mode</source>
+        <translation>Spustit promítání v režimu na celou obrazovku</translation>
+    </message>
+    <message>
+        <location filename="../settings/qimageviewer_design.cpp" line="317"/>
+        <source>Set picture as wallpaper</source>
+        <translation>Nastavit obrázekjako obrázek na pozadí</translation>
+    </message>
+    <message>
+        <location filename="../settings/qimageviewer_design.cpp" line="320"/>
+        <source>Zoom in</source>
+        <translation>Přiblížit</translation>
+    </message>
+    <message>
+        <location filename="../settings/qimageviewer_design.cpp" line="326"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="594"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="850"/>
+        <source>Zoom to original size</source>
+        <translation>Zvětšit na původní velikost</translation>
+    </message>
+    <message>
+        <location filename="../settings/qimageviewer_design.cpp" line="329"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="584"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="840"/>
         <source>Zoom to window size</source>
-        <translation type="unfinished"></translation>
+        <translation>Zvětšit na  velikost okna</translation>
+    </message>
+    <message>
+        <location filename="../settings/qimageviewer_design.cpp" line="365"/>
+        <source>Information about program</source>
+        <translation>Informace o programu</translation>
     </message>
     <message>
         <location filename="../settings/qimageviewer_design.cpp" line="372"/>
-        <source>Share image with ImageShack.us</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../settings/qimageviewer_design.cpp" line="388"/>
-        <source>Information about program</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../settings/qimageviewer_design.cpp" line="395"/>
         <source>Open previous image</source>
-        <translation type="unfinished"></translation>
+        <translation>Otevřít předchozí obrázek</translation>
     </message>
     <message>
-        <location filename="../settings/qimageviewer_design.cpp" line="399"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="376"/>
         <source>Open next image</source>
-        <translation type="unfinished"></translation>
+        <translation>Otevřít další obrázek</translation>
     </message>
     <message>
-        <location filename="../settings/qimageviewer_design.cpp" line="566"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="524"/>
         <source>Rotate picture to the left</source>
-        <translation type="unfinished"></translation>
+        <translation>Otočit obrázek doleva</translation>
     </message>
     <message>
-        <location filename="../settings/qimageviewer_design.cpp" line="576"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="534"/>
         <source>Rotate picture to the right</source>
-        <translation type="unfinished"></translation>
+        <translation>Otočit obrázek doprava</translation>
     </message>
     <message>
-        <location filename="../update/qimageviewer_update.cpp" line="57"/>
+        <location filename="../qimageviewer.cpp" line="142"/>
         <source>Last version</source>
-        <translation type="unfinished"></translation>
+        <translation>Poslední verze</translation>
     </message>
     <message>
-        <location filename="../update/qimageviewer_update.cpp" line="57"/>
+        <location filename="../qimageviewer.cpp" line="142"/>
         <source>You have last version</source>
-        <translation type="unfinished"></translation>
+        <translation>Máte poslední verzi</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="149"/>
+        <location filename="../qimageviewer.cpp" line="388"/>
         <source>Opening image file</source>
-        <translation type="unfinished"></translation>
+        <translation>Otevírá se soubor s obrázkem</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="150"/>
+        <location filename="../qimageviewer.cpp" line="389"/>
         <source>All pictures formats (*.jpg *.jpeg *.png *.bmp *.gif *.tiff *.pbm *.pgm *.ppm *.xbm *.xpm);;Joint Photographic Experts Group (*.jpeg *.jpg);;Portable Network Graphics(*.png);;Windows Bitmap (*.bmp);;Graphic Interchange Format (*.gif);;Tagged Image File Format (*.tiff);;Portable Bitmap (*.pbm);;Portable Graymap (*.pgm);;Portable Pixmap (*.ppm);;X11 Bitmap (*.xbm *.xpm</source>
-        <translation type="unfinished"></translation>
+        <translation>Všechny obrázkové formáty (*.jpg *.jpeg *.png *.bmp *.gif *.tiff *.pbm *.pgm *.ppm *.xbm *.xpm);;Joint Photographic Experts Group (*.jpeg *.jpg);;Portable Network Graphics(*.png);;Windows Bitmap (*.bmp);;Graphic Interchange Format (*.gif);;Tagged Image File Format (*.tiff);;Portable Bitmap (*.pbm);;Portable Graymap (*.pgm);;Portable Pixmap (*.ppm);;X11 Bitmap (*.xbm *.xpm</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="279"/>
+        <location filename="../qimageviewer.cpp" line="522"/>
         <source>Saving files</source>
-        <translation type="unfinished"></translation>
+        <translation>Ukládají se soubory</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="280"/>
+        <location filename="../qimageviewer.cpp" line="523"/>
         <source>All picture formats (*.jpg *.jpeg *.png *.bmp *.tiff *.ppm *.xbm *.xpm);;Joint Photographic Experts Group (*.jpeg *.jpg);;Portable Network Graphics (*.png);;Windows Bitmap (*.bmp);;Tagged Image File Format (*.tiff);;Portable Pixmap (*.ppm);;X11 Bitmap (*.xbm *.xpm)</source>
-        <translation type="unfinished"></translation>
+        <translation>Všechny obrázkové formáty (*.jpg *.jpeg *.png *.bmp *.tiff *.ppm *.xbm *.xpm);;Joint Photographic Experts Group (*.jpeg *.jpg);;Portable Network Graphics (*.png);;Windows Bitmap (*.bmp);;Tagged Image File Format (*.tiff);;Portable Pixmap (*.ppm);;X11 Bitmap (*.xbm *.xpm)</translation>
     </message>
     <message>
-        <location filename="../qimageviewer.cpp" line="518"/>
-        <source>QImageViewer - Brightness</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qimageviewer.cpp" line="521"/>
-        <source>QImageViewer - Warm / Cold</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qimageviewer.cpp" line="524"/>
-        <source>QImageViewer - Saturation</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../settings/qimageviewer_design.cpp" line="616"/>
-        <location filename="../settings/qimageviewer_design.cpp" line="900"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="574"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="830"/>
         <source>Zoom Out</source>
-        <translation type="unfinished"></translation>
+        <translation>Oddálit</translation>
     </message>
     <message>
-        <location filename="../settings/qimageviewer_design.cpp" line="666"/>
-        <location filename="../settings/qimageviewer_design.cpp" line="950"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="624"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="880"/>
         <source>Image properties</source>
-        <translation type="unfinished"></translation>
+        <translation>Vlastnosti obrázku</translation>
     </message>
     <message>
-        <location filename="../settings/qimageviewer_design.cpp" line="675"/>
-        <location filename="../settings/qimageviewer_design.cpp" line="958"/>
-        <source>Change view mode to previews or image</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../settings/qimageviewer_design.cpp" line="1092"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="985"/>
         <source>Warning!</source>
-        <translation type="unfinished"></translation>
+        <translation>Varování!</translation>
     </message>
     <message>
-        <location filename="../settings/qimageviewer_design.cpp" line="1093"/>
+        <location filename="../settings/qimageviewer_design.cpp" line="986"/>
         <source>This file was changed
 Do you want to save changes?</source>
-        <translation type="unfinished"></translation>
+        <translation>Tento soubor byl změněn.
+Chcete uložit změny?</translation>
     </message>
     <message>
         <location filename="../qvk/qimageviewer_vk.cpp" line="57"/>
-        <location filename="../qvk/qimageviewer_vk.cpp" line="110"/>
+        <location filename="../qvk/qimageviewer_vk.cpp" line="108"/>
         <source>Uploading has been completed</source>
-        <translation type="unfinished"></translation>
+        <translation>Nahrávání bylo dokončeno</translation>
     </message>
     <message>
         <location filename="../qvk/qimageviewer_vk.cpp" line="58"/>
         <source>Image </source>
-        <translation type="unfinished"></translation>
+        <translation>Obrázek</translation>
     </message>
     <message>
         <location filename="../qvk/qimageviewer_vk.cpp" line="58"/>
         <source> has been uploading to vk.com</source>
-        <translation type="unfinished"></translation>
+        <translation> byl nahrán na vk.com</translation>
     </message>
     <message>
-        <location filename="../qvk/qimageviewer_vk.cpp" line="110"/>
+        <location filename="../qvk/qimageviewer_vk.cpp" line="108"/>
         <source>All images have been uploading to vk.com</source>
-        <translation type="unfinished"></translation>
+        <translation>Všechny obrázky byly nahrány na vk.com</translation>
     </message>
     <message>
-        <location filename="../qvk/qimageviewer_vk.cpp" line="189"/>
+        <location filename="../qvk/qimageviewer_vk.cpp" line="187"/>
         <source>Downloading has been completed</source>
-        <translation type="unfinished"></translation>
+        <translation>Stahování bylo dokončeno</translation>
     </message>
     <message>
-        <location filename="../qvk/qimageviewer_vk.cpp" line="190"/>
+        <location filename="../qvk/qimageviewer_vk.cpp" line="188"/>
         <source>All images have been downloading to </source>
-        <translation type="unfinished"></translation>
+        <translation>Všechny obrázky byly staženy do </translation>
     </message>
     <message>
-        <location filename="../qvk/qimageviewer_vk.cpp" line="215"/>
+        <location filename="../qvk/qimageviewer_vk.cpp" line="213"/>
         <source>Some images have been downloaded</source>
-        <translation type="unfinished"></translation>
+        <translation>Některé obrázky byly staženy</translation>
     </message>
     <message>
-        <location filename="../qvk/qimageviewer_vk.cpp" line="216"/>
+        <location filename="../qvk/qimageviewer_vk.cpp" line="214"/>
         <source>Do you want to delete them?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qimageviewer_mode.cpp" line="173"/>
-        <source>Do you really want to delete these files?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qimageviewer_mode.cpp" line="188"/>
-        <source>You haven&apos;t save changes. Are you sure about deleting this file?</source>
-        <translation type="unfinished"></translation>
+        <translation>Chcete je smazat?</translation>
     </message>
 </context>
 <context>
@@ -1047,436 +969,435 @@ Do you want to save changes?</source>
     <message>
         <location filename="../settings/settings.ui" line="39"/>
         <source>Default folder:</source>
-        <translation type="unfinished"></translation>
+        <translation>Výchozí složka:</translation>
     </message>
     <message>
         <location filename="../settings/settings.ui" line="52"/>
         <source>Browse</source>
-        <translation type="unfinished"></translation>
+        <translation>Procházet</translation>
     </message>
     <message>
         <location filename="../settings/settings.ui" line="91"/>
         <source>Slideshow interval:</source>
-        <translation type="unfinished"></translation>
+        <translation>Interval při promítání:</translation>
     </message>
     <message>
         <location filename="../settings/settings.ui" line="144"/>
         <source>Smooth transition in slideshow</source>
-        <translation type="unfinished"></translation>
+        <translation>Jemný přechod při promítání</translation>
     </message>
     <message>
         <location filename="../settings/settings.ui" line="170"/>
         <source>System</source>
-        <translation type="unfinished"></translation>
+        <translation>Systém</translation>
     </message>
     <message>
         <location filename="../settings/settings.ui" line="175"/>
         <source>English</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Polski</source>
+        <translation type="obsolete">Polský</translation>
+    </message>
+    <message utf8="true">
+        <location filename="../settings/settings.ui" line="190"/>
+        <source>Česko</source>
+        <translation></translation>
     </message>
     <message>
         <location filename="../settings/settings.ui" line="220"/>
         <source>Check for updates automaticaly</source>
-        <translation type="unfinished"></translation>
+        <translation>Prověřit, zda již je novější vydání, automaticky</translation>
     </message>
     <message>
         <location filename="../settings/settings.ui" line="241"/>
         <source>Design</source>
-        <translation type="unfinished"></translation>
+        <translation>Návrh</translation>
     </message>
     <message>
         <location filename="../settings/settings.ui" line="249"/>
         <source>Fullscreen background color</source>
-        <translation type="unfinished"></translation>
+        <translation>Barva pozad v režimu na celou obrazovku</translation>
     </message>
     <message>
         <location filename="../settings/settings.ui" line="275"/>
         <source>Choose</source>
-        <translation type="unfinished"></translation>
+        <translation>Vybrat</translation>
     </message>
     <message>
         <location filename="../settings/settings.ui" line="352"/>
         <source>Panel</source>
-        <translation type="unfinished"></translation>
+        <translation>Panel</translation>
     </message>
     <message>
         <location filename="../settings/settings.ui" line="367"/>
         <source>Panel at the bottom</source>
-        <translation type="unfinished"></translation>
+        <translation>Panel dole</translation>
     </message>
     <message>
         <location filename="../settings/settings.ui" line="372"/>
         <source>Panel on top</source>
-        <translation type="unfinished"></translation>
+        <translation>Panel nahoře</translation>
     </message>
     <message>
         <location filename="../settings/settings.ui" line="377"/>
         <source>No panel</source>
-        <translation type="unfinished"></translation>
+        <translation>Žádný panel</translation>
     </message>
     <message>
         <location filename="../settings/settings.ui" line="418"/>
         <source>Rotate Left</source>
-        <translation type="unfinished"></translation>
+        <translation>Otočit vlevo</translation>
     </message>
     <message>
         <location filename="../settings/settings.ui" line="429"/>
         <source>Rotate Right</source>
-        <translation type="unfinished"></translation>
+        <translation>Otočit vpravo</translation>
     </message>
     <message>
         <location filename="../settings/settings.ui" line="440"/>
         <source>Flip hotizontal</source>
-        <translation type="unfinished"></translation>
+        <translation>Převrátit vodorovně</translation>
     </message>
     <message>
         <location filename="../settings/settings.ui" line="451"/>
         <source>Flip Vertical</source>
-        <translation type="unfinished"></translation>
+        <translation>Převrátit svisle</translation>
     </message>
     <message>
         <location filename="../settings/settings.ui" line="462"/>
         <source>Zoom In</source>
-        <translation type="unfinished"></translation>
+        <translation>Přiblížit</translation>
     </message>
     <message>
         <location filename="../settings/settings.ui" line="473"/>
         <source>Zoom Out</source>
-        <translation type="unfinished"></translation>
+        <translation>Oddálit</translation>
     </message>
     <message>
         <location filename="../settings/settings.ui" line="484"/>
         <source>Zoom to window size</source>
-        <translation type="unfinished"></translation>
+        <translation>Zvětšit na  velikost okna</translation>
     </message>
     <message>
         <location filename="../settings/settings.ui" line="495"/>
         <source>Zoom to original size</source>
-        <translation type="unfinished"></translation>
+        <translation>Zvětšit na původní velikost</translation>
     </message>
     <message>
         <location filename="../settings/settings.ui" line="528"/>
         <source>Properties</source>
-        <translation type="unfinished"></translation>
+        <translation>Vlastnosti</translation>
     </message>
     <message>
         <location filename="../settings/settings.ui" line="545"/>
         <source>Reset panel settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Nastavit znovu nastavení panelu</translation>
     </message>
     <message>
         <location filename="../settings/settings.ui" line="568"/>
         <source>Hotkeys</source>
-        <translation type="unfinished"></translation>
+        <translation>Klávesové zkratky</translation>
     </message>
     <message>
         <location filename="../settings/settings.ui" line="593"/>
         <source>Reset hotkeys to defaults</source>
-        <translation type="unfinished"></translation>
+        <translation>Nastavit klávesové zkratky znovu na výchozí</translation>
     </message>
     <message>
         <location filename="../settings/settings.ui" line="621"/>
         <source>Reset all settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Nastavit znovu všechna nastavení</translation>
     </message>
     <message>
         <location filename="../settings/settings.ui" line="641"/>
         <source>Accept new settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Přijmout nová nastavení</translation>
     </message>
     <message>
         <location filename="../settings/settings.ui" line="506"/>
         <location filename="../settings/settings_hotkeys.cpp" line="66"/>
         <source>Fullscreen</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message utf8="true">
-        <location filename="../settings/settings.ui" line="190"/>
-        <source>Česko</source>
-        <translation type="unfinished"></translation>
+        <translation>Režim na celou obrazovku</translation>
     </message>
     <message>
         <location filename="../settings/settings.ui" line="299"/>
         <source>Icon Pack:</source>
-        <translation type="unfinished"></translation>
+        <translation>Balíček ikon:</translation>
     </message>
     <message>
         <location filename="../settings/settings.ui" line="517"/>
         <location filename="../settings/settings_hotkeys.cpp" line="67"/>
         <source>Slideshow</source>
-        <translation type="unfinished"></translation>
+        <translation>Promítání</translation>
     </message>
     <message>
         <location filename="../settings/settings.ui" line="648"/>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Zrušit</translation>
     </message>
     <message>
         <location filename="../settings/settings_hotkeys.cpp" line="56"/>
         <source>Resize</source>
-        <translation type="unfinished"></translation>
+        <translation>Změnit velikost</translation>
     </message>
     <message>
         <location filename="../settings/settings.ui" line="117"/>
         <source>Reset</source>
-        <translation type="unfinished"></translation>
+        <translation>Nastavit znovu</translation>
     </message>
     <message>
         <location filename="../settings/settings.ui" line="28"/>
         <source>Main settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Hlavní nastavení</translation>
     </message>
     <message>
         <location filename="../settings/settings.ui" line="14"/>
         <source>QImageViewer - Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>QImageViewer - Nastavení</translation>
     </message>
     <message>
         <location filename="../settings/settings.ui" line="68"/>
         <source>Double-click enables/disables full screen mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Dvojité klepnutí levým tlačítkem myši povolí/zakáže režim na celou obrazovku</translation>
     </message>
     <message>
         <location filename="../settings/settings.ui" line="75"/>
         <source>Enable/Disable mouse wheel zoom</source>
-        <translation type="unfinished"></translation>
+        <translation>Povolit/Zakázat přibližování kolečkem myši</translation>
     </message>
     <message>
         <location filename="../settings/settings.ui" line="162"/>
         <source>Application language:</source>
-        <translation type="unfinished"></translation>
+        <translation>Jazyk programu:</translation>
     </message>
     <message utf8="true">
         <location filename="../settings/settings.ui" line="180"/>
         <source>Русский</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message utf8="true">
         <location filename="../settings/settings.ui" line="185"/>
         <source>Українська</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../settings/settings_hotkeys.cpp" line="49"/>
         <source>Undo</source>
-        <translation type="unfinished"></translation>
+        <translation>Zpět</translation>
     </message>
     <message>
         <location filename="../settings/settings_hotkeys.cpp" line="55"/>
         <source>Crop</source>
-        <translation type="unfinished"></translation>
+        <translation>Oříznout</translation>
     </message>
     <message>
         <location filename="../settings/settings_hotkeys.cpp" line="50"/>
         <source>Redo</source>
-        <translation type="unfinished"></translation>
+        <translation>Znovu</translation>
     </message>
     <message>
         <location filename="../settings/settings_hotkeys.cpp" line="28"/>
         <source>Command</source>
-        <translation type="unfinished"></translation>
+        <translation>Příkaz</translation>
     </message>
     <message>
         <location filename="../settings/settings_hotkeys.cpp" line="28"/>
         <source>Hotkey</source>
-        <translation type="unfinished"></translation>
+        <translation>Klávesová zkratka</translation>
     </message>
     <message>
         <location filename="../settings/settings_hotkeys.cpp" line="37"/>
         <source>File</source>
-        <translation type="unfinished"></translation>
+        <translation>Soubor</translation>
     </message>
     <message>
         <location filename="../settings/settings_hotkeys.cpp" line="39"/>
         <source>Open image</source>
-        <translation type="unfinished"></translation>
+        <translation>Otevřít obrázek</translation>
     </message>
     <message>
         <location filename="../settings/settings_hotkeys.cpp" line="40"/>
         <source>Save</source>
-        <translation type="unfinished"></translation>
+        <translation>Uložit</translation>
     </message>
     <message>
         <location filename="../settings/settings_hotkeys.cpp" line="41"/>
         <source>Save as...</source>
-        <translation type="unfinished"></translation>
+        <translation>Uložit jako...</translation>
     </message>
     <message>
         <location filename="../settings/settings_hotkeys.cpp" line="42"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Nastavení</translation>
     </message>
     <message>
         <location filename="../settings/settings_hotkeys.cpp" line="43"/>
         <source>Quit</source>
-        <translation type="unfinished"></translation>
+        <translation>Ukončit</translation>
     </message>
     <message>
         <location filename="../settings/settings_hotkeys.cpp" line="47"/>
         <source>Edit</source>
-        <translation type="unfinished"></translation>
+        <translation>Upravit</translation>
     </message>
     <message>
         <location filename="../settings/settings_hotkeys.cpp" line="51"/>
         <source>Rotate to the right</source>
-        <translation type="unfinished"></translation>
+        <translation>Otočit vpravo</translation>
     </message>
     <message>
         <location filename="../settings/settings_hotkeys.cpp" line="52"/>
         <source>Rotate to the left</source>
-        <translation type="unfinished"></translation>
+        <translation>Otočit vlevo</translation>
     </message>
     <message>
         <location filename="../settings/settings_hotkeys.cpp" line="53"/>
         <source>Flip horizontal</source>
-        <translation type="unfinished"></translation>
+        <translation>Převrátit vodorovně</translation>
     </message>
     <message>
         <location filename="../settings/settings_hotkeys.cpp" line="54"/>
         <source>Flip vertical</source>
-        <translation type="unfinished"></translation>
+        <translation>Převrátit svisle</translation>
     </message>
     <message>
         <location filename="../settings/settings_hotkeys.cpp" line="57"/>
         <source>Resize items...</source>
-        <translation type="unfinished"></translation>
+        <translation>Změnit velikost položek...</translation>
     </message>
     <message>
         <location filename="../settings/settings_hotkeys.cpp" line="62"/>
         <source>Preview</source>
-        <translation type="unfinished"></translation>
+        <translation>Náhled</translation>
     </message>
     <message>
         <location filename="../settings/settings_hotkeys.cpp" line="64"/>
         <source>Previous image</source>
-        <translation type="unfinished"></translation>
+        <translation>Předchozí obrázek</translation>
     </message>
     <message>
         <location filename="../settings/settings_hotkeys.cpp" line="65"/>
         <source>Next image</source>
-        <translation type="unfinished"></translation>
+        <translation>Další obrázek</translation>
     </message>
     <message>
         <location filename="../settings/settings_hotkeys.cpp" line="68"/>
         <source>Set as wallpaper</source>
-        <translation type="unfinished"></translation>
+        <translation>Nastavit jako obrázek na pozadí</translation>
     </message>
     <message>
         <location filename="../settings/settings_hotkeys.cpp" line="69"/>
         <source>Zoom in</source>
-        <translation type="unfinished"></translation>
+        <translation>Přiblížit</translation>
     </message>
     <message>
         <location filename="../settings/settings_hotkeys.cpp" line="70"/>
         <source>Zoom out</source>
-        <translation type="unfinished"></translation>
+        <translation>Oddálit</translation>
     </message>
     <message>
         <location filename="../settings/settings_hotkeys.cpp" line="71"/>
         <source>Window size</source>
-        <translation type="unfinished"></translation>
+        <translation>Velikost okna</translation>
     </message>
     <message>
         <location filename="../settings/settings_hotkeys.cpp" line="72"/>
         <source>Original size</source>
-        <translation type="unfinished"></translation>
+        <translation>Původní velikost</translation>
     </message>
     <message>
-        <location filename="../settings/settings_hotkeys.cpp" line="73"/>
-        <source>Switch mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../settings/settings_hotkeys.cpp" line="78"/>
+        <location filename="../settings/settings_hotkeys.cpp" line="77"/>
         <source>Help</source>
-        <translation type="unfinished"></translation>
+        <translation>Nápověda</translation>
     </message>
     <message>
-        <location filename="../settings/settings_hotkeys.cpp" line="80"/>
+        <location filename="../settings/settings_hotkeys.cpp" line="79"/>
         <source>About</source>
-        <translation type="unfinished"></translation>
+        <translation>O programu</translation>
     </message>
     <message>
-        <location filename="../settings/settings_hotkeys.cpp" line="142"/>
+        <location filename="../settings/settings_hotkeys.cpp" line="140"/>
         <source>This hotkey is reserved</source>
-        <translation type="unfinished"></translation>
+        <translation>Tato klávesová zkratka je vyhrazena</translation>
+    </message>
+    <message>
+        <location filename="../settings/settings_hotkeys.cpp" line="141"/>
+        <source>Hotkey&apos;s already reserved to </source>
+        <translation>Klávesová zkratka je již vyhrazena pro </translation>
     </message>
     <message>
         <location filename="../settings/settings_hotkeys.cpp" line="143"/>
-        <source>Hotkey&apos;s already reserved to </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../settings/settings_hotkeys.cpp" line="145"/>
         <source>Do you want to set hotkey anyway?</source>
-        <translation type="unfinished"></translation>
+        <translation>Přesto chcete klávesovou zkratku nastavit?</translation>
     </message>
     <message>
         <location filename="../settings/settings.cpp" line="123"/>
         <source>Warning!</source>
-        <translation type="unfinished"></translation>
+        <translation>Varování!</translation>
     </message>
     <message>
         <location filename="../settings/settings.cpp" line="124"/>
         <source>Language will be switched after application restart</source>
-        <translation type="unfinished"></translation>
+        <translation>Jazyk bude přepnut po opětovném spuštění programu</translation>
     </message>
     <message>
-        <location filename="../settings/settings.cpp" line="179"/>
+        <location filename="../settings/settings.cpp" line="180"/>
         <source>Open directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Otevřít adresář</translation>
     </message>
 </context>
 <context>
     <name>UpdateDialog</name>
     <message>
-        <location filename="../update/updatedialog.ui" line="14"/>
+        <location filename="../updatedialog.ui" line="14"/>
         <source>QImageViewer - New update</source>
-        <translation type="unfinished"></translation>
+        <translation>QImageViewer - Nová aktualizace</translation>
     </message>
     <message>
-        <location filename="../update/updatedialog.ui" line="30"/>
+        <location filename="../updatedialog.ui" line="30"/>
         <source>Update to new version?</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktualizovat na novou verzi?</translation>
     </message>
     <message>
-        <location filename="../update/updatedialog.ui" line="39"/>
+        <location filename="../updatedialog.ui" line="39"/>
         <source>Current version: </source>
-        <translation type="unfinished"></translation>
+        <translation>Stávající verze: </translation>
     </message>
     <message>
-        <location filename="../update/updatedialog.ui" line="46"/>
-        <location filename="../update/updatedialog.ui" line="77"/>
+        <location filename="../updatedialog.ui" line="46"/>
+        <location filename="../updatedialog.ui" line="77"/>
         <source>TextLabel</source>
-        <translation type="unfinished"></translation>
+        <translation>Textový štítek</translation>
     </message>
     <message>
-        <location filename="../update/updatedialog.ui" line="70"/>
+        <location filename="../updatedialog.ui" line="70"/>
         <source>Avaiable version: </source>
-        <translation type="unfinished"></translation>
+        <translation>Dostupná verze: </translation>
     </message>
     <message>
-        <location filename="../update/updatedialog.ui" line="99"/>
+        <location filename="../updatedialog.ui" line="99"/>
         <source>Full changelog:</source>
-        <translation type="unfinished"></translation>
+        <translation>Úplný seznam změn:</translation>
     </message>
 </context>
 <context>
     <name>UpdateInformer</name>
     <message>
-        <location filename="../update/updateinformer.ui" line="14"/>
+        <location filename="../updateinformer.ui" line="14"/>
         <source>QImageViewer - Updating</source>
-        <translation type="unfinished"></translation>
+        <translation>QImageViewer - Aktualizace</translation>
     </message>
     <message>
-        <location filename="../update/updateinformer.ui" line="26"/>
+        <location filename="../updateinformer.ui" line="26"/>
         <source>Updating:</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktualizace:</translation>
     </message>
     <message>
-        <location filename="../update/updateinformer.ui" line="33"/>
+        <location filename="../updateinformer.ui" line="33"/>
         <source>TextLabel</source>
-        <translation type="unfinished"></translation>
+        <translation>Textový štítek</translation>
     </message>
 </context>
 <context>
@@ -1484,45 +1405,80 @@ Do you want to save changes?</source>
     <message>
         <location filename="../aboutform.ui" line="14"/>
         <source>QImageViewer - About</source>
-        <translation type="unfinished"></translation>
+        <translation>QImageViewer - O programu</translation>
     </message>
     <message>
         <location filename="../aboutform.ui" line="68"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600; color:#008000;&quot;&gt;Q&lt;/span&gt;&lt;span style=&quot; font-weight:600; color:#6f6f53;&quot;&gt;Image&lt;/span&gt;&lt;span style=&quot; font-weight:600; color:#55007f;&quot;&gt;Viewer&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600; color:#008000;&quot;&gt;Q&lt;/span&gt;&lt;span style=&quot; font-weight:600; color:#6f6f53;&quot;&gt;Image&lt;/span&gt;&lt;span style=&quot; font-weight:600; color:#55007f;&quot;&gt;Viewer&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../aboutform.ui" line="84"/>
         <source>version: 0.2 stable</source>
-        <translation type="unfinished"></translation>
+        <translation>Verze: 0.2 stabilní</translation>
     </message>
     <message>
         <location filename="../aboutform.ui" line="97"/>
         <source>build: 06/06/2013</source>
-        <translation type="unfinished"></translation>
+        <translation>Sestavení: 06/06/2013</translation>
     </message>
     <message>
         <location filename="../aboutform.ui" line="110"/>
         <source>Qt 5.0.2</source>
-        <translation type="unfinished"></translation>
+        <translation>Qt 5.0.2</translation>
     </message>
     <message>
         <location filename="../aboutform.ui" line="117"/>
         <source>GCC</source>
-        <translation type="unfinished"></translation>
+        <translation>GCC</translation>
     </message>
     <message>
         <location filename="../aboutform.ui" line="143"/>
         <source>Close</source>
-        <translation type="unfinished"></translation>
+        <translation>Zavřít</translation>
     </message>
     <message>
         <location filename="../aboutform.ui" line="146"/>
         <source>Ctrl+Return</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Return</translation>
     </message>
     <message>
-        <location filename="../aboutform.ui" line="166"/>
+        <location filename="../aboutform.ui" line="163"/>
+        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Ubuntu&apos;; font-size:11pt;&quot;&gt;Main developer: Bodnya Alexey (Ukraine, Kiev, KPI, TV-11)&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Ubuntu&apos;; font-size:11pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Ubuntu&apos;; font-size:11pt;&quot;&gt;Recent developers:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Ubuntu&apos;; font-size:11pt;&quot;&gt;Anton Konstantinov (Russia, Vyborg)&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Ubuntu&apos;; font-size:11pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Ubuntu&apos;; font-size:11pt;&quot;&gt;Other help:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Ubuntu&apos;; font-size:11pt;&quot;&gt;Neveron (Ukraine)&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Ubuntu&apos;; font-size:11pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Ubuntu&apos;; font-size:11pt;&quot;&gt;This program is distributed under GPLv2. It is completely free and open-source.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Ubuntu&apos;; font-size:11pt;&quot;&gt;Thanks for testing, advice and ideas to my friends, Typical Proger and Prog.org.ru communities!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Hlavní vývojář: Bodnya Alexey (Ukraine, Kiev, KPI, TV-11)&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Poslední vývojáři:&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Anton Konstantinov (Russia, Vyborg)&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Další pomoc:&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Neveron (Ukraine)&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Tento program je šířen pod GPLv2. Je zcela zdarma a jeho zdrojový kód je otevřený.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Poděkování za zkoušení, rady a myšlenky mým přátelům, společenstvím Typical Proger a Prog.org.ru!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <location filename="../aboutform.ui" line="183"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Official site: &lt;a href=&quot;http://qiv.p.ht&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://qiv.p.ht&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Stránky: &lt;a href=&quot;http://qiv.p.ht&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://qiv.p.ht&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -1537,32 +1493,40 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;This program is distributed under GPLv2. It is completely free and open-source.&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Thanks for testing, advice and ideas to my friends, Typical Proger and Prog.org.ru communities!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Ubuntu&apos;; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Hlavní vývojář: Bodnya Alexey (Ukraine, Kiev, KPI, TV-11)&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Poslední vývojáři:&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Anton Konstantinov (Russia, Vyborg)&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Další pomoc:&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Neveron (Ukraine)&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Tento program je šířen pod GPLv2. Je zcela zdarma a jeho zdrojový kód je otevřený.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Poděkování za zkoušení, rady a myšlenky mým přátelům, společenstvím Typical Proger a Prog.org.ru!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../aboutform.ui" line="186"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Official site: &lt;a href=&quot;http://qiv.p.ht&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://qiv.p.ht&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../aboutform.ui" line="199"/>
+        <location filename="../aboutform.ui" line="196"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Sources: &lt;a href=&quot;https://github.com/abodnyaUA/qimageviewer&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;https://github.com/abodnyaUA/qimageviewer&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Sources: &lt;a href=&quot;https://github.com/abodnyaUA/qimageviewer&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;https://github.com/abodnyaUA/qimageviewer&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../aboutform.ui" line="209"/>
+        <location filename="../aboutform.ui" line="206"/>
         <source>Contact: &lt;a href=&quot;mailto:fermerasb@gmail.com&quot;&gt;fermerasb@gmail.com&lt;/a&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Spojení: &lt;a href=&quot;mailto:fermerasb@gmail.com&quot;&gt;fermerasb@gmail.com&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../aboutform.cpp" line="9"/>
         <source>build: </source>
-        <translation type="unfinished"></translation>
+        <translation>Sestavení: </translation>
     </message>
     <message>
         <location filename="../aboutform.cpp" line="10"/>
         <source>version: </source>
-        <translation type="unfinished"></translation>
+        <translation>Verze:       </translation>
     </message>
 </context>
 <context>
@@ -1571,56 +1535,38 @@ p, li { white-space: pre-wrap; }
         <location filename="../edit/editformcrop.ui" line="14"/>
         <source>QImageViewer - Crop image</source>
         <oldsource>QImageViewer - Обрезка изображения</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>QImageViewer - Oříznout obrázek</translation>
     </message>
     <message>
         <location filename="../edit/editformcrop.ui" line="38"/>
         <source>Original size:</source>
-        <translation type="unfinished"></translation>
+        <translation>Původní velikost:</translation>
     </message>
     <message>
         <location filename="../edit/editformcrop.ui" line="45"/>
         <location filename="../edit/editformcrop.ui" line="108"/>
         <source>TextLabel</source>
-        <translation type="unfinished"></translation>
+        <translation>Textový štítek</translation>
     </message>
     <message>
         <location filename="../edit/editformcrop.ui" line="61"/>
         <source>Cropped size:</source>
-        <translation type="unfinished"></translation>
+        <translation>Velikost oříznutého obrázku:</translation>
     </message>
     <message>
         <location filename="../edit/editformcrop.ui" line="101"/>
         <source>Aspect ratio:</source>
-        <translation type="unfinished"></translation>
+        <translation>Poměr stran:</translation>
     </message>
     <message>
         <location filename="../edit/editformcrop.ui" line="120"/>
         <source>&amp;Accept changes</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Přijmout změny</translation>
     </message>
     <message>
         <location filename="../edit/editformcrop.ui" line="130"/>
         <source>&amp;Cancel</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>editformFilters</name>
-    <message>
-        <location filename="../edit/editformfilters.ui" line="14"/>
-        <source>Dialog</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../edit/editformfilters.ui" line="62"/>
-        <source>&amp;Accept changes</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../edit/editformfilters.ui" line="72"/>
-        <source>&amp;Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Z&amp;rušit</translation>
     </message>
 </context>
 <context>
@@ -1629,43 +1575,43 @@ p, li { white-space: pre-wrap; }
         <location filename="../edit/editformresize.ui" line="14"/>
         <source>QImageViewer - Resize image</source>
         <oldsource>QImageViewer - Изменение размера изображения</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>QImageViewer - Změnit velikost</translation>
     </message>
     <message>
         <location filename="../edit/editformresize.ui" line="38"/>
         <source>Original size:</source>
-        <translation type="unfinished"></translation>
+        <translation>Původní velikost:</translation>
     </message>
     <message>
         <location filename="../edit/editformresize.ui" line="45"/>
         <location filename="../edit/editformresize.ui" line="121"/>
         <source>TextLabel</source>
-        <translation type="unfinished"></translation>
+        <translation>Textový štítek</translation>
     </message>
     <message>
         <location filename="../edit/editformresize.ui" line="61"/>
         <source>New size:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nová velikost:</translation>
     </message>
     <message>
         <location filename="../edit/editformresize.ui" line="95"/>
         <source>Save aspect ratio</source>
-        <translation type="unfinished"></translation>
+        <translation>Uložit poměr stran</translation>
     </message>
     <message>
         <location filename="../edit/editformresize.ui" line="114"/>
         <source>Aspect ratio:</source>
-        <translation type="unfinished"></translation>
+        <translation>Poměr stran:</translation>
     </message>
     <message>
         <location filename="../edit/editformresize.ui" line="133"/>
         <source>&amp;Accept changes</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Přijmout změny</translation>
     </message>
     <message>
         <location filename="../edit/editformresize.ui" line="143"/>
         <source>&amp;Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Z&amp;rušit</translation>
     </message>
 </context>
 <context>
@@ -1673,63 +1619,63 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../edit/editformresizeelements.ui" line="26"/>
         <source>QImageViewer - Resize items</source>
-        <translation type="unfinished"></translation>
+        <translation>QImageViewer - Změnit velikost položek</translation>
     </message>
     <message>
         <location filename="../edit/editformresizeelements.ui" line="52"/>
         <source>Preview:</source>
-        <translation type="unfinished"></translation>
+        <translation>Náhled:</translation>
     </message>
     <message>
         <location filename="../edit/editformresizeelements.ui" line="83"/>
         <source>Image size:</source>
-        <translation type="unfinished"></translation>
+        <translation>Velikost obrázku:</translation>
     </message>
     <message>
         <location filename="../edit/editformresizeelements.ui" line="160"/>
         <source>images width</source>
-        <translation type="unfinished"></translation>
+        <translation>Šířka obrázku</translation>
     </message>
     <message>
         <location filename="../edit/editformresizeelements.ui" line="182"/>
         <source>images height</source>
-        <translation type="unfinished"></translation>
+        <translation>Výška obrázku</translation>
     </message>
     <message>
         <location filename="../edit/editformresizeelements.ui" line="90"/>
         <location filename="../edit/editformresizeelements.ui" line="104"/>
         <source>00</source>
-        <translation type="unfinished"></translation>
+        <translation>00</translation>
     </message>
     <message>
         <location filename="../edit/editformresizeelements.ui" line="97"/>
         <source>x</source>
-        <translation type="unfinished"></translation>
+        <translation>x</translation>
     </message>
     <message>
         <location filename="../edit/editformresizeelements.ui" line="142"/>
         <source>By pixel size</source>
-        <translation type="unfinished"></translation>
+        <translation>Podle velikosti v pixelech</translation>
     </message>
     <message>
         <location filename="../edit/editformresizeelements.ui" line="213"/>
         <source>By percent</source>
-        <translation type="unfinished"></translation>
+        <translation>Podle velikosti v procentech</translation>
     </message>
     <message>
         <location filename="../edit/editformresizeelements.ui" line="286"/>
         <source>Accept</source>
-        <translation type="unfinished"></translation>
+        <translation>Přijmout</translation>
     </message>
     <message>
         <location filename="../edit/editformresizeelements.ui" line="305"/>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Zrušit</translation>
     </message>
     <message>
         <location filename="../edit/editformresizeelements.cpp" line="60"/>
         <source>Select new folder to save changes</source>
-        <translation type="unfinished"></translation>
+        <translation>Vybrat novou složku pro uložení změn</translation>
     </message>
 </context>
 <context>
@@ -1737,101 +1683,102 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../fullscreen.ui" line="14"/>
         <source>QImageViewer</source>
-        <translation type="unfinished"></translation>
+        <translation>QImageViewer</translation>
     </message>
 </context>
 <context>
     <name>image</name>
     <message>
-        <location filename="../image.cpp" line="74"/>
+        <location filename="../image.cpp" line="72"/>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>Smazat</translation>
     </message>
     <message>
-        <location filename="../image.cpp" line="78"/>
+        <location filename="../image.cpp" line="76"/>
         <source>Properties</source>
-        <translation type="unfinished"></translation>
+        <translation>Vlastnosti</translation>
     </message>
     <message>
-        <location filename="../image.cpp" line="62"/>
+        <location filename="../image.cpp" line="60"/>
         <source>Fullscreen</source>
-        <translation type="unfinished"></translation>
+        <translation>Režim na celou obrazovku</translation>
     </message>
     <message>
-        <location filename="../image.cpp" line="46"/>
+        <location filename="../image.cpp" line="44"/>
         <source>Zoom in</source>
-        <translation type="unfinished"></translation>
+        <translation>Přiblížit</translation>
     </message>
     <message>
-        <location filename="../image.cpp" line="50"/>
+        <location filename="../image.cpp" line="48"/>
         <source>Zoom out</source>
-        <translation type="unfinished"></translation>
+        <translation>Oddálit</translation>
     </message>
     <message>
-        <location filename="../image.cpp" line="54"/>
+        <location filename="../image.cpp" line="52"/>
         <source>Zoom as Window</source>
-        <translation type="unfinished"></translation>
+        <translation>Zvětšit na  velikost okna</translation>
     </message>
     <message>
-        <location filename="../image.cpp" line="58"/>
+        <location filename="../image.cpp" line="56"/>
         <source>Zoom Original</source>
-        <translation type="unfinished"></translation>
+        <translation>Zvětšit na původní velikost</translation>
     </message>
     <message>
-        <location filename="../image.cpp" line="66"/>
+        <location filename="../image.cpp" line="64"/>
         <source>Slideshow</source>
-        <translation type="unfinished"></translation>
+        <translation>Promítání</translation>
     </message>
     <message>
-        <location filename="../image.cpp" line="70"/>
+        <location filename="../image.cpp" line="68"/>
         <source>Set as wallpaper</source>
-        <translation type="unfinished"></translation>
+        <translation>Nastavit jako obrázek na pozadí</translation>
     </message>
     <message>
-        <location filename="../image.cpp" line="130"/>
+        <location filename="../image.cpp" line="128"/>
         <source>byte</source>
-        <translation type="unfinished"></translation>
+        <translation>bytů</translation>
     </message>
     <message>
-        <location filename="../image.cpp" line="134"/>
+        <location filename="../image.cpp" line="132"/>
         <source>KB</source>
-        <translation type="unfinished"></translation>
+        <translation>KB</translation>
     </message>
     <message>
-        <location filename="../image.cpp" line="138"/>
+        <location filename="../image.cpp" line="136"/>
         <source>MB</source>
-        <translation type="unfinished"></translation>
+        <translation>MB</translation>
     </message>
     <message>
-        <location filename="../image.cpp" line="302"/>
+        <location filename="../image.cpp" line="284"/>
         <source>Warning!</source>
-        <translation type="unfinished"></translation>
+        <translation>Varování!</translation>
     </message>
     <message>
-        <location filename="../image.cpp" line="303"/>
+        <location filename="../image.cpp" line="285"/>
         <source>This file was changed
 Do you want to save the changes?</source>
-        <translation type="unfinished"></translation>
+        <translation>Tento soubor byl změněn.
+Chcete uložit změny?</translation>
     </message>
     <message>
-        <location filename="../image.cpp" line="517"/>
+        <location filename="../image.cpp" line="470"/>
         <source>Do you want to set this image as desktop wallpaper?</source>
-        <translation type="unfinished"></translation>
+        <translation>Chcete tento obrázek nastavit jako obrázek na pozadí pracovní plochy?</translation>
     </message>
     <message>
-        <location filename="../image.cpp" line="433"/>
+        <location filename="../image.cpp" line="405"/>
         <source>Delete file</source>
-        <translation type="unfinished"></translation>
+        <translation>Smazat soubor</translation>
     </message>
     <message>
-        <location filename="../image.cpp" line="434"/>
+        <location filename="../image.cpp" line="406"/>
         <source>Do you really want to delete this file?</source>
-        <translation type="unfinished"></translation>
+        <translation>Opravdu chcete smazat tento soubor?</translation>
     </message>
     <message>
-        <location filename="../image.cpp" line="516"/>
+        <location filename="../image.cpp" line="469"/>
         <source>Setting wallpaper</source>
-        <translation type="unfinished"></translation>
+        <translation>Nastavuje se obrázek na pozadí</translation>
     </message>
 </context>
 <context>
@@ -1839,17 +1786,17 @@ Do you want to save the changes?</source>
     <message>
         <location filename="../settings/qhotkeywidget.cpp" line="6"/>
         <source>OK</source>
-        <translation type="unfinished"></translation>
+        <translation>OK</translation>
     </message>
     <message>
         <location filename="../settings/qhotkeywidget.cpp" line="7"/>
         <source>Reset</source>
-        <translation type="unfinished"></translation>
+        <translation>Nastavit znovu</translation>
     </message>
     <message>
         <location filename="../settings/qhotkeywidget.cpp" line="8"/>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Zrušit</translation>
     </message>
 </context>
 <context>
@@ -1857,107 +1804,107 @@ Do you want to save the changes?</source>
     <message>
         <location filename="../qvk/vkdownloadalbumform.ui" line="14"/>
         <source>QImageViewer - Vkontakte - Downloading album</source>
-        <translation type="unfinished"></translation>
+        <translation>QImageViewer - Vkontakte - Stahuje se album</translation>
     </message>
     <message>
         <location filename="../qvk/vkdownloadalbumform.ui" line="20"/>
         <source>Download your album</source>
-        <translation type="unfinished"></translation>
+        <translation>Stáhnout vaše album</translation>
     </message>
     <message>
         <location filename="../qvk/vkdownloadalbumform.ui" line="32"/>
         <source>Choose album:</source>
-        <translation type="unfinished"></translation>
+        <translation>Vybrat album:</translation>
     </message>
     <message>
         <location filename="../qvk/vkdownloadalbumform.ui" line="57"/>
         <source>Download another album</source>
-        <translation type="unfinished"></translation>
+        <translation>Stáhnout jiné album</translation>
     </message>
     <message>
         <location filename="../qvk/vkdownloadalbumform.ui" line="66"/>
         <source>link:</source>
-        <translation type="unfinished"></translation>
+        <translation>Odkaz:</translation>
     </message>
     <message>
         <location filename="../qvk/vkdownloadalbumform.ui" line="114"/>
         <source>Destination folder:</source>
-        <translation type="unfinished"></translation>
+        <translation>Cílová složka:</translation>
     </message>
     <message>
         <location filename="../qvk/vkdownloadalbumform.ui" line="133"/>
         <source>Browse</source>
-        <translation type="unfinished"></translation>
+        <translation>Procházet</translation>
     </message>
     <message>
         <location filename="../qvk/vkdownloadalbumform.ui" line="157"/>
         <source>Download</source>
-        <translation type="unfinished"></translation>
+        <translation>Stáhnout</translation>
     </message>
     <message>
         <location filename="../qvk/vkdownloadalbumform.ui" line="160"/>
         <source>Ctrl+Return</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Return</translation>
     </message>
     <message>
         <location filename="../qvk/vkdownloadalbumform.ui" line="167"/>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Zrušit</translation>
     </message>
     <message>
         <location filename="../qvk/vkdownloadalbumform.ui" line="170"/>
         <source>Esc</source>
-        <translation type="unfinished"></translation>
+        <translation>Esc</translation>
     </message>
     <message>
         <location filename="../qvk/vkdownloadalbumform.cpp" line="17"/>
         <source>Images are uploading</source>
-        <translation type="unfinished"></translation>
+        <translation>Nahrávají se obrázky</translation>
     </message>
     <message>
         <location filename="../qvk/vkdownloadalbumform.cpp" line="18"/>
         <source>Images are uploading now. Do you want to cancel uploading?</source>
-        <translation type="unfinished"></translation>
+        <translation>Nyní se nahrávají obrázky. Chcete nahrávání zrušit?</translation>
     </message>
     <message>
         <location filename="../qvk/vkdownloadalbumform.cpp" line="19"/>
         <source>Minimize</source>
-        <translation type="unfinished"></translation>
+        <translation>Zmenšit</translation>
     </message>
     <message>
         <location filename="../qvk/vkdownloadalbumform.cpp" line="20"/>
         <source>Yes</source>
-        <translation type="unfinished"></translation>
+        <translation>Ano</translation>
     </message>
     <message>
         <location filename="../qvk/vkdownloadalbumform.cpp" line="21"/>
         <source>No</source>
-        <translation type="unfinished"></translation>
+        <translation>Ne</translation>
     </message>
     <message>
         <location filename="../qvk/vkdownloadalbumform.cpp" line="66"/>
         <source>Invalid link</source>
-        <translation type="unfinished"></translation>
+        <translation>Neplatný odkaz</translation>
     </message>
     <message>
         <location filename="../qvk/vkdownloadalbumform.cpp" line="67"/>
         <source>Your album&apos;s link is invalid. Please check it or select your album</source>
-        <translation type="unfinished"></translation>
+        <translation>Odkaz na vaše album je neplatný. Prověřte jej, prosím, anebo vyberte své album</translation>
     </message>
     <message>
         <location filename="../qvk/vkdownloadalbumform.cpp" line="74"/>
         <source>Invalid destination</source>
-        <translation type="unfinished"></translation>
+        <translation>Neplatný cíl</translation>
     </message>
     <message>
         <location filename="../qvk/vkdownloadalbumform.cpp" line="75"/>
         <source>Destination folder is empty. Please check it</source>
-        <translation type="unfinished"></translation>
+        <translation>Cílová složka je prázdná. Prověřte ji, prosím</translation>
     </message>
     <message>
         <location filename="../qvk/vkdownloadalbumform.cpp" line="171"/>
         <source>Open directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Otevřít adresář</translation>
     </message>
 </context>
 <context>
@@ -1965,47 +1912,47 @@ Do you want to save the changes?</source>
     <message>
         <location filename="../qvk/vkuploadimageform.ui" line="26"/>
         <source>QImageViewer - Vkontakte - Upload image</source>
-        <translation type="unfinished"></translation>
+        <translation>QImageViewer - Vkontakte - Nahrát obrázek</translation>
     </message>
     <message>
         <location filename="../qvk/vkuploadimageform.ui" line="50"/>
         <source>...</source>
-        <translation type="unfinished"></translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../qvk/vkuploadimageform.ui" line="32"/>
         <source>Choose album:</source>
-        <translation type="unfinished"></translation>
+        <translation>Vybrat album:</translation>
     </message>
     <message>
         <location filename="../qvk/vkuploadimageform.ui" line="74"/>
         <source>Upload</source>
-        <translation type="unfinished"></translation>
+        <translation>Nahrát</translation>
     </message>
     <message>
         <location filename="../qvk/vkuploadimageform.ui" line="77"/>
         <source>Ctrl+Return</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Return</translation>
     </message>
     <message>
         <location filename="../qvk/vkuploadimageform.ui" line="84"/>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Zrušit</translation>
     </message>
     <message>
         <location filename="../qvk/vkuploadimageform.ui" line="87"/>
         <source>Esc</source>
-        <translation type="unfinished"></translation>
+        <translation>Esc</translation>
     </message>
     <message>
         <location filename="../qvk/vkuploadimageform.cpp" line="58"/>
         <source>Title of new album</source>
-        <translation type="unfinished"></translation>
+        <translation>Název nového alba</translation>
     </message>
     <message>
         <location filename="../qvk/vkuploadimageform.cpp" line="58"/>
         <source>Please input title of new album</source>
-        <translation type="unfinished"></translation>
+        <translation>Zadejte, prosím, název nového alba</translation>
     </message>
 </context>
 <context>
@@ -2013,93 +1960,103 @@ Do you want to save the changes?</source>
     <message>
         <location filename="../qvk/vkuploadimagesform.ui" line="14"/>
         <source>QImageViewer - Vkontakte - Upload images</source>
-        <translation type="unfinished"></translation>
+        <translation>QImageViewer - Vkontakte - Nahrát obrázky</translation>
     </message>
     <message>
-        <location filename="../qvk/vkuploadimagesform.ui" line="20"/>
-        <source>Choose album:</source>
-        <translation type="unfinished"></translation>
+        <location filename="../qvk/vkuploadimagesform.ui" line="24"/>
+        <source>Choose images:</source>
+        <translation>Vybrat obrázky:</translation>
     </message>
     <message>
         <location filename="../qvk/vkuploadimagesform.ui" line="38"/>
+        <source>Preview:</source>
+        <translation>Náhled:</translation>
+    </message>
+    <message>
+        <location filename="../qvk/vkuploadimagesform.ui" line="67"/>
+        <source>Choose album:</source>
+        <translation>Vybrat album:</translation>
+    </message>
+    <message>
+        <location filename="../qvk/vkuploadimagesform.ui" line="85"/>
         <source>...</source>
-        <translation type="unfinished"></translation>
+        <translation>...</translation>
     </message>
     <message>
-        <location filename="../qvk/vkuploadimagesform.ui" line="62"/>
+        <location filename="../qvk/vkuploadimagesform.ui" line="122"/>
         <source>Upload</source>
-        <translation type="unfinished"></translation>
+        <translation>Nahrát</translation>
     </message>
     <message>
-        <location filename="../qvk/vkuploadimagesform.ui" line="65"/>
+        <location filename="../qvk/vkuploadimagesform.ui" line="125"/>
         <source>Ctrl+Return</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Return</translation>
     </message>
     <message>
-        <location filename="../qvk/vkuploadimagesform.ui" line="72"/>
+        <location filename="../qvk/vkuploadimagesform.ui" line="132"/>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Zrušit</translation>
     </message>
     <message>
-        <location filename="../qvk/vkuploadimagesform.ui" line="75"/>
+        <location filename="../qvk/vkuploadimagesform.ui" line="135"/>
         <source>Esc</source>
-        <translation type="unfinished"></translation>
+        <translation>Esc</translation>
     </message>
     <message>
-        <location filename="../qvk/vkuploadimagesform.ui" line="91"/>
+        <location filename="../qvk/vkuploadimagesform.ui" line="155"/>
         <source>TextLabel</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qvk/vkuploadimagesform.cpp" line="18"/>
-        <source>Images are uploading</source>
-        <translation type="unfinished"></translation>
+        <translation>Textový štítek</translation>
     </message>
     <message>
         <location filename="../qvk/vkuploadimagesform.cpp" line="19"/>
-        <source>Images are uploading now. Do you want to cancel uploading?</source>
-        <translation type="unfinished"></translation>
+        <source>Images are uploading</source>
+        <translation>Nahrávají se obrázky</translation>
     </message>
     <message>
         <location filename="../qvk/vkuploadimagesform.cpp" line="20"/>
-        <source>Minimize</source>
-        <translation type="unfinished"></translation>
+        <source>Images are uploading now. Do you want to cancel uploading?</source>
+        <translation>Nyní se nahrávají obrázky. Chcete nahrávání zrušit?</translation>
     </message>
     <message>
         <location filename="../qvk/vkuploadimagesform.cpp" line="21"/>
-        <source>Yes</source>
-        <translation type="unfinished"></translation>
+        <source>Minimize</source>
+        <translation>Zmenšit</translation>
     </message>
     <message>
         <location filename="../qvk/vkuploadimagesform.cpp" line="22"/>
+        <source>Yes</source>
+        <translation>Ano</translation>
+    </message>
+    <message>
+        <location filename="../qvk/vkuploadimagesform.cpp" line="23"/>
         <source>No</source>
-        <translation type="unfinished"></translation>
+        <translation>Ne</translation>
     </message>
     <message>
-        <location filename="../qvk/vkuploadimagesform.cpp" line="61"/>
-        <location filename="../qvk/vkuploadimagesform.cpp" line="89"/>
+        <location filename="../qvk/vkuploadimagesform.cpp" line="92"/>
+        <location filename="../qvk/vkuploadimagesform.cpp" line="121"/>
         <source>Uploading: </source>
-        <translation type="unfinished"></translation>
+        <translation>Nahrávání:</translation>
     </message>
     <message>
-        <location filename="../qvk/vkuploadimagesform.cpp" line="81"/>
+        <location filename="../qvk/vkuploadimagesform.cpp" line="113"/>
         <source>Pictures have been uploaded</source>
-        <translation type="unfinished"></translation>
+        <translation>Obrázky byly nahrány</translation>
     </message>
     <message>
-        <location filename="../qvk/vkuploadimagesform.cpp" line="82"/>
+        <location filename="../qvk/vkuploadimagesform.cpp" line="114"/>
         <source>Some pictures have been uploaded</source>
-        <translation type="unfinished"></translation>
+        <translation>Některé obrázky byly nahrány</translation>
     </message>
     <message>
-        <location filename="../qvk/vkuploadimagesform.cpp" line="106"/>
+        <location filename="../qvk/vkuploadimagesform.cpp" line="138"/>
         <source>Title of new album</source>
-        <translation type="unfinished"></translation>
+        <translation>Název nového alba</translation>
     </message>
     <message>
-        <location filename="../qvk/vkuploadimagesform.cpp" line="106"/>
+        <location filename="../qvk/vkuploadimagesform.cpp" line="138"/>
         <source>Please input title of new album</source>
-        <translation type="unfinished"></translation>
+        <translation>Zadejte, prosím, název nového alba</translation>
     </message>
 </context>
 </TS>

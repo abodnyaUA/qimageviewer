@@ -6,11 +6,10 @@ QImageViewer::QImageViewer(QString path, QWidget *parent) :
     ui(new Ui::QImageViewer)
 {
     ui->setupUi(this);
-
     // init image //
     imagewidget = new image;
     previewwiget = new PreviewMode;
-    isfullScreenActive = false;
+    connect(imagewidget,SIGNAL(listIsEmpty()),this,SLOT(listIsEmpty()));
 
     ui->verticalLayout->addWidget(imagewidget);
     ui->verticalLayout->addWidget(previewwiget);
@@ -49,6 +48,7 @@ QImageViewer::QImageViewer(QString path, QWidget *parent) :
         fileOpen();
     }
 
+    isfullScreenActive = false;
     isSettingsActive = false;
     isEditosManagerActive = false;
     isEditorAddFormActive = false;
@@ -201,6 +201,13 @@ void QImageViewer::fileOpen()
             ui->vkUploadImageAction->setEnabled(true);
             ui->vkUploadImagesAction->setEnabled(true);
         }
+        ui->actionBlur->setEnabled(true);
+        ui->actionBrightness->setEnabled(true);
+        ui->actionGray_Scale->setEnabled(true);
+        ui->actionSaturation->setEnabled(true);
+        ui->actionSepia->setEnabled(true);
+        ui->actionSharpen->setEnabled(true);
+        ui->actionWarm->setEnabled(true);
         butMODE->setEnabled(true);
         ui->actionMode->setEnabled(false);
         isReadyPreviews = false;
@@ -259,17 +266,49 @@ void QImageViewer::filesFind()
     for (int i=0;i<imagefiles.size();i++) imagefiles[i] = lastdirectory + '/' + imagefiles[i];
 #endif
 
-//    previewListWidget->clear();
-//    previewListWidget->setResizeMode(QListView::Adjust);
-
     imagewidget->loadimagelist(imagefiles);
+}
 
-    //Previews//
-//    previewLoader->loadList(imagefiles);
-//    connect(&previewThread,SIGNAL(started()),previewLoader,SLOT(run()));
-//    connect(previewLoader,SIGNAL(finished()),&previewThread,SLOT(terminate()));
-//    previewLoader->moveToThread(&previewThread);
-//    previewThread.start();
+void QImageViewer::listIsEmpty()
+{
+    setWindowTitle("QImageViewer");
+    if (mode == ModePreview) changeMode();
+    ui->actionMode->setEnabled(false);
+    butMODE->setEnabled(false);
+    ui->saveAction->setEnabled(false);
+    ui->saveAsAction->setEnabled(false);
+    ui->rotateLeftAction->setEnabled(false);
+    ui->rotateRightAction->setEnabled(false);
+    ui->flipHorizontalAction->setEnabled(false);
+    ui->flipVerticalAction->setEnabled(false);
+    ui->deleteFileAction->setEnabled(false);
+    ui->resizeAction->setEnabled(false);
+    ui->resizeitemsAction->setEnabled(false);
+    ui->previmageAction->setEnabled(false);
+    ui->nextimageAction->setEnabled(false);
+    ui->slideshowAction->setEnabled(false);
+    ui->wallpaperAction->setEnabled(false);
+    ui->cropAction->setEnabled(false);
+    ui->zoomInAction->setEnabled(false);
+    ui->zoomOutAction->setEnabled(false);
+    ui->zoomOriginalAction->setEnabled(false);
+    ui->zoomWindowAction->setEnabled(false);
+    for (int i=0;i<editorsActions.size();i++)
+        editorsActions[i]->setEnabled(false);
+    ui->shareImageShackAction->setEnabled(false);
+    ui->shareImageShackListAction->setEnabled(false);
+    if (!vkToken.isEmpty())
+    {
+        ui->vkUploadImageAction->setEnabled(false);
+        ui->vkUploadImagesAction->setEnabled(false);
+    }
+    ui->actionBlur->setEnabled(false);
+    ui->actionBrightness->setEnabled(false);
+    ui->actionGray_Scale->setEnabled(false);
+    ui->actionSaturation->setEnabled(false);
+    ui->actionSepia->setEnabled(false);
+    ui->actionSharpen->setEnabled(false);
+    ui->actionWarm->setEnabled(false);
 }
 
 /** Save current file with same name **/
@@ -494,6 +533,75 @@ void QImageViewer::cropImageOvered(bool result)
     // destroy editForm, free memory //
     disconnect(editFormCrop,SIGNAL(editFinished(bool)),this,SLOT(cropImageOvered(bool)));
     delete editFormCrop;
+}
+
+void QImageViewer::acceptFilterGrayScale()
+{
+    QPixmap * newpixmap = new QPixmap(ImageFilter()(imagewidget->currentPixmap(),Filter::Gray_Scale));
+    imagewidget->addToBuffer(newpixmap);
+}
+void QImageViewer::acceptFilterBlur()
+{
+    QPixmap * newpixmap = new QPixmap(ImageFilter()(imagewidget->currentPixmap(),Filter::Blur));
+    imagewidget->addToBuffer(newpixmap);
+}
+void QImageViewer::acceptFilterSharpen()
+{
+    QPixmap * newpixmap = new QPixmap(ImageFilter()(imagewidget->currentPixmap(),Filter::Sharpen));
+    imagewidget->addToBuffer(newpixmap);
+}
+void QImageViewer::acceptFilterSepia()
+{
+    QPixmap * newpixmap = new QPixmap(ImageFilter()(imagewidget->currentPixmap(),Filter::Sepia));
+    imagewidget->addToBuffer(newpixmap);
+}
+
+void QImageViewer::acceptFilterBrightness() { filterImage(Filter::Brightness); }
+void QImageViewer::acceptFilterTemperature() { filterImage(Filter::Temperature); }
+void QImageViewer::acceptFilterSaturate() { filterImage(Filter::Saturation); }
+void QImageViewer::filterImage(Filter::FilterType filter)
+{
+    // init editResize window //
+    editFormFilters = new editformFilters(width(),height(),filter);
+    if (filter == Filter::Brightness) {
+        editFormFilters->setWindowIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Filter_Brightness"])));
+        editFormFilters->setWindowTitle(tr("QImageViewer - Brightness"));
+    } else if (filter == Filter::Temperature) {
+        editFormFilters->setWindowIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Filter_Temperature"])));
+        editFormFilters->setWindowTitle(tr("QImageViewer - Warm / Cold"));
+    } else if (filter == Filter::Saturation) {
+        editFormFilters->setWindowIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Filter_Saturation"])));
+        editFormFilters->setWindowTitle(tr("QImageViewer - Saturation"));
+    }
+    connect(editFormFilters,SIGNAL(editFinished(bool)),this,SLOT(filterImageOvered(bool)));
+
+    if (this->windowState() == Qt::WindowMaximized) editFormFilters->setWindowState(Qt::WindowMaximized);
+    else
+    {
+        editFormFilters->resize(this->width(),this->height());
+        editFormFilters->setWindowState(Qt::WindowNoState);
+    }
+    editFormFilters->loadImage(imagewidget->currentPixmap());
+    editFormFilters->show();
+    this->hide();
+}
+void QImageViewer::filterImageOvered(bool result)
+{
+    if (!isfullScreenActive) this->show();
+    if (result)
+    {
+        imagewidget->addToBuffer(editFormFilters->getpixmap());
+        imagewidget->setEdited();
+    }
+    if (editFormFilters->windowState() == Qt::WindowMaximized) this->setWindowState(Qt::WindowMaximized);
+    else
+    {
+        this->resize(editFormFilters->width(),editFormFilters->height());
+        this->setWindowState(Qt::WindowNoState);
+    }
+    editFormFilters->close();
+    disconnect(editFormFilters,SIGNAL(editFinished(bool)),this,SLOT(filterImageOvered(bool)));
+    delete editFormFilters;
 }
 
 

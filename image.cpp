@@ -448,6 +448,7 @@ bool image::deleteCurrentItemWithoutAsc()
     {
         loadimage(":/res/logo.png");
         isPixmap = false;
+        emit listIsEmpty();
         return true;
     }
     wasEdited = false;
@@ -460,6 +461,7 @@ bool image::deleteCurrentItemWithoutAsc()
 void image::removeFromList(QString name)
 {
     imagelist.removeOne(name);
+    if (imagelist.isEmpty()) emit listIsEmpty();
 }
 
 /** insert image in list **/

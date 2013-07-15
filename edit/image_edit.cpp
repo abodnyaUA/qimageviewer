@@ -47,6 +47,7 @@ void image::addToBuffer(QPixmap * pixmap)
     }
 
     delete imageScene;
+//    delete imagePixmap;
     imagePixmap = pixmap;
 
     zoom = qMax((double)imagePixmap->width()/(double)width(),

@@ -36,6 +36,8 @@
 #include "edit/editformresize.h"
 #include "edit/editformresizeelements.h"
 #include "edit/editformcrop.h"
+#include "edit/editformfilters.h"
+#include "edit/imagefilter.h"
 #include "settings/settings.h"
 #include "settings/hotkeys.h"
 //EXTERN APPLICATION
@@ -75,6 +77,7 @@ private slots:
     void fileSave();
     void fileSaveAs();
     void filesFind();
+    void listIsEmpty();
     void currentIndexWasChanged(int indx);
     void settingsWindow();
     void updateSettings(QString language,
@@ -97,6 +100,15 @@ private slots:
     void fullScreenFromImage();
     void slideShow();
     //EDIT
+    void acceptFilterGrayScale();
+    void acceptFilterBrightness();
+    void acceptFilterTemperature();
+    void acceptFilterSaturate();
+    void acceptFilterBlur();
+    void acceptFilterSharpen();
+    void acceptFilterSepia();
+    void filterImage(Filter::FilterType filter);
+    void filterImageOvered(bool result);
     void resizeImage();
     void resizeImageOvered(bool result);
     void cropImage();
@@ -217,6 +229,7 @@ private:
     QColor fullscreencolor;
 
     // Edit Forms //
+    editformFilters *editFormFilters;
     editformResize *editFormResize;
     editformCrop *editFormCrop;
     editformResizeElements *editFormResizeElements;

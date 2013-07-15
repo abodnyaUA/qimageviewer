@@ -86,6 +86,7 @@ signals:
     void itsSaved(bool);
     void needFullscreen();
     void needSlideshow();
+    void listIsEmpty();
 
 private:
     QColor fullscreencolor;

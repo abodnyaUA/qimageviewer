@@ -64,6 +64,12 @@ namespace Ui {
 class QImageViewer;
 }
 
+#ifdef Q_OS_LINUX
+namespace OS {
+    enum OS { DEBBasedLinux, RPMBasedLinux, ArchLinux };
+}
+#endif
+
 class QImageViewer : public QMainWindow
 {
     Q_OBJECT
@@ -169,6 +175,9 @@ private slots:
 
 private:
     enum Mode {ModeImage, ModePreview} mode;
+#ifdef Q_OS_LINUX
+    OS::OS typeOS;
+#endif
 
     /// Settings ///
     QSettings *qsettings;

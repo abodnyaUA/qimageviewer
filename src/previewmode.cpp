@@ -14,6 +14,7 @@ PreviewMode::PreviewMode()
     previewLoader = new previewList(this,previewThread);
     connect(this,SIGNAL(itemDoubleClicked(QListWidgetItem*)),this,SLOT(onItemDoubleClicked(QListWidgetItem*)));
     setSelectionMode(QAbstractItemView::ExtendedSelection);
+    installEventFilter(this);
 }
 
 void PreviewMode::loadImages(QStringList images)
@@ -53,6 +54,17 @@ void PreviewMode::removeImage(QString name)
     int indx = BinSearch(images,name);
     delete item(indx);
     images.removeAt(indx);
+}
+
+bool PreviewMode::eventFilter(QObject *, QEvent *event)
+{
+    if (event->type() == QEvent::KeyPress)
+    {
+        QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
+        int keyInt = keyEvent->key();
+        QString key = QKeySequence(keyInt).toString();
+        if (key == "Return" && !selectedItems().isEmpty()) onItemDoubleClicked(selectedItems()[0]);
+    }
 }
 
 void PreviewMode::onItemDoubleClicked(QListWidgetItem *item)

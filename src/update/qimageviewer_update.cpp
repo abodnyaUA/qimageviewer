@@ -122,8 +122,21 @@ void QImageViewer::getUpdates(QNetworkReply* reply)
 #endif
 #ifdef Q_OS_LINUX
     existDir = QDir::homePath();
-    qDebug() << "http://qiv.p.ht/bin/"+response.toMap()["deb-package"].toString();
-    needToUpdate.append(response.toMap()["deb-package"].toString());
+    if (typeOS == OS::DEBBasedLinux)
+    {
+        qDebug() << "http://qiv.p.ht/bin/"+response.toMap()["deb-package"].toString();
+        needToUpdate.append(response.toMap()["deb-package"].toString());
+    }
+    if (typeOS == OS::RPMBasedLinux)
+    {
+        qDebug() << "http://qiv.p.ht/bin/"+response.toMap()["rpm-package"].toString();
+        needToUpdate.append(response.toMap()["rpm-package"].toString());
+    }
+    if (typeOS == OS::ArchLinux)
+    {
+        qDebug() << "https://aur.archlinux.org/packages/qi/qimageviewer-git/qimageviewer-git.tar.gz";
+        needToUpdate.append("qimageviewer-git.tar.gz");
+    }
 #endif
     // Get changelog
     QNetworkAccessManager * m_NetworkMngr = new QNetworkAccessManager(this);
@@ -157,8 +170,17 @@ void QImageViewer::updateFile(int number)
                 QNetworkRequest(QUrl("http://qiv.p.ht/windows/"+needToUpdate[number])));
 #endif
 #ifdef Q_OS_LINUX
-    QNetworkReply *reply = m_NetworkMngr->get(
-                QNetworkRequest(QUrl("http://qiv.p.ht/bin/"+needToUpdate[number])));
+    QNetworkReply *reply;
+    if (typeOS == OS::ArchLinux)
+    {
+        reply = m_NetworkMngr->get(QNetworkRequest(QUrl(
+                 "https://aur.archlinux.org/packages/qi/qimageviewer-git/"+needToUpdate[number])));
+    }
+    else
+    {
+        reply = m_NetworkMngr->get(
+                    QNetworkRequest(QUrl("http://qiv.p.ht/bin/"+needToUpdate[number])));
+    }
 #endif
 #ifdef Q_OS_MAC
     QNetworkReply *reply;
@@ -230,7 +252,19 @@ void QImageViewer::afterUpdates()
     updater.open(QIODevice::WriteOnly);
     QTextStream out(&updater);
     out << "#!/bin/sh\n";
-    out << "gksu "<< '"' << "gdebi -n " << existDir+"/update/"+needToUpdate[0]<< '"' << "\n";
+    if (typeOS == OS::DEBBasedLinux)
+        out << "gksu "<< '"' << "gdebi -n " << existDir+"/update/"+needToUpdate[0]<< '"' << "\n";
+    if (typeOS == OS::ArchLinux)
+    {
+        out << "cd "+existDir+"/update/\n";
+        out << "tar -xvf qimageviewer-git.tar.gz\n";
+        out << "cd qimageviewer-git\n";
+        out << "makepkg -g >> PKGBUILD\n";
+        out << "makepkg\n";
+        out << "gksu "<< '"' << "pacman -U ttf-adobe-fonts.tar.gz.hz"<< '"' << "\n";
+    }
+    if (typeOS == OS::RPMBasedLinux)
+        out << "gksu "<< '"' << "rpmbuild --rebuild "<< existDir+"/update/"+needToUpdate[0]<< '"' << "\n";
     out << "qimageviewer\n";
     out << "rm "<< '"' << existDir+"/updater.sh" << '"' << "\n";
     out << "rm -rf "<< '"' << existDir+"/update"<< '"' << "\n";

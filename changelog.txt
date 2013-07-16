@@ -122,6 +122,7 @@ Add:
 + GIF Animation support
 + Editing filters
 + Mac OS X support
++ Updating for RPM based and Arch Linux
 
 Changed:
 c Buttons "Next", "Previous" occupy all the available space in height

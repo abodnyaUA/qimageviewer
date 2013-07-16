@@ -64,6 +64,25 @@ QImageViewer::QImageViewer(QString path, QWidget *parent) :
     setWindowState(Qt::WindowMaximized);
     imagewidget->setAcceptDrops(false);
     setAcceptDrops(true);
+
+#ifdef Q_OS_LINUX
+    if(QFile("/usr/bin/dpkg").exists())
+    {
+        typeOS = OS::DEBBasedLinux;
+        qDebug() << "DEB Based Linux";
+    }
+    if(QFile("/usr/bin/yum").exists())
+    {
+        typeOS = OS::RPMBasedLinux;
+        qDebug() << "RPM Based Linux";
+    }
+    if(QFile("/usr/bin/pacman").exists())
+    {
+        typeOS = OS::ArchLinux;
+        qDebug() << "Arch Based Linux";
+    }
+#endif
+
     if (checkAutoUpdates)
     {
         if (timesToUpdate > 10) timesToUpdate = 0;
@@ -302,13 +321,20 @@ void QImageViewer::listIsEmpty()
         ui->vkUploadImageAction->setEnabled(false);
         ui->vkUploadImagesAction->setEnabled(false);
     }
-    ui->actionBlur->setEnabled(false);
-    ui->actionBrightness->setEnabled(false);
-    ui->actionGray_Scale->setEnabled(false);
-    ui->actionSaturation->setEnabled(false);
-    ui->actionSepia->setEnabled(false);
-    ui->actionSharpen->setEnabled(false);
-    ui->actionWarm->setEnabled(false);
+    ui->menuAccept_filter->setEnabled(false);
+    ui->prevButton->setEnabled(false);
+    ui->nextButton->setEnabled(false);
+    if (isneedBut.rotateLeft)    butRotateLeft->setEnabled(false);
+    if (isneedBut.rotateRight)   butRotateRight->setEnabled(false);
+    if (isneedBut.flipHorizontal)butFlipHorizontal->setEnabled(false);
+    if (isneedBut.flipVertical)  butFlipVertical->setEnabled(false);
+    if (isneedBut.zoomIn)        butZoomIn->setEnabled(false);
+    if (isneedBut.zoomOut)       butZoomOut->setEnabled(false);
+    if (isneedBut.zoomWindow)    butZoomWindow->setEnabled(false);
+    if (isneedBut.zoomOriginal)  butZoomOriginal->setEnabled(false);
+    if (isneedBut.fullscreen)    butFullscreen->setEnabled(false);
+    if (isneedBut.slideshow)     butSlideshow->setEnabled(false);
+    if (isneedBut.properties)    butProperties->setEnabled(false);
 }
 
 /** Save current file with same name **/

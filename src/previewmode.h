@@ -7,6 +7,8 @@
 #include <QString>
 #include <QThread>
 #include <QList>
+#include <QEvent>
+#include <QKeyEvent>
 #include "previewlist.h"
 #include "algorithms.h"
 
@@ -39,7 +41,10 @@ private slots:
 signals:
     void openImage(int);
     void ready();
-public slots:
+
+protected:
+    bool eventFilter(QObject *, QEvent *);
+//    void keyPressEvent(QKeyEvent *event);
 };
 
 #endif // PREVIEWMODE_H

@@ -91,7 +91,7 @@ void image::addToBuffer(QPixmap * pixmap)
     emit itsSaved(false);
     sumMousePos.setX( imageScene->width()/2.0 );
     sumMousePos.setY( imageScene->height()/2.0 );
-
+    wasEdited = true;
 }
 
 /** 'undo' function **/
@@ -152,7 +152,6 @@ void image::rotateLeft()
     transform = transform.rotate(-90);
     QPixmap * newpixmap = new QPixmap(imagePixmap->transformed(transform));
     addToBuffer(newpixmap);
-    wasEdited = true;
 }
 
 /** rotate image right **/
@@ -162,7 +161,6 @@ void image::rotateRight()
     transform = transform.rotate(90);
     QPixmap * newpixmap = new QPixmap(imagePixmap->transformed(transform));
     addToBuffer(newpixmap);
-    wasEdited = true;
 }
 
 /** Create horizontal flip of current image (Reflection) **/
@@ -172,7 +170,6 @@ void image::flipHorizontal()
     image = image.mirrored(true,false);
     QPixmap * newpixmap = new QPixmap(QPixmap::fromImage(image));
     addToBuffer(newpixmap);
-    wasEdited = true;
 }
 
 /** Create vertical flip of current image (Reflection) **/
@@ -182,7 +179,6 @@ void image::flipVertical()
     image = image.mirrored(false,true);
     QPixmap * newpixmap = new QPixmap(QPixmap::fromImage(image));
     addToBuffer(newpixmap);
-    wasEdited = true;
 }
 
 /** save current image **/

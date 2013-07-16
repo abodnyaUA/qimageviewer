@@ -261,7 +261,7 @@ void QImageViewer::afterUpdates()
         out << "cd qimageviewer-git\n";
         out << "makepkg -g >> PKGBUILD\n";
         out << "makepkg\n";
-        out << "gksu "<< '"' << "pacman -U ttf-adobe-fonts.tar.gz.hz"<< '"' << "\n";
+        out << "gksu "<< '"' << "pacman -U qimageviewer-git.tar.gz.hz"<< '"' << "\n";
     }
     if (typeOS == OS::RPMBasedLinux)
         out << "gksu "<< '"' << "rpmbuild --rebuild "<< existDir+"/update/"+needToUpdate[0]<< '"' << "\n";

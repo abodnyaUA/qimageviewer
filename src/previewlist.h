@@ -14,6 +14,7 @@ class previewList : public QObject
 public:
     previewList(QListWidget * previewListWidget, QThread *thread);
     void loadList(QStringList list);
+    QList<QImage> icons;
 signals:
     void finished();
 public slots:

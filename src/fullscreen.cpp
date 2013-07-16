@@ -39,7 +39,6 @@ QColor fullscreen::getBkgColor()
 
 void fullscreen::startSlideShow()
 {
-    qDebug() << "START SLIDESHOW";
     timer->start(slideshowInterval*1000);
     slideshowStarted = true;
 }

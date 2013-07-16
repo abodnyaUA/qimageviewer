@@ -2,6 +2,8 @@
 #define PREVIEWMODE_H
 
 #include <QListWidget>
+#include <QImage>
+#include <QPixmap>
 #include <QFile>
 #include <QDir>
 #include <QString>

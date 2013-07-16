@@ -8,6 +8,7 @@ previewList::previewList(QListWidget * previewListWidget, QThread *thread)
 void previewList::loadList(QStringList list)
 {
     lst.clear();
+    icons.clear();
     foreach(QString item, list)
         lst.append(item);
     current = 0;
@@ -20,7 +21,7 @@ void previewList::run()
         if (listWidget->count() > current)
         {
             qDebug() << "current = "<<current<<"; size = "<<listWidget->count();
-            listWidget->item(current)->setIcon(QIcon(QPixmap(lst[current]).scaled(100,100)));
+            icons.append(QImage(lst[current]).scaled(100,100));
             current++;
             thread->start();
         }

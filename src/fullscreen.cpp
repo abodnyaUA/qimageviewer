@@ -89,6 +89,7 @@ void fullscreen::nextSlide()
     }
     else
     {
+        qDebug() << "NEED NEXT SLIDE";
         if (imagewidget->currentImage() < imagewidget->size()-1)
             imagewidget->setImage(imagewidget->currentImage()+1);
         else
@@ -162,6 +163,8 @@ bool fullscreen::eventFilter(QObject *, QEvent *event)
         {   emit needUndo(); return true; }
         else if (textHotkey == hotkeys->editRedo)
         {   emit needRedo(); return true; }
+        else if (textHotkey == QKeySequence(QKeySequence::Delete).toString())
+        {   emit needDelete(); return true; }
 
 
 

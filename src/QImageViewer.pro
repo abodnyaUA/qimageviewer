@@ -41,102 +41,126 @@ unix {
 
     INSTALLS += target desktop
     INSTALLS += icon_32 icon_64
+    QMAKE_CXXFLAGS = -std=c++11
 }
 win32 {
 #OS WIN
 RC_FILE = myapp.rc
- }
+    QMAKE_CXXFLAGS = -std=c++11
+}
+macx {
+    ICON = res/icon.icns
+    RC_FILE = res/icon.icns
+    QMAKE_INFO_PLIST = info.plist
+    #CONFIG-=app_bundle
+    QMAKE_CXXFLAGS = -mmacosx-version-min=10.7 -std=gnu0x -stdlib=libc+
+    CONFIG+=c++11
+    HEADERS += os_application.h
+    SOURCES += os_application.cpp
+}
 
 # Input
-HEADERS += aboutform.h \
-           fullscreen.h \
-           image.h \
-           preview.h \
-           previewlist.h \
-           qimageviewer.h \
-           edit/editformcrop.h \
-           edit/editformcropimage.h \
-           edit/editformresize.h \
-           edit/editformresizeelements.h \
-           externeditor/qexternprogram.h \
-           externeditor/qexternprogramaddform.h \
-           externeditor/qexternprogrammanager.h \
-           imageshack/imageshacklistupload.h \
-           imageshack/imageshacklistview.h \
-           imageshack/imageshackuploader.h \
-           imageshack/uploadtoimageshack.h \
-           qvk/json.h \
-           qvk/qvk.h \
-           qvk/reply.h \
-           qvk/vkdownloadalbumform.h \
-           qvk/vkuploadimageform.h \
-           qvk/vkuploadimagesform.h \
-           settings/hotkeys.h \
-           settings/qhotkeyedit.h \
-           settings/qhotkeywidget.h \
-           settings/settings.h \
-    updatedialog.h \
-    updateinformer.h
-FORMS += aboutform.ui \
-         fullscreen.ui \
-         properties.ui \
-         qimageviewer.ui \
-         edit/editformcrop.ui \
-         edit/editformresize.ui \
-         edit/editformresizeelements.ui \
-         externeditor/qexternprogramaddform.ui \
-         externeditor/qexternprogrammanager.ui \
-         imageshack/imageshacklistupload.ui \
-         imageshack/imageshacklistview.ui \
-         imageshack/imageshackuploader.ui \
-         qvk/vkdownloadalbumform.ui \
-         qvk/vkuploadimageform.ui \
-         qvk/vkuploadimagesform.ui \
-         settings/settings.ui \
-    updatedialog.ui \
-    updateinformer.ui
-SOURCES += aboutform.cpp \
-           fullscreen.cpp \
-           image.cpp \
-           image_events.cpp \
-           main.cpp \
-           preview.cpp \
-           previewlist.cpp \
-           qimageviewer.cpp \
-           edit/editformcrop.cpp \
-           edit/editformcropimage.cpp \
-           edit/editformresize.cpp \
-           edit/editformresizeelements.cpp \
-           edit/image_edit.cpp \
-           externeditor/qexternprogram.cpp \
-           externeditor/qexternprogramaddform.cpp \
-           externeditor/qexternprogrammanager.cpp \
-           imageshack/imageshacklistupload.cpp \
-           imageshack/imageshacklistview.cpp \
-           imageshack/imageshackuploader.cpp \
-           imageshack/qimageviewer_imageshack.cpp \
-           imageshack/uploadtoimageshack.cpp \
-           qvk/json.cpp \
-           qvk/qimageviewer_vk.cpp \
-           qvk/qvk.cpp \
-           qvk/reply.cpp \
-           qvk/vkdownloadalbumform.cpp \
-           qvk/vkuploadimageform.cpp \
-           qvk/vkuploadimagesform.cpp \
-           settings/qhotkeyedit.cpp \
-           settings/qhotkeywidget.cpp \
-           settings/qimageviewer_design.cpp \
-           settings/settings.cpp \
-           settings/settings_hotkeys.cpp \
-    updatedialog.cpp \
-    updateinformer.cpp
+HEADERS += \
+    aboutform.h \
+    fullscreen.h \
+    image.h \
+    previewlist.h \
+    qimageviewer.h \
+    edit/editformcrop.h \
+    edit/editformcropimage.h \
+    edit/editformresize.h \
+    edit/editformresizeelements.h \
+    externeditor/qexternprogram.h \
+    externeditor/qexternprogramaddform.h \
+    externeditor/qexternprogrammanager.h \
+    imageshack/imageshacklistupload.h \
+    imageshack/imageshacklistview.h \
+    imageshack/imageshackuploader.h \
+    imageshack/uploadtoimageshack.h \
+    qvk/json.h \
+    qvk/qvk.h \
+    qvk/reply.h \
+    qvk/vkdownloadalbumform.h \
+    qvk/vkuploadimageform.h \
+    qvk/vkuploadimagesform.h \
+    settings/hotkeys.h \
+    settings/qhotkeyedit.h \
+    settings/qhotkeywidget.h \
+    settings/settings.h \
+    update/updatedialog.h \
+    update/updateinformer.h \
+    previewmode.h \
+    algorithms.h \
+    edit/imagefilter.h \
+    edit/editformfilters.h
+FORMS += \
+    aboutform.ui \
+    fullscreen.ui \
+    properties.ui \
+    qimageviewer.ui \
+    edit/editformcrop.ui \
+    edit/editformresize.ui \
+    edit/editformresizeelements.ui \
+    externeditor/qexternprogramaddform.ui \
+    externeditor/qexternprogrammanager.ui \
+    imageshack/imageshacklistupload.ui \
+    imageshack/imageshacklistview.ui \
+    imageshack/imageshackuploader.ui \
+    qvk/vkdownloadalbumform.ui \
+    qvk/vkuploadimageform.ui \
+    qvk/vkuploadimagesform.ui \
+    settings/settings.ui \
+    update/updatedialog.ui \
+    update/updateinformer.ui \
+    edit/editformfilters.ui
+SOURCES += \
+    aboutform.cpp \
+    fullscreen.cpp \
+    image.cpp \
+    image_events.cpp \
+    main.cpp \
+    previewlist.cpp \
+    qimageviewer.cpp \
+    edit/editformcrop.cpp \
+    edit/editformcropimage.cpp \
+    edit/editformresize.cpp \
+    edit/editformresizeelements.cpp \
+    edit/image_edit.cpp \
+    externeditor/qexternprogram.cpp \
+    externeditor/qexternprogramaddform.cpp \
+    externeditor/qexternprogrammanager.cpp \
+    imageshack/imageshacklistupload.cpp \
+    imageshack/imageshacklistview.cpp \
+    imageshack/imageshackuploader.cpp \
+    imageshack/qimageviewer_imageshack.cpp \
+    imageshack/uploadtoimageshack.cpp \
+    qvk/json.cpp \
+    qvk/qimageviewer_vk.cpp \
+    qvk/qvk.cpp \
+    qvk/reply.cpp \
+    qvk/vkdownloadalbumform.cpp \
+    qvk/vkuploadimageform.cpp \
+    qvk/vkuploadimagesform.cpp \
+    settings/qhotkeyedit.cpp \
+    settings/qhotkeywidget.cpp \
+    settings/qimageviewer_design.cpp \
+    settings/settings.cpp \
+    settings/settings_hotkeys.cpp \
+    update/updatedialog.cpp \
+    update/updateinformer.cpp \
+    update/qimageviewer_update.cpp \
+    previewmode.cpp \
+    externeditor/qimageviewer_extern.cpp \
+    algorithms.cpp \
+    qimageviewer_mode.cpp \
+    edit/imagefilter.cpp \
+    edit/editformfilters.cpp
 RESOURCES += resources.qrc
 TRANSLATIONS += lng/qimageviewer_cz.ts \
                 lng/qimageviewer_en.ts \
                 lng/qimageviewer_pl.ts \
                 lng/qimageviewer_ru.ts \
                 lng/qimageviewer_uk.ts
-QMAKE_CXXFLAGS += -std=c++11
 
 OTHER_FILES += \
     lng/qimageviewer_uk.ts \
@@ -147,5 +171,8 @@ OTHER_FILES += \
     lng/qimageviewer_pl.qm \
     lng/qimageviewer_en.ts \
     lng/qimageviewer_en.qm \
-    lng/qimageviewer_cz.ts \
-    lng/qimageviewer_cz.qm
+    android/src/org/qtproject/qt5/android/bindings/QtApplication.java \
+    android/src/org/qtproject/qt5/android/bindings/QtActivity.java \
+    lng/qimageviewer_cs.ts \
+    lng/qimageviewer_cs.qm \
+    info.plist

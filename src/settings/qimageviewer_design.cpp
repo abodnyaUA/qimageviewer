@@ -59,6 +59,7 @@ void QImageViewer::loadsettings()
     hotkeys.zoomOut = qsettings->value("Hotkeys/ZoomOut","-").toString();
     hotkeys.zoomWindow = qsettings->value("Hotkeys/ZoomWindow","").toString();
     hotkeys.zoomOriginal = qsettings->value("Hotkeys/ZoomOriginal","").toString();
+    hotkeys.changeMode = qsettings->value("Hotkeys/SwitchMode","").toString();
 
     //About//
     hotkeys.helpAbout = qsettings->value("Hotkeys/HelpAbout","F1").toString();
@@ -84,6 +85,9 @@ void QImageViewer::loadsettings()
         QString command = qsettings->value("ExternProgram"+QString::number(indx)+"/Command","").toString();
 
         QIcon icon;
+#ifdef Q_OS_MAC
+        icon.addPixmap(QDir::homePath()+"/.config/QImageViewer/extern/"+name+".png");
+#endif
 #ifdef Q_OS_LINUX
         icon.addPixmap(QDir::homePath()+"/.config/QImageViewer/extern/"+name+".png");
 #endif
@@ -184,6 +188,7 @@ void QImageViewer::savesettings()
     qsettings->setValue("Hotkeys/ZoomOut",hotkeys.zoomOut);
     qsettings->setValue("Hotkeys/ZoomWindow",hotkeys.zoomWindow);
     qsettings->setValue("Hotkeys/ZoomOriginal",hotkeys.zoomOriginal);
+    qsettings->setValue("Hotkeys/SwitchMode",hotkeys.changeMode);
 
     //About//
     qsettings->setValue("Hotkeys/HelpAbout",hotkeys.helpAbout);
@@ -211,6 +216,9 @@ void QImageViewer::savesettings()
         indx++;
     }
     QString dir;
+#ifdef Q_OS_MAC
+    dir = QDir::homePath()+"/.config/QImageViewer/extern/";
+#endif
 #ifdef Q_OS_LINUX
     dir = QDir::homePath()+"/.config/QImageViewer/extern/";
 #endif
@@ -276,28 +284,46 @@ void QImageViewer::createActions()
     connect(imagewidget,SIGNAL(itsPossibleToRedo(bool)),this,SLOT(setRedoEnable(bool)));
 
     ui->rotateLeftAction->setStatusTip(tr("Rotate image to the left"));
-    connect(ui->rotateLeftAction,SIGNAL(triggered()),imagewidget,SLOT(rotateLeft()));
+    connect(ui->rotateLeftAction,SIGNAL(triggered()),this,SLOT(modeRotateLeft()));
 
     ui->rotateRightAction->setStatusTip(tr("Rotate image to the right"));
-    connect(ui->rotateRightAction,SIGNAL(triggered()),imagewidget,SLOT(rotateRight()));
+    connect(ui->rotateRightAction,SIGNAL(triggered()),this,SLOT(modeRotateRight()));
 
     ui->flipHorizontalAction->setStatusTip(tr("Change this image to horizontal mirror"));
-    connect(ui->flipHorizontalAction,SIGNAL(triggered()),imagewidget,SLOT(flipHorizontal()));
+    connect(ui->flipHorizontalAction,SIGNAL(triggered()),this,SLOT(modeFlipHorizontal()));
 
     ui->flipVerticalAction->setStatusTip(tr("Change this image to vertical mirror"));
-    connect(ui->flipVerticalAction,SIGNAL(triggered()),imagewidget,SLOT(flipVertical()));
+    connect(ui->flipVerticalAction,SIGNAL(triggered()),this,SLOT(modeFlipVertical()));
 
     ui->deleteFileAction->setStatusTip(tr("Delete current image"));
-    connect(ui->deleteFileAction,SIGNAL(triggered()),imagewidget,SLOT(deleteCurrentItem()));
+    connect(ui->deleteFileAction,SIGNAL(triggered()),this,SLOT(modeDelete()));
 
     ui->cropAction->setStatusTip(tr("Crop current image"));
     connect(ui->cropAction,SIGNAL(triggered()),this,SLOT(cropImage()));
 
     ui->resizeAction->setStatusTip(tr("Resize current image"));
-    connect(ui->resizeAction,SIGNAL(triggered()),this,SLOT(resizeImage()));
+    connect(ui->resizeAction,SIGNAL(triggered()),this,SLOT(modeResize()));
 
-    ui->resizeitemsAction->setStatusTip(tr("Resize list of images"));
-    connect(ui->resizeitemsAction,SIGNAL(triggered()),this,SLOT(resizeImageList()));
+    ui->actionBlur->setStatusTip(tr("Accept Blur filter to image"));
+    connect(ui->actionBlur,SIGNAL(triggered()),this,SLOT(acceptFilterBlur()));
+
+    ui->actionBrightness->setStatusTip(tr("Change image brightness"));
+    connect(ui->actionBrightness,SIGNAL(triggered()),this,SLOT(acceptFilterBrightness()));
+
+    ui->actionGray_Scale->setStatusTip(tr("Convert image colors to grey"));
+    connect(ui->actionGray_Scale,SIGNAL(triggered()),this,SLOT(acceptFilterGrayScale()));
+
+    ui->actionSaturation->setStatusTip(tr("Saturated images have more vivid colors and use to be more spectacular."));
+    connect(ui->actionSaturation,SIGNAL(triggered()),this,SLOT(acceptFilterSaturate()));
+
+    ui->actionSharpen->setStatusTip(tr("Sharpening is useful with blurry images, it helps to improve the level of detail."));
+    connect(ui->actionSharpen,SIGNAL(triggered()),this,SLOT(acceptFilterSharpen()));
+
+    ui->actionSepia->setStatusTip(tr("With a warmer image we can get a retro effect and for example in images where there's sand we'll get a more vivid image."));
+    connect(ui->actionSepia,SIGNAL(triggered()),this,SLOT(acceptFilterSepia()));
+
+    ui->actionWarm->setStatusTip(tr("With a warmer image we can get a retro effect and for example in images where there's sand we'll get a more vivid image."));
+    connect(ui->actionWarm,SIGNAL(triggered()),this,SLOT(acceptFilterTemperature()));
 
     // Watching //
     ui->nextimageAction->setStatusTip(tr("Show next image"));
@@ -315,7 +341,7 @@ void QImageViewer::createActions()
     connect(imagewidget,SIGNAL(needSlideshow()),this,SLOT(slideShow()));
 
     ui->wallpaperAction->setStatusTip(tr("Set picture as wallpaper"));
-    connect(ui->wallpaperAction,SIGNAL(triggered()),imagewidget,SLOT(setAsWallpaper()));
+    connect(ui->wallpaperAction,SIGNAL(triggered()),this,SLOT(modeWallpaper()));
 
     ui->zoomInAction->setStatusTip(tr("Zoom in"));
     connect(ui->zoomInAction,SIGNAL(triggered()),imagewidget,SLOT(zoomInc()));
@@ -329,6 +355,9 @@ void QImageViewer::createActions()
     ui->zoomWindowAction->setStatusTip(tr("Zoom to window size"));
     connect(ui->zoomWindowAction,SIGNAL(triggered()),imagewidget,SLOT(reloadImage()));
 
+    ui->actionMode->setStatusTip(tr("Switch view mode between image and previews"));
+    connect(ui->actionMode,SIGNAL(triggered()),this,SLOT(changeMode()));
+
     // Extern editors //
     ui->editorsNewAction->setStatusTip(tr("Add new extern editor. You will be able to open current image with another editor"));
     connect(ui->editorsNewAction,SIGNAL(triggered()),this,SLOT(newExternEditor()));
@@ -340,11 +369,8 @@ void QImageViewer::createActions()
         editorsActions[i]->setEnabled(false);
 
     // Share //
-    ui->shareImageShackAction->setStatusTip(tr("Share this image with ImageShack.us"));
-    connect(ui->shareImageShackAction,SIGNAL(triggered()),this,SLOT(imageshackShare()));
-
-    ui->shareImageShackListAction->setStatusTip(tr("Share list of images with ImageShack.us"));
-    connect(ui->shareImageShackListAction,SIGNAL(triggered()),this,SLOT(imageshackShareList()));
+    ui->shareImageShackAction->setStatusTip(tr("Share image with ImageShack.us"));
+    connect(ui->shareImageShackAction,SIGNAL(triggered()),this,SLOT(modeUploadToImageshack()));
 
     ui->vkLogInAction->setStatusTip(tr("Log in to social network vk.com to enable upload images"));
     connect(ui->vkLogInAction,SIGNAL(triggered()),this,SLOT(vkLogIn()));
@@ -353,10 +379,7 @@ void QImageViewer::createActions()
     connect(ui->vkLogOutAction,SIGNAL(triggered()),this,SLOT(vkLogOut()));
 
     ui->vkUploadImageAction->setStatusTip(tr("Upload current image to your vk.com's account"));
-    connect(ui->vkUploadImageAction,SIGNAL(triggered()),this,SLOT(vkUploadImage()));
-
-    ui->vkUploadImagesAction->setStatusTip(tr("Upload some images to your vk.com's account"));
-    connect(ui->vkUploadImagesAction,SIGNAL(triggered()),this,SLOT(vkUploadImageList()));
+    connect(ui->vkUploadImageAction,SIGNAL(triggered()),this,SLOT(modeUploadToVK()));
 
     ui->vkDownloadAlbumAction->setStatusTip(tr("Download images from vk.com's account"));
     connect(ui->vkDownloadAlbumAction,SIGNAL(triggered()),this,SLOT(vkDownloadAlbum()));
@@ -379,7 +402,8 @@ void QImageViewer::createActions()
 
     //Changing image
     connect(imagewidget,SIGNAL(currentImageWasChanged(int)),this,SLOT(currentIndexWasChanged(int)));
-
+    connect(previewwiget,SIGNAL(openImage(int)),this,SLOT(openImageFromPreview(int)));
+    connect(previewwiget,SIGNAL(ready()),this,SLOT(previewsReady()));
 }
 
 void QImageViewer::createHotkeys()
@@ -411,6 +435,7 @@ void QImageViewer::createHotkeys()
     ui->zoomOutAction->setShortcut(QKeySequence::fromString(hotkeys.zoomOut));
     ui->zoomOriginalAction->setShortcut(QKeySequence::fromString(hotkeys.zoomOriginal));
     ui->zoomWindowAction->setShortcut(QKeySequence::fromString(hotkeys.zoomWindow));
+    ui->actionMode->setShortcut(QKeySequence::fromString(hotkeys.changeMode));
     //Help//
     ui->aboutAction->setShortcut(hotkeys.helpAbout);
 }
@@ -426,11 +451,10 @@ void QImageViewer::createDesign()
         iconpacks = dialog.directory().entryList(QDir::Dirs | QDir::NoSymLinks | QDir::NoDotAndDotDot,QDir::SortByMask);
         for (int i=0;i<iconpacks.size();i++)
         {
-#ifdef Q_OS_LINUX
-            iconpacks[i] = iconpacksfolder + iconpacks[i] + "/";
-#endif
 #ifdef Q_OS_WIN32
             iconpacks[i] = iconpacksfolder + iconpacks[i]+ "\\";
+#else
+            iconpacks[i] = iconpacksfolder + iconpacks[i] + "/";
 #endif
         }
         if (!iconpacks.isEmpty()) iconpacks.insert(0,":/res/");
@@ -478,6 +502,16 @@ void QImageViewer::createDesign()
     icon["ExternEditorsManager"] = "extern-editor.png";
     icon["ExternEditorNew"] = "extern-editor-new.png";
     icon["Vkontakte"] = "vkontakte.png";
+    icon["Mode_Image"] = "mode_Image.png";
+    icon["Mode_Previews"] = "mode_Previews.png";
+    icon["Mode_Loading"] = "mode_Loading.png";
+    icon["Filter_Blur"] = "filter-blur.png";
+    icon["Filter_Brightness"] = "filter-brightness.png";
+    icon["Filter_Sharpen"] = "filter-sharpen.png";
+    icon["Filter_Temperature"] = "filter-temperature.png";
+    icon["Filter_Gray"] = "filter-gray-scale.png";
+    icon["Filter_Saturation"] = "filter-saturation.png";
+    icon["Filter_Sepia"] = "filter-sepia.png";
 
     //Menu actions
     ui->openAction->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["FileOpen"])));
@@ -511,6 +545,14 @@ void QImageViewer::createDesign()
     ui->vkDownloadAlbumAction->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Vkontakte"])));
     ui->aboutAction->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Help"])));
     ui->updatesAction->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Update"])));
+    ui->actionMode->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Mode_Image"])));
+    ui->actionBlur->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Filter_Blur"])));
+    ui->actionBrightness->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Filter_Brightness"])));
+    ui->actionGray_Scale->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Filter_Gray"])));
+    ui->actionSaturation->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Filter_Saturation"])));
+    ui->actionSharpen->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Filter_Sharpen"])));
+    ui->actionWarm->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Filter_Temperature"])));
+    ui->actionSepia->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Filter_Sepia"])));
 
     imagewidget->loadiconnames(icon);
     imagewidget->loadiconpack(iconpacks[currenticonpack]);
@@ -522,7 +564,7 @@ void QImageViewer::createPanel()
     {
         butRotateLeft = new QPushButton;
         butRotateLeft->setToolTip(tr("Rotate picture to the left"));
-        connect(butRotateLeft,SIGNAL(clicked()),imagewidget,SLOT(rotateLeft()));
+        connect(butRotateLeft,SIGNAL(clicked()),this,SLOT(modeRotateLeft()));
         butRotateLeft->setFocusPolicy(Qt::NoFocus);
         butRotateLeft->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["RotateLeft"])));
         butRotateLeft->setEnabled(false);
@@ -532,7 +574,7 @@ void QImageViewer::createPanel()
     {
         butRotateRight = new QPushButton;
         butRotateRight->setToolTip(tr("Rotate picture to the right"));
-        connect(butRotateRight,SIGNAL(clicked()),imagewidget,SLOT(rotateRight()));
+        connect(butRotateRight,SIGNAL(clicked()),this,SLOT(modeRotateRight()));
         butRotateRight->setFocusPolicy(Qt::NoFocus);
         butRotateRight->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["RotateRight"])));
         butRotateRight->setEnabled(false);
@@ -542,7 +584,7 @@ void QImageViewer::createPanel()
     {
         butFlipHorizontal = new QPushButton;
         butFlipHorizontal->setToolTip(tr("Change this image to horizontal mirror"));
-        connect(butFlipHorizontal,SIGNAL(clicked()),imagewidget,SLOT(flipHorizontal()));
+        connect(butFlipHorizontal,SIGNAL(clicked()),this,SLOT(modeFlipHorizontal()));
         butFlipHorizontal->setFocusPolicy(Qt::NoFocus);
         butFlipHorizontal->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["FlipHorizontal"])));
         butFlipHorizontal->setEnabled(false);
@@ -552,7 +594,7 @@ void QImageViewer::createPanel()
     {
         butFlipVertical = new QPushButton;
         butFlipVertical->setToolTip(tr("Change this image to vertical mirror"));
-        connect(butFlipVertical,SIGNAL(clicked()),imagewidget,SLOT(flipVertical()));
+        connect(butFlipVertical,SIGNAL(clicked()),this,SLOT(modeFlipVertical()));
         butFlipVertical->setFocusPolicy(Qt::NoFocus);
         butFlipVertical->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["FlipVertical"])));
         butFlipVertical->setEnabled(false);
@@ -629,24 +671,50 @@ void QImageViewer::createPanel()
         buttonsList << butProperties;
     }
 
+    butMODE = new QPushButton;
+    butMODE->setToolTip(tr("Change view mode to previews or image"));
+    connect(butMODE,SIGNAL(clicked()),this,SLOT(changeMode()));
+    butMODE->setFocusPolicy(Qt::NoFocus);
+    butMODE->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Mode_Image"])));
+    butMODE->setEnabled(false);
+  //  butMODE->setStyleSheet("background-color: red;");
+    buttonsList << butMODE;
+#ifdef Q_OS_MAC
+    foreach (QPushButton * but, buttonsList) {
+        but->setMaximumWidth(50);
+        but->setMinimumHeight(40);
+    }
+#endif
+#ifdef Q_OS_LINUX
+    foreach (QPushButton * but, buttonsList) {
+        but->setMaximumWidth(30);
+    }
+#endif
+
+
     spacerLeft = new QSpacerItem(40,20,QSizePolicy::Expanding);
     spacerRight = new QSpacerItem(40,20,QSizePolicy::Expanding);
 
     if (panelalignment == 0)
     {
         ui->panelBottomLayout->addSpacerItem(spacerLeft);
-        for (int i=0;i<buttonsList.size();i++)
+        for (int i=0;i<buttonsList.size()-1;i++)
+        {
+            if (i == buttonsList.size() / 2) ui->panelBottomLayout->addWidget(butMODE);
             ui->panelBottomLayout->addWidget(buttonsList[i]);
+        }
         ui->panelBottomLayout->addSpacerItem(spacerRight);
     }
     else if (panelalignment == 1)
     {
         ui->panelTopLayout->addSpacerItem(spacerLeft);
-        for (int i=0;i<buttonsList.size();i++)
-            ui->panelTopLayout->addWidget(buttonsList[i]);
+        for (int i=0;i<buttonsList.size()-1;i++)
+        {
+            if (i == buttonsList.size() / 2) ui->panelBottomLayout->addWidget(butMODE);
+            ui->panelBottomLayout->addWidget(buttonsList[i]);
+        }
         ui->panelTopLayout->addSpacerItem(spacerRight);
     }
-
 }
 
 
@@ -772,13 +840,15 @@ void QImageViewer::updateSettings(QString language,
         buttonsList.removeOne(butProperties);
         delete butProperties;
     }
+    buttonsList.removeOne(butMODE);
+    delete butMODE;
 
     // Sharing new memory to the objets //
     if (isneedNew.rotateLeft)
     {
         butRotateLeft = new QPushButton;
         butRotateLeft->setToolTip(tr("Rotate left"));
-        connect(butRotateLeft,SIGNAL(clicked()),imagewidget,SLOT(rotateLeft()));
+        connect(butRotateLeft,SIGNAL(clicked()),this,SLOT(modeRotateLeft()));
         butRotateLeft->setFocusPolicy(Qt::NoFocus);
         butRotateLeft->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["RotateLeft"])));
         if (!imagewidget->isReady()) butRotateLeft->setEnabled(false);
@@ -788,7 +858,7 @@ void QImageViewer::updateSettings(QString language,
     {
         butRotateRight = new QPushButton;
         butRotateRight->setToolTip(tr("Rotate right"));
-        connect(butRotateRight,SIGNAL(clicked()),imagewidget,SLOT(rotateRight()));
+        connect(butRotateRight,SIGNAL(clicked()),this,SLOT(modeRotateRight()));
         butRotateRight->setFocusPolicy(Qt::NoFocus);
         butRotateRight->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["RotateRight"])));
         if (!imagewidget->isReady()) butRotateRight->setEnabled(false);
@@ -798,7 +868,7 @@ void QImageViewer::updateSettings(QString language,
     {
         butFlipHorizontal = new QPushButton;
         butFlipHorizontal->setToolTip(tr("Change this image to horizontal mirror"));
-        connect(butFlipHorizontal,SIGNAL(clicked()),imagewidget,SLOT(flipHorizontal()));
+        connect(butFlipHorizontal,SIGNAL(clicked()),this,SLOT(modeFlipHorizontal()));
         butFlipHorizontal->setFocusPolicy(Qt::NoFocus);
         butFlipHorizontal->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["FlipHorizontal"])));
         if (!imagewidget->isReady()) butFlipHorizontal->setEnabled(false);
@@ -808,7 +878,7 @@ void QImageViewer::updateSettings(QString language,
     {
         butFlipVertical = new QPushButton;
         butFlipVertical->setToolTip(tr("Change this image to vertical mirror"));
-        connect(butFlipVertical,SIGNAL(clicked()),imagewidget,SLOT(flipVertical()));
+        connect(butFlipVertical,SIGNAL(clicked()),SLOT(modeFlipVertical()));
         butFlipVertical->setFocusPolicy(Qt::NoFocus);
         butFlipVertical->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["FlipVertical"])));
         if (!imagewidget->isReady()) butFlipVertical->setEnabled(false);
@@ -884,7 +954,37 @@ void QImageViewer::updateSettings(QString language,
         if (!imagewidget->isReady()) butProperties->setEnabled(false);
         buttonsList << butProperties;
     }
+    butMODE = new QPushButton;
+    butMODE->setToolTip(tr("Change view mode to previews or image"));
+    connect(butMODE,SIGNAL(clicked()),this,SLOT(changeMode()));
+    butMODE->setFocusPolicy(Qt::NoFocus);
+    butMODE->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Mode_Image"])));
+    if (!imagewidget->isReady()) butMODE->setEnabled(false);
+    buttonsList << butMODE;
     isneedBut = isneedNew;
+
+#ifdef Q_OS_MAC
+    foreach (QPushButton * but, buttonsList) {
+        but->setMaximumWidth(50);
+        but->setMinimumHeight(40);
+    }
+#endif
+#ifdef Q_OS_LINUX
+    foreach (QPushButton * but, buttonsList) {
+        but->setMaximumWidth(30);
+    }
+#endif
+
+    if (mode == ModePreview)
+    {
+        if (isneedBut.fullscreen)  butFullscreen->hide();
+        if (isneedBut.properties)  butProperties->hide();
+        if (isneedBut.slideshow)   butSlideshow->hide();
+        if (isneedBut.zoomIn)      butZoomIn->hide();
+        if (isneedBut.zoomOriginal)butZoomOriginal->hide();
+        if (isneedBut.zoomOut)     butZoomOut->hide();
+        if (isneedBut.zoomWindow)  butZoomWindow->hide();
+    }
 
     /// Panel Aligment ///
     // Erase old panel //
@@ -911,8 +1011,11 @@ void QImageViewer::updateSettings(QString language,
                 buttonsList[i]->show();
 
         ui->panelBottomLayout->addSpacerItem(spacerLeft);
-        for (int i=0;i<buttonsList.size();i++)
+        for (int i=0;i<buttonsList.size()-1;i++)
+        {
+            if (i == buttonsList.size() / 2) ui->panelBottomLayout->addWidget(butMODE);
             ui->panelBottomLayout->addWidget(buttonsList[i]);
+        }
         ui->panelBottomLayout->addSpacerItem(spacerRight);
     }
     else if (panelalignment == 1)
@@ -922,8 +1025,11 @@ void QImageViewer::updateSettings(QString language,
                 buttonsList[i]->show();
 
         ui->panelTopLayout->addSpacerItem(spacerLeft);
-        for (int i=0;i<buttonsList.size();i++)
-            ui->panelTopLayout->addWidget(buttonsList[i]);
+        for (int i=0;i<buttonsList.size()-1;i++)
+        {
+            if (i == buttonsList.size() / 2) ui->panelBottomLayout->addWidget(butMODE);
+            ui->panelBottomLayout->addWidget(buttonsList[i]);
+        }
         ui->panelTopLayout->addSpacerItem(spacerRight);
     }
     else if (panelalignment == 2)
@@ -961,6 +1067,7 @@ void QImageViewer::updateSettings(QString language,
     ui->shareImageShackListAction->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Imageshack"])));
     ui->aboutAction->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Help"])));
     ui->updatesAction->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Update"])));
+    ui->actionMode->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Mode_Image"])));
     imagewidget->loadiconpack(iconpacks[currenticonpack]);
 
     /// Hotkeys ///
@@ -1009,6 +1116,7 @@ void QImageViewer::closeEvent(QCloseEvent *event)
     if (isVkUploadImageFormActive) vkuploadimageform->close();
     if (isVkUploadImagesFormActive) vkuploadimagesform->close();
     if (isVkDownloadAlbumFormActive) vkdownloadalbumform->close();
+    if (isResizeListActive) editFormResizeElements->close();
 
     event->accept();
 }

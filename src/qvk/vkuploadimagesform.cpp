@@ -7,7 +7,6 @@ vkUploadImagesForm::vkUploadImagesForm(QMap<QString,int> albums,QString addicon)
     ui->setupUi(this);
     this->albums = albums;
     ui->albumUserBox->addItems(albums.keys());
-    ui->listWidget->setSelectionMode(QAbstractItemView::ExtendedSelection);
     ui->albumUserBox->setMaximumWidth(300);
     ui->status->setMaximumWidth(635);
     ui->toolButton->setIcon(QIcon(QPixmap(addicon)));
@@ -37,35 +36,10 @@ QStringList vkUploadImagesForm::getlinkslist()
     return uploadlist;
 }
 
-void vkUploadImagesForm::loadlist(QStringList list,QString folder, int current)
+void vkUploadImagesForm::loadlist(QStringList list,QString folder)
 {
-    ui->listWidget->clear();
-    int size = folder.size()+1;
-    for (int i=0;i<list.size();i++)
-        ui->listWidget->addItem(list[i].right(list[i].size()-size));
-
-    this->list = list;
+    uploadlist = list;
     this->folder = folder;
-
-    scene = new QGraphicsScene;
-    pixmap.load(list[0]);
-    scene->addPixmap(pixmap.scaled(ui->graphicsView->width(),ui->graphicsView->height(),Qt::KeepAspectRatioByExpanding));
-    ui->graphicsView->setScene(scene);
-
-    ui->listWidget->setCurrentRow(current);
-}
-
-void vkUploadImagesForm::on_listWidget_currentRowChanged(int currentRow)
-{
-    delete scene;
-    scene = new QGraphicsScene;
-    pixmap.load(list[currentRow]);
-    if ((double)pixmap.width()/(double)ui->graphicsView->width() >
-            (double)pixmap.height()/(double)ui->graphicsView->height())
-        scene->addPixmap(pixmap.scaledToWidth(ui->graphicsView->width()-5));
-    else
-        scene->addPixmap(pixmap.scaledToHeight(ui->graphicsView->height()-5));
-    ui->graphicsView->setScene(scene);
 }
 
 int vkUploadImagesForm::getalbum()
@@ -75,14 +49,9 @@ int vkUploadImagesForm::getalbum()
 
 void vkUploadImagesForm::on_uploadButton_clicked()
 {
-    QList<QListWidgetItem *> lst = ui->listWidget->selectedItems();
-    uploadlist.clear();
-    for (int i=0;i<lst.size();i++)
-    {   uploadlist.append(folder+"/"+lst[i]->text());  }
 
     /** Clear all unselected values **/
     ui->progressBar->show();
-    ui->listWidget->setEnabled(false);
     ui->uploadButton->setEnabled(false);
     ui->albumUserBox->setEnabled(false);
     ui->toolButton->setEnabled(false);
@@ -107,7 +76,6 @@ void vkUploadImagesForm::on_cancelButton_clicked()
     {
         ui->progressBar->hide();
         ui->uploadButton->setEnabled(true);
-        ui->listWidget->setEnabled(true);
         startUpload = false;
         emit abort(false);
         QMessageBox::warning(this,tr("Pictures have been uploaded"),

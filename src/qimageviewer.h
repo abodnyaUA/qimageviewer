@@ -30,12 +30,14 @@
 #include <QNetworkRequest>
 #include <QEventLoop>
 #include "image.h"
-#include "preview.h"
+#include "previewmode.h"
 #include "previewlist.h"
 #include "fullscreen.h"
 #include "edit/editformresize.h"
 #include "edit/editformresizeelements.h"
 #include "edit/editformcrop.h"
+#include "edit/editformfilters.h"
+#include "edit/imagefilter.h"
 #include "settings/settings.h"
 #include "settings/hotkeys.h"
 //EXTERN APPLICATION
@@ -55,17 +57,22 @@
 //Help
 #include "aboutform.h"
 //UPDATE
-#include "updateinformer.h"
-#include "updatedialog.h"
+#include "update/updateinformer.h"
+#include "update/updatedialog.h"
 
 namespace Ui {
 class QImageViewer;
 }
 
+#ifdef Q_OS_LINUX
+namespace OS {
+    enum OS { DEBBasedLinux, RPMBasedLinux, ArchLinux };
+}
+#endif
+
 class QImageViewer : public QMainWindow
 {
     Q_OBJECT
-
 public:
     explicit QImageViewer(QString path = QString::null, QWidget *parent = 0);
     ~QImageViewer();
@@ -76,6 +83,7 @@ private slots:
     void fileSave();
     void fileSaveAs();
     void filesFind();
+    void listIsEmpty();
     void currentIndexWasChanged(int indx);
     void settingsWindow();
     void updateSettings(QString language,
@@ -98,6 +106,15 @@ private slots:
     void fullScreenFromImage();
     void slideShow();
     //EDIT
+    void acceptFilterGrayScale();
+    void acceptFilterBrightness();
+    void acceptFilterTemperature();
+    void acceptFilterSaturate();
+    void acceptFilterBlur();
+    void acceptFilterSharpen();
+    void acceptFilterSepia();
+    void filterImage(Filter::FilterType filter);
+    void filterImageOvered(bool result);
     void resizeImage();
     void resizeImageOvered(bool result);
     void cropImage();
@@ -141,8 +158,27 @@ private slots:
     void updateFile(int number);
     void checkupdates();
     void afterUpdates();
+    //MODE
+    void changeMode();
+    void openImageFromPreview(int);
+    //Image operations by Mode//
+    void modeRotateLeft();
+    void modeRotateRight();
+    void modeFlipHorizontal();
+    void modeFlipVertical();
+    void modeResize();
+    void modeUploadToVK();
+    void modeUploadToImageshack();
+    void modeDelete();
+    void modeWallpaper();
+    void previewsReady();
 
 private:
+    enum Mode {ModeImage, ModePreview} mode;
+#ifdef Q_OS_LINUX
+    OS::OS typeOS;
+#endif
+
     /// Settings ///
     QSettings *qsettings;
     bool isSettingsActive;
@@ -172,7 +208,8 @@ private:
                 *butZoomIn,*butZoomOut,
                 *butZoomOriginal,*butZoomWindow,
                 *butFullscreen,*butSlideshow,
-                *butProperties;
+                *butProperties,
+                *butMODE;
     struct isneedButStruct isneedBut;
     QSpacerItem *spacerLeft,*spacerRight;
 
@@ -186,12 +223,8 @@ private:
     // main form //
     Ui::QImageViewer *ui;
     image *imagewidget;
+    PreviewMode *previewwiget;
     QSlider * zoomslider;
-
-    // preview [not released] //
-    QScrollArea previewArea;
-    previewList * prevList;
-    QHBoxLayout prevLayout;
 
     // image file dialog //
     QFileDialog * dialog;
@@ -205,6 +238,7 @@ private:
     QColor fullscreencolor;
 
     // Edit Forms //
+    editformFilters *editFormFilters;
     editformResize *editFormResize;
     editformCrop *editFormCrop;
     editformResizeElements *editFormResizeElements;
@@ -242,9 +276,7 @@ private:
     bool isAboutFormOpened;
 
     // Preview //
-    QListWidget * previewListWidget;
-    QThread previewThread;
-    previewList *previewLoader;
+    bool isReadyPreviews;
 
     // Update //
     QNetworkAccessManager * updater;
@@ -256,16 +288,21 @@ private:
     int timesToUpdate;
     bool isUpdateDialogRunning;
 
+    // Edit //
+    bool isResizeListActive;
+
     void createActions();
     void createHotkeys();
     void createDesign();
     void createPanel();
-    void createPreviews();
     void loadsettings();
     void savesettings();
 
 signals:
     void updateFinished();
+
+public:
+    void openExternFile(QString filename);
 
 protected:
     void resizeEvent(QResizeEvent *);

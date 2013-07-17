@@ -67,9 +67,11 @@ void QImageViewer::vkUploadImageUpdateAlbums()
 
 void QImageViewer::vkUploadImageList()
 {
+    QStringList lst = previewwiget->selectedImages();
+    if (lst.isEmpty()) return;
     vkuploadimagesform = new vkUploadImagesForm(vkApi->getAlbumsList(),iconpacks[currenticonpack] + icon["Add"]);
     vkuploadimagesform->setWindowIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Vkontakte"])));
-    vkuploadimagesform->loadlist(imagewidget->getImageList(),lastdirectory,imagewidget->currentImage());
+    vkuploadimagesform->loadlist(lst,lastdirectory);
     vkuploadimagesform->show();
     isVkUploadImagesFormActive = true;
     connect(vkuploadimagesform,SIGNAL(overed(bool)),this,SLOT(vkUploadImageListOvered(bool)));

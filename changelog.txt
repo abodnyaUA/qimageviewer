@@ -109,6 +109,22 @@ Add:
 
 =================
 
-0.22 beta
+0.22
 Fixed:
 f Autoupdating 
+
+=================
+
+0.23
+Add:
++ Previews mode
++ Multiple rotating, flipping
++ GIF Animation support
++ Editing filters
++ Mac OS X support
++ Updating for RPM based and Arch Linux
+
+Changed:
+c Buttons "Next", "Previous" occupy all the available space in height
+c Multiple resize, uploading to vk.com and imageshack have replaced to Previews Mode
+

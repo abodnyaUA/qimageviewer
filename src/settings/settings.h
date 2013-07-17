@@ -102,7 +102,8 @@ private:
     QTreeWidgetItem *hotkeyItemWatchPrevious,*hotkeyItemWatchNext,
                     *hotkeyItemWatchFullscreen,*hotkeyItemWatchSlideshow,
                     *hotkeyItemWatchWallpaper,*hotkeyItemZoomIn,*hotkeyItemZoomOut,
-                    *hotkeyItemZoomWindow,*hotkeyItemZoomOriginal;
+                    *hotkeyItemZoomWindow,*hotkeyItemZoomOriginal,
+                    *hotkeyChangeMode;
     QTreeWidgetItem *hotkeyItemHelpAbout;
 
     //values//

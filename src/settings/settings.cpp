@@ -160,11 +160,10 @@ void Settings::closeEvent(QCloseEvent *event)
 
 void Settings::on_resetButton_clicked()
 {
-#ifdef Q_OS_LINUX
-    ui->defaultfolderLineEdit->setText("/home/"+QString::fromLocal8Bit( getenv("USER") ));
-#endif
 #ifdef Q_OS_WIN32
     ui->defaultfolderLineEdit->setText("C:\\Users\\"+QString::fromLocal8Bit( getenv("USER") ));
+#else
+    ui->defaultfolderLineEdit->setText("/home/"+QString::fromLocal8Bit( getenv("USER") ));
 #endif
     ui->mouseFullscreenCheckBox->setChecked(true);
     ui->mouseZoomCheckBox->setChecked(true);

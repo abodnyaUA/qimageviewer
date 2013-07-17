@@ -11,7 +11,9 @@
 #include <QGraphicsPixmapItem>
 #include <QScrollBar>
 #include <qdrawutil.h>
+#include <QMovie>
 #include "settings/hotkeys.h"
+#include "algorithms.h"
 
 namespace Ui {
 class Properties;
@@ -60,16 +62,22 @@ public slots:
     void setSaved();
     void setEdited();
     bool isSaved();
-    void deleteCurrentItem();
+    bool deleteCurrentItem();
+    bool deleteCurrentItemWithoutAsc();
+    void removeFromList(QString name);
     void prevBuffer();
     void nextBuffer();
     void setAsWallpaper();
+    void setAsWallpaperExtern(QString image);
     void viewProperties();
     ///Mouse///
     void setMouseZoom(bool);
     void setMouseFullscreen(bool);
     bool getMouseZoom();
     bool getMouseFullscreen();
+
+private slots:
+    void onMovieUpdated();
 
 signals:
     void currentImageWasChanged(int indx);
@@ -78,6 +86,7 @@ signals:
     void itsSaved(bool);
     void needFullscreen();
     void needSlideshow();
+    void listIsEmpty();
 
 private:
     QColor fullscreencolor;
@@ -90,6 +99,9 @@ private:
     QPixmap * imagePixmap;
     QGraphicsScene *imageScene;
     QGraphicsPixmapItem *imagePixmapItem;
+    QMovie *imageMovie;
+    bool isMovie;
+    bool wasMovie;
     bool mouseGrabbed;
     bool isPixmap;
     double zoom;

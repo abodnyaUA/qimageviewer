@@ -4,6 +4,8 @@
 image::image()
 {
     isPixmap = false;
+    isMovie = false;
+    wasMovie = false;
     isActiveFullscreen = false;
     setAlignment(Qt::AlignCenter);
     this->installEventFilter(this);
@@ -142,6 +144,13 @@ void image::viewProperties()
 /** load new image and zoom out it if need**/
 void image::loadimage(QString path)
 {
+    if (isMovie)
+    {
+        imageMovie->stop();
+        delete imageMovie;
+        isMovie = false;
+        wasMovie = false;
+    }
     if (isPixmap)
     {
         delete imagePixmap;
@@ -192,23 +201,25 @@ void image::loadimage(QString path)
     emit currentImageWasChanged(imagelist_indx);
     sumMousePos.setX( imageScene->width()/2.0 );
     sumMousePos.setY( imageScene->height()/2.0 );
-}
 
-/** Binary search **/
-int BinSearch(QStringList arr, QString key)
-{
-    int left = 0;
-    int right = arr.size() - 1;
-    int mid;
-
-    while (left <= right)
+    // Movie //
+    if (path.endsWith(".gif"))
     {
-        mid = (left + right) / 2;
-        if (arr[mid] == key) return mid;
-        if (arr[mid] < key) left = mid + 1;
-        if (arr[mid] > key) right = mid - 1;
+        imageMovie = new QMovie(path);
+        if (imageMovie->frameCount() > 1)
+        {
+            imageMovie->start();
+            connect(imageMovie,SIGNAL(updated(QRect)),this,SLOT(onMovieUpdated()));
+            isMovie = true;
+            wasMovie = true;
+        }
+        else delete imageMovie;
     }
-    return 0;
+    else
+    {
+        isMovie = false;
+        wasMovie = false;
+    }
 }
 
 /** load other images in this folder **/
@@ -216,6 +227,13 @@ void image::loadimagelist(QStringList list)
 {
     imagelist = list;
     imagelist_indx = BinSearch(list,imagename);
+}
+
+void image::onMovieUpdated()
+{
+    if (isPixmap) delete imagePixmap;
+    imagePixmap = new QPixmap(imageMovie->currentPixmap());
+    reloadImage();
 }
 
 /** return current index **/
@@ -291,6 +309,13 @@ void image::setImage(int indx)
         if (r == QMessageBox::Yes) saveimage(imagename);
         wasEdited = false;
     }
+    if (isMovie)
+    {
+        imageMovie->stop();
+        delete imageMovie;
+        isMovie = false;
+        wasMovie = false;
+    }
     if (indx >= 0 && indx < imagelist.size())
     {
         imagelist_indx = indx;
@@ -301,6 +326,7 @@ void image::setImage(int indx)
 /** zoom to original size **/
 void image::setOriginalSize()
 {
+    if (isMovie) return;
     int oldwidth = imageScene->width();
     imageScene->clear();
     imageScene->setSceneRect(0,0,1,1);
@@ -323,6 +349,7 @@ void image::setOriginalSize()
 /** zoom in **/
 void image::zoomInc()
 {
+    if (isMovie) return;
     if (!zoomMax)
     {
         int oldwidth = imageScene->width();
@@ -359,6 +386,7 @@ void image::zoomInc()
 /** zoom out **/
 void image::zoomDec()
 {
+    if (isMovie) return;
     if (!zoomMin)
     {
         zoomOriginal = false;
@@ -400,27 +428,40 @@ int image::size()
 }
 
 /** delete current image from disc **/
-void image::deleteCurrentItem()
+bool image::deleteCurrentItem()
 {
     int r = QMessageBox::warning(this, tr("Delete file"),
                                     tr("Do you really want to delete this file?"),
                                     QMessageBox::Yes | QMessageBox::Default,
                                     QMessageBox::Cancel | QMessageBox::Escape);
-    if (r == QMessageBox::Cancel) return;
+    if (r == QMessageBox::Cancel) return false;
+    return deleteCurrentItemWithoutAsc();
+}
 
+bool image::deleteCurrentItemWithoutAsc()
+{
     imagelist.removeAt(imagelist_indx);
 
     QFile(imagename).remove();
 
     if (imagelist.size() == 0)
     {
+        loadimage(":/res/logo.png");
         isPixmap = false;
-        return;
+        emit listIsEmpty();
+        return true;
     }
-
+    wasEdited = false;
     if (imagelist_indx == imagelist.size()) imagelist_indx--;
     loadimage(imagelist[imagelist_indx]);
     emit currentImageWasChanged(imagelist_indx);
+    return true;
+}
+
+void image::removeFromList(QString name)
+{
+    imagelist.removeOne(name);
+    if (imagelist.isEmpty()) emit listIsEmpty();
 }
 
 /** insert image in list **/
@@ -453,6 +494,14 @@ void image::setFullscreen(QColor fullscreencolor)
 void image::unsetFullscreen()
 {
     isActiveFullscreen = false;
+}
+
+void image::setAsWallpaperExtern(QString image)
+{
+    QString name = imagename;
+    imagename = image;
+    setAsWallpaper();
+    imagename = name;
 }
 
 #ifdef Q_OS_WIN32

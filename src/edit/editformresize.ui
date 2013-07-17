@@ -14,7 +14,7 @@
    <string>QImageViewer - Resize image</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="resources.qrc">
+   <iconset resource="../resources.qrc">
     <normaloff>:/res/resize.png</normaloff>:/res/resize.png</iconset>
   </property>
   <property name="locale">
@@ -171,7 +171,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="resources.qrc"/>
+  <include location="../resources.qrc"/>
  </resources>
  <connections/>
 </ui>

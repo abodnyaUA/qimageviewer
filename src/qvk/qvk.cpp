@@ -3,6 +3,7 @@
 QVk::QVk(int application_id)
 {
     app_id = application_id;
+    multiPart = new QHttpMultiPart(QHttpMultiPart::FormDataType);
 }
 
 /// <AUTH SECTION>
@@ -10,13 +11,13 @@ void QVk::startAuth(QString icon) // auth step 1
 {
     QUrl authUrl("http://api.vkontakte.ru/oauth/authorize");
 #if QT_VERSION >= 0x050000
-    QUrlQuery *args = new QUrlQuery();
-    args->addQueryItem("client_id", QString::number(app_id));
-    args->addQueryItem("display", "popup");
-    args->addQueryItem("scope", "photos,wall,offline");
-    args->addQueryItem("redirect_uri", "http://oauth.vk.com/blank.html");
-    args->addQueryItem("response_type", "token");
-    authUrl.setQuery(*args);
+    QUrlQuery args;
+    args.addQueryItem("client_id", QString::number(app_id));
+    args.addQueryItem("display", "popup");
+    args.addQueryItem("scope", "photos,wall,offline");
+    args.addQueryItem("redirect_uri", "http://oauth.vk.com/blank.html");
+    args.addQueryItem("response_type", "token");
+    authUrl.setQuery(args);
 #else
     authUrl.addQueryItem("client_id", QString::number(app_id));
     authUrl.addQueryItem("display", "popup");
@@ -83,15 +84,15 @@ Reply* QVk::request(const QString &method, const QVariantMap &args) // standart 
 {
     QUrl requestUrl = QString("https://api.vk.com/method/")+method;
 #if QT_VERSION >= 0x050000
-    QUrlQuery *requestArgs = new QUrlQuery();
+    QUrlQuery requestArgs;
 
     for (auto it = args.begin(); it!=args.end(); ++it)
     {
-        requestArgs->addQueryItem(it.key(), it.value().toString());
+        requestArgs.addQueryItem(it.key(), it.value().toString());
     }
-    requestArgs->addQueryItem("access_token", access_token);
+    requestArgs.addQueryItem("access_token", access_token);
 
-    requestUrl.setQuery(*requestArgs);
+    requestUrl.setQuery(requestArgs);
 #else
     for (auto it = args.begin(); it!=args.end(); ++it)
     {
@@ -145,8 +146,6 @@ void QVk::uploadRequest(QString filePath, QUrl uploadServer)
     QFile file(filePath);
     if (file.open(QIODevice::ReadOnly))
     {
-        QHttpMultiPart *multiPart = new QHttpMultiPart(QHttpMultiPart::FormDataType);
-
         QFileInfo info(file);
 
         QHttpPart imagePart;
@@ -155,7 +154,8 @@ void QVk::uploadRequest(QString filePath, QUrl uploadServer)
                             QVariant(QString("form-data; name=\"photo\"; filename=\"%1\"").arg(info.fileName())));
         imagePart.setBody(file.readAll());
         file.close();
-
+        delete multiPart;
+        multiPart = new QHttpMultiPart(QHttpMultiPart::FormDataType);
         multiPart->append(imagePart);
 
         uploader->post(QNetworkRequest(uploadServer), multiPart);

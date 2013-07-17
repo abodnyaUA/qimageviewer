@@ -83,6 +83,7 @@ private:
     int photoNo = 1;
     int current_album_id;
     int currentUser_id;
+    QHttpMultiPart *multiPart;
 
     QList<QString> downloadIndexes;
     int downloadAmount;

@@ -39,7 +39,15 @@ void image::reloadImage()
 /** load pixmap from argument 0 to form and make buffer bigger **/
 void image::addToBuffer(QPixmap * pixmap)
 {
+    if (isMovie)
+    {
+        imageMovie->stop();
+        delete imageMovie;
+        isMovie = false;
+    }
+
     delete imageScene;
+//    delete imagePixmap;
     imagePixmap = pixmap;
 
     zoom = qMax((double)imagePixmap->width()/(double)width(),
@@ -83,7 +91,7 @@ void image::addToBuffer(QPixmap * pixmap)
     emit itsSaved(false);
     sumMousePos.setX( imageScene->width()/2.0 );
     sumMousePos.setY( imageScene->height()/2.0 );
-
+    wasEdited = true;
 }
 
 /** 'undo' function **/
@@ -101,6 +109,13 @@ void image::prevBuffer()
     }
     else
     {
+        if (wasMovie)
+        {
+            imageMovie = new QMovie(imagename);
+            imageMovie->start();
+            connect(imageMovie,SIGNAL(updated(QRect)),this,SLOT(onMovieUpdated()));
+            isMovie = true;
+        }
         emit itsPossibleToUndo(false);
         setSaved();
     }
@@ -111,6 +126,12 @@ void image::prevBuffer()
 void image::nextBuffer()
 {
     wasEdited = true;
+    if (isMovie)
+    {
+        imageMovie->stop();
+        delete imageMovie;
+        isMovie = false;
+    }
     if (buffer_indx == 0)
         emit itsSaved(false);
     if (buffer_indx < buffer.size()-1)
@@ -131,7 +152,6 @@ void image::rotateLeft()
     transform = transform.rotate(-90);
     QPixmap * newpixmap = new QPixmap(imagePixmap->transformed(transform));
     addToBuffer(newpixmap);
-    wasEdited = true;
 }
 
 /** rotate image right **/
@@ -141,7 +161,6 @@ void image::rotateRight()
     transform = transform.rotate(90);
     QPixmap * newpixmap = new QPixmap(imagePixmap->transformed(transform));
     addToBuffer(newpixmap);
-    wasEdited = true;
 }
 
 /** Create horizontal flip of current image (Reflection) **/
@@ -151,7 +170,6 @@ void image::flipHorizontal()
     image = image.mirrored(true,false);
     QPixmap * newpixmap = new QPixmap(QPixmap::fromImage(image));
     addToBuffer(newpixmap);
-    wasEdited = true;
 }
 
 /** Create vertical flip of current image (Reflection) **/
@@ -161,7 +179,6 @@ void image::flipVertical()
     image = image.mirrored(false,true);
     QPixmap * newpixmap = new QPixmap(QPixmap::fromImage(image));
     addToBuffer(newpixmap);
-    wasEdited = true;
 }
 
 /** save current image **/
@@ -175,7 +192,11 @@ void image::saveimage(QString filename)
     }
     if (format != "PNG" && format != "BMP" && format != "JPG" &&
             format != "JPEG" && format != "PPM" && format != "XBM" &&
-            format != "XPM" && format != "TIFF") format = "PNG";
+            format != "XPM" && format != "TIFF")
+    {
+        filename = filename.left(filename.size() - format.size()) + QString(".png");
+        format = "PNG";
+    }
 
     QFile file(filename);
     file.open(QIODevice::WriteOnly);

@@ -190,6 +190,9 @@ void QExternProgramManager::addEditor(QString name, QIcon icon, QString command)
     ui->listWidget->addItem(newitem);
 
     QString dir;
+#ifdef Q_OS_MAC
+    dir = QDir::homePath()+"/.config/QImageViewer/extern/";
+#endif
 #ifdef Q_OS_LINUX
     dir = QDir::homePath()+"/.config/QImageViewer/extern/";
 #endif

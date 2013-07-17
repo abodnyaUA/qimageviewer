@@ -289,4 +289,5 @@ void QImageViewer::afterUpdates()
     imagewidget->setSaved();
     close();
 #endif
+
 }

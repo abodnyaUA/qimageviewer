@@ -25,7 +25,7 @@ void PreviewMode::loadImages(QStringList images)
     qDebug() << "Folder"<<folder();
     foreach (QString image, images)
     {
-        addItem(image.right(image.size()-folder().size()-1));
+        addItem(image.right(image.size()-folder().size()-1).left(10));
     }
     previewLoader->loadList(images);
     connect(previewThread,SIGNAL(started()),previewLoader,SLOT(run()));
@@ -63,6 +63,7 @@ bool PreviewMode::eventFilter(QObject *, QEvent *event)
 {
     if (event->type() == QEvent::KeyPress)
     {
+        qDebug() << "key was pressed";
         QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
         int keyInt = keyEvent->key();
         QString key = QKeySequence(keyInt).toString();
@@ -129,6 +130,9 @@ bool PreviewMode::rotateLeft(QString currentImage, bool isSaved)
             file.flush();
             file.close();
             item->setIcon(QIcon(QPixmap(imagename).scaled(100,100)));
+#ifdef Q_OS_MAC
+            item->setText(imagename.right(imagename.size()-folder().size()-1).left(10));
+#endif
         }
     }
     return needReload;
@@ -161,6 +165,9 @@ bool PreviewMode::rotateRight(QString currentImage, bool isSaved)
             file.flush();
             file.close();
             item->setIcon(QIcon(QPixmap(imagename).scaled(100,100)));
+#ifdef Q_OS_MAC
+            item->setText(imagename.right(imagename.size()-folder().size()-1).left(10));
+#endif
         }
     }
     return needReload;
@@ -193,6 +200,9 @@ bool PreviewMode::flipHorizontal(QString currentImage, bool isSaved)
             file.flush();
             file.close();
             item->setIcon(QIcon(QPixmap(imagename).scaled(100,100)));
+#ifdef Q_OS_MAC
+            item->setText(imagename.right(imagename.size()-folder().size()-1).left(10));
+#endif
         }
     }
     return needReload;
@@ -225,6 +235,9 @@ bool PreviewMode::flipVertical(QString currentImage, bool isSaved)
             file.flush();
             file.close();
             item->setIcon(QIcon(QPixmap(imagename).scaled(100,100)));
+#ifdef Q_OS_MAC
+            item->setText(imagename.right(imagename.size()-folder().size()-1).left(10));
+#endif
         }
     }
     return needReload;

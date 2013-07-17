@@ -158,6 +158,12 @@ void QImageViewer::nextImage()
                    + imagewidget->currentImageName());
 }
 
+void QImageViewer::openExternFile(QString filename)
+{
+    defaultpath = filename;
+    fileOpen();
+}
+
 /** Open new image **/
 void QImageViewer::fileOpen()
 {

@@ -301,6 +301,9 @@ private:
 signals:
     void updateFinished();
 
+public:
+    void openExternFile(QString filename);
+
 protected:
     void resizeEvent(QResizeEvent *);
     void closeEvent(QCloseEvent *event);

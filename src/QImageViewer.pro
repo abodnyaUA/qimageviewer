@@ -50,9 +50,13 @@ RC_FILE = myapp.rc
 }
 macx {
     ICON = res/icon.icns
+    RC_FILE = res/icon.icns
+    QMAKE_INFO_PLIST = info.plist
     #CONFIG-=app_bundle
     QMAKE_CXXFLAGS = -mmacosx-version-min=10.7 -std=gnu0x -stdlib=libc+
     CONFIG+=c++11
+    HEADERS += os_application.h
+    SOURCES += os_application.cpp
 }
 
 # Input
@@ -170,4 +174,5 @@ OTHER_FILES += \
     android/src/org/qtproject/qt5/android/bindings/QtApplication.java \
     android/src/org/qtproject/qt5/android/bindings/QtActivity.java \
     lng/qimageviewer_cs.ts \
-    lng/qimageviewer_cs.qm
+    lng/qimageviewer_cs.qm \
+    info.plist

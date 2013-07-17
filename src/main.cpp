@@ -7,6 +7,10 @@
 #include <QStringList>
 #include <QDebug>
 #include <QMessageBox>
+#ifdef Q_OS_MAC
+#include "os_application.h"
+#include <QFileOpenEvent>
+#endif
 void loadStyleSheet()
 {
     /* Let's use QFile and point to a resource... */
@@ -28,10 +32,15 @@ void loadStyleSheet()
 
 int main(int argc, char *argv[])
 {
+#ifdef Q_OS_MAC
+    OS_application a( argc, argv );
+    a.connect( &a, SIGNAL( lastWindowClosed() ), &a, SLOT( quit() ) );
+#else
     QApplication a(argc, argv);
+#endif
     //loadStyleSheet();
     QApplication::setApplicationName("QImageViewer");
-    QApplication::setApplicationVersion("0.2");
+    QApplication::setApplicationVersion("0.23");
 
     QSettings *qsettings = new QSettings("QImageViewer","QImageViewer");
     QString lng = qsettings->value("Programm/Language","sys").toString();
@@ -54,26 +63,32 @@ int main(int argc, char *argv[])
     a.installTranslator(&prTranslator);
 
     QStringList args = QApplication::arguments();
+#ifdef Q_OS_MAC
+    if (args.size()>1) args.removeFirst();
+    else args << "" << a.file();
+#endif
     QImageViewer * w;
 
     // check incomming file. Image or not. If it isn't image, so ignore it.
     if (args.size() != 1)
     {
         QString url = args[1];
-        //QMessageBox::about(0,"",url);
         if (!url.endsWith("jpg",Qt::CaseInsensitive) && !url.endsWith("png",Qt::CaseInsensitive) &&
             !url.endsWith("bmp",Qt::CaseInsensitive) && !url.endsWith("jpeg",Qt::CaseInsensitive) &&
             !url.endsWith("ppm",Qt::CaseInsensitive) && !url.endsWith("xbm",Qt::CaseInsensitive) &&
             !url.endsWith("xbm",Qt::CaseInsensitive) && !url.endsWith("tiff",Qt::CaseInsensitive) &&
             !url.endsWith("gif",Qt::CaseInsensitive) &&
             !url.endsWith("pbm",Qt::CaseInsensitive) && !url.endsWith("pgm",Qt::CaseInsensitive)) args.removeAt(1);
-    } //else QMessageBox::about(0,"","nothing");
+    }
 
     //Run application without any images
     if (args.size() == 1) w = new QImageViewer;
     //Run application with extern image
     else w = new QImageViewer(args[1]);
 
+#ifdef Q_OS_MAC
+    a.setWindow(w);
+#endif
     //Show application
     w->show();
     

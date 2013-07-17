@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+        <key>CFBundleDevelopmentRegion</key>
+        <string>English</string>
+        <key>CFBundleDocumentTypes</key>
+        <array>
+                <dict>
+                        <key>CFBundleTypeExtensions</key>
+                        <array>
+                                <string>sdat</string>
+                        </array>
+                        <key>CFBundleTypeIconFile</key>
+                        <string>@ICON@</string>
+                        <key>CFBundleTypeMIMETypes</key>
+                        <array>
+                                <string>image/bmp</string>
+                                <string>image/gif</string>
+                                <string>image/jpeg</string>
+                                <string>image/png</string>
+                                <string>image/tiff</string>
+                        </array>
+                        <key>CFBundleTypeName</key>
+                        <string>Image File</string>
+                        <key>CFBundleTypeRole</key>
+                        <string>@EXECUTABLE@</string>
+                        <key>LSIsAppleDefaultForType</key>
+                        <true/>
+                </dict>
+        </array>
+        <key>CFBundleExecutable</key>
+        <string>QImageViewer</string>
+        <key>CFBundleGetInfoString</key>
+        <string>@EXECUTABLE@ abodnya</string>
+        <key>CFBundleIconFile</key>
+        <string>res/icon.icns</string>
+        <key>CFBundleIdentifier</key>
+        <string>QImageViewer</string>
+        <key>CFBundleName</key>
+        <string>@EXECUTABLE@</string>
+        <key>CFBundlePackageType</key>
+        <string>APPL</string>
+        <key>CFBundleShortVersionString</key>
+        <string>0.23</string>
+        <key>CFBundleSignature</key>
+        <string>!Rch</string>
+</dict>
+</plist>

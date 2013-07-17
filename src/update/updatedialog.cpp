@@ -8,7 +8,7 @@ UpdateDialog::UpdateDialog(QWidget *parent, QString current, QString avaiable, Q
     ui->setupUi(this);
     ui->currentVersionLabel->setText(current);
     ui->avaiableVersionLabel->setText(avaiable);
-    ui->textBrowser->setText(changelog);
+    ui->textBrowser->setText(changelog.toUtf8());
     int maxscroll = ui->textBrowser->verticalScrollBar()->maximum();
     ui->textBrowser->verticalScrollBar()->setValue(maxscroll);
 }

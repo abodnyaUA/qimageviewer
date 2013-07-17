@@ -65,13 +65,26 @@ void editformResizeElements::on_acceptButton_clicked()
     {
         if (prefix == folder)
         {
-            prefix+="/edit-";
-            samefolder = true;
+            int r = QMessageBox::question(this,tr("Files are exist"), tr("Do you want to replace it?"),
+                                  QMessageBox::Yes,QMessageBox::No);
+            if (r == QMessageBox::No)
+            {
+#ifdef Q_OS_WIN32
+                prefix+="\\edit-";
+#else
+                prefix+="/edit-";
+#endif
+                samefolder = true;
+            }
         }
         else
         {
+#ifdef Q_OS_WIN32
+            prefix+="\\";
+#else
             prefix+="/";
             samefolder = false;
+#endif
         }
         int size = folder.size()+1;
 

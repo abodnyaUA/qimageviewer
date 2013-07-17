@@ -35,6 +35,7 @@ QStringList getDirFiles(QString dir_name)
 
 void QImageViewer::getUpdates(QNetworkReply* reply)
 {
+    needToUpdate.clear();
     // Check request
     QByteArray replyContent = reply->readAll();
     if (replyContent == "Invalid request")
@@ -138,6 +139,10 @@ void QImageViewer::getUpdates(QNetworkReply* reply)
         needToUpdate.append("qimageviewer-git.tar.gz");
     }
 #endif
+#ifdef Q_OS_MAC
+    qDebug() << "http://qiv.p.ht/bin/"+response.toMap()["mac-app"].toString();
+    needToUpdate.append(response.toMap()["mac-app"].toString());
+#endif
     // Get changelog
     QNetworkAccessManager * m_NetworkMngr = new QNetworkAccessManager(this);
     QNetworkReply *replyChangelog = m_NetworkMngr->get(
@@ -184,6 +189,8 @@ void QImageViewer::updateFile(int number)
 #endif
 #ifdef Q_OS_MAC
     QNetworkReply *reply;
+    reply = m_NetworkMngr->get(
+                QNetworkRequest(QUrl("http://qiv.p.ht/bin/"+needToUpdate[number])));
 #endif
     QEventLoop loop;
     connect(reply, SIGNAL(finished()),&loop, SLOT(quit()));
@@ -252,19 +259,27 @@ void QImageViewer::afterUpdates()
     updater.open(QIODevice::WriteOnly);
     QTextStream out(&updater);
     out << "#!/bin/sh\n";
+    out << "sleep 3\n";
     if (typeOS == OS::DEBBasedLinux)
-        out << "gksu "<< '"' << "gdebi -n " << existDir+"/update/"+needToUpdate[0]<< '"' << "\n";
+    {
+        if (QFile("/usr/bin/gksu").exists())
+            out << "gksu "<< '"' << "gdebi -n " << existDir+"/update/"+needToUpdate[0]<< '"' << "\n";
+        else if (QFile("/usr/bin/kdesu").exists())
+            out << "kdesu "<< '"' << "gdebi -n " << existDir+"/update/"+needToUpdate[0]<< '"' << "\n";
+    }
     if (typeOS == OS::ArchLinux)
     {
         out << "cd "+existDir+"/update/\n";
         out << "tar -xvf qimageviewer-git.tar.gz\n";
         out << "cd qimageviewer-git\n";
-        out << "makepkg -g >> PKGBUILD\n";
         out << "makepkg\n";
-        out << "gksu "<< '"' << "pacman -U qimageviewer-git.tar.gz.hz"<< '"' << "\n";
+        if (QFile("/usr/bin/gksu").exists())
+            out << "gksu "<< '"' << "pacman -U qimageviewer-git.tar.gz.hz"<< '"' << "\n";
+        else if (QFile("/usr/bin/kdesu").exists())
+            out << "kdesu "<< '"' << "pacman -U qimageviewer-git.tar.gz.hz"<< '"' << "\n";
     }
     if (typeOS == OS::RPMBasedLinux)
-        out << "gksu "<< '"' << "rpmbuild --rebuild "<< existDir+"/update/"+needToUpdate[0]<< '"' << "\n";
+        out << "beesu "<< '"' << "rpm -Uvh "<< existDir+"/update/"+needToUpdate[0]<< '"' << "\n";
     out << "qimageviewer\n";
     out << "rm "<< '"' << existDir+"/updater.sh" << '"' << "\n";
     out << "rm -rf "<< '"' << existDir+"/update"<< '"' << "\n";

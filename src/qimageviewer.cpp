@@ -667,9 +667,6 @@ void QImageViewer::resizeImageListOvered(bool result)
             //Add new images to list, don't change current image
             defaultpath = editFormResizeElements->getLast();
             fileOpen();
-//            setWindowTitle("QImageViewer - ["+QString::number(imagewidget->currentImage()+1)+
-//                           tr(" of ") + QString::number(imagewidget->size()) + "] "
-//                           + imagewidget->currentImageName());
         }
     }
     if (editFormResizeElements->windowState() == Qt::WindowMaximized) this->setWindowState(Qt::WindowMaximized);

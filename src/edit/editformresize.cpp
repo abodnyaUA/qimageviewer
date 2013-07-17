@@ -31,7 +31,7 @@ void editformResize::loadImage(QPixmap pixmap_old)
 
     originalAspectratio = (double)im_width / (double)im_height;
     ui->aspectratioLabel->setText(QString::number(originalAspectratio));
-    resizeprewiew();
+    resizePreview();
 }
 
 editformResize::~editformResize()
@@ -40,7 +40,7 @@ editformResize::~editformResize()
 }
 
 /** reload preview **/
-void editformResize::resizeprewiew()
+void editformResize::resizePreview()
 {
     scene->clear();
     scene->setSceneRect(0,0,im_width*zoom,im_height*zoom);
@@ -70,7 +70,7 @@ void editformResize::on_widthSpinBox_editingFinished()
     }
     else
         ui->aspectratioLabel->setText(QString::number((double)im_width / (double)im_height));
-    resizeprewiew();
+    resizePreview();
 }
 
 void editformResize::on_heightSpinBox_editingFinished()
@@ -82,7 +82,7 @@ void editformResize::on_heightSpinBox_editingFinished()
     }
     else
         ui->aspectratioLabel->setText(QString::number((double)im_width / (double)im_height));
-    resizeprewiew();
+    resizePreview();
 }
 
 /** if "accept button" has clicked, replace old picture and emit exit signal with 'true', what meens 'save changes'**/

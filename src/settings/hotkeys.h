@@ -14,7 +14,8 @@ struct hotkeysStruct
     QString watchNext,watchPrevious,
             watchFullscreen,watchSlideshow,
             watchWallpaper,zoomIn,zoomOut,
-            zoomWindow,zoomOriginal;
+            zoomWindow,zoomOriginal,
+            changeMode;
     QString helpAbout;
 };
 

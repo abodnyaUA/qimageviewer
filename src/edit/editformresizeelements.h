@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QGraphicsScene>
 #include <QPixmap>
+#include <QMessageBox>
 #include <QDebug>
 #include <QFileDialog>
 
@@ -16,9 +17,9 @@ class editformResizeElements : public QWidget
     Q_OBJECT
     
 public:
-    explicit editformResizeElements(QWidget *parent = 0);
+    explicit editformResizeElements();
     ~editformResizeElements();
-    void loadlist(QStringList list,QString folder, int current);
+    void loadlist(QStringList list,QString folder);
     QString getLast();
     bool isSameFolder();
 

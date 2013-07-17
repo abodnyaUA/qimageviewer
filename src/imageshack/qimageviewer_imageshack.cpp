@@ -14,9 +14,11 @@ void QImageViewer::imageshackShareList()
 {
     if (!isImageShackListUploaderOpened)
     {
+        QStringList lst = previewwiget->selectedImages();
+        if (lst.isEmpty()) return;
         imageshackuploader = new ImageShackListUpload;
         imageshackuploader->setWindowIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Imageshack"])));
-        imageshackuploader->loadlist(imagewidget->getImageList(),lastdirectory,imagewidget->currentImage());
+        imageshackuploader->loadlist(lst,lastdirectory);
         connect(imageshackuploader,SIGNAL(overed(bool)),this,SLOT(imageshackShareListOvered(bool)));
         connect(imageshackuploader,SIGNAL(aborted(bool)),this,SLOT(imageshackShareListAborted(bool)));
 

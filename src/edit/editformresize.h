@@ -26,7 +26,7 @@ public:
     ~editformResize();
     
 private slots:
-    void resizeprewiew();
+    void resizePreview();
     void on_widthSpinBox_valueChanged(int arg1);
     void on_heightSpinBox_valueChanged(int arg1);
     void on_acceptButton_clicked();

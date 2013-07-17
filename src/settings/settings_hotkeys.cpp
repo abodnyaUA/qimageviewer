@@ -70,9 +70,10 @@ void Settings::setHotkeys()
     hotkeyItemZoomOut = addHotkey(categoryWatch,tr("Zoom out"),old_hotkeys.zoomOut,"ZoomOut","-");
     hotkeyItemZoomWindow = addHotkey(categoryWatch,tr("Window size"),old_hotkeys.zoomWindow,"ZoomWindow","");
     hotkeyItemZoomOriginal = addHotkey(categoryWatch,tr("Original size"),old_hotkeys.zoomOriginal,"ZoomOriginal","");
+    hotkeyChangeMode = addHotkey(categoryWatch,tr("Switch mode"),old_hotkeys.changeMode,"Mode_Image","");
     allactions << hotkeyItemWatchPrevious << hotkeyItemWatchNext << hotkeyItemWatchFullscreen <<
                       hotkeyItemWatchSlideshow << hotkeyItemWatchWallpaper << hotkeyItemZoomIn <<
-                      hotkeyItemZoomOut << hotkeyItemZoomWindow << hotkeyItemZoomOriginal;
+                      hotkeyItemZoomOut << hotkeyItemZoomWindow << hotkeyItemZoomOriginal << hotkeyChangeMode;
 
     categoryHelp = addCategory(tr("Help"));
     categoryHelp->setExpanded(true);
@@ -105,6 +106,7 @@ void Settings::saveHotkeys()
     old_hotkeys.zoomOut = hotkeyItemZoomOut->text(1);
     old_hotkeys.zoomWindow = hotkeyItemZoomWindow->text(1);
     old_hotkeys.zoomOriginal = hotkeyItemZoomOriginal->text(1);
+    old_hotkeys.changeMode = hotkeyChangeMode->text(1);
     old_hotkeys.helpAbout = hotkeyItemHelpAbout->text(1);
 }
 
@@ -191,6 +193,7 @@ void Settings::on_resetHotkeysButton_clicked()
     hotkeyItemZoomOut->setText(1,"-");
     hotkeyItemZoomWindow->setText(1,"");
     hotkeyItemZoomOriginal->setText(1,"");
+    hotkeyChangeMode->setText(1,"");
 
     hotkeyItemHelpAbout->setText(1,"F1");
 }

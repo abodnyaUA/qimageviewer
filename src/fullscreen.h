@@ -39,6 +39,7 @@ signals:
     void needOpen();
     void needQuit();
 
+    void needDelete();
     void needResize();
     void needCrop();
     void needResizeItems();

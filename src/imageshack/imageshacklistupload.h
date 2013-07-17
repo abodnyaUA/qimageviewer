@@ -18,7 +18,7 @@ class ImageShackListUpload : public QWidget
     
 public:
     explicit ImageShackListUpload(QWidget *parent = 0);
-    void loadlist(QStringList list,QString folder, int current);
+    void loadlist(QStringList list,QString folder);
     QList< QMap<QString,QString> > getlinkslist();
 
     ~ImageShackListUpload();
@@ -28,9 +28,7 @@ signals:
     void aborted(bool);
 
 private slots:
-    void on_acceptButton_clicked();
     void on_cancelButton_clicked();
-    void on_listWidget_currentRowChanged(int currentRow);
     void update(QMap<QString,QString>);
 
 private:

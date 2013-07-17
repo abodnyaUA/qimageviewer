@@ -48,7 +48,18 @@
         <file>style.qss</file>
         <file>res/vkontakte.png</file>
         <file>res/flag-cze.png</file>
-        <file>lng/qimageviewer_cz.qm</file>
+        <file>lng/qimageviewer_cs.qm</file>
         <file>res/stylesheet.css</file>
+        <file>res/mode_Image.png</file>
+        <file>res/mode_Loading.png</file>
+        <file>res/mode_Previews.png</file>
+        <file>res/icon.icns</file>
+        <file>res/filter-blur.png</file>
+        <file>res/filter-brightness.png</file>
+        <file>res/filter-gray-scale.png</file>
+        <file>res/filter-saturation.png</file>
+        <file>res/filter-sepia.png</file>
+        <file>res/filter-sharpen.png</file>
+        <file>res/filter-temperature.png</file>
     </qresource>
 </RCC>

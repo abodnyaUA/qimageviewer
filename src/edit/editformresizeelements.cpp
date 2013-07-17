@@ -1,8 +1,7 @@
 #include "editformresizeelements.h"
 #include "ui_editformresizeelements.h"
 
-editformResizeElements::editformResizeElements(QWidget *parent) :
-    QWidget(parent),
+editformResizeElements::editformResizeElements() :
     ui(new Ui::editformResizeElements)
 {
     ui->setupUi(this);
@@ -14,7 +13,7 @@ editformResizeElements::~editformResizeElements()
     delete ui;
 }
 
-void editformResizeElements::loadlist(QStringList list,QString folder, int current)
+void editformResizeElements::loadlist(QStringList list,QString folder)
 {
     int size = folder.size()+1;
     for (int i=0;i<list.size();i++)
@@ -30,7 +29,8 @@ void editformResizeElements::loadlist(QStringList list,QString folder, int curre
     ui->previewWidthLabel->setText(QString::number(pixmap.width()));
     ui->previewHeightLabel->setText(QString::number(pixmap.height()));
 
-    ui->listWidget->setCurrentRow(current);
+    ui->listWidget->setCurrentRow(0);
+    ui->listWidget->selectAll();
 }
 
 void editformResizeElements::on_typeSizeRadioButton_clicked()
@@ -65,13 +65,26 @@ void editformResizeElements::on_acceptButton_clicked()
     {
         if (prefix == folder)
         {
-            prefix+="/edit-";
-            samefolder = true;
+            int r = QMessageBox::question(this,tr("Files are exist"), tr("Do you want to replace it?"),
+                                  QMessageBox::Yes,QMessageBox::No);
+            if (r == QMessageBox::No)
+            {
+#ifdef Q_OS_WIN32
+                prefix+="\\edit-";
+#else
+                prefix+="/edit-";
+#endif
+                samefolder = true;
+            }
         }
         else
         {
+#ifdef Q_OS_WIN32
+            prefix+="\\";
+#else
             prefix+="/";
             samefolder = false;
+#endif
         }
         int size = folder.size()+1;
 

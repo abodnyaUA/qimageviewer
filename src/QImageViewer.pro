@@ -92,7 +92,8 @@ HEADERS += \
     previewmode.h \
     algorithms.h \
     edit/imagefilter.h \
-    edit/editformfilters.h
+    edit/editformfilters.h \
+    qhiddenbutton.h
 FORMS += \
     aboutform.ui \
     fullscreen.ui \
@@ -154,7 +155,8 @@ SOURCES += \
     algorithms.cpp \
     qimageviewer_mode.cpp \
     edit/imagefilter.cpp \
-    edit/editformfilters.cpp
+    edit/editformfilters.cpp \
+    qhiddenbutton.cpp
 RESOURCES += resources.qrc
 TRANSLATIONS += lng/qimageviewer_cz.ts \
                 lng/qimageviewer_en.ts \

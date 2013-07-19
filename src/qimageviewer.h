@@ -40,6 +40,7 @@
 #include "edit/imagefilter.h"
 #include "settings/settings.h"
 #include "settings/hotkeys.h"
+#include "qhiddenbutton.h"
 //EXTERN APPLICATION
 #include <QFileIconProvider>
 #include "externeditor/qexternprogram.h"
@@ -221,6 +222,7 @@ private:
     QDesktopWidget desk;
 
     // main form //
+    QHiddenButton *prevButton, *nextButton;
     Ui::QImageViewer *ui;
     image *imagewidget;
     PreviewMode *previewwiget;

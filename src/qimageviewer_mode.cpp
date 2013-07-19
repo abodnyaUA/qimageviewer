@@ -9,8 +9,8 @@ void QImageViewer::changeMode()
     if (imagewidget->isVisible() && imagewidget->size() != 0)
     {
         imagewidget->hide();
-        ui->prevButton->hide();
-        ui->nextButton->hide();
+        prevButton->hide();
+        nextButton->hide();
         if (isneedBut.fullscreen)  butFullscreen->hide();
         if (isneedBut.properties)  butProperties->hide();
         if (isneedBut.slideshow)   butSlideshow->hide();
@@ -44,8 +44,8 @@ void QImageViewer::changeMode()
     else
     {
         previewwiget->hide();
-        ui->prevButton->show();
-        ui->nextButton->show();
+        prevButton->show();
+        nextButton->show();
         if (isneedBut.fullscreen)  butFullscreen->show();
         if (isneedBut.properties)  butProperties->show();
         if (isneedBut.slideshow)   butSlideshow->show();

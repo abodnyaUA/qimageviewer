@@ -392,13 +392,13 @@ void QImageViewer::createActions()
     connect(ui->updatesAction,SIGNAL(triggered()),this,SLOT(checkupdates()));
 
     ///BUTTONS///
-    ui->prevButton->setToolTip(tr("Open previous image"));
-    connect(ui->prevButton,SIGNAL(clicked()),this,SLOT(prevImage()));
-    ui->prevButton->setFocusPolicy(Qt::NoFocus);
+    prevButton->setToolTip(tr("Open previous image"));
+    connect(prevButton,SIGNAL(clicked()),this,SLOT(prevImage()));
+    prevButton->setFocusPolicy(Qt::NoFocus);
 
-    ui->nextButton->setToolTip(tr("Open next image"));
-    connect(ui->nextButton,SIGNAL(clicked()),this,SLOT(nextImage()));
-    ui->nextButton->setFocusPolicy(Qt::NoFocus);
+    nextButton->setToolTip(tr("Open next image"));
+    connect(nextButton,SIGNAL(clicked()),this,SLOT(nextImage()));
+    nextButton->setFocusPolicy(Qt::NoFocus);
 
     //Changing image
     connect(imagewidget,SIGNAL(currentImageWasChanged(int)),this,SLOT(currentIndexWasChanged(int)));
@@ -527,8 +527,8 @@ void QImageViewer::createDesign()
     ui->fullscreenAction->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Fullscreen"])));
     ui->slideshowAction->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Slideshow"])));
     ui->deleteFileAction->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Delete"])));
-    ui->nextButton->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Next"])));
-    ui->prevButton->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Previous"])));
+    nextButton->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Next"])));
+    prevButton->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Previous"])));
     ui->nextimageAction->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Next"])));
     ui->previmageAction->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Previous"])));
     ui->zoomInAction->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["ZoomIn"])));
@@ -1054,8 +1054,8 @@ void QImageViewer::updateSettings(QString language,
     ui->fullscreenAction->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Fullscreen"])));
     ui->slideshowAction->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Slideshow"])));
     ui->deleteFileAction->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Delete"])));
-    ui->nextButton->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Next"])));
-    ui->prevButton->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Previous"])));
+    nextButton->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Next"])));
+    prevButton->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Previous"])));
     ui->nextimageAction->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Next"])));
     ui->previmageAction->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Previous"])));
     ui->zoomInAction->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["ZoomIn"])));

@@ -9,7 +9,7 @@ image::image()
     isActiveFullscreen = false;
     setAlignment(Qt::AlignCenter);
     this->installEventFilter(this);
-
+    this->setStyleSheet( "QGraphicsView { border-style: none; }" );
     wasEdited = false;
     mouseGrabbed = false;
     mousezoomCtrlPressed = false;

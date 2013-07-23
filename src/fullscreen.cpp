@@ -6,7 +6,7 @@ fullscreen::fullscreen(image *imagewidget, hotkeysStruct *hotkeys, QColor fullsc
     ui(new Ui::fullscreen)
 {
     ui->setupUi(this);
-    lay = ui->verticalLayout;
+    lay = ui->verticalLayout_2;
     this->imagewidget = imagewidget;
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(nextSlide()));

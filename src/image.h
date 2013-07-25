@@ -14,6 +14,7 @@
 #include <QMovie>
 #include "settings/hotkeys.h"
 #include "algorithms.h"
+#include "qhiddenbutton.h"
 
 namespace Ui {
 class Properties;
@@ -26,6 +27,7 @@ class image : public QGraphicsView
 
 public:
     image();
+    QHiddenButton *prevButton, *nextButton;
     void loadhotkeys(hotkeysStruct * hotkeys);
     void loadiconpack(QString iconpack);
     void loadiconnames(QMap<QString,QString> icons);
@@ -164,6 +166,7 @@ protected:
     void contextMenuEvent(QContextMenuEvent *event);
     void dropEvent(QDropEvent *event);
     //background
+    void resizeEvent(QResizeEvent *event);
     void drawBackground(QPainter * painter, const QRectF & rect);
 };
 

@@ -7,6 +7,12 @@ void image::dropEvent(QDropEvent *event)
     qDebug() << "dropped = " <<event->mimeData()->objectName();
 }
 
+void image::resizeEvent(QResizeEvent *event)
+{
+    prevButton->setGeometry(0, 0, 50, this->height());
+    nextButton->setGeometry(this->width()-50, 0, 50, this->height());
+}
+
 //Background
 void image::drawBackground(QPainter * painter, const QRectF & rect)
 {

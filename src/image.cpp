@@ -13,6 +13,13 @@ image::image()
     wasEdited = false;
     mouseGrabbed = false;
     mousezoomCtrlPressed = false;
+
+    prevButton = new QHiddenButton(this);
+    nextButton = new QHiddenButton(this);
+
+    prevButton->setGeometry(0, 0, 50, this->height());
+    nextButton->setGeometry(this->width()-50, 0, 50, this->height());
+
     connect(horizontalScrollBar(),SIGNAL(sliderMoved(int)),this,SLOT(horizontalSliderMoverd(int)));
     connect(verticalScrollBar(),SIGNAL(sliderMoved(int)),this,SLOT(verticalSliderMoverd(int)));
 }

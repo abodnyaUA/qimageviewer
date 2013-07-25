@@ -41,7 +41,7 @@ void PreviewMode::updateView()
     qDebug() << "I'm ready";
     for (int i = 0;i<images.size();i++)
         item(i)->setIcon(QIcon(QPixmap::fromImage(previewLoader->icons[i])));
-    previewLoader->icons.clear();
+    //previewLoader->icons.clear(); -- fixes the crash
     if (count() > 0) item(0)->setIcon(QIcon(QPixmap(images[0]).scaled(100,100)));
     repaint();
     emit ready();

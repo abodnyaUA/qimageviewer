@@ -1,6 +1,7 @@
 #ifndef fullscreen_H
 #define fullscreen_H
 
+#include "qhiddenbutton.h"
 #include <QWidget>
 #include <QVBoxLayout>
 #include <QKeyEvent>
@@ -75,6 +76,7 @@ private slots:
 protected:
     bool eventFilter(QObject *obj, QEvent *event);
     void closeEvent(QCloseEvent *event);
+    void resizeEvent(QResizeEvent *);
 };
 
 #endif // fullscreen_H

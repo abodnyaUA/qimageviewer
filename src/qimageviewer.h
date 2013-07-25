@@ -222,7 +222,6 @@ private:
     QDesktopWidget desk;
 
     // main form //
-    QHiddenButton *prevButton, *nextButton;
     Ui::QImageViewer *ui;
     image *imagewidget;
     PreviewMode *previewwiget;

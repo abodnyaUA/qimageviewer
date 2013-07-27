@@ -40,6 +40,7 @@
 #include "edit/imagefilter.h"
 #include "settings/settings.h"
 #include "settings/hotkeys.h"
+#include "qhiddenbutton.h"
 //EXTERN APPLICATION
 #include <QFileIconProvider>
 #include "externeditor/qexternprogram.h"

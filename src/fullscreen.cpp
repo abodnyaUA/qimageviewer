@@ -2,12 +2,12 @@
 #include "ui_fullscreen.h"
 #include <QDebug>
 
-fullscreen::fullscreen(image *imagewidget, hotkeysStruct *hotkeys, QColor fullscreencolor):
+fullscreen::fullscreen(image *imagewidgetArg, hotkeysStruct *hotkeys, QColor fullscreencolor):
     ui(new Ui::fullscreen)
 {
     ui->setupUi(this);
-    lay = ui->verticalLayout;
-    this->imagewidget = imagewidget;
+    lay = ui->verticalLayout_2;
+    this->imagewidget = imagewidgetArg;
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(nextSlide()));
     slideshowStarted = false;
@@ -15,11 +15,12 @@ fullscreen::fullscreen(image *imagewidget, hotkeysStruct *hotkeys, QColor fullsc
     this->fullscreencolor = fullscreencolor;
 
     this->installEventFilter(this);
-    this->installEventFilter(imagewidget);
+    this->installEventFilter(imagewidgetArg);
 
     //Fullscreen only for first screen
     QDesktopWidget *desktop = QApplication::desktop();
-    QRect rect = desktop->screenGeometry(0);
+    QRect rect = desktop->screenGeometry();
+    imagewidget->setGeometry(rect);
     setGeometry(rect);
 }
 
@@ -176,6 +177,15 @@ void fullscreen::closeEvent(QCloseEvent *event)
 {
     timer->stop();
     event->accept();
+}
+
+void fullscreen::resizeEvent(QResizeEvent *)
+{
+    if (this->imagewidget != NULL)
+    {
+        imagewidget->prevButton->setGeometry(0, 0, 50, imagewidget->height());
+        imagewidget->nextButton->setGeometry(imagewidget->width()-50, 0, 50, imagewidget->height());
+    }
 }
 
 fullscreen::~fullscreen()

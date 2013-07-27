@@ -16,6 +16,8 @@ QImageViewer::QImageViewer(QString path, QWidget *parent) :
     previewwiget->hide();
     mode = ModeImage;
 
+    imagewidget->prevButton->setEnabled(false);
+    imagewidget->nextButton->setEnabled(false);
     ui->mainToolBar->hide();
 
     dialog = new QFileDialog(this);
@@ -100,6 +102,7 @@ void QImageViewer::previewsReady()
     butMODE->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Mode_Image"])));
     isReadyPreviews = true;
     ui->actionMode->setEnabled(true);
+    qDebug("here");
 }
 
 void QImageViewer::setStatusName(bool arg)
@@ -238,8 +241,8 @@ void QImageViewer::fileOpen()
         isReadyPreviews = false;
         butMODE->setIcon(QIcon(QPixmap(iconpacks[currenticonpack] + icon["Mode_Loading"])));
 
-        ui->prevButton->setEnabled(true);
-        ui->nextButton->setEnabled(true);
+        imagewidget->prevButton->setEnabled(true);
+        imagewidget->nextButton->setEnabled(true);
         if (isneedBut.rotateLeft)    butRotateLeft->setEnabled(true);
         if (isneedBut.rotateRight)   butRotateRight->setEnabled(true);
         if (isneedBut.flipHorizontal)butFlipHorizontal->setEnabled(true);
@@ -328,8 +331,8 @@ void QImageViewer::listIsEmpty()
         ui->vkUploadImagesAction->setEnabled(false);
     }
     ui->menuAccept_filter->setEnabled(false);
-    ui->prevButton->setEnabled(false);
-    ui->nextButton->setEnabled(false);
+    imagewidget->prevButton->setEnabled(false);
+    imagewidget->nextButton->setEnabled(false);
     if (isneedBut.rotateLeft)    butRotateLeft->setEnabled(false);
     if (isneedBut.rotateRight)   butRotateRight->setEnabled(false);
     if (isneedBut.flipHorizontal)butFlipHorizontal->setEnabled(false);
@@ -615,7 +618,6 @@ void QImageViewer::filterImage(Filter::FilterType filter)
     }
     editFormFilters->loadImage(imagewidget->currentPixmap());
     editFormFilters->show();
-    this->hide();
 }
 void QImageViewer::filterImageOvered(bool result)
 {
@@ -711,6 +713,9 @@ void QImageViewer::resizeEvent(QResizeEvent *)
 {
     if (imagewidget->isReady())
         imagewidget->reloadImage();
+
+    imagewidget->prevButton->setGeometry(0, 0, 50, imagewidget->height());
+    imagewidget->nextButton->setGeometry(imagewidget->width()-50, 0, 50, imagewidget->height());
 }
 
 void QImageViewer::dragEnterEvent(QDragEnterEvent *event)
